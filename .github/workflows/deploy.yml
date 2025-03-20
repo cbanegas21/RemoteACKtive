@@ -12,12 +12,12 @@ jobs:
       - name: Deploy via SCP
         uses: appleboy/scp-action@master
         with:
-            host: ${{ secrets.EC2_HOST }}
-            username: ${{ secrets.EC2_USER }}
-            key: ${{ secrets.EC2_KEY }}
-            source: "."
-            target: "/var/www/html/"
-            recursive: true
-            overwrite: true
-            rm: true
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          source: "."
+          target: "/var/www/html/"
+          overwrite: true
+          rm: true  # Optional, see below
+
 
