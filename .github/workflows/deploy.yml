@@ -18,6 +18,7 @@ jobs:
           source: "."
           target: "/var/www/html/"
           overwrite: true
-          rm: true  # Optional, see below
+          # Remove all files inside the directory as root, then upload
+          remote_cmd: "sudo rm -rf /var/www/html/*"
 
 
