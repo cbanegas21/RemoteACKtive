@@ -1,0 +1,22 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches: [ main ]  # Change "main" if you use another branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Deploy via SCP
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          source: "index.html"  # If you have more files, adjust this value
+          target: "/var/www/html/"
