@@ -4,13 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <!-- CHANGED: Updated the Title -->
   <title>Remote ACKtive</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Favicons (can replace these if you have your own) -->
+  <!-- Favicons -->
   <link href="assets/img/favicon.jpg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -31,6 +29,45 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <!-- Additional custom styles for video responsiveness -->
+  <style>
+    .video-responsive {
+      overflow: hidden;
+      padding-bottom: 56.25%;
+      position: relative;
+      height: 0;
+    }
+    .video-responsive iframe {
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+    }
+    /* Ensure hero section shows background image */
+    #hero {
+      background: url('assets/img/mainbackground.jpg') center center no-repeat;
+      background-size: cover;
+      position: relative;
+      z-index: 1;
+    }
+    /* Optional overlay to improve text readability */
+    #hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+    #hero .container {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+
 </head>
 
 <body class="index-page">
@@ -38,15 +75,10 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
       <a href="index.html" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <!-- CHANGED: Updated heading text -->
-        <h1 class="sitename">REMOTE ACKTIVE</h1>
+        <h1 class="sitename">REMOTE ACKtive</h1>
       </a>
 
-      <!-- CHANGED: Simplified the nav items. Removed "Portfolio," "Dropdown" etc. -->
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
@@ -58,10 +90,8 @@
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-      <!-- .navmenu -->
 
       <a class="cta-btn" href="#about">Get Started</a>
-
     </div>
   </header>
   <!-- End Header -->
@@ -70,42 +100,40 @@
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero section dark-background">
-      <!-- We keep the same background image and structure -->
-      <img src="assets/img/mainbackground.jpg" alt="" data-aos="fade-in">
-
-      <div class="container d-flex flex-column align-items-center">
-        <!-- CHANGED: Rewrote the hero text -->
-        <h2 data-aos="fade-up" data-aos-delay="100">
-          Empower Your Business with Unstoppable Remote Talent
-        </h2>
-        <p data-aos="fade-up" data-aos-delay="200">
-          Remote ACKtive helps you hire handpicked professionals from around the globe—quickly and cost-effectively.
-        </p>
-        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="#about" class="btn-get-started">Get Started</a>
-          <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center">
-            <i class="bi bi-play-circle"></i><span>Watch Video</span>
-          </a>
+      <div class="container" data-aos="fade-in">
+        <div class="row align-items-center">
+          <!-- Left column: Updated text -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h2>We Are Your Outsourcing Partner</h2>
+            <p>
+              At Remote ACKtive, we connect you with global professionals to drive your business growth. 
+              Watch our quick overview video for more insights or click "Get Started" and we'll have you onboard in under 10 minutes!
+            </p>
+            <div class="mt-4">
+              <a href="#contact" class="btn-get-started">Get Started</a>
+            </div>
+          </div>
+          <!-- Right column: Embedded responsive video -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="video-responsive">
+              <iframe src="https://www.youtube.com/embed/aqhjNJkvC9w" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
         </div>
       </div>
-
     </section>
     <!-- End Hero Section -->
 
     <!-- ======= Clients/Brands Section ======= -->
     <section id="clients" class="clients section light-background">
       <div class="container" data-aos="fade-up">
-
         <div class="row gy-4">
-
           <div class="col-xl-2 col-md-3 col-6 client-logo">
             <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
           </div>
           <div class="col-xl-2 col-md-3 col-6 client-logo">
             <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
           </div>
-          
-
           <div class="col-xl-2 col-md-3 col-6 client-logo">
             <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
           </div>
@@ -119,18 +147,14 @@
             <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
           </div>
         </div>
-
       </div>
     </section>
     <!-- End Clients Section -->
 
-    <!-- ======= Features Section (Renamed for "Why Choose Us") ======= -->
-    <!-- We keep the 4-tab structure exactly as is, but update text to your "Why Choose Remote ACKtive?" content. -->
+    <!-- ======= Features Section (Why Choose Us) ======= -->
     <section id="features" class="features section">
-
       <div class="container">
-        <!-- CHANGED: Updated tab headings and text to reflect your bullet points -->
-        <ul class="nav nav-tabs row  d-flex" data-aos="fade-up" data-aos-delay="100">
+        <ul class="nav nav-tabs row d-flex" data-aos="fade-up" data-aos-delay="100">
           <li class="nav-item col-3">
             <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
               <i class="bi bi-binoculars"></i>
@@ -156,15 +180,11 @@
             </a>
           </li>
         </ul>
-        <!-- End Tab Nav -->
-
         <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
-
-          <!-- TAB 1 -->
+          <!-- Tab 1 -->
           <div class="tab-pane fade active show" id="features-tab-1">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <!-- CHANGED: Replaced with your cost-effective text -->
                 <h3>Why Remote ACKtive is Cost-Effective</h3>
                 <p class="fst-italic">
                   We reduce overhead and help you allocate resources more strategically. By hiring remote talent,
@@ -190,9 +210,7 @@
               </div>
             </div>
           </div>
-          <!-- End Tab Content Item -->
-
-          <!-- TAB 2 -->
+          <!-- Tab 2 -->
           <div class="tab-pane fade" id="features-tab-2">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
@@ -215,9 +233,7 @@
               </div>
             </div>
           </div>
-          <!-- End Tab Content Item -->
-
-          <!-- TAB 3 -->
+          <!-- Tab 3 -->
           <div class="tab-pane fade" id="features-tab-3">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
@@ -240,9 +256,7 @@
               </div>
             </div>
           </div>
-          <!-- End Tab Content Item -->
-
-          <!-- TAB 4 -->
+          <!-- Tab 4 -->
           <div class="tab-pane fade" id="features-tab-4">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
@@ -264,91 +278,99 @@
               </div>
             </div>
           </div>
-          <!-- End Tab Content Item -->
-
         </div>
-
       </div>
-
     </section>
     <!-- End Features Section -->
 
-    <!-- ======= Services Section ======= -->
+        <!-- ======= Our Plans Section ======= -->
     <section id="services" class="services section">
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Featured Services<br></p>
+        <h2>OUR PLANS</h2>
+        <p>SELECT THE SERVICE PLAN THAT BEST FITS YOUR BUSINESS NEEDS.</p>
       </div>
-      <!-- End Section Title -->
-
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-5">
-
-          <!-- CHANGED: Updated the text below to reflect your roles and descriptions -->
-
+          
+          <!-- Basic Plan -->
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
             <div class="service-item">
+              <!-- Plan Image -->
               <div class="img">
-                <img src="assets/img/services-1.jpg" class="img-fluid" alt="">
+                <!-- Replace with your own image -->
+                <img src="assets/img/services-1.jpg" class="img-fluid" alt="Basic Plan">
               </div>
+              <!-- Plan Details -->
               <div class="details position-relative">
+                <!-- Icon (Adjust as needed) -->
                 <div class="icon">
-                  <i class="bi bi-activity"></i>
+                  <i class="bi bi-wallet2"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Finance &amp; Accounting</h3>
+                  <h3>Basic Plan</h3>
                 </a>
-                <p>Financial Analysts, Accountants, Auditors, Bookkeepers, Payroll Managers, and more.</p>
+                <p>
+                  Direct payroll management for your remote employees. Simplify payments and compliance without the hassle.
+                  Ideal for businesses seeking a straightforward solution.
+                </p>
               </div>
             </div>
           </div>
-          <!-- End Service Item -->
-
+          <!-- End Basic Plan -->
+          
+          <!-- Standard Plan -->
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
             <div class="service-item">
               <div class="img">
-                <img src="assets/img/services-2.jpg" class="img-fluid" alt="">
+                <!-- Replace with your own image -->
+                <img src="assets/img/services-2.jpg" class="img-fluid" alt="Standard Plan">
               </div>
               <div class="details position-relative">
                 <div class="icon">
-                  <i class="bi bi-broadcast"></i>
+                  <i class="bi bi-briefcase"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Developers &amp; IT</h3>
+                  <h3>Standard Plan</h3>
                 </a>
-                <p>Frontend Devs, Full-Stack Engineers, Software Architects, and more.</p>
+                <p>
+                  Combines payroll management with hiring services. We find and onboard the right talent for your business,
+                  offering a balanced and efficient HR solution.
+                </p>
               </div>
             </div>
           </div>
-          <!-- End Service Item -->
-
+          <!-- End Standard Plan -->
+          
+          <!-- Premium Plan -->
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
             <div class="service-item">
               <div class="img">
-                <img src="assets/img/services-3.jpg" class="img-fluid" alt="">
+                <!-- Replace with your own image -->
+                <img src="assets/img/services-3.jpg" class="img-fluid" alt="Premium Plan">
               </div>
               <div class="details position-relative">
                 <div class="icon">
-                  <i class="bi bi-easel"></i>
+                  <i class="bi bi-star"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Customer Service</h3>
+                  <h3>Premium Plan</h3>
                 </a>
-                <p>Customer Service Reps, Tech Support, Service Delivery Managers, and more.</p>
+                <p>
+                  An all-inclusive service covering payroll, hiring, and employee engagement.
+                  Enjoy training, regular check-ins, and performance reviews for a comprehensive solution.
+                </p>
               </div>
             </div>
           </div>
-          <!-- End Service Item -->
+          <!-- End Premium Plan -->
 
         </div>
       </div>
-
     </section>
-    <!-- End Services Section -->
+    <!-- End Our Plans Section -->
+
 
     <!-- ======= Stats Section ======= -->
-    <!-- CHANGED: Updated the stats to modest numbers for a new startup -->
     <section id="stats" class="stats section light-background">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
@@ -398,7 +420,6 @@
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <!-- CHANGED: Updated heading/text with your About content -->
             <h3>About Remote ACKtive</h3>
             <img src="assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
             <p>
@@ -423,7 +444,6 @@
                 Whether you’re scaling a startup or expanding an established enterprise, we ensure you find the perfect fit in record time,
                 letting you focus on what truly matters: driving success and innovation within your company.
               </p>
-
               <div class="position-relative mt-4">
                 <img src="assets/img/about-2.jpg" class="img-fluid rounded-4" alt="">
                 <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
@@ -436,16 +456,13 @@
     <!-- End About Section -->
 
     <!-- ======= Services 2 Section ======= -->
-    <!-- CHANGED: Tweak the text to show "ELITE TALENT..." etc. and list more roles. -->
     <section id="services-2" class="services-2 section light-background">
       <div class="container section-title" data-aos="fade-up">
         <h2>Services</h2>
         <p>ELITE TALENT FOR EVERY DEPARTMENT. IF YOU NEED A ROLE, OUR VIRTUAL ASSISTANTS CAN FILL IT</p>
       </div>
-
       <div class="container">
         <div class="row gy-4">
-          <!-- Example: Finance & Accounting -->
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-briefcase icon flex-shrink-0"></i>
@@ -457,8 +474,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Example: Marketing & Advertising -->
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-card-checklist icon flex-shrink-0"></i>
@@ -470,8 +485,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Example: Development & IT -->
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-bar-chart icon flex-shrink-0"></i>
@@ -483,8 +496,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Example: Human Resources -->
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-binoculars icon flex-shrink-0"></i>
@@ -496,8 +507,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Example: Customer Service -->
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-brightness-high icon flex-shrink-0"></i>
@@ -509,8 +518,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Example: Executive Assistants -->
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-calendar4-week icon flex-shrink-0"></i>
@@ -522,55 +529,10 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
     <!-- End Services 2 Section -->
-
-    <!-- ======= Testimonials Section (Currently Removing/Commenting Out) ======= 
-    <section id="testimonials" class="testimonials section dark-background">
-      <img src="assets/img/testimonials-bg.jpg" class="testimonials-bg" alt="">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              }
-            }
-          </script>
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Testimonial text here...</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div>
-            ...
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-    </section>
-    End Testimonials Section -->
 
     <!-- ======= Team Section ======= -->
     <section id="team" class="team section light-background">
@@ -580,7 +542,6 @@
       </div>
       <div class="container">
         <div class="row gy-5">
-          <!-- CHANGED: Replaced names with your Founders -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
               <div class="pic"><img src="assets/img/team/KevinPhoto.png" class="img-fluid" alt=""></div>
@@ -596,7 +557,6 @@
               </div>
             </div>
           </div>
-
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="member">
               <div class="pic"><img src="assets/img/team/AndrePhoto.jpg" class="img-fluid" alt=""></div>
@@ -612,7 +572,6 @@
               </div>
             </div>
           </div>
-
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
               <div class="pic"><img src="assets/img/team/CarlosPhoto.jpeg" class="img-fluid" alt=""></div>
@@ -628,7 +587,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -637,81 +595,73 @@
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact section">
       <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur</p>
+        <h2>Contact Us</h2>
+        <p>Connect with Our Virtual Team</p>
       </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
-          <div class="col-lg-6 ">
-            <div class="row gy-4">
-
-              <div class="col-lg-12">
-                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
-                  data-aos-delay="200">
-                  <i class="bi bi-geo-alt"></i>
-                  <h3>Address</h3>
-                  <!-- CHANGED: Moved to "Operating Globally" -->
-                  <p>Operating Globally</p>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
-                  data-aos-delay="300">
-                  <i class="bi bi-telephone"></i>
-                  <h3>Call Us</h3>
-                  <!-- CHANGED: Updated phone -->
-                  <p>+14152511945</p>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
-                  data-aos-delay="400">
-                  <i class="bi bi-envelope"></i>
-                  <h3>Email Us</h3>
-                  <!-- CHANGED: Updated email -->
-                  <p>admin@remoteacktive.com</p>
-                </div>
-              </div>
-
+          <!-- Contact Info -->
+          <div class="col-lg-4">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-building"></i>
+              <h3>Virtual HQ</h3>
+              <p>We operate globally with a virtual presence.</p>
+            </div>
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone"></i>
+              <h3>Call Us</h3>
+              <p>+14152511945</p>
+            </div>
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope"></i>
+              <h3>Email Us</h3>
+              <p>admin@remoteacktive.com</p>
             </div>
           </div>
-
-          <div class="col-lg-6">
-            <!-- For now, it points to forms/contact.php. Adjust if needed. -->
+          <!-- Expanded Contact Form -->
+          <div class="col-lg-8">
             <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
               <div class="row gy-4">
-
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  <input type="text" name="company" class="form-control" placeholder="Company" required>
                 </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                <div class="col-md-6">
+                  <input type="url" name="website" class="form-control" placeholder="Website">
                 </div>
-
+                <div class="col-md-6">
+                  <input type="text" name="job_title" class="form-control" placeholder="Job Title" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" name="email" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="role_title" class="form-control" placeholder="Title of Role to Fill" required>
+                </div>
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  <textarea class="form-control" name="role_description" rows="4" placeholder="Brief description of the role" required></textarea>
                 </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="4" placeholder="Message" required=""></textarea>
+                <div class="col-md-6">
+                  <input type="text" name="referral" class="form-control" placeholder="How did you hear about us?" required>
                 </div>
-
+                <div class="col-md-6">
+                  <!-- Simple math captcha; consider using a more robust captcha if needed -->
+                  <input type="text" name="captcha" class="form-control" placeholder="What is 3 + 2?" required>
+                </div>
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
+                  <button type="submit">Submit Inquiry</button>
                 </div>
-
               </div>
             </form>
           </div>
-          <!-- End Contact Form -->
-
         </div>
       </div>
     </section>
@@ -726,23 +676,20 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <!-- CHANGED: Replaced "Dewi" with your brand name -->
             <span class="sitename">Remote ACKtive</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>Operating Globally</p>
+            <p>We operate globally from our Virtual HQ</p>
             <p class="mt-3"><strong>Phone:</strong> <span>+14152511945</span></p>
             <p><strong>Email:</strong> <span>admin@remoteacktive.com</span></p>
           </div>
           <div class="social-links d-flex mt-4">
-            <!-- CHANGED: You can update with real social links if you have them -->
             <a href=""><i class="bi bi-twitter-x"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>
             <a href=""><i class="bi bi-instagram"></i></a>
             <a href=""><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
-
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
@@ -753,7 +700,6 @@
             <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact</a></li>
           </ul>
         </div>
-
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Our Services</h4>
           <ul>
@@ -764,29 +710,26 @@
             <li><i class="bi bi-chevron-right"></i> <a href="#services">Customer Service</a></li>
           </ul>
         </div>
-
         <div class="col-lg-4 col-md-12 footer-newsletter">
           <h4>Our Newsletter</h4>
           <p>Subscribe to our newsletter and receive the latest news about remote talent and services!</p>
           <form action="forms/newsletter.php" method="post" class="php-email-form">
-            <div class="newsletter-form"><input type="email" name="email" placeholder="Your Email"><input type="submit" value="Subscribe"></div>
+            <div class="newsletter-form">
+              <input type="email" name="email" placeholder="Your Email">
+              <input type="submit" value="Subscribe">
+            </div>
             <div class="loading">Loading</div>
             <div class="error-message"></div>
             <div class="sent-message">Your subscription request has been sent. Thank you!</div>
           </form>
         </div>
-
       </div>
     </div>
-
-    <!-- CHANGED: Removed licensing references here. -->
     <div class="container copyright text-center mt-4">
       <p>© 2025 <strong class="px-1 sitename">Remote ACKtive</strong> All Rights Reserved</p>
       <div class="credits">
-        <!-- Removed the lines about “Designed by BootstrapMade” and “Distributed by ThemeWagon” -->
       </div>
     </div>
-
   </footer>
   <!-- End Footer -->
 
