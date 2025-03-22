@@ -17,7 +17,7 @@ jobs:
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_PEM_KEY }}" > ~/.ssh/key.pem
+          echo "${{ secrets.EC2_KEY }}" > ~/.ssh/key.pem
           chmod 600 ~/.ssh/key.pem
 
       # 3) Use rsync to upload only changed/removed files
