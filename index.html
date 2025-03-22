@@ -75,23 +75,27 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <!-- 1) Logo replaces text -->
       <a href="index.html" class="logo d-flex align-items-center me-auto">
-        <h1 class="sitename">REMOTE ACKtive</h1>
+        <!-- Replace with your actual logo image file -->
+        <img src="assets/img/headerlogo.png" alt="Remote ACKtive Logo" style="height: 80px;">
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#features">Why Us?</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#features">Why Choose Us</a></li>
-          <li><a href="#team">Team</a></li>
+          <li><a href="#about">About</a></li>
+          <!-- Replaced the 'Team' nav link with 'FAQ' -->
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="cta-btn" href="#about">Get Started</a>
+      <a class="cta-btn" href="#contact">Get Started</a>
     </div>
   </header>
   <!-- End Header -->
@@ -102,13 +106,13 @@
     <section id="hero" class="hero section dark-background">
       <div class="container" data-aos="fade-in">
         <div class="row align-items-center">
-          <!-- Left column: Updated text -->
+          <!-- 2) Hero Section Updates -->
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h2>We Are Your Outsourcing Partner</h2>
-            <p>
-              At Remote ACKtive, we connect you with global professionals to drive your business growth. 
-              Watch our quick overview video for more insights or click "Get Started" and we'll have you onboard in under 10 minutes!
-            </p>
+            <!-- New Title -->
+            <h2>Your Gateway to the BEST Global Talent</h2>
+            <!-- Split into two paragraphs -->
+            <p>At Remote ACKtive, we connect you with global professionals to drive your business growth.</p>
+            <p>Watch our quick overview video to discover the 5 key benefits of outsourcing, or click "Get Started" to begin your journey!</p>
             <div class="mt-4">
               <a href="#contact" class="btn-get-started">Get Started</a>
             </div>
@@ -125,9 +129,14 @@
     <!-- End Hero Section -->
 
     <!-- ======= Clients/Brands Section ======= -->
+    <!-- 3) Renamed heading but kept the same IDs & structure -->
     <section id="clients" class="clients section light-background">
       <div class="container" data-aos="fade-up">
-        <div class="row gy-4">
+        <div class="text-center">
+          <h4>Our team has extensive, hands-on experience with these software tools.</h4>
+        </div>
+        <div class="row gy-4 mt-4">
+          <!-- Replace these logos as needed (Slack, Salesforce, etc.) -->
           <div class="col-xl-2 col-md-3 col-6 client-logo">
             <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
           </div>
@@ -149,145 +158,159 @@
         </div>
       </div>
     </section>
+    
     <!-- End Clients Section -->
 
     <!-- ======= Features Section (Why Choose Us) ======= -->
-    <section id="features" class="features section">
-      <div class="container">
-        <ul class="nav nav-tabs row d-flex" data-aos="fade-up" data-aos-delay="100">
-          <li class="nav-item col-3">
-            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
-              <i class="bi bi-binoculars"></i>
-              <h4 class="d-none d-lg-block">Cost-Effective</h4>
-            </a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
-              <i class="bi bi-box-seam"></i>
-              <h4 class="d-none d-lg-block">Handpicked Talent</h4>
-            </a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
-              <i class="bi bi-brightness-high"></i>
-              <h4 class="d-none d-lg-block">Speedy Onboarding</h4>
-            </a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4">
-              <i class="bi bi-command"></i>
-              <h4 class="d-none d-lg-block">Global Perspective</h4>
-            </a>
-          </li>
-        </ul>
-        <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
-          <!-- Tab 1 -->
-          <div class="tab-pane fade active show" id="features-tab-1">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Why Remote ACKtive is Cost-Effective</h3>
-                <p class="fst-italic">
-                  We reduce overhead and help you allocate resources more strategically. By hiring remote talent,
-                  you save on office space, utilities, and location-based salary premiums without compromising quality.
-                </p>
-                <ul>
-                  <li><i class="bi bi-check2-all"></i>
-                    <span>Competitive international rates without sacrificing expertise</span>
-                  </li>
-                  <li><i class="bi bi-check2-all"></i>
-                    <span>Flexible scaling—hire for short-term projects or long-term roles</span>
-                  </li>
-                  <li><i class="bi bi-check2-all"></i>
-                    <span>Streamlined onboarding and HR support to minimize administrative costs</span>
-                  </li>
-                </ul>
-                <p>
-                  Our mission is to let you focus on driving innovation and growth rather than worrying about ballooning overhead.
-                </p>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/working-1.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
+<section id="features" class="features section">
+  <style>
+    /* Forces each image to keep its width but set height to 70% of its container */
+    .features-img {
+      height: 90%;
+      max-width: 100%;
+    }
+  </style>
+  <div class="container">
+    <ul class="nav nav-tabs row d-flex" data-aos="fade-up" data-aos-delay="100">
+      <li class="nav-item col-3">
+        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+          <i class="bi bi-cash-stack"></i>
+          <h4 class="d-none d-lg-block">Cost-Effective</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+          <i class="bi bi-pin-map-fill"></i>
+          <h4 class="d-none d-lg-block">Handpicked Talent</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+          <i class="bi bi-lightning-charge-fill"></i>
+          <h4 class="d-none d-lg-block">Speedy Onboarding</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4">
+          <i class="bi bi-globe-americas"></i>
+          <h4 class="d-none d-lg-block">Global Perspective</h4>
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+
+      <!-- Tab 1 -->
+      <div class="tab-pane fade active show" id="features-tab-1">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Why Remote ACKtive is Cost-Effective</h3>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle-fill text-primary"></i>
+                Competitive international rates without sacrificing expertise
+              </li>
+              <li><i class="bi bi-check-circle-fill text-primary"></i>
+                Flexible scaling—hire for short-term projects or long-term roles
+              </li>
+              <li><i class="bi bi-check-circle-fill text-primary"></i>
+                Streamlined onboarding and HR support to minimize administrative costs
+              </li>
+            </ul>
+            <p>
+              We reduce overhead and help you allocate resources more strategically. By hiring remote talent,
+              you save on office space, utilities, and location-based salary premiums without compromising quality.
+            </p>
           </div>
-          <!-- Tab 2 -->
-          <div class="tab-pane fade" id="features-tab-2">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Handpicked Professionals</h3>
-                <p>
-                  Every candidate is carefully vetted for technical expertise, language skills, and cultural fit.
-                  We believe in quality over quantity—so you only meet top-tier talent.
-                </p>
-                <p class="fst-italic">
-                  Our thorough process ensures the perfect match, accelerating your time-to-hire and reducing turnover.
-                </p>
-                <ul>
-                  <li><i class="bi bi-check2-all"></i> <span>Technical assessments &amp; background checks</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Proven track record &amp; references</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Candidates aligned with your company culture &amp; goals</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/working-2.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-          <!-- Tab 3 -->
-          <div class="tab-pane fade" id="features-tab-3">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Speedy Onboarding</h3>
-                <p>
-                  Traditional hiring processes can take weeks or months. We cut that down to days by curating top
-                  profiles that match your specific needs.
-                </p>
-                <ul>
-                  <li><i class="bi bi-check2-all"></i> <span>Fast-track screening &amp; shortlisting</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Minimal rounds of interviews</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Immediate integration with your existing workflow</span></li>
-                </ul>
-                <p class="fst-italic">
-                  Stay ahead of the competition and avoid project bottlenecks by onboarding top talent quickly.
-                </p>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/working-3.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-          <!-- Tab 4 -->
-          <div class="tab-pane fade" id="features-tab-4">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Global Perspective</h3>
-                <p>
-                  Our global talent pool gives you fresh ideas and unique skill sets that come from diverse backgrounds.
-                </p>
-                <p class="fst-italic">
-                  Tap into international expertise, create a 24/7 workflow, and build a truly global team.
-                </p>
-                <ul>
-                  <li><i class="bi bi-check2-all"></i> <span>Cross-cultural collaboration &amp; innovation</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Global coverage—round-the-clock support</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Scalable workforce with minimal geographic restrictions</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/working-4.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <img src="assets/img/working-1.jpg" alt="Cost-Effective" class="features-img">
           </div>
         </div>
       </div>
-    </section>
-    <!-- End Features Section -->
+      <!-- End Tab 1 -->
 
-        <!-- ======= Our Plans Section ======= -->
+      <!-- Tab 2 -->
+      <div class="tab-pane fade" id="features-tab-2">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Handpicked Professionals</h3>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle-fill text-primary"></i>
+                Technical assessments &amp; background checks
+              </li>
+              <li><i class="bi bi-check-circle-fill text-primary"></i>
+                Proven track record &amp; references
+              </li>
+              <li><i class="bi bi-check-circle-fill text-primary"></i>
+                Candidates aligned with your company culture &amp; goals
+              </li>
+            </ul>
+            <p>
+              Every candidate is carefully vetted for technical expertise, language skills, and cultural fit.
+              We believe in quality over quantity—so you only meet top-tier talent.
+            </p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <img src="assets/img/working-2.jpg" alt="Handpicked Talent" class="features-img">
+          </div>
+        </div>
+      </div>
+      <!-- End Tab 2 -->
+
+      <!-- Tab 3 -->
+      <div class="tab-pane fade" id="features-tab-3">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Speedy Onboarding</h3>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle-fill text-primary"></i> Fast-track screening &amp; shortlisting</li>
+              <li><i class="bi bi-check-circle-fill text-primary"></i> Minimal rounds of interviews</li>
+              <li><i class="bi bi-check-circle-fill text-primary"></i> Immediate integration with your existing workflow</li>
+            </ul>
+            <p>
+              Traditional hiring processes can take weeks or months. We cut that down to days by curating top
+              profiles that match your specific needs.
+            </p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <img src="assets/img/working-3.jpg" alt="Speedy Onboarding" class="features-img">
+          </div>
+        </div>
+      </div>
+      <!-- End Tab 3 -->
+
+      <!-- Tab 4 -->
+      <div class="tab-pane fade" id="features-tab-4">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Global Perspective</h3>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle-fill text-primary"></i> Cross-cultural collaboration &amp; innovation</li>
+              <li><i class="bi bi-check-circle-fill text-primary"></i> Global coverage—round-the-clock support</li>
+              <li><i class="bi bi-check-circle-fill text-primary"></i> Scalable workforce with minimal geographic restrictions</li>
+            </ul>
+            <p>
+              Our global talent pool gives you fresh ideas and unique skill sets that come from diverse backgrounds.
+              Tap into international expertise and build a truly global team.
+            </p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <img src="assets/img/working-4.jpg" alt="Global Perspective" class="features-img">
+          </div>
+        </div>
+      </div>
+      <!-- End Tab 4 -->
+
+    </div>
+  </div>
+</section>
+<!-- End Features Section -->
+
+
+    <!-- ======= Our Plans Section (with checks and crosses) ======= -->
     <section id="services" class="services section">
       <div class="container section-title" data-aos="fade-up">
-        <h2>OUR PLANS</h2>
-        <p>SELECT THE SERVICE PLAN THAT BEST FITS YOUR BUSINESS NEEDS.</p>
+        <h2>Outsourcing Plans</h2>
+        <p>Choose the plan that aligns with your business needs.</p>
       </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-5">
@@ -295,24 +318,24 @@
           <!-- Basic Plan -->
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
             <div class="service-item">
-              <!-- Plan Image -->
               <div class="img">
-                <!-- Replace with your own image -->
-                <img src="assets/img/services-1.jpg" class="img-fluid" alt="Basic Plan">
+                <img src="assets/img/services-1.png" class="img-fluid" alt="Basic Plan">
               </div>
-              <!-- Plan Details -->
               <div class="details position-relative">
-                <!-- Icon (Adjust as needed) -->
                 <div class="icon">
                   <i class="bi bi-wallet2"></i>
                 </div>
                 <a href="#" class="stretched-link">
                   <h3>Basic Plan</h3>
                 </a>
-                <p>
-                  Direct payroll management for your remote employees. Simplify payments and compliance without the hassle.
-                  Ideal for businesses seeking a straightforward solution.
-                </p>
+                <ul class="list-unstyled mt-3">
+                  <li><i class="bi bi-check-circle text-success"></i> Direct payroll management</li>
+                  <li><i class="bi bi-check-circle text-success"></i> Compliance checks &amp; invoicing</li>
+                  <li><i class="bi bi-check-circle text-success"></i> Basic onboarding support</li>
+                  <li><i class="bi bi-x-circle text-danger"></i> Recruiting &amp; talent matching</li>
+                  <li><i class="bi bi-x-circle text-danger"></i> Engagement &amp; training programs</li>
+                  <li><i class="bi bi-x-circle text-danger"></i> Performance reviews</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -322,8 +345,7 @@
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
             <div class="service-item">
               <div class="img">
-                <!-- Replace with your own image -->
-                <img src="assets/img/services-2.jpg" class="img-fluid" alt="Standard Plan">
+                <img src="assets/img/services-2.png" class="img-fluid" alt="Standard Plan">
               </div>
               <div class="details position-relative">
                 <div class="icon">
@@ -332,10 +354,14 @@
                 <a href="#" class="stretched-link">
                   <h3>Standard Plan</h3>
                 </a>
-                <p>
-                  Combines payroll management with hiring services. We find and onboard the right talent for your business,
-                  offering a balanced and efficient HR solution.
-                </p>
+                <ul class="list-unstyled mt-3">
+                  <li><i class="bi bi-check-circle text-success"></i> Everything in Basic Plan</li>
+                  <li><i class="bi bi-check-circle text-success"></i> Recruiting &amp; talent matching</li>
+                  <li><i class="bi bi-check-circle text-success"></i> Full onboarding &amp; orientation</li>
+                  <li><i class="bi bi-check-circle text-success"></i> HR support for remote teams</li>
+                  <li><i class="bi bi-x-circle text-danger"></i> Engagement &amp; training programs</li>
+                  <li><i class="bi bi-x-circle text-danger"></i> Performance reviews</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -345,8 +371,7 @@
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
             <div class="service-item">
               <div class="img">
-                <!-- Replace with your own image -->
-                <img src="assets/img/services-3.jpg" class="img-fluid" alt="Premium Plan">
+                <img src="assets/img/services-3.png" class="img-fluid" alt="Premium Plan">
               </div>
               <div class="details position-relative">
                 <div class="icon">
@@ -355,10 +380,12 @@
                 <a href="#" class="stretched-link">
                   <h3>Premium Plan</h3>
                 </a>
-                <p>
-                  An all-inclusive service covering payroll, hiring, and employee engagement.
-                  Enjoy training, regular check-ins, and performance reviews for a comprehensive solution.
-                </p>
+                <ul class="list-unstyled mt-3">
+                  <li><i class="bi bi-check-circle text-success"></i> Everything in Standard Plan</li>
+                  <li><i class="bi bi-check-circle text-success"></i> Engagement &amp; training programs</li>
+                  <li><i class="bi bi-check-circle text-success"></i> Regular check-ins &amp; performance reviews</li>
+                  <li><i class="bi bi-check-circle text-success"></i> Advanced compliance &amp; payroll solutions</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -369,44 +396,43 @@
     </section>
     <!-- End Our Plans Section -->
 
-
-    <!-- ======= Stats Section ======= -->
+    <!-- ======= Stats Section (with placeholders) ======= -->
     <section id="stats" class="stats section light-background">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
           <div class="col-lg-3 col-md-6">
             <div class="stats-item d-flex align-items-center w-100 h-100">
-              <i class="bi bi-emoji-smile color-blue flex-shrink-0"></i>
+              <i class="bi bi-geo-alt color-blue flex-shrink-0"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="5" class="purecounter"></span>
-                <p>Satisfied Clients</p>
+                <span>12</span>
+                <p>Countries Covered</p>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="stats-item d-flex align-items-center w-100 h-100">
-              <i class="bi bi-journal-richtext color-orange flex-shrink-0"></i>
+              <i class="bi bi-cash-stack color-orange flex-shrink-0"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="30" data-purecounter-duration="5" class="purecounter"></span>
-                <p>Successful Hires</p>
+                <span>65%</span>
+                <p>Estimated Cost Savings</p>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="stats-item d-flex align-items-center w-100 h-100">
-              <i class="bi bi-headset color-green flex-shrink-0"></i>
+              <i class="bi bi-globe color-green flex-shrink-0"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="5" class="purecounter"></span>
-                <p>Hours Of Support</p>
+                <span>4</span>
+                <p>Continents</p>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="stats-item d-flex align-items-center w-100 h-100">
-              <i class="bi bi-people color-pink flex-shrink-0"></i>
+              <i class="bi bi-emoji-smile color-pink flex-shrink-0"></i>
               <div>
-                <span>3</span>
-                <p>Founders</p>
+                <span>10</span>
+                <p>Happy Clients</p>
               </div>
             </div>
           </div>
@@ -421,32 +447,37 @@
         <div class="row gy-4">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <h3>About Remote ACKtive</h3>
-            <img src="assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
+            <img src="assets/img/about.png" class="img-fluid rounded-4 mb-4" alt="" style="max-height: 500px; width: auto;">
             <p>
-              At Remote ACKtive, we believe the best talent isn’t limited by geography. We exist to help businesses unlock
-              global expertise and accelerate growth—all while reducing overhead costs.
+              At Remote ACKtive, we believe the best talent isn’t bound by borders or time zones. Founded by professionals in HR, Operations, and Technology, our mission is to make remote hiring as seamless as possible. Whether you’re a startup seeking specialized developers or an established firm looking to expand your finance team, we provide handpicked, pre-vetted candidates who align with your unique needs and culture.
             </p>
             <p>
-              Our streamlined process connects you with handpicked professionals across finance, marketing, development, and beyond.
+              By combining innovative technology, thorough vetting, and personalized support, we’ve built a platform that delivers exceptional results—faster than traditional hiring models.
             </p>
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
             <div class="content ps-0 ps-lg-5">
-              <p class="fst-italic">
-                Why Choose Remote ACKtive?
-              </p>
-              <ul>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Cost-Effective</span></li>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Handpicked Professionals</span></li>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Speedy Hiring</span></li>
-              </ul>
+              <h4>Mission</h4>
               <p>
-                Whether you’re scaling a startup or expanding an established enterprise, we ensure you find the perfect fit in record time,
-                letting you focus on what truly matters: driving success and innovation within your company.
+                Our mission is to bridge the gap between businesses and exceptional remote talent by offering a seamless, fast, and cost-effective hiring experience—empowering global professionals and transforming the way companies scale.
               </p>
+              <h4>Vision</h4>
+              <p>
+                We envision a future where every business can access the best talent, regardless of geography, and where professionals worldwide can contribute their skills without barriers.
+              </p>
+              <h4>Core Values</h4>
+              <ul>
+                <li><strong>Quality First</strong> – We never compromise on candidate quality.</li>
+                <li><strong>Speed &amp; Efficiency</strong> – Time is money, and we respect both.</li>
+                <li><strong>Collaboration</strong> – We work closely with you to ensure a perfect fit.</li>
+                <li><strong>Integrity</strong> – Transparent pricing, honest advice, and trustworthy service.</li>
+                <li><strong>Innovation</strong> – Continuously improving our platform and processes.</li>
+              </ul>
+
+              <!-- Re-added secondary video snippet -->
               <div class="position-relative mt-4">
                 <img src="assets/img/about-2.jpg" class="img-fluid rounded-4" alt="">
-                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+                <a href="https://www.youtube.com/watch?v=__tatMZLqxE" class="glightbox pulsating-play-btn"></a>
               </div>
             </div>
           </div>
@@ -458,218 +489,409 @@
     <!-- ======= Services 2 Section ======= -->
     <section id="services-2" class="services-2 section light-background">
       <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>ELITE TALENT FOR EVERY DEPARTMENT. IF YOU NEED A ROLE, OUR VIRTUAL ASSISTANTS CAN FILL IT</p>
+        <h2>Skilled Talent Across Every Department</h2>
+        <p>We hire top candidates for a wide range of roles.</p>
       </div>
       <div class="container">
         <div class="row gy-4">
+
+          <!-- Example of collapsible roles for each department -->
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-briefcase icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Finance &amp; Accounting</a></h4>
+                <h4 class="title">
+                  <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#financeCollapse" aria-expanded="false" aria-controls="financeCollapse">
+                    Finance &amp; Accounting
+                  </button>
+                </h4>
                 <p class="description">
-                  From bookkeeping to strategic financial planning, our experts ensure smooth and compliant financial operations.
+                  From bookkeeping to strategic financial planning, our experts ensure smooth and compliant operations.
                 </p>
+                <div class="collapse mt-2" id="financeCollapse">
+                  <ul class="mb-0 ps-4">
+                    <li>Bookkeepers</li>
+                    <li>Accountants</li>
+                    <li>Financial Analysts</li>
+                    <li>Payroll Managers</li>
+                    <li>Tax Specialists</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-card-checklist icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Marketing &amp; Advertising</a></h4>
+                <h4 class="title">
+                  <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#marketingCollapse" aria-expanded="false" aria-controls="marketingCollapse">
+                    Marketing &amp; Advertising
+                  </button>
+                </h4>
                 <p class="description">
                   Grow your brand presence with digital marketers, SEO/SEM strategists, and creative designers.
                 </p>
+                <div class="collapse mt-2" id="marketingCollapse">
+                  <ul class="mb-0 ps-4">
+                    <li>SEO/SEM Specialists</li>
+                    <li>Social Media Managers</li>
+                    <li>Content Strategists</li>
+                    <li>Brand Designers</li>
+                    <li>PPC Experts</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item d-flex position-relative h-100">
-              <i class="bi bi-bar-chart icon flex-shrink-0"></i>
+              <i class="bi bi-pc-display icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Developers &amp; IT</a></h4>
+                <h4 class="title">
+                  <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#devCollapse" aria-expanded="false" aria-controls="devCollapse">
+                    Developers &amp; IT
+                  </button>
+                </h4>
                 <p class="description">
                   Full-stack developers, IT managers, cloud specialists—ready to build and maintain robust tech solutions.
                 </p>
+                <div class="collapse mt-2" id="devCollapse">
+                  <ul class="mb-0 ps-4">
+                    <li>Frontend/Backend Devs</li>
+                    <li>Full-Stack Engineers</li>
+                    <li>Cloud Specialists</li>
+                    <li>DevOps Engineers</li>
+                    <li>IT Project Managers</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item d-flex position-relative h-100">
-              <i class="bi bi-binoculars icon flex-shrink-0"></i>
+              <i class="bi bi-search icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Human Resources</a></h4>
+                <h4 class="title">
+                  <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#hrCollapse" aria-expanded="false" aria-controls="hrCollapse">
+                    Human Resources
+                  </button>
+                </h4>
                 <p class="description">
                   From recruiting top talent to managing payroll and compliance, our HR specialists have you covered.
                 </p>
+                <div class="collapse mt-2" id="hrCollapse">
+                  <ul class="mb-0 ps-4">
+                    <li>HR Managers</li>
+                    <li>Recruiters</li>
+                    <li>Compliance Officers</li>
+                    <li>Payroll Specialists</li>
+                    <li>Training &amp; Development</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
             <div class="service-item d-flex position-relative h-100">
-              <i class="bi bi-brightness-high icon flex-shrink-0"></i>
+              <i class="bi bi-telephone-inbound icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Customer Service</a></h4>
+                <h4 class="title">
+                  <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#csCollapse" aria-expanded="false" aria-controls="csCollapse">
+                    Customer Service
+                  </button>
+                </h4>
                 <p class="description">
                   Skilled reps who provide empathetic support and keep your customers happy.
                 </p>
+                <div class="collapse mt-2" id="csCollapse">
+                  <ul class="mb-0 ps-4">
+                    <li>Customer Support Reps</li>
+                    <li>Tech Support Agents</li>
+                    <li>Call Center Managers</li>
+                    <li>Service Delivery Managers</li>
+                    <li>Live Chat Specialists</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-calendar4-week icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Executive Assistants</a></h4>
+                <h4 class="title">
+                  <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#eaCollapse" aria-expanded="false" aria-controls="eaCollapse">
+                    Executive Assistants
+                  </button>
+                </h4>
                 <p class="description">
                   Top-tier organizational support to keep your leadership focused on strategic goals.
                 </p>
+                <div class="collapse mt-2" id="eaCollapse">
+                  <ul class="mb-0 ps-4">
+                    <li>Executive Assistants</li>
+                    <li>Virtual Assistants</li>
+                    <li>Project Coordinators</li>
+                    <li>Administrative Specialists</li>
+                    <li>Scheduling &amp; Travel Coordinators</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
     <!-- End Services 2 Section -->
 
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team section light-background">
+    <!-- ======= FAQ Section (Replacing the old Team Section) ======= -->
+    <!-- 9) New FAQ with Bootstrap accordion -->
+    <section id="faq" class="faq section light-background">
       <div class="container section-title" data-aos="fade-up">
-        <h2>Team</h2>
-        <p>CHECK OUR TEAM</p>
-      </div>
-      <div class="container">
-        <div class="row gy-5">
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <div class="pic"><img src="assets/img/team/KevinPhoto.png" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h3>Kevin</h3>
-                <span>Chief HR Officer (CHRO)</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <div class="pic"><img src="assets/img/team/AndrePhoto.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h3>André</h3>
-                <span>Chief Operating Officer (COO)</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <div class="pic"><img src="assets/img/team/CarlosPhoto.jpeg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h3>Carlos</h3>
-                <span>Chief Technology Officer (CTO)</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact Us</h2>
-        <p>Connect with Our Virtual Team</p>
+        <h2>FAQ</h2>
+        <p>Frequently Asked Questions</p>
       </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-          <!-- Contact Info -->
-          <div class="col-lg-4">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
-              <i class="bi bi-building"></i>
-              <h3>Virtual HQ</h3>
-              <p>We operate globally with a virtual presence.</p>
-            </div>
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
-              <i class="bi bi-telephone"></i>
-              <h3>Call Us</h3>
-              <p>+14152511945</p>
-            </div>
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-envelope"></i>
-              <h3>Email Us</h3>
-              <p>admin@remoteacktive.com</p>
-            </div>
-          </div>
-          <!-- Expanded Contact Form -->
-          <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
-              <div class="row gy-4">
-                <div class="col-md-6">
-                  <input type="text" name="company" class="form-control" placeholder="Company" required>
-                </div>
-                <div class="col-md-6">
-                  <input type="url" name="website" class="form-control" placeholder="Website">
-                </div>
-                <div class="col-md-6">
-                  <input type="text" name="job_title" class="form-control" placeholder="Job Title" required>
-                </div>
-                <div class="col-md-6">
-                  <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
-                </div>
-                <div class="col-md-6">
-                  <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
-                </div>
-                <div class="col-md-6">
-                  <input type="email" name="email" class="form-control" placeholder="Email" required>
-                </div>
-                <div class="col-md-6">
-                  <input type="text" name="role_title" class="form-control" placeholder="Title of Role to Fill" required>
-                </div>
-                <div class="col-md-12">
-                  <textarea class="form-control" name="role_description" rows="4" placeholder="Brief description of the role" required></textarea>
-                </div>
-                <div class="col-md-6">
-                  <input type="text" name="referral" class="form-control" placeholder="How did you hear about us?" required>
-                </div>
-                <div class="col-md-6">
-                  <!-- Simple math captcha; consider using a more robust captcha if needed -->
-                  <input type="text" name="captcha" class="form-control" placeholder="What is 3 + 2?" required>
-                </div>
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                  <button type="submit">Submit Inquiry</button>
-                </div>
+        <div class="accordion" id="faqAccordion">
+
+          <!-- Question 1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading-1">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse-1" aria-expanded="false" aria-controls="faqCollapse-1">
+                How do you ensure the quality of your hires?
+              </button>
+            </h2>
+            <div id="faqCollapse-1" class="accordion-collapse collapse" aria-labelledby="faqHeading-1" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                We conduct thorough vetting, including technical assessments, background checks, and culture-fit interviews, ensuring only top-tier candidates.
               </div>
-            </form>
+            </div>
           </div>
+
+          <!-- Question 2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading-2">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse-2" aria-expanded="false" aria-controls="faqCollapse-2">
+                Can I hire remote workers on a part-time basis?
+              </button>
+            </h2>
+            <div id="faqCollapse-2" class="accordion-collapse collapse" aria-labelledby="faqHeading-2" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes. We offer flexible hiring options, so you can hire remote workers part-time, full-time, or project-based.
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading-3">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse-3" aria-expanded="false" aria-controls="faqCollapse-3">
+                Can I hire remote workers from specific countries or time zones?
+              </button>
+            </h2>
+            <div id="faqCollapse-3" class="accordion-collapse collapse" aria-labelledby="faqHeading-3" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Absolutely. We source talent globally and can tailor searches to specific regions or time zones based on your needs.
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading-4">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse-4" aria-expanded="false" aria-controls="faqCollapse-4">
+                Are remote workers proficient in English or other languages?
+              </button>
+            </h2>
+            <div id="faqCollapse-4" class="accordion-collapse collapse" aria-labelledby="faqHeading-4" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                We prioritize language proficiency as part of our vetting process. If you need other specific languages, let us know.
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading-5">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse-5" aria-expanded="false" aria-controls="faqCollapse-5">
+                How can I get started?
+              </button>
+            </h2>
+            <div id="faqCollapse-5" class="accordion-collapse collapse" aria-labelledby="faqHeading-5" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Simply click “Get Started” or fill out our contact form. Our team will guide you through the onboarding process.
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 6 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading-6">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse-6" aria-expanded="false" aria-controls="faqCollapse-6">
+                How long does hiring usually take?
+              </button>
+            </h2>
+            <div id="faqCollapse-6" class="accordion-collapse collapse" aria-labelledby="faqHeading-6" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Typically 2-7 days, depending on role complexity and your availability for interviews.
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 7 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading-7">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse-7" aria-expanded="false" aria-controls="faqCollapse-7">
+                Do you handle payroll in every country?
+              </button>
+            </h2>
+            <div id="faqCollapse-7" class="accordion-collapse collapse" aria-labelledby="faqHeading-7" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                We manage payroll in multiple regions. Contact us to confirm if we support your specific location.
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 8 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading-8">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse-8" aria-expanded="false" aria-controls="faqCollapse-8">
+                Is there a minimum contract length?
+              </button>
+            </h2>
+            <div id="faqCollapse-8" class="accordion-collapse collapse" aria-labelledby="faqHeading-8" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                We offer flexible terms—hire short-term or long-term depending on your project needs.
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
-    <!-- End Contact Section -->
+    <!-- End FAQ Section -->
+    
+    <!-- ======= Contact Section ======= -->
+<section id="contact" class="contact section">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <p>Connect with Our Virtual Team</p>
+  </div>
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4">
+      <!-- Contact Info -->
+      <div class="col-lg-4">
+        <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-building"></i>
+          <h3>Virtual HQ</h3>
+          <p>We operate globally with a virtual presence.</p>
+        </div>
+        <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+          <i class="bi bi-telephone"></i>
+          <h3>Call Us</h3>
+          <p>+14152511945</p>
+        </div>
+        <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
+          <i class="bi bi-envelope"></i>
+          <h3>Email Us</h3>
+          <p>admin@remoteacktive.com</p>
+        </div>
+      </div>
+      <!-- Contact Form -->
+      <div class="col-lg-8">
+        <form 
+          action="https://getform.io/f/bmdkryka" 
+          method="POST" 
+          data-aos="fade-up" 
+          data-aos-delay="500"
+        >
+          <div class="row gy-4">
+            <!-- First Row -->
+            <div class="col-md-6">
+              <input type="text" name="company" class="form-control" placeholder="Company" required>
+            </div>
+            <div class="col-md-6">
+              <input type="text" name="website" class="form-control" placeholder="Website">
+            </div>
+            
+            <!-- Second Row -->
+            <div class="col-md-6">
+              <input type="text" name="job_title" class="form-control" placeholder="Job Title" required>
+            </div>
+            <div class="col-md-6">
+              <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+            </div>
+            
+            <!-- Third Row -->
+            <div class="col-md-6">
+              <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+            </div>
+            <div class="col-md-6">
+              <input type="email" name="email" class="form-control" placeholder="Email" required>
+            </div>
+            
+            <!-- Fourth Row -->
+            <div class="col-md-6">
+              <input type="text" name="role_title" class="form-control" placeholder="Title of Role to Fill" required>
+            </div>
+            <div class="col-md-6">
+              <input 
+                type="text" 
+                name="referral" 
+                class="form-control" 
+                placeholder="How did you hear about us?" 
+                required
+              >
+            </div>
 
-  </main>
-  <!-- End #main -->
+            <!-- Fifth Row: Brief description of the role -->
+            <div class="col-md-12">
+              <textarea 
+                class="form-control" 
+                name="role_description" 
+                rows="3" 
+                placeholder="Brief description of the role" 
+                required
+              ></textarea>
+            </div>
 
+            <!-- Sixth Row: reCAPTCHA & Button side by side -->
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+              <div class="g-recaptcha" data-sitekey="6LcdkPwqAAAAAKsDEoRCIlK-vsSpeWiQPObpK_x_"></div>
+            </div>
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+              <button type="submit" class="btn btn-primary">SEND IT!</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+      <!-- End Contact Form -->
+    </div>
+  </div>
+</section>
+<!-- End Contact Section -->
+
+
+<!-- Add the reCAPTCHA script -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<!-- Clear form after submission -->
+<script>
+  $(document).ready(function() {
+    $('form').submit(function() {
+      $(this).find("input[type='text'], input[type='email'], textarea").val('');
+    });
+  });
+</script>
+    
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer dark-background">
     <div class="container footer-top">
@@ -727,8 +949,7 @@
     </div>
     <div class="container copyright text-center mt-4">
       <p>© 2025 <strong class="px-1 sitename">Remote ACKtive</strong> All Rights Reserved</p>
-      <div class="credits">
-      </div>
+      <div class="credits"></div>
     </div>
   </footer>
   <!-- End Footer -->
