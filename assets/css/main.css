@@ -54,6 +54,24 @@ body {
   font-family: var(--default-font);
 }
 
+
+.client-logo-img {
+  display: block;
+  margin: 0 auto;       /* centers the image in its slide */
+  height: 50px;         /* fixes each logo’s height at 50px */
+  width: auto;          /* keeps aspect ratio so logos don’t stretch weirdly */
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.client-logo-img:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+
+
 a {
   color: var(--accent-color);
   text-decoration: none;
@@ -897,7 +915,17 @@ section,
 
 /*--------------------------------------------------------------
 # Hero Section
+
+
 --------------------------------------------------------------*/
+
+@media (max-width: 991px) {
+  #hero {
+    /* Add enough top padding so the fixed header never overlaps on small screens */
+    padding-top: 120px !important;
+  }
+}
+
 .hero {
   width: 100%;
   min-height: 90vh;

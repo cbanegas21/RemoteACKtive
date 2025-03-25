@@ -107,18 +107,18 @@
       <div class="container" data-aos="fade-in">
         <div class="row align-items-center">
           <!-- 2) Hero Section Updates -->
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-12 col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <!-- New Title -->
             <h2>Your Gateway to the BEST Global Talent</h2>
             <!-- Split into two paragraphs -->
             <p>At Remote ACKtive, we connect you with global professionals to drive your business growth.</p>
             <p>Watch our quick overview video to discover the 5 key benefits of outsourcing, or click "Get Started" to begin your journey!</p>
-            <div class="mt-4">
+            <div class="mt-4 mb-4">
               <a href="#contact" class="btn-get-started">Get Started</a>
             </div>
           </div>
           <!-- Right column: Embedded responsive video -->
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-12 col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="video-responsive">
               <iframe src="https://www.youtube.com/embed/aqhjNJkvC9w" frameborder="0" allowfullscreen></iframe>
             </div>
@@ -129,35 +129,41 @@
     <!-- End Hero Section -->
 
     <!-- ======= Clients/Brands Section ======= -->
-    <!-- 3) Renamed heading but kept the same IDs & structure -->
     <section id="clients" class="clients section light-background">
       <div class="container" data-aos="fade-up">
         <div class="text-center">
           <h4>Our team has extensive, hands-on experience with these software tools.</h4>
         </div>
-        <div class="row gy-4 mt-4">
-          <!-- Replace these logos as needed (Slack, Salesforce, etc.) -->
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+    
+        <!-- The .swiper container -->
+        <div class="swiper" style="margin-top: 30px;">
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <img src="assets/img/clients/client-1.png" alt="Client 1" class="client-logo-img">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/clients/client-2.png" alt="Client 2" class="client-logo-img">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/clients/client-3.png" alt="Client 3" class="client-logo-img">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/clients/client-4.png" alt="Client 3" class="client-logo-img">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/clients/client-5.png" alt="Client 3" class="client-logo-img">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/clients/client-6.png" alt="Client 3" class="client-logo-img">
+            </div>
+            <!-- ...repeat for all logos... -->
           </div>
         </div>
+        <!-- End .swiper -->
       </div>
     </section>
+    
     
     <!-- End Clients Section -->
 
@@ -972,6 +978,30 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      new Swiper(".swiper", {
+        // Show multiple slides in a row
+        slidesPerView: 5,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+          delay: 3000,              // Each slide pauses for 3 seconds (adjust to taste)
+          disableOnInteraction: false
+        },
+        speed: 1000,                // 1 second transition from one slide to the next
+        breakpoints: {
+          0:   { slidesPerView: 2, spaceBetween: 20 },
+          768: { slidesPerView: 3 },
+          992: { slidesPerView: 4 },
+          1200:{ slidesPerView: 5 }
+        }
+      });
+    });
+  </script>
+  
 
 </body>
 </html>
