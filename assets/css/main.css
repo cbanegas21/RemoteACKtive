@@ -70,6 +70,18 @@ body {
   opacity: 1;
 }
 
+.plan-image {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* or 4/3, 3/2, etc. */
+  object-fit: cover;
+  display: block;
+}
+
+
+/* 2) Left-align the details text */
+.service-item .details.text-start {
+  text-align: left !important;
+}
 
 
 a {
@@ -534,12 +546,52 @@ h6 {
     background-color: rgba(33, 37, 41, 0.03);
   }
 
+  @media (max-width: 1199px) {
+    /* Force the nav to appear on the right, in a smaller box */
+    .mobile-nav-active .navmenu {
+      position: absolute;
+      top: 60px;                 /* Adjust so it sits below your header */
+      right: 15px;               /* Position near the hamburger icon on the right */
+      width: 250px;              /* Desired width of the dropdown box */
+      background-color: rgba(0, 0, 0, 0.85); /* Dark transparent background */
+      color: #fff;               /* White text to stand out on dark bg */
+      border-radius: 6px;        
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      transition: 0.3s;
+      overflow: hidden;          /* Keep links contained */
+    }
+  
+    /* Make sure the <ul> doesn't revert to a white box */
+    .mobile-nav-active .navmenu > ul {
+      display: block;
+      margin: 0;
+      padding: 0;
+      background: transparent !important;
+      border: none !important;
+    }
+  
+    /* Style the menu links so they’re visible on a dark background */
+    .mobile-nav-active .navmenu > ul li a {
+      display: block;
+      padding: 8px 12px;
+      color: #fff !important;    /* White text */
+      text-decoration: none;
+    }
+  
+    .mobile-nav-active .navmenu > ul li a:hover {
+      background-color: #222;    /* Slightly lighter on hover */
+    }
+  }
+  
+  
+
   .mobile-nav-active {
     overflow: hidden;
   }
 
   .mobile-nav-active .mobile-nav-toggle {
-    color: #fff;
+    color: #ffffff;
     position: absolute;
     font-size: 32px;
     top: 15px;
