@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
@@ -28,45 +28,6 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- Additional custom styles for video responsiveness -->
-  <style>
-    .video-responsive {
-      overflow: hidden;
-      padding-bottom: 56.25%;
-      position: relative;
-      height: 0;
-    }
-    .video-responsive iframe {
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-    }
-    /* Ensure hero section shows background image */
-    #hero {
-      background: url('assets/img/mainbackground.jpg') center center no-repeat;
-      background-size: cover;
-      position: relative;
-      z-index: 1;
-    }
-    /* Optional overlay to improve text readability */
-    #hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 0;
-    }
-    #hero .container {
-      position: relative;
-      z-index: 2;
-    }
-  </style>
 
 </head>
 
@@ -120,7 +81,7 @@
           <!-- Right column: Embedded responsive video -->
           <div class="col-12 col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="video-responsive">
-              <iframe src="https://www.youtube.com/embed/aqhjNJkvC9w" frameborder="0" allowfullscreen></iframe>
+              <iframe src="https://www.youtube.com/embed/aqhjNJkvC9w" frameborder="0" allowfullscreen loading="lazy"></iframe>
             </div>
           </div>
         </div>
@@ -177,28 +138,28 @@
       <li class="nav-item col-12 col-md-6 col-lg-3">
         <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#features-tab-1">
           <i class="bi bi-cash-stack mb-2" style="font-size: 32px;"></i>
-          <h4>Cost-Effective</h4>
+          <h4> Cost-Effective</h4>
         </a>
       </li>
       <!-- Tab 2 -->
       <li class="nav-item col-12 col-md-6 col-lg-3">
         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
           <i class="bi bi-pin-map-fill mb-2" style="font-size: 32px;"></i>
-          <h4>Handpicked Talent</h4>
+          <h4> Handpicked Talent</h4>
         </a>
       </li>
       <!-- Tab 3 -->
       <li class="nav-item col-12 col-md-6 col-lg-3">
         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
           <i class="bi bi-lightning-charge-fill mb-2" style="font-size: 32px;"></i>
-          <h4>Speedy Onboarding</h4>
+          <h4> Speedy Onboarding</h4>
         </a>
       </li>
       <!-- Tab 4 -->
       <li class="nav-item col-12 col-md-6 col-lg-3">
         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4">
           <i class="bi bi-globe-americas mb-2" style="font-size: 32px;"></i>
-          <h4>Global Perspective</h4>
+          <h4> Global Perspective</h4>
         </a>
       </li>
     </ul>
@@ -550,7 +511,7 @@
       </div>
       <div class="col-lg-7">
         <p class="mb-3">
-          Remote ACKtive was founded by three friends—<strong>A</strong>, <strong>C</strong>, and <strong>K</strong>—who saw how countless talented professionals remain stuck in unfulfilling jobs while businesses worldwide struggle to find the right expertise. Drawing on our combined backgrounds in <strong>IT</strong>, <strong>Operations</strong>, and <strong>HR &amp; Business</strong>, we built a platform that connects driven professionals with companies eager for top-tier talent—regardless of location.
+          Remote ACKtive was founded by three friends—<strong>A</strong>ndre, <strong>C</strong>arlos, and <strong>K</strong>evin —who saw how countless talented professionals remain stuck in unfulfilling jobs while businesses worldwide struggle to find the right expertise. Drawing on our combined backgrounds in <strong>IT</strong>, <strong>Operations</strong>, and <strong>HR &amp; Business</strong>, we built a platform that connects driven professionals with companies eager for top-tier talent—regardless of location.
         </p>
         <p class="mb-3">
           We believe work should be fulfilling and borderless. By embracing remote possibilities, our clients gain access to a wider talent pool, while skilled individuals find roles that offer growth, better compensation, and genuine satisfaction. It's a win-win approach that redefines how the world works.
@@ -567,11 +528,11 @@
 
         <!-- Mission & Vision -->
         <div class="col-md-6">
-          <h4 class="mb-3">Mission</h4>
+          <h4 class="mb-3"><strong>Mission</strong></h4>
           <p>
             To seamlessly bridge the gap between businesses and exceptional remote talent—offering faster, cost-effective hiring solutions that empower global professionals to thrive and companies to scale without borders.
           </p>
-          <h4 class="mt-4 mb-3">Vision</h4>
+          <h4 class="mt-4 mb-3"><strong>Vision</strong></h4>
           <p>
             We envision a future where every company can tap into the best talent—no matter where they reside—and where professionals everywhere can excel in roles that truly value their skills.
           </p>
@@ -579,7 +540,7 @@
 
         <!-- Core Values -->
         <div class="col-md-6">
-          <h4 class="mb-3">Core Values</h4>
+          <h4 class="mb-3"><strong>Core Values</strong></h4>
           <ul class="list-unstyled">
             <li class="d-flex mb-3">
               <i class="bi bi-award-fill text-success fs-4 me-3"></i>
@@ -646,7 +607,7 @@
               <div>
                 <h4 class="title">
                   <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#financeCollapse" aria-expanded="false" aria-controls="financeCollapse">
-                    Finance &amp; Accounting
+                    <strong>Finance &amp; Accounting</strong> 
                   </button>
                 </h4>
                 <p class="description">
@@ -673,7 +634,7 @@
               <div>
                 <h4 class="title">
                   <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#marketingCollapse" aria-expanded="false" aria-controls="marketingCollapse">
-                    Marketing &amp; Advertising
+                    <strong>Marketing &amp; Advertising</strong>
                   </button>
                 </h4>
                 <p class="description">
@@ -700,7 +661,7 @@
               <div>
                 <h4 class="title">
                   <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#devCollapse" aria-expanded="false" aria-controls="devCollapse">
-                    Developers &amp; IT
+                    <strong>Developers &amp; IT</strong>
                   </button>
                 </h4>
                 <p class="description">
@@ -727,7 +688,7 @@
               <div>
                 <h4 class="title">
                   <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#hrCollapse" aria-expanded="false" aria-controls="hrCollapse">
-                    Human Resources
+                    <strong>Human Resources</strong>
                   </button>
                 </h4>
                 <p class="description">
@@ -754,7 +715,7 @@
               <div>
                 <h4 class="title">
                   <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#csCollapse" aria-expanded="false" aria-controls="csCollapse">
-                    Customer Service
+                    <strong>Customer Service</strong>
                   </button>
                 </h4>
                 <p class="description">
@@ -781,7 +742,7 @@
               <div>
                 <h4 class="title">
                   <button class="btn p-0 stretched-link text-start" type="button" data-bs-toggle="collapse" data-bs-target="#eaCollapse" aria-expanded="false" aria-controls="eaCollapse">
-                    Executive Assistants
+                    <strong>Executive Assistants</strong>
                   </button>
                 </h4>
                 <p class="description">
@@ -1102,56 +1063,8 @@
 </section>
 <!-- End Contact Section -->
 
-<script>
-  // Basic reCAPTCHA validation
-  function validateRecaptcha() {
-    var response = grecaptcha.getResponse();
-    if(response.length === 0) {
-      alert("Please verify you're not a robot.");
-      return false;
-    }
-    return true;
-  }
-
-  // Example: Show a success message after submission if using AJAX
-  /*
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    // Validate reCAPTCHA
-    if(!validateRecaptcha()) return;
-    
-    let formData = new FormData(this);
-    
-    fetch('https://getform.io/f/bmdkryka', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      if(response.ok) {
-        document.getElementById('formMessage').style.display = 'block';
-        this.reset();
-        grecaptcha.reset(); // reset the reCAPTCHA
-      }
-    })
-    .catch(error => console.error('Error:', error));
-  });
-  */
-</script>
-
-
-
-
 <!-- Add the reCAPTCHA script -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-<!-- Clear form after submission -->
-<script>
-  $(document).ready(function() {
-    $('form').submit(function() {
-      $(this).find("input[type='text'], input[type='email'], textarea").val('');
-    });
-  });
-</script>
     
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer dark-background">
@@ -1235,41 +1148,6 @@
   <script src="assets/js/main.js"></script>
 
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      new Swiper(".swiper", {
-        // Show 5 logos in the viewport
-        slidesPerView: 5,
-        spaceBetween: 30,
-        loop: true,
-  
-        // Free mode for continuous scrolling, no momentum so it never snaps
-        freeMode: true,
-        freeModeMomentum: false,
-  
-        // Autoplay with zero delay so it never “pauses” on a slide
-        autoplay: {
-          delay: 0,
-          disableOnInteraction: false
-        },
-  
-        // The "speed" here is how long (in ms) it takes for the
-        // entire group to drift from one “full wrap” to the next.
-        // Bigger = slower, smaller = faster
-        speed: 20000, // 20 seconds for a full cycle
-  
-        // Responsive breakpoints if desired:
-        breakpoints: {
-          0:   { slidesPerView: 2, spaceBetween: 20 },
-          768: { slidesPerView: 3 },
-          992: { slidesPerView: 4 },
-          1200:{ slidesPerView: 5 }
-        }
-      });
-    });
-  </script>
-  
-  
 
 </body>
 </html>
