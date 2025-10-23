@@ -1,0 +1,15 @@
+# robots.txt for Remote ACKtive
+# This tells search engines how to crawl your site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://remoteacktive.com/sitemap.xml
+
+# Block access to admin or private areas (add if needed)
+# Disallow: /admin/
+# Disallow: /api/
+
+# Crawl-delay (optional, usually not needed)
+# Crawl-delay: 1
