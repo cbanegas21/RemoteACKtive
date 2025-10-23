@@ -4,7 +4,10 @@ import { ThemeProvider } from "./providers";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Remote ACKtive - Global Outsourcing & Remote Staffing Solutions",
+  title: "Remote ACKtive",
+  icons: {
+    icon: '/logo.png',
+  },
   description: "Access top global talent with Remote ACKtive. We recruit and manage remote professionals across 50+ countries. Save up to 60% on hiring costs with our outsourcing services. Finance, IT, Marketing, Customer Service & more.",
   keywords: [
     "remote staffing",
