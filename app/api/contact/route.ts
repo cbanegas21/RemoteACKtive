@@ -1,172 +1,145 @@
-import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { formType = "general" } = body;
+    const { name, email, company, roles, description, referral, formType } = body;
 
-    // Create transporter using SendGrid SMTP
+    // Validate required fields
+    if (!name || !email) {
+      return NextResponse.json(
+        { error: 'Name and email are required' },
+        { status: 400 }
+      );
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
+        { status: 400 }
+      );
+    }
+
+    // Create transporter with your SendGrid SMTP settings
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
-      secure: false,
+      secure: false, // true for 465, false for other ports
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
     });
 
-    let subject = "";
-    let htmlContent = "";
-    let textContent = "";
+    // Determine form type for subject
+    let formTypeLabel = 'General Inquiry';
+    if (formType === 'hire-only') formTypeLabel = 'Hire-Only Request';
+    if (formType === 'hire-manage') formTypeLabel = 'Hire + Manage Request';
 
-    // Generate email content based on form type
-    if (formType === "hire-only") {
-      const { name, email, company, role, description, referral } = body;
-      
-      subject = `🎯 Hire-Only Request from ${name}`;
-      htmlContent = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #3b82f6;">New Hire-Only Service Request</h2>
-          <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <p><strong>Company:</strong> ${company}</p>
-            <p><strong>Role(s) Needed:</strong> ${role}</p>
-            <p><strong>Description:</strong></p>
-            <p style="white-space: pre-wrap;">${description}</p>
-            <p><strong>Referral Source:</strong> ${referral || "Not specified"}</p>
+    // Email HTML content
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background-color: #2563eb; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+            .content { background-color: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
+            .field { margin-bottom: 20px; }
+            .field-label { font-weight: bold; color: #1f2937; margin-bottom: 5px; }
+            .field-value { color: #4b5563; }
+            .footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #6b7280; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h2 style="margin: 0;">New ${formTypeLabel}</h2>
+            </div>
+            <div class="content">
+              <div class="field">
+                <div class="field-label">Name:</div>
+                <div class="field-value">${name}</div>
+              </div>
+              
+              <div class="field">
+                <div class="field-label">Email:</div>
+                <div class="field-value"><a href="mailto:${email}">${email}</a></div>
+              </div>
+              
+              ${company ? `
+              <div class="field">
+                <div class="field-label">Company:</div>
+                <div class="field-value">${company}</div>
+              </div>
+              ` : ''}
+              
+              ${roles ? `
+              <div class="field">
+                <div class="field-label">Role(s) to Fill:</div>
+                <div class="field-value">${roles}</div>
+              </div>
+              ` : ''}
+              
+              ${description ? `
+              <div class="field">
+                <div class="field-label">Description:</div>
+                <div class="field-value">${description.replace(/\n/g, '<br>')}</div>
+              </div>
+              ` : ''}
+              
+              ${referral ? `
+              <div class="field">
+                <div class="field-label">How they heard about us:</div>
+                <div class="field-value">${referral}</div>
+              </div>
+              ` : ''}
+              
+              <div class="footer">
+                <p>This email was sent from the Remote ACKtive contact form.</p>
+                <p>Submitted on: ${new Date().toLocaleString('en-US', { 
+                  timeZone: 'America/Chicago',
+                  dateStyle: 'full',
+                  timeStyle: 'long'
+                })}</p>
+              </div>
+            </div>
           </div>
-          <p style="color: #6b7280; font-size: 14px;">This is a Hire-Only service request.</p>
-        </div>
-      `;
-      textContent = `
-New Hire-Only Service Request
-
-Name: ${name}
-Email: ${email}
-Company: ${company}
-Role(s) Needed: ${role}
-Description: ${description}
-Referral Source: ${referral || "Not specified"}
-      `;
-    } else if (formType === "hire-manage") {
-      const {
-        name,
-        email,
-        company,
-        role,
-        description,
-        hasTools,
-        tools,
-        timezone,
-        teamSize,
-        startDate,
-        budget,
-        referral,
-      } = body;
-
-      subject = `🚀 Hire+Manage Request from ${name}`;
-      htmlContent = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #9333ea;">New Hire+Manage Service Request</h2>
-          <div style="background-color: #faf5ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #9333ea; margin-top: 0;">Contact Information</h3>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <p><strong>Company:</strong> ${company}</p>
-            
-            <h3 style="color: #9333ea; margin-top: 20px;">Role Details</h3>
-            <p><strong>Role(s) Needed:</strong> ${role}</p>
-            <p><strong>Description:</strong></p>
-            <p style="white-space: pre-wrap;">${description}</p>
-            
-            <h3 style="color: #9333ea; margin-top: 20px;">Operational Details</h3>
-            <p><strong>Has Tools:</strong> ${hasTools}</p>
-            ${tools ? `<p><strong>Tools Used:</strong> ${tools}</p>` : ""}
-            <p><strong>Preferred Timezone:</strong> ${timezone}</p>
-            ${teamSize ? `<p><strong>Team Size:</strong> ${teamSize}</p>` : ""}
-            ${startDate ? `<p><strong>Desired Start Date:</strong> ${startDate}</p>` : ""}
-            ${budget ? `<p><strong>Budget Range:</strong> ${budget}</p>` : ""}
-            <p><strong>Referral Source:</strong> ${referral || "Not specified"}</p>
-          </div>
-          <p style="color: #6b7280; font-size: 14px;">This is a Hire+Manage service request (full service).</p>
-        </div>
-      `;
-      textContent = `
-New Hire+Manage Service Request
-
-CONTACT INFORMATION
-Name: ${name}
-Email: ${email}
-Company: ${company}
-
-ROLE DETAILS
-Role(s) Needed: ${role}
-Description: ${description}
-
-OPERATIONAL DETAILS
-Has Tools: ${hasTools}
-${tools ? `Tools Used: ${tools}` : ""}
-Preferred Timezone: ${timezone}
-${teamSize ? `Team Size: ${teamSize}` : ""}
-${startDate ? `Desired Start Date: ${startDate}` : ""}
-${budget ? `Budget Range: ${budget}` : ""}
-Referral Source: ${referral || "Not specified"}
-      `;
-    } else {
-      // General contact form
-      const { name, email, company, roles, description, referral } = body;
-      
-      subject = `💬 General Contact from ${name}`;
-      htmlContent = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #059669;">New General Contact Form Submission</h2>
-          <div style="background-color: #f0fdf4; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <p><strong>Company:</strong> ${company || "Not provided"}</p>
-            <p><strong>Role(s) to Fill:</strong> ${roles}</p>
-            <p><strong>Description:</strong></p>
-            <p style="white-space: pre-wrap;">${description}</p>
-            <p><strong>Referral Source:</strong> ${referral || "Not specified"}</p>
-          </div>
-          <p style="color: #6b7280; font-size: 14px;">This is a general inquiry.</p>
-        </div>
-      `;
-      textContent = `
-New General Contact Form Submission
-
-Name: ${name}
-Email: ${email}
-Company: ${company || "Not provided"}
-Role(s) to Fill: ${roles}
-Description: ${description}
-Referral Source: ${referral || "Not specified"}
-      `;
-    }
-
-    // Email options
-    const mailOptions = {
-      from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
-      to: process.env.SMTP_TO_SALES,
-      subject,
-      html: htmlContent,
-      text: textContent,
-    };
+        </body>
+      </html>
+    `;
 
     // Send email
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail({
+      from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
+      to: process.env.SMTP_TO_SALES,
+      replyTo: email,
+      subject: `New ${formTypeLabel} from ${name}`,
+      html: htmlContent,
+      text: `
+New ${formTypeLabel}
+
+Name: ${name}
+Email: ${email}
+${company ? `Company: ${company}` : ''}
+${roles ? `Role(s): ${roles}` : ''}
+${description ? `Description: ${description}` : ''}
+${referral ? `Referral Source: ${referral}` : ''}
+      `.trim(),
+    });
 
     return NextResponse.json(
-      { message: "Email sent successfully" },
+      { message: 'Message sent successfully!' },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error('Contact form error:', error);
     return NextResponse.json(
-      { message: "Failed to send email", error: String(error) },
+      { error: 'Failed to send message. Please try again or contact us directly at admin@remoteacktive.com' },
       { status: 500 }
     );
   }

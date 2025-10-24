@@ -1,5 +1,6 @@
 "use client";
-import { createContext, useContext, useState, ReactNode } from "react";
+
+import React, { createContext, useContext, useState } from "react";
 
 type FormType = "general" | "hire-only" | "hire-manage";
 
@@ -10,7 +11,7 @@ interface FormContextType {
 
 const FormContext = createContext<FormContextType | undefined>(undefined);
 
-export function FormProvider({ children }: { children: ReactNode }) {
+export function FormProvider({ children }: { children: React.ReactNode }) {
   const [formType, setFormType] = useState<FormType>("general");
 
   return (
