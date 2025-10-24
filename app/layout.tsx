@@ -6,7 +6,7 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "Remote ACKtive",
   icons: {
-    icon: '/logo.png',
+    icon: '/images/logo.png',
   },
   description: "Access top global talent with Remote ACKtive. We recruit and manage remote professionals across 50+ countries. Save up to 60% on hiring costs with our outsourcing services. Finance, IT, Marketing, Customer Service & more.",
   keywords: [
