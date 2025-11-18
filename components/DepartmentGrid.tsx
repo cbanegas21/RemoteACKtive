@@ -105,57 +105,12 @@ export default function DepartmentGrid() {
   ];
 
   const getColorClasses = (color: string) => {
-    const colors: Record<string, { bg: string; bgLight: string; icon: string; iconLight: string; hover: string; hoverLight: string }> = {
-      blue: { 
-        bg: "bg-blue-600/20", 
-        bgLight: "bg-blue-100",
-        icon: "text-blue-400", 
-        iconLight: "text-blue-600",
-        hover: "hover:border-blue-500/50",
-        hoverLight: "hover:border-blue-400"
-      },
-      pink: { 
-        bg: "bg-pink-600/20", 
-        bgLight: "bg-pink-100",
-        icon: "text-pink-400", 
-        iconLight: "text-pink-600",
-        hover: "hover:border-pink-500/50",
-        hoverLight: "hover:border-pink-400"
-      },
-      green: { 
-        bg: "bg-green-600/20", 
-        bgLight: "bg-green-100",
-        icon: "text-green-400", 
-        iconLight: "text-green-600",
-        hover: "hover:border-green-500/50",
-        hoverLight: "hover:border-green-400"
-      },
-      purple: { 
-        bg: "bg-purple-600/20", 
-        bgLight: "bg-purple-100",
-        icon: "text-purple-400", 
-        iconLight: "text-purple-600",
-        hover: "hover:border-purple-500/50",
-        hoverLight: "hover:border-purple-400"
-      },
-      yellow: { 
-        bg: "bg-yellow-600/20", 
-        bgLight: "bg-yellow-100",
-        icon: "text-yellow-400", 
-        iconLight: "text-yellow-600",
-        hover: "hover:border-yellow-500/50",
-        hoverLight: "hover:border-yellow-400"
-      },
-      teal: { 
-        bg: "bg-teal-600/20", 
-        bgLight: "bg-teal-100",
-        icon: "text-teal-400", 
-        iconLight: "text-teal-600",
-        hover: "hover:border-teal-500/50",
-        hoverLight: "hover:border-teal-400"
-      },
+    // Using teal/green color scheme for all departments
+    return {
+      bg: "bg-primary-teal/10",
+      icon: "text-primary-teal",
+      hover: "hover:border-primary-teal/50"
     };
-    return colors[color];
   };
 
   const filteredDepartments = departments.filter(
@@ -169,28 +124,25 @@ export default function DepartmentGrid() {
   return (
     <Section id="departments">
       <div className="text-center mb-12">
-        <h2 className="text-gray-900 dark:text-white text-3xl md:text-4xl font-bold mb-4">
-          Looking for a Specific Role?
+        <h2 className="text-gray-900 text-3xl md:text-4xl font-bold mb-4">
+          What Can Remote Staff Do For You?
         </h2>
-        <p className="text-blue-600 dark:text-blue-400 text-xl mb-8 font-semibold">
+        <p className="text-primary-teal text-xl mb-8 font-semibold">
           We Know How to Hire It
         </p>
 
         {/* Search Bar */}
         <div className="max-w-md mx-auto mb-8">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-white/40" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
               placeholder="Search for a role or department..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-3 rounded-lg border transition
-                bg-white dark:bg-panel 
-                border-gray-300 dark:border-white/10 
-                text-gray-900 dark:text-white 
-                placeholder-gray-400 dark:placeholder-white/40 
-                focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                bg-white border-gray-300 text-gray-900 placeholder-gray-400
+                focus:border-primary-teal focus:outline-none focus:ring-2 focus:ring-primary-teal/20"
             />
           </div>
         </div>
@@ -206,26 +158,25 @@ export default function DepartmentGrid() {
             <Card
               key={idx}
               hover
-              className={`cursor-pointer transition-all ${colors.hoverLight} dark:${colors.hover}`}
+              className={`cursor-pointer transition-all ${colors.hover}`}
               onClick={() => setExpandedDept(isExpanded ? null : idx)}
             >
               <div className="flex items-start gap-4">
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0
-                  ${colors.bgLight} dark:${colors.bg}`}>
-                  <Icon className={`w-6 h-6 ${colors.iconLight} dark:${colors.icon}`} />
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${colors.bg}`}>
+                  <Icon className={`w-6 h-6 ${colors.icon}`} />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-gray-900 dark:text-white text-xl font-semibold">
+                    <h3 className="text-gray-900 text-xl font-semibold">
                       {dept.title}
                     </h3>
                     <ChevronDown
-                      className={`w-5 h-5 transition-transform text-gray-600 dark:text-white/60 ${
+                      className={`w-5 h-5 transition-transform text-gray-600 ${
                         isExpanded ? "rotate-180" : ""
                       }`}
                     />
                   </div>
-                  <p className="text-gray-600 dark:text-white/70 text-sm leading-relaxed mb-3">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-3">
                     {dept.description}
                   </p>
 
@@ -235,17 +186,15 @@ export default function DepartmentGrid() {
                       isExpanded ? "max-h-96" : "max-h-0"
                     }`}
                   >
-                    <div className="pt-3 mt-3 border-t border-gray-200 dark:border-white/10">
-                      <p className="text-gray-500 dark:text-white/50 text-xs font-semibold mb-2 uppercase tracking-wider">
+                    <div className="pt-3 mt-3 border-t border-gray-200">
+                      <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wider">
                         Available Roles:
                       </p>
                       <ul className="grid grid-cols-2 gap-2">
                         {dept.roles.map((role, roleIdx) => (
-                          <li
-                            key={roleIdx}
-                            className="text-gray-700 dark:text-white/80 text-sm"
-                          >
-                            • {role}
+                          <li key={roleIdx} className="text-gray-700 text-sm flex items-start gap-1">
+                            <span className="text-primary-teal mt-1">✓</span>
+                            <span>{role}</span>
                           </li>
                         ))}
                       </ul>
@@ -259,7 +208,7 @@ export default function DepartmentGrid() {
       </div>
 
       {filteredDepartments.length === 0 && (
-        <p className="text-gray-600 dark:text-white/60 text-center text-lg mt-8">
+        <p className="text-gray-600 text-center text-lg mt-8">
           No departments found. Try a different search term.
         </p>
       )}

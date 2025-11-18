@@ -19,12 +19,10 @@ export default function Card({
     <div
       id={id}
       onClick={onClick}
-      className={`rounded-lg border p-6 
-        bg-white dark:bg-panel 
-        border-gray-200 dark:border-white/10 
-        shadow-sm dark:shadow-none
-        ${hover ? "transition hover:border-blue-500/50 hover:shadow-lg" : ""} 
-        ${onClick ? "cursor-pointer" : ""} 
+      className={`rounded-lg border p-6
+        bg-white border-gray-200 shadow-sm
+        ${hover ? "transition hover:border-primary-teal/50 hover:shadow-lg" : ""}
+        ${onClick ? "cursor-pointer" : ""}
         ${className}`}
     >
       {children}

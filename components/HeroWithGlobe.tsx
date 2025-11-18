@@ -5,7 +5,7 @@ export default function HeroWithGlobe() {
   return (
     <section
       id="hero"
-      className="relative min-h-[110vh] overflow-visible bg-gradient-to-b from-[#0a0a1f] via-[#1a1a3f] to-[#0f0f2e]"
+      className="relative min-h-[110vh] overflow-visible bg-gradient-hero"
     >
       {/* Background glow behind everything */}
       <img
@@ -34,26 +34,26 @@ export default function HeroWithGlobe() {
       <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-28 md:pt-32 xl:pt-36 pb-16 min-h-[110vh] flex flex-col justify-between">
         <div className="max-w-[50rem] xl:max-w-[56rem] 2xl:max-w-[60rem] flex-1 flex flex-col justify-center">
           <h1 className="text-6xl md:text-7xl xl:text-8xl font-bold tracking-tight leading-[0.95] text-white">
-            Your Gateway to the BEST Global Talent
+            Scale Your Business with Elite Global Talent
           </h1>
 
-          <p className="mt-6 text-lg md:text-xl xl:text-2xl text-white/80 leading-relaxed">
-            We recruit and operate top talent so you can focus on growth.
+          <p className="mt-6 text-lg md:text-xl xl:text-2xl text-white/90 leading-relaxed">
+            Save up to 70% on operational costs while accessing world-class professionals in 3-10 days
           </p>
 
-          <div className="mt-10 flex items-center gap-6">
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-lg font-semibold shadow-[0_8px_24px_rgba(37,99,235,0.35)] transition-transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400/60"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-primary-teal text-lg font-semibold shadow-[0_8px_24px_rgba(0,0,0,0.15)] transition-transform hover:scale-[1.03] hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)] focus:outline-none focus:ring-2 focus:ring-white/60"
             >
-              Get Started
+              Book a Discovery Call
             </a>
 
             <a
-              href="#contact"
-              className="text-white/70 hover:text-white transition-colors text-base md:text-lg underline underline-offset-4 decoration-white/30 hover:decoration-white"
+              href="#services"
+              className="text-white hover:text-white/80 transition-colors text-base md:text-lg font-medium"
             >
-              Want to know how?
+              Learn More →
             </a>
           </div>
         </div>

@@ -4,29 +4,24 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        ink: "#0b1020",
-        panel: {
-          DEFAULT: "#0d0d0d",
-          light: "#f8f9fa",
+        primary: {
+          cyan: "#57C5CF",
+          teal: "#57C5CF",
+          green: "#378B57",
+          navy: "#0A2540",
+          gold: "#F5A623",
+        },
+        background: {
+          light: "#F7FAFB",
+          dark: "#0A2540",
         },
       },
-      textColor: {
-        primary: {
-          DEFAULT: "#1e293b", // light mode
-          dark: "#ffffff",    // dark mode
-        },
-        secondary: {
-          DEFAULT: "#475569", // light mode
-          dark: "#e2e8f0",    // dark mode
-        },
-        tertiary: {
-          DEFAULT: "#64748b", // light mode
-          dark: "#94a3b8",    // dark mode
-        },
+      backgroundImage: {
+        'gradient-primary': 'linear-gradient(135deg, #57C5CF 0%, #378B57 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #57C5CF 0%, #378B57 100%)',
       },
     },
   },

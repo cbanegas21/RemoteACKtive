@@ -17,7 +17,7 @@ export default function ServicesSplit() {
   };
 
   return (
-    <Section id="services" background="panel">
+    <Section id="services" background="light">
       <div className="text-center mb-12">
         <h2 className="text-gray-900 dark:text-white text-3xl md:text-4xl font-bold mb-4">
           Our Services

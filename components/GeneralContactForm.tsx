@@ -50,8 +50,8 @@ export default function GeneralContactForm() {
     }
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-ink border-gray-300 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40";
-  const labelClass = "block text-sm font-medium mb-2 text-gray-700 dark:text-white/80";
+  const inputClass = "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#378B57] bg-white border-gray-300 text-gray-900 placeholder-gray-400";
+  const labelClass = "block text-sm font-medium mb-2 text-gray-700";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -155,13 +155,13 @@ export default function GeneralContactForm() {
       </div>
 
       {submitStatus === "success" && (
-        <div className="p-4 rounded-lg bg-green-50 dark:bg-green-600/20 border border-green-200 dark:border-green-500/30 text-green-700 dark:text-green-400">
+        <div className="p-4 rounded-lg bg-[#378B57]/10 border border-[#378B57]/30 text-[#378B57]">
           Thank you! We'll be in touch soon.
         </div>
       )}
 
       {submitStatus === "error" && (
-        <div className="p-4 rounded-lg bg-red-50 dark:bg-red-600/20 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-400">
+        <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-700">
           Something went wrong. Please try again or email us directly.
         </div>
       )}
@@ -169,7 +169,7 @@ export default function GeneralContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 rounded-lg bg-green-600 text-white font-medium hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-panel transition disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-6 py-3 rounded-lg bg-[#378B57] text-white font-medium hover:bg-[#57C5CF] focus:outline-none focus:ring-2 focus:ring-[#378B57] focus:ring-offset-2 focus:ring-offset-white transition disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? "Sending..." : "Send Message"}
       </button>

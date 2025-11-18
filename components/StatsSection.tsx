@@ -23,32 +23,32 @@ export default function StatsSection() {
       value: 18,
       suffix: "",
       label: "Countries Covered",
-      colorLight: "text-blue-600",
-      colorDark: "text-blue-400",
+      colorLight: "text-[#57C5CF]",
+      colorDark: "text-[#57C5CF]",
     },
     {
       icon: DollarSign,
       value: 65,
       suffix: "%",
       label: "Estimated Cost Savings",
-      colorLight: "text-green-600",
-      colorDark: "text-green-400",
+      colorLight: "text-[#378B57]",
+      colorDark: "text-[#378B57]",
     },
     {
       icon: Globe2,
       value: 4,
       suffix: "",
       label: "Continents",
-      colorLight: "text-purple-600",
-      colorDark: "text-purple-400",
+      colorLight: "text-[#57C5CF]",
+      colorDark: "text-[#57C5CF]",
     },
     {
       icon: Trophy,
       value: 500,
       suffix: "+",
       label: "Successful Placements",
-      colorLight: "text-orange-600",
-      colorDark: "text-orange-400",
+      colorLight: "text-[#378B57]",
+      colorDark: "text-[#378B57]",
     },
   ];
 
@@ -70,7 +70,7 @@ export default function StatsSection() {
   }, [hasAnimated]);
 
   return (
-    <Section background="panel">
+    <Section background="light">
       <div ref={sectionRef} className="grid md:grid-cols-4 gap-6">
         {stats.map((stat, idx) => (
           <StatCard key={idx} stat={stat} animate={hasAnimated} />
@@ -114,14 +114,14 @@ function StatCard({
   return (
     <Card hover className="text-center">
       <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4
-        bg-gray-100 dark:bg-white/5">
-        <Icon className={`w-8 h-8 ${stat.colorLight} dark:${stat.colorDark}`} />
+        bg-gray-100">
+        <Icon className={`w-8 h-8 ${stat.colorLight}`} />
       </div>
-      <div className="text-gray-900 dark:text-white text-4xl font-bold mb-2">
+      <div className="text-gray-900 text-4xl font-bold mb-2">
         {animate ? count : 0}
         {animate && count === stat.value && stat.suffix}
       </div>
-      <div className="text-gray-600 dark:text-white/60 text-sm font-medium">
+      <div className="text-gray-600 text-sm font-medium">
         {stat.label}
       </div>
     </Card>
