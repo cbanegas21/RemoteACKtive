@@ -114,32 +114,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     scene.add(light1, light2, light3);
 
-    // BRIGHTER ATMOSPHERE GLOW
-    const atmosphereGeometry = new SphereGeometry(2, 64, 64);
-    const atmosphereMaterial = new ShaderMaterial({
-      uniforms: {},
-      vertexShader: `
-        varying vec3 vNormal;
-        void main() {
-          vNormal = normalize( normalMatrix * normal );
-          gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-        }
-      `,
-      fragmentShader: `
-        varying vec3 vNormal;
-        void main() {
-          float intensity = pow( 0.99 - dot( vNormal, vec3( 0, 0, 1.0 ) ), 5.2 );
-          gl_FragColor = vec4( .28, .48, 1.0, 1.0 ) * intensity * 1.6;
-        }
-      `,
-      side: BackSide,
-      blending: AdditiveBlending,
-      transparent: true
-    });
-    const atm = new Mesh(atmosphereGeometry, atmosphereMaterial);
-    atm.scale.set(1.05, 1.05, 1.05);
-    atm.position.set(-0.1, 0.1, 0);
-    scene.add(atm);
+    // ATMOSPHERE REMOVED - was creating dark contour around globe
 
     const sphereGeometry = new SphereGeometry(2, 64, 64);
     const sphereMaterial = new MeshLambertMaterial({
