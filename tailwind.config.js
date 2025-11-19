@@ -22,8 +22,8 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #2A8B95 0%, #1F5D42 100%)',
-        'gradient-hero': 'linear-gradient(135deg, #2A8B95 0%, #1F5D42 100%)',
+        'gradient-primary': 'linear-gradient(135deg, #248B93 0%, #1A5538 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #248B93 0%, #1A5538 100%)',
         'gradient-dark': 'linear-gradient(180deg, #0A1628 0%, #0F1926 100%)',
       },
     },
