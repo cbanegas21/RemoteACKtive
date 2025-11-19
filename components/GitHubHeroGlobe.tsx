@@ -142,8 +142,10 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
     scene.add(atm);
 
     const sphereGeometry = new SphereGeometry(2, 64, 64);
-    const sphereMaterial = new MeshBasicMaterial({
-      color: 0x4a3a8f,  // Brighter purple - using MeshBasicMaterial to prevent lighting shadows
+    const sphereMaterial = new MeshLambertMaterial({
+      color: 0x1a1245,  // Darker purple
+      emissive: 0x2a1a5e,  // Purple glow
+      emissiveIntensity: 0.3
     });
     const sphere = new Mesh(sphereGeometry, sphereMaterial);
     sphere.castShadow = false;
