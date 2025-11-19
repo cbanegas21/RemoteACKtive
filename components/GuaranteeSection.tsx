@@ -30,16 +30,16 @@ export default function GuaranteeSection() {
               </h2>
               <div className="text-gray-700 space-y-3 text-lg leading-relaxed">
                 <p>
-                  If your outsourced talent isn't the right fit for any reason, we'll pause your
-                  service and find you a replacement at <strong>zero additional cost</strong>.
+                  When a team member doesn't meet your expectations, we take immediate action. We'll
+                  find you a better-matched professional at <strong>absolutely no extra charge</strong>.
                 </p>
                 <p>
-                  Plus, you'll get <strong className="text-primary-teal">1 week of free service!</strong> This helps you get settled with your
-                  new outsourced talent.
+                  As a goodwill gesture, you'll receive <strong className="text-primary-teal">one full week of complimentary service</strong> to
+                  ensure a smooth transition and proper onboarding.
                 </p>
                 <p>
-                  We extend this guarantee no matter what stage you're in—whether you've just
-                  hired your first remote talent or have been with us for years.
+                  This commitment applies throughout your entire partnership with us—from your
+                  very first hire to team members you've worked with for years.
                 </p>
               </div>
             </div>

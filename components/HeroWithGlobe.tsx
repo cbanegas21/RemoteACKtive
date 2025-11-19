@@ -5,7 +5,7 @@ export default function HeroWithGlobe() {
   return (
     <section
       id="hero"
-      className="relative min-h-[110vh] overflow-visible bg-gradient-hero"
+      className="relative min-h-screen overflow-visible bg-gradient-hero"
     >
       {/* Background glow behind everything */}
       <img
@@ -24,16 +24,19 @@ export default function HeroWithGlobe() {
     w-[min(78vw,1900px)]    /* BIG, but guaranteed to fit in the viewport */
     min-w-[1200px]          /* stays large on laptops */
     aspect-square
-    opacity-75 mix-blend-mode-screen
+    opacity-90 mix-blend-mode-screen rounded-full
   "
-  style={{ filter: 'hue-rotate(15deg) saturate(0.7) brightness(0.9)' }}
+  style={{
+    filter: 'hue-rotate(160deg) saturate(1.2) brightness(0.95)',
+    boxShadow: '0 0 60px rgba(87, 197, 207, 0.4), 0 0 120px rgba(87, 197, 207, 0.2)'
+  }}
 >
   <GitHubGlobe />
 </div>
 
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-40 md:pt-44 xl:pt-48 pb-20 min-h-[110vh] flex flex-col justify-between">
+      <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-40 md:pt-44 xl:pt-48 pb-20 min-h-screen flex flex-col justify-center">
         <div className="max-w-[50rem] xl:max-w-[56rem] 2xl:max-w-[60rem] flex-1 flex flex-col justify-center">
           <h1 className="text-6xl md:text-7xl xl:text-8xl font-bold tracking-tight leading-[0.95] text-white">
             Scale Your Business with Elite Global Talent
@@ -46,7 +49,7 @@ export default function HeroWithGlobe() {
           <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-orange text-white text-lg font-bold shadow-[0_4px_12px_rgba(245,166,35,0.4)] transition-all hover:bg-[#FF9500] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(245,166,35,0.5)] focus:outline-none focus:ring-2 focus:ring-primary-orange/60"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-teal text-white text-lg font-bold shadow-[0_4px_12px_rgba(87,197,207,0.4)] transition-all hover:bg-primary-cyan hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(87,197,207,0.5)] focus:outline-none focus:ring-2 focus:ring-primary-teal/60"
             >
               Book a Discovery Call
             </a>

@@ -38,9 +38,9 @@ export default function Speedy() {
 
             <ul className="text-gray-300 space-y-2 text-left w-full">
               {benefits.map((benefit, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <span className="text-[#F5A623] mt-1 font-bold text-sm">•</span>
-                  <span className="leading-snug text-xs">{benefit}</span>
+                <li key={idx} className="flex items-start gap-3">
+                  <span className="text-primary-teal mt-0.5 font-bold text-sm flex-shrink-0">•</span>
+                  <span className="leading-snug text-xs flex-1">{benefit}</span>
                 </li>
               ))}
             </ul>

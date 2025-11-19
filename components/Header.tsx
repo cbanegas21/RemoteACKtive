@@ -50,15 +50,15 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <a href="#hero" onClick={(e) => handleNavClick(e, "#hero")} className="flex items-center gap-3 group">
             <div className="relative w-14 h-14">
-              <Image src="/images/logowhite.png" alt="Remote ACKtive Logo" fill className="object-contain" />
+              <Image src="/images/logo.png" alt="Remote ACKtive Logo" fill className="object-contain" />
             </div>
-            <span className="font-bold text-xl transition text-white group-hover:text-primary-orange">Remote ACKtive</span>
+            <span className="font-bold text-xl transition text-white group-hover:text-primary-teal">Remote ACKtive</span>
           </a>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="font-medium transition text-white/90 hover:text-white">{link.label}</a>
             ))}
-            <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")} className="px-6 py-2.5 rounded-full bg-primary-orange text-white font-bold hover:bg-[#FF9500] transition shadow-md hover:shadow-lg">Book a Call</a>
+            <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")} className="px-6 py-2.5 rounded-full bg-primary-teal text-white font-bold hover:bg-primary-cyan transition shadow-md hover:shadow-lg">Book a Call</a>
           </div>
           <div className="flex items-center gap-2 md:hidden">
             <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 rounded-lg transition hover:bg-white/10 text-white" aria-label="Toggle menu">{isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}</button>
@@ -70,7 +70,7 @@ export default function Header() {
               {navLinks.map((link) => (
                 <a key={link.href} href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="font-medium transition px-2 py-1 text-white/90 hover:text-white">{link.label}</a>
               ))}
-              <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")} className="px-6 py-2.5 rounded-full bg-primary-orange text-white font-bold hover:bg-[#FF9500] transition text-center shadow-md">Book a Call</a>
+              <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")} className="px-6 py-2.5 rounded-full bg-primary-teal text-white font-bold hover:bg-primary-cyan transition text-center shadow-md">Book a Call</a>
             </div>
           </div>
         )}

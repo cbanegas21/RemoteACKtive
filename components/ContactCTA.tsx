@@ -126,7 +126,9 @@ export default function ContactCTA() {
                     flex-1 px-4 py-3 rounded-lg text-sm font-semibold transition-all relative
                     ${
                       formType === tab.id
-                        ? "bg-[#FF6B35] text-white shadow-lg"
+                        ? tab.isFeatured
+                          ? "bg-[#4DD0E1] text-white shadow-lg shadow-cyan-500/30"
+                          : "bg-[#57C5CF] text-white shadow-lg"
                         : "bg-transparent text-gray-300 hover:bg-white/5"
                     }
                   `}

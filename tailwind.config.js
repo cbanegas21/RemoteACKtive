@@ -8,23 +8,23 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          cyan: "#3B9BA5",
-          teal: "#3B9BA5",
-          green: "#2A6B4F",
+          cyan: "#57C5CF",
+          teal: "#57C5CF",
+          green: "#378B57",
           navy: "#0A2540",
           gold: "#F5A623",
-          orange: "#F5A623",
+          blue: "#4DD0E1",
         },
         background: {
           light: "#F7FAFB",
-          dark: "#0F1419",
+          dark: "#0F1926",
           darkCard: "#1E2430",
         },
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #3B9BA5 0%, #2A6B4F 100%)',
-        'gradient-hero': 'linear-gradient(135deg, #3B9BA5 0%, #2A6B4F 100%)',
-        'gradient-dark': 'linear-gradient(180deg, #0A1628 0%, #0F1419 100%)',
+        'gradient-primary': 'linear-gradient(135deg, #35A8B3 0%, #248858 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #35A8B3 0%, #248858 100%)',
+        'gradient-dark': 'linear-gradient(180deg, #0A1628 0%, #0F1926 100%)',
       },
     },
   },

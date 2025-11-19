@@ -58,7 +58,7 @@ export default function HireManageForm() {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#FF6B35] bg-[#2A3142] border-gray-600 text-white placeholder-gray-400";
+    "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#4DD0E1] bg-[#2A3142] border-gray-600 text-white placeholder-gray-400";
   const labelClass = "block text-sm font-medium mb-2 text-gray-300";
 
   return (
@@ -217,7 +217,7 @@ export default function HireManageForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 rounded-lg bg-[#FF6B35] text-white font-semibold hover:bg-[#FF8555] focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-yellow-500/20"
+        className="w-full px-6 py-3 rounded-lg bg-[#4DD0E1] text-white font-semibold hover:bg-[#57C5CF] focus:outline-none focus:ring-2 focus:ring-[#4DD0E1] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-cyan-500/30"
       >
         {isSubmitting ? "Sending..." : "Book Discovery Call"}
       </button>

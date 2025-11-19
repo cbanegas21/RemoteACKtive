@@ -7,19 +7,19 @@ export default function WhatMakesUsDifferent() {
     {
       icon: Users,
       title: "Built by Outsourcing Veterans",
-      description: "Remote ACKtive was founded by Andre, Carlos, and Kevin—professionals who experienced the pain of expensive agencies and inconsistent quality firsthand. We built the solution we wished existed.",
+      description: "Founded by professionals who lived through the challenges of building remote teams, Remote ACKtive emerged from real-world frustration with costly agencies and unreliable talent. We created the service we always needed but could never find.",
       image: "/images/team-placeholder.jpg", // You can replace with actual images
     },
     {
       icon: Target,
       title: "Rigorous 6-Step Vetting Process",
-      description: "Our recruitment process is uncompromising. We only screen fluent English-speaking remote talent who are well-educated, adaptable, reliable, familiar with AI tools, and have a proven track record in their niche.",
+      description: "Every candidate undergoes intensive screening that goes beyond technical skills. We evaluate communication ability, cultural adaptability, tool proficiency, and real-world performance history to ensure only exceptional professionals join our network.",
       image: "/images/vetting-placeholder.jpg",
     },
     {
       icon: Handshake,
       title: "True Partnership, Not Just Placement",
-      description: "We're not a vendor—we're your outsourcing partner. From initial consultation to ongoing support, our management team provides expert guidance on marketing, AI, business software, SEO, social media, and more.",
+      description: "Think of us as an extension of your team, not just another service provider. Our experts bring strategic insights across marketing, technology, operations, and growth to help you maximize the value of your remote talent.",
       image: "/images/partnership-placeholder.jpg",
     },
   ];

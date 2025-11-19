@@ -163,11 +163,11 @@ export default function WhyChooseUs() {
                 {/* Benefits List */}
                 <ul className="space-y-2 mt-3 text-left">
                   {benefit.items.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <span className="text-[#F5A623] mt-1 text-base font-bold transition-transform duration-300 group-hover:scale-125">
+                    <li key={idx} className="flex items-start gap-3">
+                      <span className="text-primary-teal mt-0.5 text-base font-bold flex-shrink-0 transition-transform duration-300 group-hover:scale-125">
                         •
                       </span>
-                      <span className="text-gray-300 leading-snug text-xs">
+                      <span className="text-gray-300 leading-snug text-xs flex-1">
                         {item}
                       </span>
                     </li>

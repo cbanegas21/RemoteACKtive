@@ -67,6 +67,30 @@ export default function FAQ() {
         answer:
           "Simply book a discovery call through our website or contact form. We'll have a free strategy session to understand your needs, then begin sourcing candidates. You could be interviewing qualified professionals within 3-10 days.",
       },
+      {
+        slug: "part-time",
+        question: "Can I hire outsourced talent on a part-time basis?",
+        answer:
+          "Absolutely! We offer flexible hiring arrangements including full-time, part-time, and project-based engagements. Whether you need 10 hours a week or 40 hours a week, we can match you with professionals who fit your specific requirements and budget.",
+      },
+      {
+        slug: "scaling",
+        question: "What if I need to scale my team quickly for an ongoing project?",
+        answer:
+          "We specialize in rapid team scaling. Our extensive talent network and streamlined vetting process allow us to quickly deploy multiple team members when you need them. We can help you scale up (or down) as your project demands change, with minimal onboarding friction.",
+      },
+      {
+        slug: "offshore-benefits",
+        question: "What are the benefits of hiring an offshore team?",
+        answer:
+          "Hiring offshore provides significant cost savings (typically 60-70% compared to local hires), access to a global talent pool, round-the-clock productivity across time zones, scalability without long-term commitments, and the ability to focus your local team on core strategic initiatives while offshore teams handle operational tasks.",
+      },
+      {
+        slug: "start-timeline",
+        question: "Once I decide who to hire, how soon can they start?",
+        answer:
+          "Once you've selected your ideal candidate, they can typically start within 1-2 weeks. This timeframe includes finalizing contracts, setting up equipment and systems access, and completing any necessary onboarding. In urgent situations, we can often accelerate this timeline to get your new team member working even sooner.",
+      },
     ],
     []
   );
@@ -185,9 +209,9 @@ export default function FAQ() {
     }
   };
 
-  // Split FAQs into two columns for desktop
-  const leftColumnFaqs = faqs.slice(0, 5);
-  const rightColumnFaqs = faqs.slice(5, 10);
+  // Split FAQs into two columns for desktop (7 questions each for 14 total)
+  const leftColumnFaqs = faqs.slice(0, 7);
+  const rightColumnFaqs = faqs.slice(7, 14);
 
   return (
     <Section id="faq" background="dark">
@@ -197,7 +221,7 @@ export default function FAQ() {
             Frequently Asked Questions
           </h2>
           <p className="text-gray-300 text-lg">
-            Everything you need to know about working with us
+            If you can't find the answer you're looking for, simply contact us and one of our friendly admin team will be in touch with you within 1 business day.
           </p>
           <div className="mt-4 flex items-center justify-center gap-3">
             <button
@@ -277,7 +301,7 @@ export default function FAQ() {
           {/* Right Column */}
           <div className="space-y-4" role="list">
             {rightColumnFaqs.map((faq, idx) => {
-              const actualIdx = idx + 5; // Offset by 5 for correct indexing
+              const actualIdx = idx + 7; // Offset by 7 for correct indexing
               const open = isOpen(actualIdx);
               return (
                 <div
@@ -330,11 +354,6 @@ export default function FAQ() {
             })}
           </div>
         </div>
-
-        {/* Helpful hint */}
-        <p className="text-center text-sm text-gray-400 mt-8">
-          Use arrow keys to navigate between questions
-        </p>
       </div>
     </Section>
   );

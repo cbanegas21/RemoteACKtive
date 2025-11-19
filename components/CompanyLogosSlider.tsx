@@ -9,8 +9,8 @@ export default function CompanyLogosSlider() {
 
   return (
     <div className="w-full py-12 overflow-hidden">
-      <p className="text-center text-sm font-medium mb-8 text-gray-400">
-        These companies outsource & save ALOT on revenue. Be one of them!!!
+      <p className="text-center text-2xl font-bold mb-8 text-gray-300">
+        Join successful companies who outsource and save massively on revenue!
       </p>
       
       {/* Infinite Scroll Container */}

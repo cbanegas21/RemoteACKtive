@@ -12,7 +12,8 @@ import {
   ChevronDown,
   Search,
   Palette,
-  TrendingUp
+  TrendingUp,
+  Settings
 } from "lucide-react";
 
 export default function DepartmentGrid() {
@@ -154,6 +155,21 @@ export default function DepartmentGrid() {
         "SDRs / BDRs",
         "Sales Operations",
         "Business Development Managers",
+      ],
+    },
+    {
+      icon: Settings,
+      title: "Operations & Project Management",
+      description: "Streamline your operations and deliver projects on time with skilled operations managers and project coordinators.",
+      color: "blue",
+      roles: [
+        "Operations Managers",
+        "Project Coordinators",
+        "Process Improvement Specialists",
+        "Workflow Automation Specialists",
+        "Project Managers",
+        "Scrum Masters",
+        "Business Analysts",
       ],
     },
   ];

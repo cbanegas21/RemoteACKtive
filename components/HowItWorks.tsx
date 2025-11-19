@@ -5,22 +5,22 @@ export default function HowItWorks() {
     {
       number: "1",
       title: "Get free, tailored insights",
-      description: "Share your goals and challenges on our free strategy call, and our experts will uncover opportunities to save time and scale smarter.",
+      description: "Tell us about your hiring needs and business objectives during a complimentary consultation. We'll identify where remote talent can drive the biggest impact for your organization.",
     },
     {
       number: "2",
       title: "We recruit only the best",
-      description: "Our full-fledged recruitment team handles the rigorous screening process, and you'll be matched with your dedicated outsourced talent.",
+      description: "Our specialized recruitment team puts candidates through comprehensive vetting, then presents you with pre-qualified professionals who match your exact requirements.",
     },
     {
       number: "3",
       title: "Onboard with ease",
-      description: "We'll help you integrate your new talent into your business, and you can leave payment management, perks, upskilling, and quality assurance to us.",
+      description: "We streamline integration of your new team members and handle all the administrative details—payroll, benefits, training, and performance tracking—so you don't have to.",
     },
     {
       number: "4",
       title: "Get time back",
-      description: "Outsource tasks to your new remote team and shift your leadership focus to high-priority tasks.",
+      description: "Delegate operational work to your remote professionals and reclaim your schedule for strategic initiatives that drive business growth.",
     },
   ];
 
