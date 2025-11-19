@@ -185,27 +185,31 @@ export default function FAQ() {
     }
   };
 
+  // Split FAQs into two columns for desktop
+  const leftColumnFaqs = faqs.slice(0, 5);
+  const rightColumnFaqs = faqs.slice(5, 10);
+
   return (
-    <Section id="faq">
-      <div className="max-w-3xl mx-auto">
+    <Section id="faq" background="dark">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-gray-900 text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-300 text-lg">
             Everything you need to know about working with us
           </p>
           <div className="mt-4 flex items-center justify-center gap-3">
             <button
               onClick={expandAll}
-              className="text-sm px-3 py-1.5 rounded-lg border border-primary-teal/30 bg-white text-primary-teal hover:bg-primary-teal/10 transition-all duration-200"
+              className="text-sm px-3 py-1.5 rounded-lg border border-white/20 text-white hover:bg-white/5 transition-all duration-200"
               aria-label="Expand all FAQs"
             >
               Expand all
             </button>
             <button
               onClick={collapseAll}
-              className="text-sm px-3 py-1.5 rounded-lg border border-primary-teal/30 bg-white text-primary-teal hover:bg-primary-teal/10 transition-all duration-200"
+              className="text-sm px-3 py-1.5 rounded-lg border border-white/20 text-white hover:bg-white/5 transition-all duration-200"
               aria-label="Collapse all FAQs"
             >
               Collapse all
@@ -213,62 +217,122 @@ export default function FAQ() {
           </div>
         </div>
 
-        <div className="space-y-4" role="list">
-          {faqs.map((faq, idx) => {
-            const open = isOpen(idx);
-            return (
-              <div
-                key={faq.slug}
-                ref={(el) => {
-                  faqRefs.current[idx] = el;
-                }}
-                className="rounded-lg overflow-hidden transition-all duration-200
-                  bg-white border border-gray-200
-                  hover:shadow-md hover:border-primary-teal/50"
-                role="listitem"
-              >
-                <button
-                  id={`faq-btn-${idx}`}
-                  onClick={() => toggleFAQ(idx)}
-                  onKeyDown={(e) => handleKeyDown(e, idx)}
-                  aria-expanded={open}
-                  aria-controls={`faq-panel-${idx}`}
-                  className="w-full flex items-center justify-between p-5 text-left transition-colors duration-200 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-teal focus-visible:ring-offset-2"
-                >
-                  <span className="text-gray-900 font-semibold pr-4">
-                    {faq.question}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 text-primary-teal ${
-                      open ? "rotate-180" : ""
-                    }`}
-                    aria-hidden="true"
-                  />
-                </button>
-
+        {/* Two-column layout on desktop, single column on mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left Column */}
+          <div className="space-y-4" role="list">
+            {leftColumnFaqs.map((faq, idx) => {
+              const open = isOpen(idx);
+              return (
                 <div
-                  id={`faq-panel-${idx}`}
-                  role="region"
-                  aria-labelledby={`faq-btn-${idx}`}
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    open
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  }`}
+                  key={faq.slug}
+                  ref={(el) => {
+                    faqRefs.current[idx] = el;
+                  }}
+                  className="rounded-lg overflow-hidden transition-all duration-200
+                    bg-[#1E2430] border border-white/10
+                    hover:shadow-md hover:border-primary-orange/50 hover:bg-[#252b3a]"
+                  role="listitem"
                 >
-                  <div className="min-h-0 overflow-hidden">
-                    <div className="px-5 pb-5 pt-1 leading-relaxed text-gray-600">
-                      {faq.answer}
+                  <button
+                    id={`faq-btn-${idx}`}
+                    onClick={() => toggleFAQ(idx)}
+                    onKeyDown={(e) => handleKeyDown(e, idx)}
+                    aria-expanded={open}
+                    aria-controls={`faq-panel-${idx}`}
+                    className="w-full flex items-center justify-between p-5 text-left transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-orange focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2430]"
+                  >
+                    <span className="text-white font-semibold pr-4">
+                      {faq.question}
+                    </span>
+                    <ChevronDown
+                      className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 text-primary-orange ${
+                        open ? "rotate-180" : ""
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  <div
+                    id={`faq-panel-${idx}`}
+                    role="region"
+                    aria-labelledby={`faq-btn-${idx}`}
+                    className={`grid transition-all duration-300 ease-in-out ${
+                      open
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="min-h-0 overflow-hidden">
+                      <div className="px-5 pb-5 pt-1 leading-relaxed text-gray-300">
+                        {faq.answer}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-4" role="list">
+            {rightColumnFaqs.map((faq, idx) => {
+              const actualIdx = idx + 5; // Offset by 5 for correct indexing
+              const open = isOpen(actualIdx);
+              return (
+                <div
+                  key={faq.slug}
+                  ref={(el) => {
+                    faqRefs.current[actualIdx] = el;
+                  }}
+                  className="rounded-lg overflow-hidden transition-all duration-200
+                    bg-[#1E2430] border border-white/10
+                    hover:shadow-md hover:border-primary-orange/50 hover:bg-[#252b3a]"
+                  role="listitem"
+                >
+                  <button
+                    id={`faq-btn-${actualIdx}`}
+                    onClick={() => toggleFAQ(actualIdx)}
+                    onKeyDown={(e) => handleKeyDown(e, actualIdx)}
+                    aria-expanded={open}
+                    aria-controls={`faq-panel-${actualIdx}`}
+                    className="w-full flex items-center justify-between p-5 text-left transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-orange focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2430]"
+                  >
+                    <span className="text-white font-semibold pr-4">
+                      {faq.question}
+                    </span>
+                    <ChevronDown
+                      className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 text-primary-orange ${
+                        open ? "rotate-180" : ""
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  <div
+                    id={`faq-panel-${actualIdx}`}
+                    role="region"
+                    aria-labelledby={`faq-btn-${actualIdx}`}
+                    className={`grid transition-all duration-300 ease-in-out ${
+                      open
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="min-h-0 overflow-hidden">
+                      <div className="px-5 pb-5 pt-1 leading-relaxed text-gray-300">
+                        {faq.answer}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Helpful hint */}
-        <p className="text-center text-sm text-gray-500 mt-8">
+        <p className="text-center text-sm text-gray-400 mt-8">
           Use arrow keys to navigate between questions
         </p>
       </div>

@@ -70,7 +70,7 @@ export default function StatsSection() {
   }, [hasAnimated]);
 
   return (
-    <Section background="light">
+    <Section background="dark">
       <div ref={sectionRef} className="grid md:grid-cols-4 gap-6">
         {stats.map((stat, idx) => (
           <StatCard key={idx} stat={stat} animate={hasAnimated} />
@@ -112,16 +112,16 @@ function StatCard({
   }, [animate, stat.value]);
 
   return (
-    <Card hover className="text-center">
+    <Card variant="dark" hover className="text-center">
       <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4
-        bg-gray-100">
-        <Icon className={`w-8 h-8 ${stat.colorLight}`} />
+        bg-white/10">
+        <Icon className={`w-8 h-8 ${stat.colorDark}`} />
       </div>
-      <div className="text-gray-900 text-4xl font-bold mb-2">
+      <div className="text-white text-4xl font-bold mb-2">
         {animate ? count : 0}
         {animate && count === stat.value && stat.suffix}
       </div>
-      <div className="text-gray-600 text-sm font-medium">
+      <div className="text-gray-300 text-sm font-medium">
         {stat.label}
       </div>
     </Card>

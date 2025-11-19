@@ -3,7 +3,7 @@ import { Award, Shield } from "lucide-react";
 
 export default function GuaranteeSection() {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-background-light">
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">

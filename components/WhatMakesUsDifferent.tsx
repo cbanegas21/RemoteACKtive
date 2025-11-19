@@ -25,13 +25,13 @@ export default function WhatMakesUsDifferent() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-background-dark">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             What Makes Us Different
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             We're not just another outsourcing agency—we're your strategic partner in building world-class remote teams
           </p>
         </div>
@@ -47,12 +47,12 @@ export default function WhatMakesUsDifferent() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-white mb-4">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   {item.description}
                 </p>
               </div>

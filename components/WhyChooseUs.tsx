@@ -107,19 +107,19 @@ export default function WhyChooseUs() {
   };
 
   return (
-    <Section id="why">
+    <Section id="why" background="dark">
       {/* Header */}
-      <div className="text-center mb-16">
-        <h2 className="text-gray-900 text-4xl md:text-5xl font-bold mb-4">
+      <div className="text-center mb-8">
+        <h2 className="text-white text-3xl md:text-4xl font-bold mb-3">
           Why Choose Remote ACKtive?
         </h2>
-        <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
+        <p className="text-gray-300 text-base md:text-lg max-w-3xl mx-auto">
           We make hiring global talent simple, affordable, and stress-free
         </p>
       </div>
 
-      {/* 2x2 Grid */}
-      <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+      {/* 4-Column Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {benefits.map((benefit) => {
           const Icon = benefit.icon;
           const colors = colorClasses[benefit.color];
@@ -127,22 +127,11 @@ export default function WhyChooseUs() {
           return (
             <div
               key={benefit.title}
-              className={`
-                group relative overflow-hidden rounded-2xl border-2
-                ${colors.border}
-                bg-white
-                p-8
-                transition-all duration-300
-                hover:shadow-2xl
-                hover:-translate-y-1
-              `}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-background-darkCard p-4 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-white/20"
             >
-              {/* Background Gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-50`} />
-
               {/* Image - Top */}
-              <div className="relative z-10 mb-6">
-                <div className="relative w-full h-48 rounded-xl overflow-hidden bg-gray-200">
+              <div className="relative z-10 mb-4 mx-auto" style={{ maxWidth: '150px' }}>
+                <div className="relative w-full aspect-square rounded-full overflow-hidden bg-gray-800">
                   <Image
                     src={benefit.image}
                     alt={benefit.imageAlt}
@@ -153,64 +142,38 @@ export default function WhyChooseUs() {
               </div>
 
               {/* Content */}
-              <div className="relative z-10">
+              <div className="relative z-10 text-center">
                 {/* Icon */}
-                <div className={`
-                  inline-flex items-center justify-center
-                  w-16 h-16 rounded-xl
-                  ${colors.iconBg}
-                  mb-6
-                  transition-transform duration-300
-                  group-hover:scale-110 group-hover:rotate-3
-                `}>
-                  <Icon className={`w-8 h-8 ${colors.iconColor}`} />
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#F5A623]/10 mb-3 transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="w-5 h-5 text-[#F5A623]" />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-gray-900 text-2xl font-bold mb-2">
+                <h3 className="text-white text-lg font-bold mb-2">
                   {benefit.title}
                 </h3>
 
                 {/* Tagline */}
-                <div className={`
-                  inline-flex items-center gap-2 px-3 py-1.5 rounded-full
-                  ${colors.badgeBg}
-                  border ${colors.badgeBg.replace('/10', '/20')}
-                  mb-6
-                `}>
-                  <span className={`text-xs font-semibold ${colors.badgeText}`}>
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#F5A623]/10 border border-[#F5A623]/20 mb-3">
+                  <span className="text-xs font-semibold text-[#F5A623]">
                     {benefit.tagline}
                   </span>
                 </div>
 
                 {/* Benefits List */}
-                <ul className="space-y-3 mt-6">
+                <ul className="space-y-2 mt-3 text-left">
                   {benefit.items.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <span className={`
-                        ${colors.dotColor}
-                        mt-1.5 text-lg font-bold
-                        transition-transform duration-300
-                        group-hover:scale-125
-                      `}>
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-[#F5A623] mt-1 text-base font-bold transition-transform duration-300 group-hover:scale-125">
                         •
                       </span>
-                      <span className="text-gray-600 leading-relaxed text-sm">
+                      <span className="text-gray-300 leading-snug text-xs">
                         {item}
                       </span>
                     </li>
                   ))}
                 </ul>
               </div>
-
-              {/* Decorative Corner Element */}
-              <div className={`
-                absolute -bottom-8 -right-8 w-32 h-32 rounded-full
-                ${colors.accentBg}
-                blur-2xl
-                transition-all duration-500
-                group-hover:scale-150
-              `} />
             </div>
           );
         })}

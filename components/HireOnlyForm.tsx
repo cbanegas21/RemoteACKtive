@@ -56,8 +56,8 @@ export default function HireOnlyForm() {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#57C5CF] bg-white border-gray-300 text-gray-900 placeholder-gray-400";
-  const labelClass = "block text-sm font-medium mb-2 text-gray-700";
+    "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#FF6B35] bg-[#2A3142] border-gray-600 text-white placeholder-gray-400";
+  const labelClass = "block text-sm font-medium mb-2 text-gray-300";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -181,13 +181,13 @@ export default function HireOnlyForm() {
       </div>
 
       {submitStatus === "success" && (
-        <div className="p-4 rounded-lg bg-[#57C5CF]/10 border border-[#57C5CF]/30 text-[#57C5CF]">
+        <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400">
           Thank you! We'll review your request and get back to you within 24 hours.
         </div>
       )}
 
       {submitStatus === "error" && (
-        <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-700">
+        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400">
           Something went wrong. Please try again or email us directly at admin@remoteacktive.com
         </div>
       )}
@@ -195,9 +195,9 @@ export default function HireOnlyForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 rounded-lg bg-[#57C5CF] text-white font-medium hover:bg-[#378B57] focus:outline-none focus:ring-2 focus:ring-[#57C5CF] focus:ring-offset-2 focus:ring-offset-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-6 py-3 rounded-lg bg-[#FF6B35] text-white font-semibold hover:bg-[#FF8555] focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
       >
-        {isSubmitting ? "Sending..." : "Request Hire-Only Service"}
+        {isSubmitting ? "Sending..." : "Book Discovery Call"}
       </button>
     </form>
   );

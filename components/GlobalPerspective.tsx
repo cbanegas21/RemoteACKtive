@@ -13,24 +13,14 @@ export default function GlobalPerspective() {
   ];
 
   return (
-    <Section id="global">
-      <div className="grid md:grid-cols-2 gap-6">
-        <Card className="bg-gradient-to-br from-[#378B57]/10 to-[#57C5CF]/10">
+    <Section id="global" background="dark">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="bg-background-darkCard border border-white/10">
           <div className="flex flex-col h-full">
-            {/* Image Placeholder */}
-            <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden bg-gray-200">
-              <Image
-                src="/images/why-us/global.jpg"
-                alt="Global remote team"
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            <h4 className="text-gray-900 text-xl font-bold mb-3">
+            <h4 className="text-white text-base font-bold mb-2">
               Think Globally, Hire Strategically
             </h4>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-300 leading-relaxed text-xs">
               A global team brings more than just cost savings—it brings fresh
               perspectives, 24/7 coverage, and specialized regional insights. Whether
               you need a developer in Eastern Europe, a marketer in Latin America,
@@ -40,25 +30,35 @@ export default function GlobalPerspective() {
           </div>
         </Card>
 
-        <Card hover>
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center
-              bg-[#378B57]/10">
-              <Globe className="w-6 h-6 text-[#378B57]" />
+        <Card hover className="group bg-background-darkCard border border-white/10">
+          <div className="flex flex-col items-center text-center">
+            <div className="relative mb-4 mx-auto" style={{ maxWidth: '150px', width: '100%' }}>
+              <div className="relative w-full aspect-square rounded-full overflow-hidden bg-gray-800 group">
+                <Image
+                  src="/images/why-us/global.jpg"
+                  alt="Global remote team"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
             </div>
-            <div className="flex-1">
-              <h3 className="text-gray-900 text-2xl font-bold mb-4">
-                Global Perspective
-              </h3>
-              <ul className="text-gray-600 space-y-3">
-                {benefits.map((benefit, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="text-[#378B57] mt-1 font-bold">•</span>
-                    <span className="leading-relaxed">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
+
+            <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-[#F5A623]/10 transition-transform duration-300 group-hover:scale-110 mb-3">
+              <Globe className="w-5 h-5 text-[#F5A623]" />
             </div>
+
+            <h3 className="text-white text-lg font-bold mb-3">
+              Global Perspective
+            </h3>
+
+            <ul className="text-gray-300 space-y-2 text-left w-full">
+              {benefits.map((benefit, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-[#F5A623] mt-1 font-bold text-sm">•</span>
+                  <span className="leading-snug text-xs">{benefit}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </Card>
       </div>
