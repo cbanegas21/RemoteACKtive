@@ -38,25 +38,17 @@
   }
 }
 
-/* Make headers 50% bigger throughout the site */
-@layer components {
-  /* Section headers - make 50% bigger */
-  section h2:not(.no-enlarge) {
-    font-size: 3.375rem !important; /* 54px - 50% bigger than 36px */
-  }
+/* Fix scroll offset for fixed header */
+section {
+  scroll-margin-top: 100px;
+}
 
-  section h3:not(.no-enlarge) {
-    font-size: 2.0625rem !important; /* 33px - 50% bigger than 22px */
-  }
-
-  /* Mobile adjustments */
-  @media (max-width: 768px) {
-    section h2:not(.no-enlarge) {
-      font-size: 2.25rem !important; /* 36px for mobile */
-    }
-
-    section h3:not(.no-enlarge) {
-      font-size: 1.5rem !important; /* 24px for mobile */
-    }
-  }
+#hero,
+#why,
+#services,
+#departments,
+#about,
+#faq,
+#contact {
+  scroll-margin-top: 100px;
 }

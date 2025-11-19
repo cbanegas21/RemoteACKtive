@@ -41,82 +41,82 @@ export default function ContactCTA() {
   const currentTab = tabs.find(tab => tab.id === formType) || tabs[1];
 
   return (
-    <>
-      {/* Contact Cards Section - GRADIENT BACKGROUND */}
-      <section id="contact" className="relative py-24 bg-gradient-primary overflow-hidden">
+    <section id="contact" className="w-full">
+      {/* Part 1: Gradient header with cards */}
+      <div className="relative py-20 bg-gradient-primary overflow-hidden">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-white text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
+          <div className="text-center mb-12">
+            <h2 className="text-white text-4xl md:text-5xl font-bold mb-4 tracking-tight">
               Ready to Build Your Dream Team?
             </h2>
-            <p className="text-white/90 text-xl md:text-2xl font-medium">
+            <p className="text-white/90 text-lg md:text-xl">
               Get in touch and let's discuss how we can help you scale
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-[rgba(26,35,50,0.6)] backdrop-blur-md border border-[rgba(87,197,207,0.2)] rounded-2xl p-10 text-center transition-all duration-300 hover:bg-[rgba(26,35,50,0.8)] hover:border-[#57C5CF] hover:-translate-y-1 hover:shadow-2xl">
-              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[rgba(87,197,207,0.15)] flex items-center justify-center mx-auto mb-6">
-                <Calendar className="w-9 h-9 text-[#57C5CF]" />
+            <div className="bg-[rgba(26,35,50,0.6)] backdrop-blur-md border border-[rgba(87,197,207,0.2)] rounded-2xl p-8 text-center transition-all duration-300 hover:bg-[rgba(26,35,50,0.8)] hover:border-[#57C5CF] hover:-translate-y-1 hover:shadow-2xl">
+              <div className="w-16 h-16 rounded-full border-2 border-[#57C5CF] bg-[rgba(87,197,207,0.15)] flex items-center justify-center mx-auto mb-4">
+                <Calendar className="w-7 h-7 text-[#57C5CF]" />
               </div>
-              <h3 className="font-bold text-white mb-3 text-[22px]">
+              <h3 className="font-bold text-white mb-2 text-lg">
                 Schedule a Meeting
               </h3>
-              <p className="text-gray-300 text-base mb-6">
+              <p className="text-gray-300 text-sm mb-4">
                 Book a time that works for you
               </p>
               <a
                 href="https://calendly.com/admin-remoteacktive/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block hover:translate-x-1"
+                className="text-[#57C5CF] hover:text-[#4DD0E1] text-base font-semibold transition inline-block hover:translate-x-1"
               >
                 View Calendar →
               </a>
             </div>
 
-            <div className="bg-[rgba(26,35,50,0.6)] backdrop-blur-md border border-[rgba(87,197,207,0.2)] rounded-2xl p-10 text-center transition-all duration-300 hover:bg-[rgba(26,35,50,0.8)] hover:border-[#57C5CF] hover:-translate-y-1 hover:shadow-2xl">
-              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[rgba(87,197,207,0.15)] flex items-center justify-center mx-auto mb-6">
-                <Mail className="w-9 h-9 text-[#57C5CF]" />
+            <div className="bg-[rgba(26,35,50,0.6)] backdrop-blur-md border border-[rgba(87,197,207,0.2)] rounded-2xl p-8 text-center transition-all duration-300 hover:bg-[rgba(26,35,50,0.8)] hover:border-[#57C5CF] hover:-translate-y-1 hover:shadow-2xl">
+              <div className="w-16 h-16 rounded-full border-2 border-[#57C5CF] bg-[rgba(87,197,207,0.15)] flex items-center justify-center mx-auto mb-4">
+                <Mail className="w-7 h-7 text-[#57C5CF]" />
               </div>
-              <h3 className="font-bold text-white mb-3 text-[22px]">
+              <h3 className="font-bold text-white mb-2 text-lg">
                 Email Us
               </h3>
-              <p className="text-gray-300 text-base mb-6">
+              <p className="text-gray-300 text-sm mb-4">
                 We'll respond within 24 hours
               </p>
               <a
                 href="mailto:admin@remoteacktive.com"
-                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block hover:translate-x-1 break-all"
+                className="text-[#57C5CF] hover:text-[#4DD0E1] text-base font-semibold transition inline-block hover:translate-x-1 break-all"
               >
                 admin@remoteacktive.com
               </a>
             </div>
 
-            <div className="bg-[rgba(26,35,50,0.6)] backdrop-blur-md border border-[rgba(87,197,207,0.2)] rounded-2xl p-10 text-center transition-all duration-300 hover:bg-[rgba(26,35,50,0.8)] hover:border-[#57C5CF] hover:-translate-y-1 hover:shadow-2xl">
-              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[rgba(87,197,207,0.15)] flex items-center justify-center mx-auto mb-6">
-                <Phone className="w-9 h-9 text-[#57C5CF]" />
+            <div className="bg-[rgba(26,35,50,0.6)] backdrop-blur-md border border-[rgba(87,197,207,0.2)] rounded-2xl p-8 text-center transition-all duration-300 hover:bg-[rgba(26,35,50,0.8)] hover:border-[#57C5CF] hover:-translate-y-1 hover:shadow-2xl">
+              <div className="w-16 h-16 rounded-full border-2 border-[#57C5CF] bg-[rgba(87,197,207,0.15)] flex items-center justify-center mx-auto mb-4">
+                <Phone className="w-7 h-7 text-[#57C5CF]" />
               </div>
-              <h3 className="font-bold text-white mb-3 text-[22px]">
+              <h3 className="font-bold text-white mb-2 text-lg">
                 Call or Text
               </h3>
-              <p className="text-gray-300 text-base mb-6">
+              <p className="text-gray-300 text-sm mb-4">
                 Speak with our team directly
               </p>
               <a
                 href="tel:+14152511945"
-                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block hover:translate-x-1"
+                className="text-[#57C5CF] hover:text-[#4DD0E1] text-base font-semibold transition inline-block hover:translate-x-1"
               >
                 +1 (415) 251-1945
               </a>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Forms Section - Separate Full Height Section */}
-      <Section background="dark">
-        <div className="max-w-4xl mx-auto min-h-screen py-20">
+      {/* Part 2: Forms - directly below with minimal gap */}
+      <div className="bg-background-dark py-16">
+        <div className="max-w-4xl mx-auto px-6">
           {/* Tab Navigation */}
           <div className="flex items-stretch justify-center gap-4 mb-12 flex-wrap">
             {tabs.map((tab) => (
@@ -143,7 +143,7 @@ export default function ContactCTA() {
           </div>
 
           {/* Form Container */}
-          <div className="bg-[#1A2332] rounded-2xl p-12 border border-gray-700 shadow-2xl">
+          <div className="bg-[#1A2332] rounded-2xl p-8 border border-gray-700 shadow-2xl max-w-3xl mx-auto">
             {/* Most Popular Badge for Featured Tab */}
             {currentTab.isFeatured && (
               <div className="mb-6">
@@ -171,7 +171,7 @@ export default function ContactCTA() {
             </div>
           </div>
         </div>
-      </Section>
-    </>
+      </div>
+    </section>
   );
 }

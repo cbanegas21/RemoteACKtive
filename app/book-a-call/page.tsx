@@ -70,12 +70,12 @@ export default function BookACallPage() {
         <Header />
 
         {/* HERO SECTION - GRADIENT BACKGROUND */}
-        <section className="relative pt-32 pb-20 bg-gradient-hero overflow-hidden">
+        <section className="relative pt-32 pb-16 bg-gradient-hero overflow-hidden">
           <div className="container mx-auto px-6 text-center relative z-10">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Book Your Free Discovery Call
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
               Let's discuss how Remote ACKtive can help you build a world-class remote team and save up to 70% on costs
             </p>
           </div>
