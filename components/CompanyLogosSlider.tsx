@@ -9,7 +9,7 @@ export default function CompanyLogosSlider() {
 
   return (
     <div className="w-full py-12 overflow-hidden">
-      <p className="text-center text-2xl font-bold mb-8 text-gray-300">
+      <p className="text-center text-[22px] font-bold mb-8 text-white/95 leading-relaxed">
         Join successful companies who outsource and save massively on revenue!
       </p>
       

@@ -40,8 +40,8 @@ export default function HowItWorks() {
           {steps.map((step, index) => (
             <div key={index} className="text-center">
               {/* Large Numbered Circle */}
-              <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-lg">
-                <span className="text-4xl font-bold text-primary-teal">
+              <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-background-dark border-4 border-white flex items-center justify-center shadow-lg">
+                <span className="text-4xl font-bold text-white">
                   {step.number}
                 </span>
               </div>
@@ -62,8 +62,8 @@ export default function HowItWorks() {
         {/* CTA Button */}
         <div className="text-center">
           <a
-            href="#contact"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-primary-teal text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+            href="/book-a-call"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-teal text-black text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all hover:bg-primary-cyan"
           >
             BOOK A DISCOVERY CALL
           </a>

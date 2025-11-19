@@ -41,13 +41,13 @@ export default function ContactCTA() {
   const currentTab = tabs.find(tab => tab.id === formType) || tabs[1];
 
   return (
-    <Section id="contact" background="light">
+    <Section id="contact" background="dark">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-gray-900 text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
             Ready to Build Your Dream Team?
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-300 text-lg">
             Get in touch and let's discuss how we can help you scale
           </p>
         </div>
@@ -58,10 +58,10 @@ export default function ContactCTA() {
               bg-[#57C5CF]/10">
               <Calendar className="w-6 h-6 text-[#57C5CF]" />
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">
+            <h3 className="font-semibold text-white mb-2">
               Schedule a Meeting
             </h3>
-            <p className="text-gray-600 text-sm mb-4">
+            <p className="text-gray-300 text-sm mb-4">
               Book a time that works for you
             </p>
             <a
@@ -79,10 +79,10 @@ export default function ContactCTA() {
               bg-[#378B57]/10">
               <Mail className="w-6 h-6 text-[#378B57]" />
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">
+            <h3 className="font-semibold text-white mb-2">
               Email Us
             </h3>
-            <p className="text-gray-600 text-sm mb-4">
+            <p className="text-gray-300 text-sm mb-4">
               We'll respond within 24 hours
             </p>
             <a
@@ -98,10 +98,10 @@ export default function ContactCTA() {
               bg-[#378B57]/10">
               <Phone className="w-6 h-6 text-[#378B57]" />
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">
+            <h3 className="font-semibold text-white mb-2">
               Call or Text
             </h3>
-            <p className="text-gray-600 text-sm mb-4">
+            <p className="text-gray-300 text-sm mb-4">
               Speak with our team directly
             </p>
             <a

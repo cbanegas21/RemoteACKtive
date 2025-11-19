@@ -1,4 +1,4 @@
-// File: C:\Users\carlo\OneDrive\Documents\ALL PROJECTS\Remote ACKtive\remote-acktive-site\app\layout.tsx
+// File: /home/user/RemoteACKtive/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

@@ -51,7 +51,7 @@ export default function AboutBlock() {
             {/* image panel using your /public/images/ourstory.png */}
             <div
               aria-hidden="true"
-              className="relative rounded-xl overflow-hidden ring-1 ring-white/10 bg-white/60
+              className="relative rounded-xl overflow-hidden ring-1 ring-white/10 bg-background-darkCard
                          transition-transform duration-500 ease-out
                          group-hover:translate-y-[-2px] group-hover:scale-[1.01]"
             >

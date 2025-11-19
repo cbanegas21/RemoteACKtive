@@ -27,8 +27,8 @@ export default function HeroWithGlobe() {
     opacity-90 mix-blend-mode-screen rounded-full
   "
   style={{
-    filter: 'hue-rotate(160deg) saturate(1.2) brightness(0.95)',
-    boxShadow: '0 0 60px rgba(87, 197, 207, 0.4), 0 0 120px rgba(87, 197, 207, 0.2)'
+    filter: 'sepia(100%) saturate(400%) hue-rotate(140deg) brightness(85%)',
+    boxShadow: '0 0 60px rgba(87, 197, 207, 0.6), 0 0 120px rgba(87, 197, 207, 0.4)'
   }}
 >
   <GitHubGlobe />
@@ -48,8 +48,8 @@ export default function HeroWithGlobe() {
 
           <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <a
-              href="#contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-teal text-white text-lg font-bold shadow-[0_4px_12px_rgba(87,197,207,0.4)] transition-all hover:bg-primary-cyan hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(87,197,207,0.5)] focus:outline-none focus:ring-2 focus:ring-primary-teal/60"
+              href="/book-a-call"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-teal text-black text-lg font-bold shadow-[0_4px_12px_rgba(87,197,207,0.4)] transition-all hover:bg-primary-cyan hover:text-black hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(87,197,207,0.5)] focus:outline-none focus:ring-2 focus:ring-primary-teal/60"
             >
               Book a Discovery Call
             </a>

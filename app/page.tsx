@@ -6,6 +6,7 @@ import ThreeTierServices from "@/components/ThreeTierServices";
 import GuaranteeSection from "@/components/GuaranteeSection";
 import DepartmentGrid from "@/components/DepartmentGrid";
 import WhatMakesUsDifferent from "@/components/WhatMakesUsDifferent";
+import AboutBlock from "@/components/AboutBlock";
 import HowItWorks from "@/components/HowItWorks";
 import FAQ from "@/components/FAQ";
 import ContactCTA from "@/components/ContactCTA";
@@ -23,6 +24,7 @@ export default function Home() {
         <GuaranteeSection />
         <DepartmentGrid />
         <WhatMakesUsDifferent />
+        <AboutBlock />
         <HowItWorks />
         <FAQ />
         <ContactCTA />

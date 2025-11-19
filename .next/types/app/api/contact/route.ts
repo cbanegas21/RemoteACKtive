@@ -1,4 +1,4 @@
-// File: C:\Users\carlo\OneDrive\Documents\ALL PROJECTS\Remote ACKtive\remote-acktive-site\app\api\contact\route.ts
+// File: /home/user/RemoteACKtive/app/api/contact/route.ts
 import * as entry from '../../../../../app/api/contact/route.js'
 import type { NextRequest } from 'next/server.js'
 
