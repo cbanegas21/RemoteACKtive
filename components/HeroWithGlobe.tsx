@@ -18,17 +18,17 @@ export default function HeroWithGlobe() {
       <div className="absolute z-0 right-[-15%] top-[-30vh] w-[min(78vw,1900px)] min-w-[1200px] aspect-square">
         {/* Clean teal glow wrapper */}
         <div className="relative w-full h-full">
-          {/* ULTRA-SIMPLE glow - absolutely NO dark values possible */}
+          {/* Halo that fades to TRANSPARENT, not dark */}
           <div
             style={{
               position: 'absolute',
               top: '50%',
               left: '50%',
-              width: '80%',
-              height: '80%',
+              width: '90%',
+              height: '90%',
               transform: 'translate(-50%, -50%)',
-              background: 'rgba(87, 197, 207, 0.4)',
-              filter: 'blur(80px)',
+              background: 'radial-gradient(circle, rgba(87, 197, 207, 0.6) 0%, rgba(87, 197, 207, 0.4) 20%, rgba(87, 197, 207, 0.2) 40%, rgba(87, 197, 207, 0) 60%)',
+              filter: 'blur(60px)',
               pointerEvents: 'none',
               zIndex: -1,
               borderRadius: '50%'
