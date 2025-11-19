@@ -54,7 +54,7 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
     }
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#FF6B35] bg-[#2A3142] border-gray-600 text-white placeholder-gray-400";
+  const inputClass = "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#57C5CF] bg-[#2A3142] border-gray-600 text-white placeholder-gray-400";
   const labelClass = "block text-sm font-medium mb-2 text-gray-300";
 
   return (
@@ -71,7 +71,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
           value={formData.name}
           onChange={handleChange}
           className={inputClass}
-          placeholder="John Doe"
         />
       </div>
 
@@ -87,7 +86,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
           value={formData.email}
           onChange={handleChange}
           className={inputClass}
-          placeholder="john@company.com"
         />
       </div>
 
@@ -102,7 +100,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
           value={formData.company}
           onChange={handleChange}
           className={inputClass}
-          placeholder="Acme Inc."
         />
       </div>
 
@@ -118,7 +115,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
           value={formData.roles}
           onChange={handleChange}
           className={inputClass}
-          placeholder="e.g., Marketing Manager, Software Developer"
         />
       </div>
 
@@ -134,7 +130,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
           onChange={handleChange}
           rows={4}
           className={`${inputClass} resize-none`}
-          placeholder="Tell us about the role, experience level, and any specific requirements..."
         />
       </div>
 
@@ -173,7 +168,7 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 rounded-lg bg-[#FF6B35] text-white font-semibold hover:bg-[#FF8555] focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        className="w-full px-6 py-3.5 rounded-full bg-[#4FFFB0] text-black font-bold hover:bg-[#3EE89F] focus:outline-none focus:ring-2 focus:ring-[#4FFFB0] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-[18px]"
       >
         {isSubmitting ? "Sending..." : "Learn More"}
       </button>

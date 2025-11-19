@@ -102,51 +102,29 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     const light1 = new PointLight(0x5a54ff, 0.95);
     light1.position.set(-150, 150, -50);
+    light1.castShadow = false;
 
     const light2 = new PointLight(0x4158f6, 0.95);
     light2.position.set(-400, 200, 150);
+    light2.castShadow = false;
 
     const light3 = new PointLight(0x803bff, 0.7);
     light3.position.set(100, 250, -100);
+    light3.castShadow = false;
 
     scene.add(light1, light2, light3);
 
-    // BRIGHTER ATMOSPHERE GLOW
-    const atmosphereGeometry = new SphereGeometry(2, 64, 64);
-    const atmosphereMaterial = new ShaderMaterial({
-      uniforms: {},
-      vertexShader: `
-        varying vec3 vNormal;
-        void main() {
-          vNormal = normalize( normalMatrix * normal );
-          gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-        }
-      `,
-      fragmentShader: `
-        varying vec3 vNormal;
-        void main() {
-          float intensity = pow( 0.99 - dot( vNormal, vec3( 0, 0, 1.0 ) ), 5.2 );
-          gl_FragColor = vec4( .28, .48, 1.0, 1.0 ) * intensity * 1.6;
-        }
-      `,
-      side: BackSide,
-      blending: AdditiveBlending,
-      transparent: true
-    });
-    const atm = new Mesh(atmosphereGeometry, atmosphereMaterial);
-    atm.scale.set(1.05, 1.05, 1.05);
-    atm.position.set(-0.1, 0.1, 0);
-    scene.add(atm);
+    // ATMOSPHERE REMOVED - was creating dark contour around globe
 
     const sphereGeometry = new SphereGeometry(2, 64, 64);
-    const sphereMaterial = new MeshLambertMaterial({ 
+    const sphereMaterial = new MeshLambertMaterial({
       color: 0x1a1245,  // Darker purple
       emissive: 0x2a1a5e,  // Purple glow
       emissiveIntensity: 0.3
     });
     const sphere = new Mesh(sphereGeometry, sphereMaterial);
-    sphere.castShadow = true;
-    sphere.receiveShadow = true;
+    sphere.castShadow = false;
+    sphere.receiveShadow = false;
     sphere.rotation.z = (23.5 * Math.PI) / 180;
     scene.add(sphere);
     sphereRef.current = sphere;
@@ -200,8 +178,8 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     const overlaySphereGeometry = new SphereGeometry(2.003, 64, 64);
     const overlaySphere = new Mesh(overlaySphereGeometry, overlayMaterial);
-    overlaySphere.castShadow = true;
-    overlaySphere.receiveShadow = true;
+    overlaySphere.castShadow = false;
+    overlaySphere.receiveShadow = false;
     sphere.add(overlaySphere);
 
     const numPoints = 100;

@@ -5,7 +5,7 @@ export default function HeroWithGlobe() {
   return (
     <section
       id="hero"
-      className="relative min-h-[110vh] overflow-visible bg-gradient-hero"
+      className="relative min-h-screen overflow-visible bg-gradient-hero"
     >
       {/* Background glow behind everything */}
       <img
@@ -15,27 +15,43 @@ export default function HeroWithGlobe() {
       />
 
       {/* --- BIG GLOBE — high and to the right, like GitHub --- */}
-      <div
-  className="
-    pointer-events-auto touch-none
-    absolute z-0
-    right-[-15%]                /* lock to the right edge — no off-screen overflow */
-    top-[-30vh]             /* lift the rim toward the navbar (tweak if needed) */
-    w-[min(78vw,1900px)]    /* BIG, but guaranteed to fit in the viewport */
-    min-w-[1200px]          /* stays large on laptops */
-    aspect-square
-    opacity-75 mix-blend-mode-screen
-  "
-  style={{ filter: 'hue-rotate(15deg) saturate(0.7) brightness(0.9)' }}
->
-  <GitHubGlobe />
-</div>
+      <div className="absolute z-0 right-[-15%] top-[-30vh] w-[min(78vw,1900px)] min-w-[1200px] aspect-square">
+        {/* Clean teal glow wrapper */}
+        <div className="relative w-full h-full">
+          {/* Halo that fades to TRANSPARENT, not dark */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: '90%',
+              height: '90%',
+              transform: 'translate(-50%, -50%)',
+              background: 'radial-gradient(circle, rgba(87, 197, 207, 0.6) 0%, rgba(87, 197, 207, 0.4) 20%, rgba(87, 197, 207, 0.2) 40%, rgba(87, 197, 207, 0) 60%)',
+              filter: 'blur(60px)',
+              pointerEvents: 'none',
+              zIndex: -1,
+              borderRadius: '50%'
+            }}
+          />
+          {/* Globe with color filter - NO shadows */}
+          <div
+            className="pointer-events-auto touch-none w-full h-full opacity-90 mix-blend-mode-screen rounded-full"
+            style={{
+              filter: 'sepia(100%) saturate(400%) hue-rotate(140deg) brightness(85%)',
+              boxShadow: 'none'
+            }}
+          >
+            <GitHubGlobe />
+          </div>
+        </div>
+      </div>
 
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-40 md:pt-44 xl:pt-48 pb-20 min-h-[110vh] flex flex-col justify-between">
-        <div className="max-w-[50rem] xl:max-w-[56rem] 2xl:max-w-[60rem] flex-1 flex flex-col justify-center">
-          <h1 className="text-6xl md:text-7xl xl:text-8xl font-bold tracking-tight leading-[0.95] text-white">
+      <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-40 md:pt-44 xl:pt-48 pb-20 min-h-screen flex flex-col justify-center">
+        <div className="max-w-[45rem] xl:max-w-[50rem] 2xl:max-w-[54rem] flex-1 flex flex-col justify-center">
+          <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-white">
             Scale Your Business with Elite Global Talent
           </h1>
 
@@ -45,14 +61,14 @@ export default function HeroWithGlobe() {
 
           <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <a
-              href="#contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-orange text-white text-lg font-bold shadow-[0_4px_12px_rgba(245,166,35,0.4)] transition-all hover:bg-[#FF9500] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(245,166,35,0.5)] focus:outline-none focus:ring-2 focus:ring-primary-orange/60"
+              href="/book-a-call"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#4FFFB0] text-black text-lg font-bold shadow-[0_4px_12px_rgba(79,255,176,0.4)] transition-all hover:bg-[#3EE89F] hover:text-black hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(79,255,176,0.5)] focus:outline-none focus:ring-2 focus:ring-[#4FFFB0]/60"
             >
               Book a Discovery Call
             </a>
 
             <a
-              href="#services"
+              href="#how-it-works"
               className="text-white hover:text-white/80 transition-colors text-base md:text-lg font-medium"
             >
               Learn More →

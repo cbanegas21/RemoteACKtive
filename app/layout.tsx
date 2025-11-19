@@ -4,11 +4,11 @@ import { ThemeProvider } from "./providers";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Remote ACKtive",
+  title: "Remote ACKtive | Elite Global Talent for Your Business",
   icons: {
     icon: '/images/favicon.png',
   },
-  description: "Access top global talent with Remote ACKtive. We recruit and manage remote professionals across 50+ countries. Save up to 60% on hiring costs with our outsourcing services. Finance, IT, Marketing, Customer Service & more.",
+  description: "Scale your business with Remote ACKtive. Access elite global talent, save up to 70% on costs, and hire world-class professionals in 3-10 days.",
   keywords: [
     "remote staffing",
     "outsourcing services",
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     canonical: "https://remoteacktive.com",
   },
   openGraph: {
-    title: "Remote ACKtive - Your Gateway to the BEST Global Talent",
-    description: "We recruit and operate top talent so you can focus on growth. Fixed rates, handpicked professionals, speedy onboarding. Save up to 60% on hiring costs.",
+    title: "Remote ACKtive | Elite Global Talent",
+    description: "Scale your business with elite global talent. Save up to 70% on operational costs. Hire world-class professionals in 3-10 days.",
     type: "website",
     locale: "en_US",
     url: "https://remoteacktive.com",
@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Remote ACKtive - Global Outsourcing & Remote Staffing",
-    description: "Access top global talent. Save up to 60% on hiring costs. We handle recruitment and management so you can focus on growth.",
+    title: "Remote ACKtive | Elite Global Talent",
+    description: "Scale your business with elite global talent. Save up to 70% on costs. Hire world-class professionals in 3-10 days.",
     images: ["/images/og-image.jpg"],
     creator: "@remoteacktive",
   },

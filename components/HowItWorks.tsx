@@ -5,27 +5,27 @@ export default function HowItWorks() {
     {
       number: "1",
       title: "Get free, tailored insights",
-      description: "Share your goals and challenges on our free strategy call, and our experts will uncover opportunities to save time and scale smarter.",
+      description: "Tell us about your hiring needs and business objectives during a complimentary consultation. We'll identify where remote talent can drive the biggest impact for your organization.",
     },
     {
       number: "2",
       title: "We recruit only the best",
-      description: "Our full-fledged recruitment team handles the rigorous screening process, and you'll be matched with your dedicated outsourced talent.",
+      description: "Our specialized recruitment team puts candidates through comprehensive vetting, then presents you with pre-qualified professionals who match your exact requirements.",
     },
     {
       number: "3",
       title: "Onboard with ease",
-      description: "We'll help you integrate your new talent into your business, and you can leave payment management, perks, upskilling, and quality assurance to us.",
+      description: "We streamline integration of your new team members and handle all the administrative details—payroll, benefits, training, and performance tracking—so you don't have to.",
     },
     {
       number: "4",
       title: "Get time back",
-      description: "Outsource tasks to your new remote team and shift your leadership focus to high-priority tasks.",
+      description: "Delegate operational work to your remote professionals and reclaim your schedule for strategic initiatives that drive business growth.",
     },
   ];
 
   return (
-    <section className="py-20 bg-gradient-primary text-white">
+    <section id="how-it-works" className="py-20 bg-background-dark text-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -40,8 +40,8 @@ export default function HowItWorks() {
           {steps.map((step, index) => (
             <div key={index} className="text-center">
               {/* Large Numbered Circle */}
-              <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-lg">
-                <span className="text-4xl font-bold text-primary-teal">
+              <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-background-dark border-4 border-white flex items-center justify-center shadow-lg">
+                <span className="text-4xl font-bold text-white">
                   {step.number}
                 </span>
               </div>
@@ -62,8 +62,8 @@ export default function HowItWorks() {
         {/* CTA Button */}
         <div className="text-center">
           <a
-            href="#contact"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-primary-teal text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+            href="/book-a-call"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#4FFFB0] text-black text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all hover:bg-[#3EE89F]"
           >
             BOOK A DISCOVERY CALL
           </a>

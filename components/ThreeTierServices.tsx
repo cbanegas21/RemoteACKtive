@@ -16,68 +16,68 @@ export default function ThreeTierServices() {
   const tiers = [
     {
       name: "Recruitment-Only Package",
-      description: "Perfect for companies who want to manage their own talent",
+      description: "Ideal for teams ready to manage talent independently",
       features: [
-        "One-time fee",
-        "30-day free replacement guarantee",
-        "Skills screening",
-        "Personality testing",
-        "Interview coordination",
-        "Onboarding support",
+        "Single upfront investment",
+        "30-day satisfaction replacement guarantee",
+        "Comprehensive skills assessment",
+        "Behavioral and culture fit evaluation",
+        "Complete interview facilitation",
+        "Initial integration assistance",
       ],
       cta: "BOOK A DISCOVERY CALL",
       onClick: () => handleGetStarted("hire-only"),
       highlighted: false,
       checkColor: "text-primary-teal",
-      buttonStyle: "bg-white text-primary-teal border-2 border-primary-teal hover:bg-primary-teal hover:text-white",
+      buttonStyle: "bg-[#4FFFB0] text-black border-2 border-[#4FFFB0] hover:bg-[#3EE89F] hover:text-black",
     },
     {
       name: "Full Remote ACKtive Experience",
       badge: "⭐ MOST POPULAR",
-      description: "End-to-end recruitment, onboarding, and ongoing management",
+      description: "Complete hiring, management, and development solution",
       features: [
-        "Everything in Recruitment-Only package",
-        "End-to-end recruitment & onboarding",
-        "HR-related tasks, payment management & administrative support",
-        "Continuous training & development for outsourced talent",
-        "Well-being & support systems",
-        "Recognition & rewards program",
-        "Data security & productivity tools",
+        "All Recruitment-Only features included",
+        "Full-service hiring and team integration",
+        "Complete HR administration and payroll processing",
+        "Ongoing professional development programs",
+        "Employee wellness and engagement initiatives",
+        "Performance recognition systems",
+        "Enterprise-grade security and productivity platforms",
       ],
       cta: "BOOK A DISCOVERY CALL",
       onClick: () => handleGetStarted("hire-manage"),
       highlighted: true,
       checkColor: "text-white",
-      buttonStyle: "bg-white text-primary-gold hover:bg-primary-gold hover:text-white hover:scale-105",
+      buttonStyle: "bg-[#4FFFB0] text-black hover:bg-[#3EE89F] hover:text-black hover:scale-105 shadow-lg",
     },
     {
       name: "ACKtive Training Program",
       badge: "NEW",
-      description: "Upskill your existing offshore team",
+      description: "Elevate your current remote workforce",
       features: [
-        "Best for businesses that already have an offshore team",
-        "Live monthly upskill training",
-        "Access to industry experts (Operations & Marketing)",
-        "Community & peer support",
-        "Exclusive team-building activities",
-        "Discount: 10% off when enrolling 2+ remote talents",
+        "Designed for companies with existing remote teams",
+        "Interactive monthly skill-building sessions",
+        "Direct access to specialists in operations and marketing",
+        "Collaborative learning community",
+        "Custom team engagement events",
+        "Multi-enrollment savings: 10% off for 2+ participants",
       ],
       cta: "LEARN MORE",
       onClick: () => handleGetStarted("hire-only"),
       highlighted: false,
       checkColor: "text-primary-teal",
-      buttonStyle: "bg-white text-primary-teal border-2 border-primary-teal hover:bg-primary-teal hover:text-white",
+      buttonStyle: "bg-[#4FFFB0] text-black border-2 border-[#4FFFB0] hover:bg-[#3EE89F] hover:text-black",
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-background-light">
+    <section id="services" className="py-20 bg-gradient-primary">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Choose Your Perfect Package
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             From recruitment to ongoing management and training, we have the right solution for your business
           </p>
         </div>
@@ -89,22 +89,22 @@ export default function ThreeTierServices() {
               className={`relative rounded-2xl p-8 transition-all duration-300 ${
                 tier.highlighted
                   ? "bg-gradient-primary shadow-2xl scale-105 md:scale-110 border-4 border-primary-gold"
-                  : "bg-white shadow-lg hover:shadow-xl border-2 border-primary-teal/20"
+                  : "bg-background-darkCard shadow-lg hover:shadow-xl border-2 border-primary-teal/20"
               }`}
             >
               {tier.badge && (
                 <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full font-bold text-sm whitespace-nowrap ${
-                  tier.highlighted ? "bg-primary-gold text-white" : "bg-primary-teal text-white"
+                  tier.highlighted ? "bg-primary-gold text-white" : "bg-[#4FFFB0] text-black"
                 }`}>
                   {tier.badge}
                 </div>
               )}
 
               <div className="text-center mb-6">
-                <h3 className={`text-2xl font-bold mb-3 ${tier.highlighted ? "text-white" : "text-gray-900"}`}>
+                <h3 className={`text-2xl font-bold mb-3 ${tier.highlighted ? "text-white" : "text-white"}`}>
                   {tier.name}
                 </h3>
-                <p className={`text-sm ${tier.highlighted ? "text-white/90" : "text-gray-600"}`}>
+                <p className={`text-sm ${tier.highlighted ? "text-white/90" : "text-gray-300"}`}>
                   {tier.description}
                 </p>
               </div>
@@ -113,7 +113,7 @@ export default function ThreeTierServices() {
                 {tier.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-start gap-3">
                     <Check className={`w-5 h-5 mt-0.5 flex-shrink-0 ${tier.highlighted ? "text-white" : tier.checkColor}`} />
-                    <span className={`text-sm ${tier.highlighted ? "text-white" : "text-gray-700"}`}>
+                    <span className={`text-sm ${tier.highlighted ? "text-white" : "text-gray-300"}`}>
                       {feature}
                     </span>
                   </li>

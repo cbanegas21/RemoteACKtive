@@ -12,7 +12,8 @@ import {
   ChevronDown,
   Search,
   Palette,
-  TrendingUp
+  TrendingUp,
+  Settings
 } from "lucide-react";
 
 export default function DepartmentGrid() {
@@ -156,6 +157,21 @@ export default function DepartmentGrid() {
         "Business Development Managers",
       ],
     },
+    {
+      icon: Settings,
+      title: "Operations & Project Management",
+      description: "Streamline your operations and deliver projects on time with skilled operations managers and project coordinators.",
+      color: "blue",
+      roles: [
+        "Operations Managers",
+        "Project Coordinators",
+        "Process Improvement Specialists",
+        "Workflow Automation Specialists",
+        "Project Managers",
+        "Scrum Masters",
+        "Business Analysts",
+      ],
+    },
   ];
 
   const getColorClasses = (color: string) => {
@@ -176,7 +192,7 @@ export default function DepartmentGrid() {
   );
 
   return (
-    <Section id="departments" background="dark">
+    <Section id="departments" background="gradient">
       <div className="text-center mb-8">
         <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
           What Can Remote Staff Do For You?

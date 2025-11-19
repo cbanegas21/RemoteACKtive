@@ -9,8 +9,8 @@
 
   body {
     margin: 0;
-    background-color: #0F1419;
-    background-image: linear-gradient(180deg, #0A1628 0%, #0F1419 100%);
+    background-color: #0F1926;
+    background-image: linear-gradient(180deg, #0A1628 0%, #0F1926 100%);
     color: #E5E7EB;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -36,4 +36,19 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Fix scroll offset for fixed header */
+section {
+  scroll-margin-top: 100px;
+}
+
+#hero,
+#why,
+#services,
+#departments,
+#about,
+#faq,
+#contact {
+  scroll-margin-top: 100px;
 }
