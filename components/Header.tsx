@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,26 +18,14 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { label: "Home", href: "#hero" },
-    { label: "Why Us", href: "#why" },
-    { label: "Services", href: "#services" },
-    { label: "Departments", href: "#departments" },
-    { label: "About", href: "#about" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/#hero" },
+    { label: "Why Us", href: "/#why" },
+    { label: "Services", href: "/#services" },
+    { label: "Departments", href: "/#departments" },
+    { label: "About", href: "/#about" },
+    { label: "FAQ", href: "/#faq" },
+    { label: "Contact", href: "/#contact" },
   ];
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  // Use light colors when not scrolled (over hero gradient)
-  const useLightColors = !isScrolled;
 
   return (
     <header
@@ -46,31 +35,60 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto max-w-7xl px-6 py-4">
-        <div className="flex items-center justify-between">
-          <a href="#hero" onClick={(e) => handleNavClick(e, "#hero")} className="flex items-center gap-3 group">
-            <div className="relative w-20 h-20">
+      <nav className="mx-auto max-w-[1600px] px-6 lg:px-16 py-6">
+        <div className="flex items-center justify-between gap-10">
+          <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
+            <div className="relative w-[75px] h-[75px]">
               <Image src="/images/logo.png" alt="Remote ACKtive Logo" fill className="object-contain" />
             </div>
-            <span className="font-bold text-2xl transition text-white group-hover:text-primary-teal">Remote ACKtive</span>
-          </a>
-          <div className="hidden md:flex items-center gap-8">
+            <span className="font-bold text-2xl transition text-white group-hover:text-primary-teal whitespace-nowrap">Remote ACKtive</span>
+          </Link>
+
+          <div className="hidden lg:flex items-center gap-8 flex-1 justify-center">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="font-medium transition text-white/90 hover:text-white">{link.label}</a>
+              <Link
+                key={link.href}
+                href={link.href}
+                className="font-medium text-[17px] transition text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg whitespace-nowrap"
+              >
+                {link.label}
+              </Link>
             ))}
-            <a href="/book-a-call" className="px-6 py-2.5 rounded-full bg-primary-teal text-black font-bold hover:bg-primary-cyan hover:text-black transition shadow-md hover:shadow-lg">Book a Call</a>
           </div>
-          <div className="flex items-center gap-2 md:hidden">
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 rounded-lg transition hover:bg-white/10 text-white" aria-label="Toggle menu">{isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}</button>
+
+          <div className="hidden lg:flex items-center flex-shrink-0">
+            <Link href="/book-a-call" className="px-7 py-3 rounded-full bg-primary-teal text-black font-bold text-[16px] hover:bg-primary-cyan hover:text-black transition shadow-md hover:shadow-lg whitespace-nowrap">
+              Book a Call
+            </Link>
+          </div>
+
+          <div className="flex items-center gap-2 lg:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-lg transition hover:bg-white/10 text-white"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
+
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-white/10">
+          <div className="lg:hidden mt-4 py-4 border-t border-white/10">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a key={link.href} href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="font-medium transition px-2 py-1 text-white/90 hover:text-white">{link.label}</a>
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="font-medium transition px-3 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
               ))}
-              <a href="/book-a-call" className="px-6 py-2.5 rounded-full bg-primary-teal text-black font-bold hover:bg-primary-cyan hover:text-black transition text-center shadow-md">Book a Call</a>
+              <Link href="/book-a-call" className="px-6 py-2.5 rounded-full bg-primary-teal text-black font-bold hover:bg-primary-cyan hover:text-black transition text-center shadow-md">
+                Book a Call
+              </Link>
             </div>
           </div>
         )}

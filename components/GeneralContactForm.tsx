@@ -71,7 +71,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
           value={formData.name}
           onChange={handleChange}
           className={inputClass}
-          placeholder="John Doe"
         />
       </div>
 
@@ -87,7 +86,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
           value={formData.email}
           onChange={handleChange}
           className={inputClass}
-          placeholder="john@company.com"
         />
       </div>
 
@@ -102,7 +100,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
           value={formData.company}
           onChange={handleChange}
           className={inputClass}
-          placeholder="Acme Inc."
         />
       </div>
 
@@ -118,7 +115,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
           value={formData.roles}
           onChange={handleChange}
           className={inputClass}
-          placeholder="e.g., Marketing Manager, Software Developer"
         />
       </div>
 
@@ -134,7 +130,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
           onChange={handleChange}
           rows={4}
           className={`${inputClass} resize-none`}
-          placeholder="Tell us about the role, experience level, and any specific requirements..."
         />
       </div>
 
@@ -173,7 +168,7 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 rounded-lg bg-[#57C5CF] text-white font-semibold hover:bg-[#378B57] focus:outline-none focus:ring-2 focus:ring-[#57C5CF] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        className="w-full px-6 py-3.5 rounded-full bg-[#57C5CF] text-black font-bold hover:bg-primary-cyan focus:outline-none focus:ring-2 focus:ring-[#57C5CF] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-[18px]"
       >
         {isSubmitting ? "Sending..." : "Learn More"}
       </button>

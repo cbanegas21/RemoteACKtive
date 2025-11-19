@@ -73,7 +73,7 @@ export default function HireOnlyForm() {
           value={formData.name}
           onChange={handleChange}
           className={inputClass}
-          placeholder="John Doe"
+          
         />
       </div>
 
@@ -89,7 +89,7 @@ export default function HireOnlyForm() {
           value={formData.email}
           onChange={handleChange}
           className={inputClass}
-          placeholder="john@company.com"
+          
         />
       </div>
 
@@ -105,7 +105,7 @@ export default function HireOnlyForm() {
           value={formData.company}
           onChange={handleChange}
           className={inputClass}
-          placeholder="Acme Inc."
+          
         />
       </div>
 
@@ -121,7 +121,7 @@ export default function HireOnlyForm() {
           value={formData.roles}
           onChange={handleChange}
           className={inputClass}
-          placeholder="e.g., Marketing Manager, Software Developer"
+          
         />
       </div>
 
@@ -137,7 +137,7 @@ export default function HireOnlyForm() {
           onChange={handleChange}
           rows={4}
           className={`${inputClass} resize-none`}
-          placeholder="Tell us about the role requirements, experience level, key responsibilities..."
+          
         />
       </div>
 
@@ -195,7 +195,7 @@ export default function HireOnlyForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 rounded-lg bg-[#57C5CF] text-white font-semibold hover:bg-[#378B57] focus:outline-none focus:ring-2 focus:ring-[#57C5CF] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        className="w-full px-6 py-3.5 rounded-full bg-[#57C5CF] text-black font-bold hover:bg-primary-cyan text-[18px] focus:outline-none focus:ring-2 focus:ring-[#57C5CF] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
       >
         {isSubmitting ? "Sending..." : "Book Discovery Call"}
       </button>

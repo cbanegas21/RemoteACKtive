@@ -75,7 +75,7 @@ export default function HireManageForm() {
           value={formData.name}
           onChange={handleChange}
           className={inputClass}
-          placeholder="John Doe"
+          
         />
       </div>
 
@@ -91,7 +91,7 @@ export default function HireManageForm() {
           value={formData.email}
           onChange={handleChange}
           className={inputClass}
-          placeholder="john@company.com"
+          
         />
       </div>
 
@@ -107,7 +107,7 @@ export default function HireManageForm() {
           value={formData.company}
           onChange={handleChange}
           className={inputClass}
-          placeholder="Acme Inc."
+          
         />
       </div>
 
@@ -123,7 +123,7 @@ export default function HireManageForm() {
           value={formData.roles}
           onChange={handleChange}
           className={inputClass}
-          placeholder="e.g., Customer Support Team, Sales Development Reps"
+          
         />
       </div>
 
@@ -159,7 +159,7 @@ export default function HireManageForm() {
           onChange={handleChange}
           rows={4}
           className={`${inputClass} resize-none`}
-          placeholder="Tell us about your project, ongoing operations needs, and what success looks like..."
+          
         />
       </div>
 

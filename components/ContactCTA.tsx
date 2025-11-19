@@ -42,77 +42,77 @@ export default function ContactCTA() {
 
   return (
     <>
-      {/* Contact Cards Section - Above the Fold */}
-      <Section id="contact" background="dark">
-        <div className="max-w-6xl mx-auto">
+      {/* Contact Cards Section - GRADIENT BACKGROUND */}
+      <section id="contact" className="relative py-24 bg-gradient-primary overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-white text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-white text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
               Ready to Build Your Dream Team?
             </h2>
-            <p className="text-gray-300 text-xl">
+            <p className="text-white/90 text-xl md:text-2xl font-medium">
               Get in touch and let's discuss how we can help you scale
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
-            <Card variant="dark" hover className="text-center">
-              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[#57C5CF]/10 flex items-center justify-center mx-auto mb-6">
-                <Calendar className="w-8 h-8 text-[#57C5CF]" />
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-[rgba(26,35,50,0.6)] backdrop-blur-md border border-[rgba(87,197,207,0.2)] rounded-2xl p-10 text-center transition-all duration-300 hover:bg-[rgba(26,35,50,0.8)] hover:border-[#57C5CF] hover:-translate-y-1 hover:shadow-2xl">
+              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[rgba(87,197,207,0.15)] flex items-center justify-center mx-auto mb-6">
+                <Calendar className="w-9 h-9 text-[#57C5CF]" />
               </div>
-              <h3 className="font-semibold text-white mb-3 text-lg">
+              <h3 className="font-bold text-white mb-3 text-[22px]">
                 Schedule a Meeting
               </h3>
-              <p className="text-gray-400 text-base mb-6">
+              <p className="text-gray-300 text-base mb-6">
                 Book a time that works for you
               </p>
               <a
                 href="https://calendly.com/admin-remoteacktive/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block"
+                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block hover:translate-x-1"
               >
                 View Calendar →
               </a>
-            </Card>
+            </div>
 
-            <Card variant="dark" hover className="text-center">
-              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[#57C5CF]/10 flex items-center justify-center mx-auto mb-6">
-                <Mail className="w-8 h-8 text-[#57C5CF]" />
+            <div className="bg-[rgba(26,35,50,0.6)] backdrop-blur-md border border-[rgba(87,197,207,0.2)] rounded-2xl p-10 text-center transition-all duration-300 hover:bg-[rgba(26,35,50,0.8)] hover:border-[#57C5CF] hover:-translate-y-1 hover:shadow-2xl">
+              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[rgba(87,197,207,0.15)] flex items-center justify-center mx-auto mb-6">
+                <Mail className="w-9 h-9 text-[#57C5CF]" />
               </div>
-              <h3 className="font-semibold text-white mb-3 text-lg">
+              <h3 className="font-bold text-white mb-3 text-[22px]">
                 Email Us
               </h3>
-              <p className="text-gray-400 text-base mb-6">
+              <p className="text-gray-300 text-base mb-6">
                 We'll respond within 24 hours
               </p>
               <a
                 href="mailto:admin@remoteacktive.com"
-                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block break-all"
+                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block hover:translate-x-1 break-all"
               >
                 admin@remoteacktive.com
               </a>
-            </Card>
+            </div>
 
-            <Card variant="dark" hover className="text-center">
-              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[#57C5CF]/10 flex items-center justify-center mx-auto mb-6">
-                <Phone className="w-8 h-8 text-[#57C5CF]" />
+            <div className="bg-[rgba(26,35,50,0.6)] backdrop-blur-md border border-[rgba(87,197,207,0.2)] rounded-2xl p-10 text-center transition-all duration-300 hover:bg-[rgba(26,35,50,0.8)] hover:border-[#57C5CF] hover:-translate-y-1 hover:shadow-2xl">
+              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[rgba(87,197,207,0.15)] flex items-center justify-center mx-auto mb-6">
+                <Phone className="w-9 h-9 text-[#57C5CF]" />
               </div>
-              <h3 className="font-semibold text-white mb-3 text-lg">
+              <h3 className="font-bold text-white mb-3 text-[22px]">
                 Call or Text
               </h3>
-              <p className="text-gray-400 text-base mb-6">
+              <p className="text-gray-300 text-base mb-6">
                 Speak with our team directly
               </p>
               <a
                 href="tel:+14152511945"
-                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block"
+                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block hover:translate-x-1"
               >
                 +1 (415) 251-1945
               </a>
-            </Card>
+            </div>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* Forms Section - Separate Full Height Section */}
       <Section background="dark">
