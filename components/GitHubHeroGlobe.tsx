@@ -100,15 +100,15 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
       }
     };
 
-    const light1 = new PointLight(0x5a54ff, 0.5);
+    const light1 = new PointLight(0x5a54ff, 0.95);
     light1.position.set(-150, 150, -50);
     light1.castShadow = false;
 
-    const light2 = new PointLight(0x4158f6, 0.5);
+    const light2 = new PointLight(0x4158f6, 0.95);
     light2.position.set(-400, 200, 150);
     light2.castShadow = false;
 
-    const light3 = new PointLight(0x803bff, 0.4);
+    const light3 = new PointLight(0x803bff, 0.7);
     light3.position.set(100, 250, -100);
     light3.castShadow = false;
 
@@ -129,7 +129,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
         varying vec3 vNormal;
         void main() {
           float intensity = pow( 0.99 - dot( vNormal, vec3( 0, 0, 1.0 ) ), 5.2 );
-          gl_FragColor = vec4( .28, .48, 1.0, 1.0 ) * intensity * 0.8;
+          gl_FragColor = vec4( .28, .48, 1.0, 1.0 ) * intensity * 1.6;
         }
       `,
       side: BackSide,
@@ -143,7 +143,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     const sphereGeometry = new SphereGeometry(2, 64, 64);
     const sphereMaterial = new MeshBasicMaterial({
-      color: 0x1a1245,  // Darker purple - using MeshBasicMaterial to prevent lighting shadows
+      color: 0x4a3a8f,  // Brighter purple - using MeshBasicMaterial to prevent lighting shadows
     });
     const sphere = new Mesh(sphereGeometry, sphereMaterial);
     sphere.castShadow = false;
