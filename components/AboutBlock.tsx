@@ -14,7 +14,7 @@ export default function AboutBlock() {
   ];
 
   return (
-    <Section id="about" background="dark">
+    <Section id="about" background="gradient">
       <div className="mx-auto max-w-5xl">
         {/* Heading */}
         <div className="text-center mb-10 md:mb-12">

@@ -25,7 +25,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-primary text-white">
+    <section id="how-it-works" className="py-20 bg-background-dark text-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -63,7 +63,7 @@ export default function HowItWorks() {
         <div className="text-center">
           <a
             href="/book-a-call"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-teal text-black text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all hover:bg-primary-cyan"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#4FFFB0] text-black text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all hover:bg-[#3EE89F]"
           >
             BOOK A DISCOVERY CALL
           </a>

@@ -57,7 +57,7 @@ export default function Header() {
           </div>
 
           <div className="hidden lg:flex items-center flex-shrink-0">
-            <Link href="/book-a-call" className="px-7 py-3 rounded-full bg-primary-teal text-black font-bold text-[16px] hover:bg-primary-cyan hover:text-black transition shadow-md hover:shadow-lg whitespace-nowrap">
+            <Link href="/book-a-call" className="px-7 py-3 rounded-full bg-[#4FFFB0] text-black font-bold text-[16px] hover:bg-[#3EE89F] hover:text-black transition shadow-md hover:shadow-lg whitespace-nowrap">
               Book a Call
             </Link>
           </div>
@@ -74,8 +74,8 @@ export default function Header() {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 py-4 border-t border-white/10">
-            <div className="flex flex-col gap-4">
+          <div className="lg:hidden mt-4 py-4 border-t border-white/10 bg-[#0F1926] rounded-lg">
+            <div className="flex flex-col gap-4 px-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -86,7 +86,7 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/book-a-call" className="px-6 py-2.5 rounded-full bg-primary-teal text-black font-bold hover:bg-primary-cyan hover:text-black transition text-center shadow-md">
+              <Link href="/book-a-call" className="px-6 py-2.5 rounded-full bg-[#4FFFB0] text-black font-bold hover:bg-[#3EE89F] hover:text-black transition text-center shadow-md">
                 Book a Call
               </Link>
             </div>

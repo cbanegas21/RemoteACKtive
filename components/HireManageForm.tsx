@@ -217,7 +217,7 @@ export default function HireManageForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 rounded-lg bg-[#4DD0E1] text-white font-semibold hover:bg-[#57C5CF] focus:outline-none focus:ring-2 focus:ring-[#4DD0E1] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-cyan-500/30"
+        className="w-full px-6 py-3.5 rounded-full bg-[#4FFFB0] text-black font-bold hover:bg-[#3EE89F] focus:outline-none focus:ring-2 focus:ring-[#4FFFB0] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-[18px]"
       >
         {isSubmitting ? "Sending..." : "Book Discovery Call"}
       </button>

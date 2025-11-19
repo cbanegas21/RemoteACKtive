@@ -192,7 +192,7 @@ export default function DepartmentGrid() {
   );
 
   return (
-    <Section id="departments" background="dark">
+    <Section id="departments" background="gradient">
       <div className="text-center mb-8">
         <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
           What Can Remote Staff Do For You?

@@ -152,8 +152,8 @@ export default function BookACallPage() {
                         px-8 py-4 rounded-full text-base font-bold transition-all
                         ${
                           activeTab === tab.id
-                            ? "bg-[#57C5CF] text-black shadow-lg scale-105"
-                            : "bg-transparent border-2 border-gray-600 text-gray-300 hover:border-[#57C5CF] hover:text-[#57C5CF]"
+                            ? "bg-[#4FFFB0] text-black shadow-lg scale-105"
+                            : "bg-transparent border-2 border-gray-600 text-gray-300 hover:border-[#4FFFB0] hover:text-[#4FFFB0]"
                         }
                       `}
                     >

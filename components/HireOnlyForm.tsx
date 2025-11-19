@@ -195,7 +195,7 @@ export default function HireOnlyForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3.5 rounded-full bg-[#57C5CF] text-black font-bold hover:bg-primary-cyan text-[18px] focus:outline-none focus:ring-2 focus:ring-[#57C5CF] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        className="w-full px-6 py-3.5 rounded-full bg-[#4FFFB0] text-black font-bold hover:bg-[#3EE89F] text-[18px] focus:outline-none focus:ring-2 focus:ring-[#4FFFB0] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
       >
         {isSubmitting ? "Sending..." : "Book Discovery Call"}
       </button>

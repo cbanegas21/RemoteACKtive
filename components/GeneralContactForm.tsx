@@ -168,7 +168,7 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3.5 rounded-full bg-[#57C5CF] text-black font-bold hover:bg-primary-cyan focus:outline-none focus:ring-2 focus:ring-[#57C5CF] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-[18px]"
+        className="w-full px-6 py-3.5 rounded-full bg-[#4FFFB0] text-black font-bold hover:bg-[#3EE89F] focus:outline-none focus:ring-2 focus:ring-[#4FFFB0] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-[18px]"
       >
         {isSubmitting ? "Sending..." : "Learn More"}
       </button>

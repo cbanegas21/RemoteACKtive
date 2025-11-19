@@ -214,7 +214,7 @@ export default function FAQ() {
   const rightColumnFaqs = faqs.slice(7, 14);
 
   return (
-    <Section id="faq" background="dark">
+    <Section id="faq" background="gradient">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">

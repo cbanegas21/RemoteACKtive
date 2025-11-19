@@ -41,20 +41,22 @@ export default function ContactCTA() {
   const currentTab = tabs.find(tab => tab.id === formType) || tabs[1];
 
   return (
-    <section id="contact" className="w-full">
-      {/* Part 1: Gradient header with cards */}
-      <div className="relative py-20 bg-gradient-primary overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-white text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-              Ready to Build Your Dream Team?
-            </h2>
-            <p className="text-white/90 text-lg md:text-xl">
-              Get in touch and let's discuss how we can help you scale
-            </p>
-          </div>
+    <section id="contact" className="relative py-20 bg-gradient-primary overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-white text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+            Ready to Build Your Dream Team?
+          </h2>
+          <p className="text-white/90 text-lg md:text-xl">
+            Get in touch and let's discuss how we can help you scale
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+        {/* Desktop: Side by side layout | Mobile: Stacked */}
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* LEFT: Contact Cards (33% on desktop, stacked vertically) */}
+          <div className="lg:w-1/3 space-y-6">
             <div className="bg-[rgba(26,35,50,0.6)] backdrop-blur-md border border-[rgba(87,197,207,0.2)] rounded-2xl p-8 text-center transition-all duration-300 hover:bg-[rgba(26,35,50,0.8)] hover:border-[#57C5CF] hover:-translate-y-1 hover:shadow-2xl">
               <div className="w-16 h-16 rounded-full border-2 border-[#57C5CF] bg-[rgba(87,197,207,0.15)] flex items-center justify-center mx-auto mb-4">
                 <Calendar className="w-7 h-7 text-[#57C5CF]" />
@@ -111,63 +113,61 @@ export default function ContactCTA() {
               </a>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Part 2: Forms - directly below with minimal gap */}
-      <div className="bg-background-dark py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          {/* Tab Navigation */}
-          <div className="flex items-stretch justify-center gap-4 mb-12 flex-wrap">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setFormType(tab.id)}
-                className={`
-                  px-8 py-4 rounded-full text-base font-bold transition-all
-                  ${
-                    formType === tab.id
-                      ? "bg-[#57C5CF] text-black shadow-lg scale-105"
-                      : "bg-transparent border-2 border-gray-600 text-gray-300 hover:border-[#57C5CF] hover:text-[#57C5CF]"
-                  }
-                `}
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <span>{tab.label}</span>
-                  {tab.isFeatured && (
-                    <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  )}
-                </div>
-              </button>
-            ))}
-          </div>
-
-          {/* Form Container */}
-          <div className="bg-[#1A2332] rounded-2xl p-8 border border-gray-700 shadow-2xl max-w-3xl mx-auto">
-            {/* Most Popular Badge for Featured Tab */}
-            {currentTab.isFeatured && (
-              <div className="mb-6">
-                <span className="inline-block px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-sm font-bold rounded-full uppercase tracking-wider">
-                  ⭐ Most Popular
-                </span>
-              </div>
-            )}
-
-            {/* Form Title and Description */}
-            <div className="mb-8">
-              <h3 className="text-3xl font-bold text-white mb-3">
-                {currentTab.title}
-              </h3>
-              <p className="text-gray-300 text-lg">
-                {currentTab.description}
-              </p>
+          {/* RIGHT: Form (67% on desktop, full height) */}
+          <div className="lg:w-2/3">
+            {/* Tab Navigation */}
+            <div className="flex items-stretch justify-center gap-4 mb-8 flex-wrap">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setFormType(tab.id)}
+                  className={`
+                    px-8 py-4 rounded-full text-base font-bold transition-all
+                    ${
+                      formType === tab.id
+                        ? "bg-[#4FFFB0] text-black shadow-lg scale-105"
+                        : "bg-transparent border-2 border-gray-600 text-gray-300 hover:border-[#4FFFB0] hover:text-[#4FFFB0]"
+                    }
+                  `}
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <span>{tab.label}</span>
+                    {tab.isFeatured && (
+                      <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    )}
+                  </div>
+                </button>
+              ))}
             </div>
 
-            {/* Forms */}
-            <div className="transition-opacity duration-300">
-              {formType === "hire-only" && <HireOnlyForm />}
-              {formType === "hire-manage" && <HireManageForm />}
-              {formType === "training" && <GeneralContactForm formType="training" />}
+            {/* Form Container */}
+            <div className="bg-[#1A2332] rounded-2xl p-8 border border-gray-700 shadow-2xl h-full">
+              {/* Most Popular Badge for Featured Tab */}
+              {currentTab.isFeatured && (
+                <div className="mb-6">
+                  <span className="inline-block px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-sm font-bold rounded-full uppercase tracking-wider">
+                    ⭐ Most Popular
+                  </span>
+                </div>
+              )}
+
+              {/* Form Title and Description */}
+              <div className="mb-8">
+                <h3 className="text-3xl font-bold text-white mb-3">
+                  {currentTab.title}
+                </h3>
+                <p className="text-gray-300 text-lg">
+                  {currentTab.description}
+                </p>
+              </div>
+
+              {/* Forms */}
+              <div className="transition-opacity duration-300">
+                {formType === "hire-only" && <HireOnlyForm />}
+                {formType === "hire-manage" && <HireManageForm />}
+                {formType === "training" && <GeneralContactForm formType="training" />}
+              </div>
             </div>
           </div>
         </div>

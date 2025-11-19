@@ -29,7 +29,7 @@ export default function ThreeTierServices() {
       onClick: () => handleGetStarted("hire-only"),
       highlighted: false,
       checkColor: "text-primary-teal",
-      buttonStyle: "bg-primary-teal text-black border-2 border-primary-teal hover:bg-primary-cyan hover:text-black",
+      buttonStyle: "bg-[#4FFFB0] text-black border-2 border-[#4FFFB0] hover:bg-[#3EE89F] hover:text-black",
     },
     {
       name: "Full Remote ACKtive Experience",
@@ -48,7 +48,7 @@ export default function ThreeTierServices() {
       onClick: () => handleGetStarted("hire-manage"),
       highlighted: true,
       checkColor: "text-white",
-      buttonStyle: "bg-[#4DD0E1] text-black hover:bg-[#57C5CF] hover:text-black hover:scale-105 shadow-lg shadow-cyan-500/30",
+      buttonStyle: "bg-[#4FFFB0] text-black hover:bg-[#3EE89F] hover:text-black hover:scale-105 shadow-lg",
     },
     {
       name: "ACKtive Training Program",
@@ -66,12 +66,12 @@ export default function ThreeTierServices() {
       onClick: () => handleGetStarted("hire-only"),
       highlighted: false,
       checkColor: "text-primary-teal",
-      buttonStyle: "bg-primary-teal text-black border-2 border-primary-teal hover:bg-primary-cyan hover:text-black",
+      buttonStyle: "bg-[#4FFFB0] text-black border-2 border-[#4FFFB0] hover:bg-[#3EE89F] hover:text-black",
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-background-dark">
+    <section id="services" className="py-20 bg-gradient-primary">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -94,7 +94,7 @@ export default function ThreeTierServices() {
             >
               {tier.badge && (
                 <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full font-bold text-sm whitespace-nowrap ${
-                  tier.highlighted ? "bg-primary-gold text-white" : "bg-primary-teal text-black"
+                  tier.highlighted ? "bg-primary-gold text-white" : "bg-[#4FFFB0] text-black"
                 }`}>
                   {tier.badge}
                 </div>
