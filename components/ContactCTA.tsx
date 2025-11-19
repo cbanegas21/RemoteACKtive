@@ -41,7 +41,7 @@ export default function ContactCTA() {
   const currentTab = tabs.find(tab => tab.id === formType) || tabs[1];
 
   return (
-    <section id="contact" className="relative py-20 bg-gradient-primary overflow-hidden">
+    <section id="contact" className="relative py-20 bg-background-dark overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">

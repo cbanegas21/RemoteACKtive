@@ -139,14 +139,14 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
     scene.add(atm);
 
     const sphereGeometry = new SphereGeometry(2, 64, 64);
-    const sphereMaterial = new MeshLambertMaterial({ 
+    const sphereMaterial = new MeshLambertMaterial({
       color: 0x1a1245,  // Darker purple
       emissive: 0x2a1a5e,  // Purple glow
       emissiveIntensity: 0.3
     });
     const sphere = new Mesh(sphereGeometry, sphereMaterial);
-    sphere.castShadow = true;
-    sphere.receiveShadow = true;
+    sphere.castShadow = false;
+    sphere.receiveShadow = false;
     sphere.rotation.z = (23.5 * Math.PI) / 180;
     scene.add(sphere);
     sphereRef.current = sphere;
@@ -200,8 +200,8 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     const overlaySphereGeometry = new SphereGeometry(2.003, 64, 64);
     const overlaySphere = new Mesh(overlaySphereGeometry, overlayMaterial);
-    overlaySphere.castShadow = true;
-    overlaySphere.receiveShadow = true;
+    overlaySphere.castShadow = false;
+    overlaySphere.receiveShadow = false;
     sphere.add(overlaySphere);
 
     const numPoints = 100;

@@ -38,10 +38,10 @@ export default function Header() {
       <nav className="mx-auto max-w-[1600px] px-6 lg:px-16 py-6">
         <div className="flex items-center justify-between gap-10">
           <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
-            <div className="relative w-[55px] h-[55px]">
+            <div className="relative w-[75px] h-[75px]">
               <Image src="/images/logo.png" alt="Remote ACKtive Logo" fill className="object-contain" />
             </div>
-            <span className="font-bold text-xl transition text-white group-hover:text-primary-teal whitespace-nowrap">Remote ACKtive</span>
+            <span className="font-bold text-2xl transition text-white group-hover:text-primary-teal whitespace-nowrap">Remote ACKtive</span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-8 flex-1 justify-center">
