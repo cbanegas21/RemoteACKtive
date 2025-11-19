@@ -6,29 +6,12 @@
   html {
     scroll-behavior: smooth;
   }
-  
-  /* Dark mode (default) */
-  html.dark {
-    color-scheme: dark;
-  }
-  
-  html.dark body {
-    margin: 0;
-    background-color: #0b1020;
-    color: #ffffff;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
 
-  /* Light mode */
-  html.light {
-    color-scheme: light;
-  }
-  
-  html.light body {
+  body {
     margin: 0;
-    background-color: #ffffff;
-    color: #1e293b;
+    background-color: #0F1419;
+    background-image: linear-gradient(180deg, #0A1628 0%, #0F1419 100%);
+    color: #E5E7EB;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -42,7 +25,7 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
-    
+
     html {
       scroll-behavior: auto;
     }
@@ -53,6 +36,4 @@
   .text-balance {
     text-wrap: balance;
   }
-  
-  /* Remove the custom utilities - they don't work with 'light:' prefix */
 }

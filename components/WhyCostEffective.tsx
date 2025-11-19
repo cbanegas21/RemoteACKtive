@@ -13,54 +13,55 @@ export default function WhyCostEffective() {
   ];
 
   return (
-    <Section id="why" background="panel">
-      <div className="text-center mb-12">
-        <h2 className="text-gray-900 dark:text-white text-3xl md:text-4xl font-bold mb-4">
+    <Section id="why" background="dark">
+      <div className="text-center mb-8">
+        <h2 className="text-white text-3xl md:text-4xl font-bold mb-3">
           Why Choose Remote ACKtive?
         </h2>
-        <p className="text-gray-600 dark:text-white/70 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
           We make hiring global talent simple, affordable, and stress-free
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        <Card hover className="group">
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center
-              bg-blue-100 dark:bg-blue-600/20 transition-transform duration-300 group-hover:scale-110">
-              <DollarSign className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card hover className="group bg-background-darkCard border border-white/10">
+          <div className="flex flex-col items-center text-center">
+            <div className="relative mb-4 mx-auto" style={{ maxWidth: '150px', width: '100%' }}>
+              <div className="relative w-full aspect-square rounded-full overflow-hidden bg-gray-800 group">
+                <Image
+                  src="/images/why-us/cost-effective.jpg"
+                  alt="Cost effective outsourcing"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
             </div>
-            <div className="flex-1">
-              <h3 className="text-gray-900 dark:text-white text-2xl font-bold mb-4">
-                Cost-Effective Solutions
-              </h3>
-              <ul className="text-gray-700 dark:text-white/80 space-y-3">
-                {benefits.map((benefit, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="text-blue-600 dark:text-blue-400 mt-1 font-bold">•</span>
-                    <span className="leading-relaxed">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
+
+            <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-[#F5A623]/10 transition-transform duration-300 group-hover:scale-110 mb-3">
+              <DollarSign className="w-5 h-5 text-[#F5A623]" />
             </div>
+
+            <h3 className="text-white text-lg font-bold mb-3">
+              Cost-Effective Solutions
+            </h3>
+
+            <ul className="text-gray-300 space-y-2 text-left w-full">
+              {benefits.map((benefit, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-[#F5A623] mt-1 font-bold text-sm">•</span>
+                  <span className="leading-snug text-xs">{benefit}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </Card>
 
-        <Card className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-600/10 dark:to-purple-600/10 overflow-hidden">
+        <Card className="bg-background-darkCard border border-white/10 overflow-hidden">
           <div className="flex flex-col h-full">
-            <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-700 group">
-              <Image
-                src="/images/why-us/cost-effective.jpg"
-                alt="Cost effective outsourcing"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
-            
-            <h4 className="text-gray-900 dark:text-white text-xl font-bold mb-3">
+            <h4 className="text-white text-base font-bold mb-2">
               Focus on Revenue, Not Overhead
             </h4>
-            <p className="text-gray-700 dark:text-white/80 leading-relaxed">
+            <p className="text-gray-300 leading-relaxed text-xs">
               Say goodbye to expensive office space, equipment, and local salary
               premiums. Our fixed rates and flexible engagement models mean you
               only pay for what you need, when you need it. With comprehensive HR

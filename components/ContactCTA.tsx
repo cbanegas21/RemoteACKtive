@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Section from "./Section";
 import Card from "./Card";
-import { Calendar, Mail, Phone } from "lucide-react";
+import { Calendar, Mail, Phone, Star } from "lucide-react";
 import { useFormContext } from "./FormContext";
 import HireOnlyForm from "./HireOnlyForm";
 import HireManageForm from "./HireManageForm";
@@ -12,19 +12,42 @@ export default function ContactCTA() {
   const { formType, setFormType } = useFormContext();
 
   const tabs = [
-    { id: "general" as const, label: "General Inquiry", color: "green" },
-    { id: "hire-only" as const, label: "Hire-Only", color: "blue" },
-    { id: "hire-manage" as const, label: "Hire + Manage", color: "purple" },
+    {
+      id: "hire-only" as const,
+      label: "Recruitment-Only",
+      title: "Interested in Recruitment-Only?",
+      description: "Get expert recruitment without ongoing management",
+      buttonText: "Book Discovery Call",
+      isFeatured: false
+    },
+    {
+      id: "hire-manage" as const,
+      label: "Full Experience",
+      title: "Ready for Full Outsourcing Support?",
+      description: "Get recruitment + ongoing management and support",
+      buttonText: "Book Discovery Call",
+      isFeatured: true
+    },
+    {
+      id: "training" as const,
+      label: "Training Program",
+      title: "Upgrade Your Existing Team?",
+      description: "Training and development for your current offshore team",
+      buttonText: "Learn More",
+      isFeatured: false
+    },
   ];
 
+  const currentTab = tabs.find(tab => tab.id === formType) || tabs[1];
+
   return (
-    <Section id="contact" background="panel">
+    <Section id="contact" background="light">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-gray-900 dark:text-white text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-gray-900 text-3xl md:text-4xl font-bold mb-4">
             Ready to Build Your Dream Team?
           </h2>
-          <p className="text-gray-600 dark:text-white/70 text-lg">
+          <p className="text-gray-600 text-lg">
             Get in touch and let's discuss how we can help you scale
           </p>
         </div>
@@ -32,20 +55,20 @@ export default function ContactCTA() {
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <Card hover className="text-center">
             <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4
-              bg-blue-100 dark:bg-blue-600/20">
-              <Calendar className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              bg-[#57C5CF]/10">
+              <Calendar className="w-6 h-6 text-[#57C5CF]" />
             </div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+            <h3 className="font-semibold text-gray-900 mb-2">
               Schedule a Meeting
             </h3>
-            <p className="text-gray-600 dark:text-white/60 text-sm mb-4">
+            <p className="text-gray-600 text-sm mb-4">
               Book a time that works for you
             </p>
             <a
               href="https://calendly.com/admin-remoteacktive/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 text-sm font-medium transition"
+              className="text-[#57C5CF] hover:text-[#378B57] text-sm font-medium transition"
             >
               View Calendar →
             </a>
@@ -53,18 +76,18 @@ export default function ContactCTA() {
 
           <Card hover className="text-center">
             <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4
-              bg-purple-100 dark:bg-purple-600/20">
-              <Mail className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+              bg-[#378B57]/10">
+              <Mail className="w-6 h-6 text-[#378B57]" />
             </div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+            <h3 className="font-semibold text-gray-900 mb-2">
               Email Us
             </h3>
-            <p className="text-gray-600 dark:text-white/60 text-sm mb-4">
+            <p className="text-gray-600 text-sm mb-4">
               We'll respond within 24 hours
             </p>
             <a
               href="mailto:admin@remoteacktive.com"
-              className="text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 text-sm font-medium transition"
+              className="text-[#378B57] hover:text-[#57C5CF] text-sm font-medium transition"
             >
               admin@remoteacktive.com
             </a>
@@ -72,65 +95,82 @@ export default function ContactCTA() {
 
           <Card hover className="text-center">
             <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4
-              bg-green-100 dark:bg-green-600/20">
-              <Phone className="w-6 h-6 text-green-600 dark:text-green-400" />
+              bg-[#378B57]/10">
+              <Phone className="w-6 h-6 text-[#378B57]" />
             </div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+            <h3 className="font-semibold text-gray-900 mb-2">
               Call or Text
             </h3>
-            <p className="text-gray-600 dark:text-white/60 text-sm mb-4">
+            <p className="text-gray-600 text-sm mb-4">
               Speak with our team directly
             </p>
             <a
               href="tel:+14152511945"
-              className="text-green-600 dark:text-green-400 hover:text-green-500 dark:hover:text-green-300 text-sm font-medium transition"
+              className="text-[#378B57] hover:text-[#57C5CF] text-sm font-medium transition"
             >
               +1(415)2511945
             </a>
           </Card>
         </div>
 
-        <Card className="max-w-2xl mx-auto">
-          {/* Tab Slider */}
-          <div className="mb-8">
-            <div className="flex items-center justify-center gap-2 p-1.5 bg-gray-100 dark:bg-ink rounded-lg">
+        {/* Dark Theme Form Card */}
+        <div className="max-w-2xl mx-auto bg-[#1E2430] rounded-xl shadow-xl overflow-hidden">
+          {/* Tab Navigation */}
+          <div className="p-6 pb-0">
+            <div className="flex items-stretch gap-2 mb-8">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setFormType(tab.id)}
                   className={`
-                    flex-1 px-4 py-2.5 rounded-md text-sm font-medium transition-all
+                    flex-1 px-4 py-3 rounded-lg text-sm font-semibold transition-all relative
                     ${
                       formType === tab.id
-                        ? tab.color === "blue"
-                          ? "bg-blue-600 text-white shadow-sm"
-                          : tab.color === "purple"
-                          ? "bg-purple-600 text-white shadow-sm"
-                          : "bg-green-600 text-white shadow-sm"
-                        : "text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white"
+                        ? "bg-[#FF6B35] text-white shadow-lg"
+                        : "bg-transparent text-gray-300 hover:bg-white/5"
                     }
                   `}
                 >
-                  {tab.label}
+                  <div className="flex items-center justify-center gap-1.5">
+                    <span>{tab.label}</span>
+                    {tab.isFeatured && (
+                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    )}
+                  </div>
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Form Title */}
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
-            {formType === "general" && "Send us a message"}
-            {formType === "hire-only" && "Request Hire-Only Service"}
-            {formType === "hire-manage" && "Request Hire + Manage Service"}
-          </h3>
+          {/* Form Content */}
+          <div className="px-6 pb-6">
+            {/* Most Popular Badge for Featured Tab */}
+            {currentTab.isFeatured && (
+              <div className="mb-4">
+                <span className="inline-block px-3 py-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold rounded-full uppercase tracking-wider">
+                  Most Popular
+                </span>
+              </div>
+            )}
 
-          {/* Forms */}
-          <div className="transition-opacity duration-300">
-            {formType === "general" && <GeneralContactForm />}
-            {formType === "hire-only" && <HireOnlyForm />}
-            {formType === "hire-manage" && <HireManageForm />}
+            {/* Form Title and Description */}
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold text-white mb-2">
+                {currentTab.title}
+              </h3>
+              <p className="text-gray-300 text-sm">
+                {currentTab.description}
+              </p>
+            </div>
+
+            {/* Forms */}
+            <div className="transition-opacity duration-300">
+              {formType === "hire-only" && <HireOnlyForm />}
+              {formType === "hire-manage" && <HireManageForm />}
+              {formType === "training" && <GeneralContactForm formType="training" />}
+            </div>
           </div>
-        </Card>
+        </div>
       </div>
     </Section>
   );

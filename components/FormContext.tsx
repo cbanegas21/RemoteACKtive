@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState } from "react";
 
-type FormType = "general" | "hire-only" | "hire-manage";
+type FormType = "general" | "hire-only" | "hire-manage" | "training";
 
 interface FormContextType {
   formType: FormType;
@@ -12,7 +12,7 @@ interface FormContextType {
 const FormContext = createContext<FormContextType | undefined>(undefined);
 
 export function FormProvider({ children }: { children: React.ReactNode }) {
-  const [formType, setFormType] = useState<FormType>("general");
+  const [formType, setFormType] = useState<FormType>("hire-manage");
 
   return (
     <FormContext.Provider value={{ formType, setFormType }}>

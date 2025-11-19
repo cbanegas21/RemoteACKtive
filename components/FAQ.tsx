@@ -8,52 +8,64 @@ export default function FAQ() {
   const faqs = useMemo(
     () => [
       {
+        slug: "timezones",
+        question: "What time zones and hours do offshore professionals work?",
+        answer:
+          "Our offshore professionals work flexible hours and can accommodate most time zones. We'll match you with talent based on your preferred working hours and ensure overlap with your core business hours for seamless collaboration.",
+      },
+      {
+        slug: "selection",
+        question: "How do you select the best offshore talent?",
+        answer:
+          "We use a rigorous 6-step vetting process that includes skills assessment, English fluency testing, personality evaluation, reference checks, AI tool familiarity, and proven track record verification. Only the top candidates make it through to you.",
+      },
+      {
+        slug: "language-barriers",
+        question: "Are there any language barriers with offshore teams?",
+        answer:
+          "No. We only work with fluent English-speaking professionals who have excellent written and verbal communication skills. Language proficiency is a critical part of our screening process.",
+      },
+      {
+        slug: "support",
+        question: "What support do I get when I outsource with Remote ACKtive?",
+        answer:
+          "With our Full Remote ACKtive Experience package, you get end-to-end support including HR assistance, payment management, continuous training, performance monitoring, well-being programs, and access to our expert team for guidance on marketing, AI, SEO, and business operations.",
+      },
+      {
+        slug: "cost",
+        question: "How much does it cost to work with an offshore team?",
+        answer:
+          "Our pricing varies based on the role, experience level, and package you choose. On average, clients save 60-70% on operational costs compared to hiring locally. Contact us for a customized quote based on your specific needs.",
+      },
+      {
+        slug: "not-happy",
+        question: "What if I'm not happy with my outsourced talent?",
+        answer:
+          "We offer a 100% Client Satisfaction Guarantee. If your outsourced talent isn't the right fit, we'll pause your service and find you a replacement at zero additional cost. Plus, you'll get 1 week of free service to help you settle in with your new team member. This guarantee applies no matter what stage you're in.",
+      },
+      {
+        slug: "role-types",
+        question: "What types of roles can be outsourced to an offshore team?",
+        answer:
+          "We can help you hire for a wide range of roles including Sales & Business Development, Marketing & Brand Growth, Technical & IT Operations, Finance & Administration, Customer Experience, and Executive & Administrative Support. If you have a specific role in mind, we can likely find the right talent for you.",
+      },
+      {
+        slug: "training",
+        question: "Who provides training and ongoing support for offshore teams?",
+        answer:
+          "With our Full Remote ACKtive Experience and ACKtive Training Program packages, we provide continuous training, development programs, access to industry experts, and ongoing support to ensure your offshore team stays productive and up-to-date with the latest tools and best practices.",
+      },
+      {
         slug: "quality",
         question: "How do you ensure the quality of your hires?",
         answer:
           "Every candidate undergoes rigorous technical assessments, thorough reference checks, and culture-fit evaluations. We verify work history, test relevant skills, and conduct multiple interviews to ensure they meet our high standards before presenting them to you.",
       },
       {
-        slug: "part-time",
-        question: "Can I hire remote workers on a part-time basis?",
-        answer:
-          "Absolutely! We offer flexible engagement models including full-time, part-time, and contract positions. Whether you need 10 hours a week or 40, we can match you with professionals who fit your schedule and budget.",
-      },
-      {
-        slug: "locations",
-        question: "Can I hire remote workers from specific countries or time zones?",
-        answer:
-          "Yes. We have access to talent across multiple regions and can prioritize candidates from specific countries or time zones based on your needs. Just let us know your preferences during the intake call.",
-      },
-      {
-        slug: "language",
-        question: "Are remote workers proficient in English or other languages?",
-        answer:
-          "Language proficiency is part of our vetting process. Most of our candidates have strong English communication skills, and we can also source multilingual professionals if your business requires additional languages.",
-      },
-      {
         slug: "get-started",
         question: "How can I get started?",
         answer:
-          "Simply reach out through our contact form or schedule a call. We'll have an intake session to understand your needs, then begin sourcing candidates. You could be interviewing qualified professionals within days.",
-      },
-      {
-        slug: "timeline",
-        question: "How long does hiring usually take?",
-        answer:
-          "Our typical timeline is 3-10 days from intake to offer, depending on role complexity and your availability for interviews. We maintain a pre-vetted talent pool to accelerate the process without sacrificing quality.",
-      },
-      {
-        slug: "payroll",
-        question: "Do you handle payroll in every country?",
-        answer:
-          "We work with trusted payroll and compliance partners globally to ensure legal employment in most countries. During our intake call, we'll confirm we can support your preferred locations.",
-      },
-      {
-        slug: "contract-length",
-        question: "Is there a minimum contract length?",
-        answer:
-          "We're flexible! While we recommend longer engagements for better ROI and team stability, we can accommodate various contract lengths based on your business needs. Discuss your requirements with us to find the best fit.",
+          "Simply book a discovery call through our website or contact form. We'll have a free strategy session to understand your needs, then begin sourcing candidates. You could be interviewing qualified professionals within 3-10 days.",
       },
     ],
     []
@@ -173,27 +185,31 @@ export default function FAQ() {
     }
   };
 
+  // Split FAQs into two columns for desktop
+  const leftColumnFaqs = faqs.slice(0, 5);
+  const rightColumnFaqs = faqs.slice(5, 10);
+
   return (
-    <Section id="faq">
-      <div className="max-w-3xl mx-auto">
+    <Section id="faq" background="dark">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-gray-900 dark:text-white text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">
+          <p className="text-gray-300 text-lg">
             Everything you need to know about working with us
           </p>
           <div className="mt-4 flex items-center justify-center gap-3">
             <button
               onClick={expandAll}
-              className="text-sm px-3 py-1.5 rounded-lg border border-white/20 bg-white/60 text-gray-900 hover:bg-white/80 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition-all duration-200"
+              className="text-sm px-3 py-1.5 rounded-lg border border-white/20 text-white hover:bg-white/5 transition-all duration-200"
               aria-label="Expand all FAQs"
             >
               Expand all
             </button>
             <button
               onClick={collapseAll}
-              className="text-sm px-3 py-1.5 rounded-lg border border-white/20 bg-white/60 text-gray-900 hover:bg-white/80 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition-all duration-200"
+              className="text-sm px-3 py-1.5 rounded-lg border border-white/20 text-white hover:bg-white/5 transition-all duration-200"
               aria-label="Collapse all FAQs"
             >
               Collapse all
@@ -201,63 +217,122 @@ export default function FAQ() {
           </div>
         </div>
 
-        <div className="space-y-4" role="list">
-          {faqs.map((faq, idx) => {
-            const open = isOpen(idx);
-            return (
-              <div
-                key={faq.slug}
-                ref={(el) => {
-                  faqRefs.current[idx] = el;
-                }}
-                className="rounded-lg overflow-hidden transition-all duration-200
-                  bg-white dark:bg-panel 
-                  border border-gray-200 dark:border-white/10
-                  hover:shadow-md dark:hover:border-white/20"
-                role="listitem"
-              >
-                <button
-                  id={`faq-btn-${idx}`}
-                  onClick={() => toggleFAQ(idx)}
-                  onKeyDown={(e) => handleKeyDown(e, idx)}
-                  aria-expanded={open}
-                  aria-controls={`faq-panel-${idx}`}
-                  className="w-full flex items-center justify-between p-5 text-left transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-ink"
-                >
-                  <span className="text-gray-900 dark:text-white font-semibold pr-4">
-                    {faq.question}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 text-gray-500 dark:text-gray-400 ${
-                      open ? "rotate-180" : ""
-                    }`}
-                    aria-hidden="true"
-                  />
-                </button>
-
+        {/* Two-column layout on desktop, single column on mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left Column */}
+          <div className="space-y-4" role="list">
+            {leftColumnFaqs.map((faq, idx) => {
+              const open = isOpen(idx);
+              return (
                 <div
-                  id={`faq-panel-${idx}`}
-                  role="region"
-                  aria-labelledby={`faq-btn-${idx}`}
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    open
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  }`}
+                  key={faq.slug}
+                  ref={(el) => {
+                    faqRefs.current[idx] = el;
+                  }}
+                  className="rounded-lg overflow-hidden transition-all duration-200
+                    bg-[#1E2430] border border-white/10
+                    hover:shadow-md hover:border-primary-orange/50 hover:bg-[#252b3a]"
+                  role="listitem"
                 >
-                  <div className="min-h-0 overflow-hidden">
-                    <div className="px-5 pb-5 pt-1 leading-relaxed text-gray-600 dark:text-gray-300">
-                      {faq.answer}
+                  <button
+                    id={`faq-btn-${idx}`}
+                    onClick={() => toggleFAQ(idx)}
+                    onKeyDown={(e) => handleKeyDown(e, idx)}
+                    aria-expanded={open}
+                    aria-controls={`faq-panel-${idx}`}
+                    className="w-full flex items-center justify-between p-5 text-left transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-orange focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2430]"
+                  >
+                    <span className="text-white font-semibold pr-4">
+                      {faq.question}
+                    </span>
+                    <ChevronDown
+                      className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 text-primary-orange ${
+                        open ? "rotate-180" : ""
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  <div
+                    id={`faq-panel-${idx}`}
+                    role="region"
+                    aria-labelledby={`faq-btn-${idx}`}
+                    className={`grid transition-all duration-300 ease-in-out ${
+                      open
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="min-h-0 overflow-hidden">
+                      <div className="px-5 pb-5 pt-1 leading-relaxed text-gray-300">
+                        {faq.answer}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-4" role="list">
+            {rightColumnFaqs.map((faq, idx) => {
+              const actualIdx = idx + 5; // Offset by 5 for correct indexing
+              const open = isOpen(actualIdx);
+              return (
+                <div
+                  key={faq.slug}
+                  ref={(el) => {
+                    faqRefs.current[actualIdx] = el;
+                  }}
+                  className="rounded-lg overflow-hidden transition-all duration-200
+                    bg-[#1E2430] border border-white/10
+                    hover:shadow-md hover:border-primary-orange/50 hover:bg-[#252b3a]"
+                  role="listitem"
+                >
+                  <button
+                    id={`faq-btn-${actualIdx}`}
+                    onClick={() => toggleFAQ(actualIdx)}
+                    onKeyDown={(e) => handleKeyDown(e, actualIdx)}
+                    aria-expanded={open}
+                    aria-controls={`faq-panel-${actualIdx}`}
+                    className="w-full flex items-center justify-between p-5 text-left transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-orange focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2430]"
+                  >
+                    <span className="text-white font-semibold pr-4">
+                      {faq.question}
+                    </span>
+                    <ChevronDown
+                      className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 text-primary-orange ${
+                        open ? "rotate-180" : ""
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  <div
+                    id={`faq-panel-${actualIdx}`}
+                    role="region"
+                    aria-labelledby={`faq-btn-${actualIdx}`}
+                    className={`grid transition-all duration-300 ease-in-out ${
+                      open
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="min-h-0 overflow-hidden">
+                      <div className="px-5 pb-5 pt-1 leading-relaxed text-gray-300">
+                        {faq.answer}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Helpful hint */}
-        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+        <p className="text-center text-sm text-gray-400 mt-8">
           Use arrow keys to navigate between questions
         </p>
       </div>

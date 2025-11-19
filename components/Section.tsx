@@ -4,7 +4,7 @@ interface SectionProps {
   id?: string;
   className?: string;
   children: React.ReactNode;
-  background?: "ink" | "panel" | "transparent";
+  background?: "light" | "white" | "transparent" | "dark";
 }
 
 export default function Section({
@@ -14,13 +14,15 @@ export default function Section({
   background = "transparent",
 }: SectionProps) {
   let bgClass = "";
-  
-  if (background === "panel") {
-    bgClass = "bg-gray-100 dark:bg-panel";
-  } else if (background === "ink") {
-    bgClass = "bg-gray-50 dark:bg-ink";
+
+  if (background === "light") {
+    bgClass = "bg-background-light";
+  } else if (background === "white") {
+    bgClass = "bg-white";
+  } else if (background === "dark") {
+    bgClass = "bg-background-dark";
   } else {
-    bgClass = "bg-white dark:bg-transparent";
+    bgClass = "bg-transparent";
   }
 
   return (

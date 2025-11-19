@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 
-export default function GeneralContactForm() {
+interface GeneralContactFormProps {
+  formType?: string;
+}
+
+export default function GeneralContactForm({ formType = "general" }: GeneralContactFormProps = {}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,7 +31,7 @@ export default function GeneralContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, formType: "general" }),
+        body: JSON.stringify({ ...formData, formType: formType }),
       });
 
       if (response.ok) {
@@ -50,8 +54,8 @@ export default function GeneralContactForm() {
     }
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-ink border-gray-300 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40";
-  const labelClass = "block text-sm font-medium mb-2 text-gray-700 dark:text-white/80";
+  const inputClass = "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#FF6B35] bg-[#2A3142] border-gray-600 text-white placeholder-gray-400";
+  const labelClass = "block text-sm font-medium mb-2 text-gray-300";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -155,13 +159,13 @@ export default function GeneralContactForm() {
       </div>
 
       {submitStatus === "success" && (
-        <div className="p-4 rounded-lg bg-green-50 dark:bg-green-600/20 border border-green-200 dark:border-green-500/30 text-green-700 dark:text-green-400">
+        <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400">
           Thank you! We'll be in touch soon.
         </div>
       )}
 
       {submitStatus === "error" && (
-        <div className="p-4 rounded-lg bg-red-50 dark:bg-red-600/20 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-400">
+        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400">
           Something went wrong. Please try again or email us directly.
         </div>
       )}
@@ -169,9 +173,9 @@ export default function GeneralContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 rounded-lg bg-green-600 text-white font-medium hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-panel transition disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-6 py-3 rounded-lg bg-[#FF6B35] text-white font-semibold hover:bg-[#FF8555] focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
       >
-        {isSubmitting ? "Sending..." : "Send Message"}
+        {isSubmitting ? "Sending..." : "Learn More"}
       </button>
     </form>
   );

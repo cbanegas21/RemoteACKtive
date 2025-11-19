@@ -2,10 +2,11 @@
 import Header from "@/components/Header";
 import HeroWithGlobe from "@/components/HeroWithGlobe";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import ServicesSplit from "@/components/ServicesSplit";
+import ThreeTierServices from "@/components/ThreeTierServices";
+import GuaranteeSection from "@/components/GuaranteeSection";
 import DepartmentGrid from "@/components/DepartmentGrid";
-import StatsSection from "@/components/StatsSection";
-import AboutBlock from "@/components/AboutBlock";
+import WhatMakesUsDifferent from "@/components/WhatMakesUsDifferent";
+import HowItWorks from "@/components/HowItWorks";
 import FAQ from "@/components/FAQ";
 import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
@@ -18,9 +19,11 @@ export default function Home() {
       <main>
         <HeroWithGlobe />
         <WhyChooseUs />
-        <ServicesSplit />
+        <ThreeTierServices />
+        <GuaranteeSection />
         <DepartmentGrid />
-        <AboutBlock />
+        <WhatMakesUsDifferent />
+        <HowItWorks />
         <FAQ />
         <ContactCTA />
       </main>

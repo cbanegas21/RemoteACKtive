@@ -65,61 +65,61 @@ export default function WhyChooseUs() {
 
   const colorClasses: Record<string, any> = {
     blue: {
-      gradient: "from-blue-500/10 via-blue-500/5 to-transparent",
-      border: "border-blue-500/20 hover:border-blue-500/50",
-      iconBg: "bg-blue-500/10",
-      iconColor: "text-blue-600 dark:text-blue-400",
-      accentBg: "bg-blue-500/5",
-      dotColor: "text-blue-500",
-      badgeBg: "bg-blue-500/10 border-blue-500/20",
-      badgeText: "text-blue-600 dark:text-blue-400",
+      gradient: "from-[#57C5CF]/10 via-[#57C5CF]/5 to-transparent",
+      border: "border-[#57C5CF]/20 hover:border-[#57C5CF]/50",
+      iconBg: "bg-[#57C5CF]/10",
+      iconColor: "text-[#57C5CF]",
+      accentBg: "bg-[#57C5CF]/5",
+      dotColor: "text-[#57C5CF]",
+      badgeBg: "bg-[#57C5CF]/10 border-[#57C5CF]/20",
+      badgeText: "text-[#57C5CF]",
     },
     purple: {
-      gradient: "from-purple-500/10 via-purple-500/5 to-transparent",
-      border: "border-purple-500/20 hover:border-purple-500/50",
-      iconBg: "bg-purple-500/10",
-      iconColor: "text-purple-600 dark:text-purple-400",
-      accentBg: "bg-purple-500/5",
-      dotColor: "text-purple-500",
-      badgeBg: "bg-purple-500/10 border-purple-500/20",
-      badgeText: "text-purple-600 dark:text-purple-400",
+      gradient: "from-[#378B57]/10 via-[#378B57]/5 to-transparent",
+      border: "border-[#378B57]/20 hover:border-[#378B57]/50",
+      iconBg: "bg-[#378B57]/10",
+      iconColor: "text-[#378B57]",
+      accentBg: "bg-[#378B57]/5",
+      dotColor: "text-[#378B57]",
+      badgeBg: "bg-[#378B57]/10 border-[#378B57]/20",
+      badgeText: "text-[#378B57]",
     },
     yellow: {
-      gradient: "from-yellow-500/10 via-yellow-500/5 to-transparent",
-      border: "border-yellow-500/20 hover:border-yellow-500/50",
-      iconBg: "bg-yellow-500/10",
-      iconColor: "text-yellow-600 dark:text-yellow-400",
-      accentBg: "bg-yellow-500/5",
-      dotColor: "text-yellow-500",
-      badgeBg: "bg-yellow-500/10 border-yellow-500/20",
-      badgeText: "text-yellow-600 dark:text-yellow-400",
+      gradient: "from-[#57C5CF]/10 via-[#57C5CF]/5 to-transparent",
+      border: "border-[#57C5CF]/20 hover:border-[#57C5CF]/50",
+      iconBg: "bg-[#57C5CF]/10",
+      iconColor: "text-[#57C5CF]",
+      accentBg: "bg-[#57C5CF]/5",
+      dotColor: "text-[#57C5CF]",
+      badgeBg: "bg-[#57C5CF]/10 border-[#57C5CF]/20",
+      badgeText: "text-[#57C5CF]",
     },
     green: {
-      gradient: "from-green-500/10 via-green-500/5 to-transparent",
-      border: "border-green-500/20 hover:border-green-500/50",
-      iconBg: "bg-green-500/10",
-      iconColor: "text-green-600 dark:text-green-400",
-      accentBg: "bg-green-500/5",
-      dotColor: "text-green-500",
-      badgeBg: "bg-green-500/10 border-green-500/20",
-      badgeText: "text-green-600 dark:text-green-400",
+      gradient: "from-[#378B57]/10 via-[#378B57]/5 to-transparent",
+      border: "border-[#378B57]/20 hover:border-[#378B57]/50",
+      iconBg: "bg-[#378B57]/10",
+      iconColor: "text-[#378B57]",
+      accentBg: "bg-[#378B57]/5",
+      dotColor: "text-[#378B57]",
+      badgeBg: "bg-[#378B57]/10 border-[#378B57]/20",
+      badgeText: "text-[#378B57]",
     },
   };
 
   return (
-    <Section id="why">
+    <Section id="why" background="dark">
       {/* Header */}
-      <div className="text-center mb-16">
-        <h2 className="text-gray-900 dark:text-white text-4xl md:text-5xl font-bold mb-4">
+      <div className="text-center mb-8">
+        <h2 className="text-white text-3xl md:text-4xl font-bold mb-3">
           Why Choose Remote ACKtive?
         </h2>
-        <p className="text-gray-600 dark:text-white/70 text-lg md:text-xl max-w-3xl mx-auto">
+        <p className="text-gray-300 text-base md:text-lg max-w-3xl mx-auto">
           We make hiring global talent simple, affordable, and stress-free
         </p>
       </div>
 
-      {/* 2x2 Grid */}
-      <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+      {/* 4-Column Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {benefits.map((benefit) => {
           const Icon = benefit.icon;
           const colors = colorClasses[benefit.color];
@@ -127,22 +127,11 @@ export default function WhyChooseUs() {
           return (
             <div
               key={benefit.title}
-              className={`
-                group relative overflow-hidden rounded-2xl border-2 
-                ${colors.border}
-                bg-white dark:bg-panel
-                p-8 
-                transition-all duration-300
-                hover:shadow-2xl hover:shadow-${benefit.color}-500/10
-                hover:-translate-y-1
-              `}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-background-darkCard p-4 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-white/20"
             >
-              {/* Background Gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-50`} />
-
               {/* Image - Top */}
-              <div className="relative z-10 mb-6">
-                <div className="relative w-full h-48 rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-700">
+              <div className="relative z-10 mb-4 mx-auto" style={{ maxWidth: '150px' }}>
+                <div className="relative w-full aspect-square rounded-full overflow-hidden bg-gray-800">
                   <Image
                     src={benefit.image}
                     alt={benefit.imageAlt}
@@ -153,64 +142,38 @@ export default function WhyChooseUs() {
               </div>
 
               {/* Content */}
-              <div className="relative z-10">
+              <div className="relative z-10 text-center">
                 {/* Icon */}
-                <div className={`
-                  inline-flex items-center justify-center
-                  w-16 h-16 rounded-xl
-                  ${colors.iconBg}
-                  mb-6
-                  transition-transform duration-300
-                  group-hover:scale-110 group-hover:rotate-3
-                `}>
-                  <Icon className={`w-8 h-8 ${colors.iconColor}`} />
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#F5A623]/10 mb-3 transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="w-5 h-5 text-[#F5A623]" />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-gray-900 dark:text-white text-2xl font-bold mb-2">
+                <h3 className="text-white text-lg font-bold mb-2">
                   {benefit.title}
                 </h3>
 
                 {/* Tagline */}
-                <div className={`
-                  inline-flex items-center gap-2 px-3 py-1.5 rounded-full
-                  ${colors.badgeBg}
-                  border ${colors.badgeBg.replace('/10', '/20')}
-                  mb-6
-                `}>
-                  <span className={`text-xs font-semibold ${colors.badgeText}`}>
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#F5A623]/10 border border-[#F5A623]/20 mb-3">
+                  <span className="text-xs font-semibold text-[#F5A623]">
                     {benefit.tagline}
                   </span>
                 </div>
 
                 {/* Benefits List */}
-                <ul className="space-y-3 mt-6">
+                <ul className="space-y-2 mt-3 text-left">
                   {benefit.items.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <span className={`
-                        ${colors.dotColor}
-                        mt-1.5 text-lg font-bold
-                        transition-transform duration-300
-                        group-hover:scale-125
-                      `}>
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-[#F5A623] mt-1 text-base font-bold transition-transform duration-300 group-hover:scale-125">
                         •
                       </span>
-                      <span className="text-gray-700 dark:text-white/80 leading-relaxed text-sm">
+                      <span className="text-gray-300 leading-snug text-xs">
                         {item}
                       </span>
                     </li>
                   ))}
                 </ul>
               </div>
-
-              {/* Decorative Corner Element */}
-              <div className={`
-                absolute -bottom-8 -right-8 w-32 h-32 rounded-full
-                ${colors.accentBg}
-                blur-2xl
-                transition-all duration-500
-                group-hover:scale-150
-              `} />
             </div>
           );
         })}

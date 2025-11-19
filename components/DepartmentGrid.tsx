@@ -2,15 +2,17 @@
 import { useState } from "react";
 import Section from "./Section";
 import Card from "./Card";
-import { 
-  Calculator, 
-  Megaphone, 
-  Code, 
-  Users, 
-  Headphones, 
+import {
+  Calculator,
+  Megaphone,
+  Code,
+  Users,
+  Headphones,
   Briefcase,
   ChevronDown,
-  Search
+  Search,
+  Palette,
+  TrendingUp
 } from "lucide-react";
 
 export default function DepartmentGrid() {
@@ -30,6 +32,10 @@ export default function DepartmentGrid() {
         "Payroll Specialists",
         "Tax Consultants",
         "Controllers",
+        "CFO/Finance Directors",
+        "AP/AR Specialists",
+        "Budget Analysts",
+        "Auditors",
       ],
     },
     {
@@ -44,6 +50,11 @@ export default function DepartmentGrid() {
         "Social Media Managers",
         "Graphic Designers",
         "Campaign Strategists",
+        "Email Marketing Specialists",
+        "PPC Specialists",
+        "Marketing Analysts",
+        "Brand Managers",
+        "Growth Marketers",
       ],
     },
     {
@@ -59,6 +70,12 @@ export default function DepartmentGrid() {
         "QA Testers",
         "Technical Support",
         "Cloud Engineers",
+        "Database Administrators",
+        "System Administrators",
+        "Network Engineers",
+        "Security Engineers",
+        "Mobile Developers",
+        "Data Engineers",
       ],
     },
     {
@@ -73,6 +90,10 @@ export default function DepartmentGrid() {
         "Payroll Specialists",
         "Training & Development",
         "Employee Relations",
+        "Benefits Administrators",
+        "HR Coordinators",
+        "Talent Acquisition",
+        "Onboarding Specialists",
       ],
     },
     {
@@ -87,6 +108,10 @@ export default function DepartmentGrid() {
         "Technical Support",
         "Chat Support",
         "Call Center Agents",
+        "Help Desk Support",
+        "Customer Success Managers",
+        "Escalation Specialists",
+        "Quality Assurance Analysts",
       ],
     },
     {
@@ -100,62 +125,46 @@ export default function DepartmentGrid() {
         "Administrative Coordinators",
         "Office Managers",
         "Virtual Assistants",
+        "Project Coordinators",
+        "Operations Coordinators",
+      ],
+    },
+    {
+      icon: Palette,
+      title: "Creative Services",
+      description: "Bring your vision to life with talented designers, writers, and multimedia professionals.",
+      color: "orange",
+      roles: [
+        "Video Editors",
+        "Motion Graphics Designers",
+        "UI/UX Designers",
+        "Brand Designers",
+        "Copywriters",
+        "Content Writers",
+      ],
+    },
+    {
+      icon: TrendingUp,
+      title: "Sales & Business Development",
+      description: "Drive revenue growth with skilled sales professionals and business development experts.",
+      color: "green",
+      roles: [
+        "Inside Sales Reps",
+        "Account Executives",
+        "SDRs / BDRs",
+        "Sales Operations",
+        "Business Development Managers",
       ],
     },
   ];
 
   const getColorClasses = (color: string) => {
-    const colors: Record<string, { bg: string; bgLight: string; icon: string; iconLight: string; hover: string; hoverLight: string }> = {
-      blue: { 
-        bg: "bg-blue-600/20", 
-        bgLight: "bg-blue-100",
-        icon: "text-blue-400", 
-        iconLight: "text-blue-600",
-        hover: "hover:border-blue-500/50",
-        hoverLight: "hover:border-blue-400"
-      },
-      pink: { 
-        bg: "bg-pink-600/20", 
-        bgLight: "bg-pink-100",
-        icon: "text-pink-400", 
-        iconLight: "text-pink-600",
-        hover: "hover:border-pink-500/50",
-        hoverLight: "hover:border-pink-400"
-      },
-      green: { 
-        bg: "bg-green-600/20", 
-        bgLight: "bg-green-100",
-        icon: "text-green-400", 
-        iconLight: "text-green-600",
-        hover: "hover:border-green-500/50",
-        hoverLight: "hover:border-green-400"
-      },
-      purple: { 
-        bg: "bg-purple-600/20", 
-        bgLight: "bg-purple-100",
-        icon: "text-purple-400", 
-        iconLight: "text-purple-600",
-        hover: "hover:border-purple-500/50",
-        hoverLight: "hover:border-purple-400"
-      },
-      yellow: { 
-        bg: "bg-yellow-600/20", 
-        bgLight: "bg-yellow-100",
-        icon: "text-yellow-400", 
-        iconLight: "text-yellow-600",
-        hover: "hover:border-yellow-500/50",
-        hoverLight: "hover:border-yellow-400"
-      },
-      teal: { 
-        bg: "bg-teal-600/20", 
-        bgLight: "bg-teal-100",
-        icon: "text-teal-400", 
-        iconLight: "text-teal-600",
-        hover: "hover:border-teal-500/50",
-        hoverLight: "hover:border-teal-400"
-      },
+    // Using orange color scheme for dark theme
+    return {
+      bg: "bg-primary-orange/10",
+      icon: "text-primary-orange",
+      hover: "hover:border-primary-orange/50"
     };
-    return colors[color];
   };
 
   const filteredDepartments = departments.filter(
@@ -167,65 +176,61 @@ export default function DepartmentGrid() {
   );
 
   return (
-    <Section id="departments">
-      <div className="text-center mb-12">
-        <h2 className="text-gray-900 dark:text-white text-3xl md:text-4xl font-bold mb-4">
-          Looking for a Specific Role?
+    <Section id="departments" background="dark">
+      <div className="text-center mb-8">
+        <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
+          What Can Remote Staff Do For You?
         </h2>
-        <p className="text-blue-600 dark:text-blue-400 text-xl mb-8 font-semibold">
+        <p className="text-primary-orange text-xl mb-8 font-semibold">
           We Know How to Hire It
         </p>
 
         {/* Search Bar */}
-        <div className="max-w-md mx-auto mb-8">
+        <div className="max-w-md mx-auto mb-6">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-white/40" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
               placeholder="Search for a role or department..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-3 rounded-lg border transition
-                bg-white dark:bg-panel 
-                border-gray-300 dark:border-white/10 
-                text-gray-900 dark:text-white 
-                placeholder-gray-400 dark:placeholder-white/40 
-                focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                border-white/10 text-white placeholder-gray-400
+                focus:border-primary-orange focus:outline-none focus:ring-2 focus:ring-primary-orange/50"
+              style={{ backgroundColor: '#1E2430' }}
             />
           </div>
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredDepartments.map((dept, idx) => {
           const Icon = dept.icon;
           const colors = getColorClasses(dept.color);
           const isExpanded = expandedDept === idx;
 
           return (
-            <Card
+            <div
               key={idx}
-              hover
-              className={`cursor-pointer transition-all ${colors.hoverLight} dark:${colors.hover}`}
+              className={`bg-background-darkCard border border-white/10 rounded-lg p-5 cursor-pointer transition-all ${colors.hover} hover:border-primary-orange/40`}
               onClick={() => setExpandedDept(isExpanded ? null : idx)}
             >
               <div className="flex items-start gap-4">
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0
-                  ${colors.bgLight} dark:${colors.bg}`}>
-                  <Icon className={`w-6 h-6 ${colors.iconLight} dark:${colors.icon}`} />
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${colors.bg}`}>
+                  <Icon className={`w-6 h-6 ${colors.icon}`} />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-gray-900 dark:text-white text-xl font-semibold">
+                    <h3 className="text-white text-lg font-semibold">
                       {dept.title}
                     </h3>
                     <ChevronDown
-                      className={`w-5 h-5 transition-transform text-gray-600 dark:text-white/60 ${
+                      className={`w-5 h-5 transition-transform text-gray-400 ${
                         isExpanded ? "rotate-180" : ""
                       }`}
                     />
                   </div>
-                  <p className="text-gray-600 dark:text-white/70 text-sm leading-relaxed mb-3">
+                  <p className="text-gray-300 text-sm leading-relaxed mb-3">
                     {dept.description}
                   </p>
 
@@ -235,17 +240,15 @@ export default function DepartmentGrid() {
                       isExpanded ? "max-h-96" : "max-h-0"
                     }`}
                   >
-                    <div className="pt-3 mt-3 border-t border-gray-200 dark:border-white/10">
-                      <p className="text-gray-500 dark:text-white/50 text-xs font-semibold mb-2 uppercase tracking-wider">
+                    <div className="pt-3 mt-3 border-t border-white/10">
+                      <p className="text-gray-400 text-xs font-semibold mb-2 uppercase tracking-wider">
                         Available Roles:
                       </p>
-                      <ul className="grid grid-cols-2 gap-2">
+                      <ul className="grid grid-cols-1 gap-2">
                         {dept.roles.map((role, roleIdx) => (
-                          <li
-                            key={roleIdx}
-                            className="text-gray-700 dark:text-white/80 text-sm"
-                          >
-                            • {role}
+                          <li key={roleIdx} className="text-gray-300 text-sm flex items-start gap-1.5">
+                            <span className="text-primary-orange mt-0.5">✓</span>
+                            <span>{role}</span>
                           </li>
                         ))}
                       </ul>
@@ -253,13 +256,13 @@ export default function DepartmentGrid() {
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           );
         })}
       </div>
 
       {filteredDepartments.length === 0 && (
-        <p className="text-gray-600 dark:text-white/60 text-center text-lg mt-8">
+        <p className="text-gray-400 text-center text-lg mt-8">
           No departments found. Try a different search term.
         </p>
       )}
