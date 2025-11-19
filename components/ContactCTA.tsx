@@ -41,126 +41,124 @@ export default function ContactCTA() {
   const currentTab = tabs.find(tab => tab.id === formType) || tabs[1];
 
   return (
-    <Section id="contact" background="dark">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
-            Ready to Build Your Dream Team?
-          </h2>
-          <p className="text-gray-300 text-lg">
-            Get in touch and let's discuss how we can help you scale
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card hover className="text-center">
-            <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4
-              bg-[#57C5CF]/10">
-              <Calendar className="w-6 h-6 text-[#57C5CF]" />
-            </div>
-            <h3 className="font-semibold text-white mb-2">
-              Schedule a Meeting
-            </h3>
-            <p className="text-gray-300 text-sm mb-4">
-              Book a time that works for you
+    <>
+      {/* Contact Cards Section - Above the Fold */}
+      <Section id="contact" background="dark">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-white text-4xl md:text-5xl font-bold mb-4">
+              Ready to Build Your Dream Team?
+            </h2>
+            <p className="text-gray-300 text-xl">
+              Get in touch and let's discuss how we can help you scale
             </p>
-            <a
-              href="https://calendly.com/admin-remoteacktive/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#57C5CF] hover:text-[#378B57] text-sm font-medium transition"
-            >
-              View Calendar →
-            </a>
-          </Card>
-
-          <Card hover className="text-center">
-            <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4
-              bg-[#378B57]/10">
-              <Mail className="w-6 h-6 text-[#378B57]" />
-            </div>
-            <h3 className="font-semibold text-white mb-2">
-              Email Us
-            </h3>
-            <p className="text-gray-300 text-sm mb-4">
-              We'll respond within 24 hours
-            </p>
-            <a
-              href="mailto:admin@remoteacktive.com"
-              className="text-[#378B57] hover:text-[#57C5CF] text-sm font-medium transition"
-            >
-              admin@remoteacktive.com
-            </a>
-          </Card>
-
-          <Card hover className="text-center">
-            <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4
-              bg-[#378B57]/10">
-              <Phone className="w-6 h-6 text-[#378B57]" />
-            </div>
-            <h3 className="font-semibold text-white mb-2">
-              Call or Text
-            </h3>
-            <p className="text-gray-300 text-sm mb-4">
-              Speak with our team directly
-            </p>
-            <a
-              href="tel:+14152511945"
-              className="text-[#378B57] hover:text-[#57C5CF] text-sm font-medium transition"
-            >
-              +1(415)2511945
-            </a>
-          </Card>
-        </div>
-
-        {/* Dark Theme Form Card */}
-        <div className="max-w-2xl mx-auto bg-[#1E2430] rounded-xl shadow-xl overflow-hidden">
-          {/* Tab Navigation */}
-          <div className="p-6 pb-0">
-            <div className="flex items-stretch gap-2 mb-8">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setFormType(tab.id)}
-                  className={`
-                    flex-1 px-4 py-3 rounded-lg text-sm font-semibold transition-all relative
-                    ${
-                      formType === tab.id
-                        ? tab.isFeatured
-                          ? "bg-[#4DD0E1] text-white shadow-lg shadow-cyan-500/30"
-                          : "bg-[#57C5CF] text-white shadow-lg"
-                        : "bg-transparent text-gray-300 hover:bg-white/5"
-                    }
-                  `}
-                >
-                  <div className="flex items-center justify-center gap-1.5">
-                    <span>{tab.label}</span>
-                    {tab.isFeatured && (
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    )}
-                  </div>
-                </button>
-              ))}
-            </div>
           </div>
 
-          {/* Form Content */}
-          <div className="px-6 pb-6">
+          <div className="grid md:grid-cols-3 gap-8 mb-20">
+            <Card variant="dark" hover className="text-center">
+              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[#57C5CF]/10 flex items-center justify-center mx-auto mb-6">
+                <Calendar className="w-8 h-8 text-[#57C5CF]" />
+              </div>
+              <h3 className="font-semibold text-white mb-3 text-lg">
+                Schedule a Meeting
+              </h3>
+              <p className="text-gray-400 text-base mb-6">
+                Book a time that works for you
+              </p>
+              <a
+                href="https://calendly.com/admin-remoteacktive/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block"
+              >
+                View Calendar →
+              </a>
+            </Card>
+
+            <Card variant="dark" hover className="text-center">
+              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[#57C5CF]/10 flex items-center justify-center mx-auto mb-6">
+                <Mail className="w-8 h-8 text-[#57C5CF]" />
+              </div>
+              <h3 className="font-semibold text-white mb-3 text-lg">
+                Email Us
+              </h3>
+              <p className="text-gray-400 text-base mb-6">
+                We'll respond within 24 hours
+              </p>
+              <a
+                href="mailto:admin@remoteacktive.com"
+                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block break-all"
+              >
+                admin@remoteacktive.com
+              </a>
+            </Card>
+
+            <Card variant="dark" hover className="text-center">
+              <div className="w-20 h-20 rounded-full border-2 border-[#57C5CF] bg-[#57C5CF]/10 flex items-center justify-center mx-auto mb-6">
+                <Phone className="w-8 h-8 text-[#57C5CF]" />
+              </div>
+              <h3 className="font-semibold text-white mb-3 text-lg">
+                Call or Text
+              </h3>
+              <p className="text-gray-400 text-base mb-6">
+                Speak with our team directly
+              </p>
+              <a
+                href="tel:+14152511945"
+                className="text-[#57C5CF] hover:text-[#4DD0E1] text-lg font-semibold transition inline-block"
+              >
+                +1 (415) 251-1945
+              </a>
+            </Card>
+          </div>
+        </div>
+      </Section>
+
+      {/* Forms Section - Separate Full Height Section */}
+      <Section background="dark">
+        <div className="max-w-4xl mx-auto min-h-screen py-20">
+          {/* Tab Navigation */}
+          <div className="flex items-stretch justify-center gap-4 mb-12 flex-wrap">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setFormType(tab.id)}
+                className={`
+                  px-8 py-4 rounded-full text-base font-bold transition-all
+                  ${
+                    formType === tab.id
+                      ? "bg-[#57C5CF] text-black shadow-lg scale-105"
+                      : "bg-transparent border-2 border-gray-600 text-gray-300 hover:border-[#57C5CF] hover:text-[#57C5CF]"
+                  }
+                `}
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <span>{tab.label}</span>
+                  {tab.isFeatured && (
+                    <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Form Container */}
+          <div className="bg-[#1A2332] rounded-2xl p-12 border border-gray-700 shadow-2xl">
             {/* Most Popular Badge for Featured Tab */}
             {currentTab.isFeatured && (
-              <div className="mb-4">
-                <span className="inline-block px-3 py-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold rounded-full uppercase tracking-wider">
-                  Most Popular
+              <div className="mb-6">
+                <span className="inline-block px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-sm font-bold rounded-full uppercase tracking-wider">
+                  ⭐ Most Popular
                 </span>
               </div>
             )}
 
             {/* Form Title and Description */}
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold text-white mb-2">
+            <div className="mb-8">
+              <h3 className="text-3xl font-bold text-white mb-3">
                 {currentTab.title}
               </h3>
-              <p className="text-gray-300 text-sm">
+              <p className="text-gray-300 text-lg">
                 {currentTab.description}
               </p>
             </div>
@@ -173,7 +171,7 @@ export default function ContactCTA() {
             </div>
           </div>
         </div>
-      </div>
-    </Section>
+      </Section>
+    </>
   );
 }

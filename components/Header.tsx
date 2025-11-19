@@ -49,10 +49,10 @@ export default function Header() {
       <nav className="mx-auto max-w-7xl px-6 py-4">
         <div className="flex items-center justify-between">
           <a href="#hero" onClick={(e) => handleNavClick(e, "#hero")} className="flex items-center gap-3 group">
-            <div className="relative w-14 h-14">
+            <div className="relative w-20 h-20">
               <Image src="/images/logo.png" alt="Remote ACKtive Logo" fill className="object-contain" />
             </div>
-            <span className="font-bold text-xl transition text-white group-hover:text-primary-teal">Remote ACKtive</span>
+            <span className="font-bold text-2xl transition text-white group-hover:text-primary-teal">Remote ACKtive</span>
           </a>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (

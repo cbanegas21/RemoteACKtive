@@ -38,11 +38,11 @@ export default function HeroWithGlobe() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-40 md:pt-44 xl:pt-48 pb-20 min-h-screen flex flex-col justify-center">
         <div className="max-w-[50rem] xl:max-w-[56rem] 2xl:max-w-[60rem] flex-1 flex flex-col justify-center">
-          <h1 className="text-6xl md:text-7xl xl:text-8xl font-bold tracking-tight leading-[0.95] text-white">
+          <h1 className="text-7xl md:text-8xl xl:text-9xl font-bold tracking-tight leading-[0.95] text-white">
             Scale Your Business with Elite Global Talent
           </h1>
 
-          <p className="mt-6 text-lg md:text-xl xl:text-2xl text-white/90 leading-relaxed">
+          <p className="mt-6 text-2xl md:text-3xl xl:text-4xl text-white/90 leading-relaxed">
             Save up to 70% on operational costs while accessing world-class professionals in 3-10 days
           </p>
 

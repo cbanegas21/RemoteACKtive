@@ -1,54 +1,51 @@
 "use client";
 import { useState } from "react";
-import Header from "@/components/Header";
+import Link from "next/link";
+import Image from "next/image";
+import { Menu, X, Check, Calendar, Clock, Users, Star } from "lucide-react";
+import { FormProvider } from "@/components/FormContext";
+import HireOnlyForm from "@/components/HireOnlyForm";
+import HireManageForm from "@/components/HireManageForm";
+import GeneralContactForm from "@/components/GeneralContactForm";
 import Footer from "@/components/Footer";
-import { Check, Calendar, Clock, Users } from "lucide-react";
 
 export default function BookACallPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    description: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [activeTab, setActiveTab] = useState<"hire-only" | "hire-manage" | "training">("hire-manage");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const navLinks = [
+    { label: "Home", href: "/#hero" },
+    { label: "Why Us", href: "/#why" },
+    { label: "Services", href: "/#services" },
+    { label: "Departments", href: "/#departments" },
+    { label: "About", href: "/#about" },
+    { label: "FAQ", href: "/#faq" },
+    { label: "Contact", href: "/#contact" },
+  ];
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          formType: "hire-manage",
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitStatus("success");
-        setFormData({ name: "", email: "", company: "", phone: "", description: "" });
-      } else {
-        setSubmitStatus("error");
-      }
-    } catch (error) {
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const tabs = [
+    {
+      id: "hire-only" as const,
+      label: "Recruitment-Only",
+      title: "Interested in Recruitment-Only?",
+      description: "Get expert recruitment without ongoing management",
+      isFeatured: false
+    },
+    {
+      id: "hire-manage" as const,
+      label: "Full Experience",
+      title: "Ready for Full Outsourcing Support?",
+      description: "Get recruitment + ongoing management and support",
+      isFeatured: true
+    },
+    {
+      id: "training" as const,
+      label: "Training Program",
+      title: "Upgrade Your Existing Team?",
+      description: "Training and development for your current offshore team",
+      isFeatured: false
+    },
+  ];
 
   const benefits = [
     {
@@ -77,201 +74,204 @@ export default function BookACallPage() {
     "Receive a custom hiring roadmap tailored to your needs",
   ];
 
+  const currentTab = tabs.find(tab => tab.id === activeTab) || tabs[1];
+
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-background-dark pt-24 pb-16">
-        <div className="container mx-auto px-6">
-          {/* Header */}
-          <div className="text-center mb-12 max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+    <FormProvider>
+      <div className="min-h-screen bg-background-dark">
+        {/* HEADER */}
+        <header className="fixed top-0 left-0 right-0 z-50 bg-background-dark/95 backdrop-blur-md border-b border-white/10 shadow-sm">
+          <nav className="mx-auto max-w-7xl px-6 py-4">
+            <div className="flex items-center justify-between">
+              <Link href="/" className="flex items-center gap-3 group">
+                <div className="relative w-16 h-16">
+                  <Image src="/images/logo.png" alt="Remote ACKtive Logo" fill className="object-contain" />
+                </div>
+                <span className="font-bold text-xl transition text-white group-hover:text-primary-teal">Remote ACKtive</span>
+              </Link>
+
+              <div className="hidden md:flex items-center gap-8">
+                {navLinks.map((link) => (
+                  <Link key={link.href} href={link.href} className="font-medium transition text-white/90 hover:text-white">
+                    {link.label}
+                  </Link>
+                ))}
+                <Link href="/book-a-call" className="px-6 py-2.5 rounded-full bg-primary-teal text-black font-bold hover:bg-primary-cyan hover:text-black transition shadow-md hover:shadow-lg">
+                  Book a Call
+                </Link>
+              </div>
+
+              <div className="flex items-center gap-2 md:hidden">
+                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 rounded-lg transition hover:bg-white/10 text-white" aria-label="Toggle menu">
+                  {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </button>
+              </div>
+            </div>
+
+            {isMobileMenuOpen && (
+              <div className="md:hidden mt-4 py-4 border-t border-white/10">
+                <div className="flex flex-col gap-4">
+                  {navLinks.map((link) => (
+                    <Link key={link.href} href={link.href} className="font-medium transition px-2 py-1 text-white/90 hover:text-white">
+                      {link.label}
+                    </Link>
+                  ))}
+                  <Link href="/book-a-call" className="px-6 py-2.5 rounded-full bg-primary-teal text-black font-bold hover:bg-primary-cyan hover:text-black transition text-center shadow-md">
+                    Book a Call
+                  </Link>
+                </div>
+              </div>
+            )}
+          </nav>
+        </header>
+
+        {/* HERO SECTION - GRADIENT BACKGROUND */}
+        <section className="relative pt-32 pb-20 bg-gradient-hero overflow-hidden">
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
               Book Your Free Discovery Call
             </h1>
-            <p className="text-xl text-gray-300">
-              Let's discuss how Remote ACKtive can help you build a world-class remote team
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+              Let's discuss how Remote ACKtive can help you build a world-class remote team and save up to 70% on costs
             </p>
           </div>
+        </section>
 
-          {/* Split Layout */}
-          <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-            {/* Left: Form */}
-            <div className="bg-background-darkCard border border-white/10 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">
-                Schedule Your Consultation
-              </h2>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
+        {/* FORMS & BENEFITS SECTION */}
+        <section className="py-20 bg-background-dark">
+          <div className="container mx-auto px-6">
+            <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+              {/* LEFT: Benefits */}
+              <div className="lg:col-span-1 space-y-8">
+                {/* Benefits Cards */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-background-dark border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-teal focus:border-transparent"
-                    placeholder="John Doe"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    Work Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-background-dark border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-teal focus:border-transparent"
-                    placeholder="john@company.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
-                    Company Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    required
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-background-dark border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-teal focus:border-transparent"
-                    placeholder="Your Company Inc."
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
-                    Phone Number (Optional)
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-background-dark border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-teal focus:border-transparent"
-                    placeholder="+1 (555) 123-4567"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-2">
-                    What are you looking to accomplish? *
-                  </label>
-                  <textarea
-                    id="description"
-                    name="description"
-                    required
-                    rows={4}
-                    value={formData.description}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-background-dark border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-teal focus:border-transparent resize-none"
-                    placeholder="Tell us about your hiring needs, team goals, or any specific challenges you're facing..."
-                  />
-                </div>
-
-                {submitStatus === "success" && (
-                  <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400">
-                    Thank you! We'll be in touch within 1 business day.
-                  </div>
-                )}
-
-                {submitStatus === "error" && (
-                  <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400">
-                    Something went wrong. Please try again or email us directly.
-                  </div>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-4 px-8 rounded-full bg-primary-teal text-black text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-cyan"
-                >
-                  {isSubmitting ? "Submitting..." : "Book My Free Consultation"}
-                </button>
-
-                <p className="text-sm text-gray-400 text-center">
-                  Or schedule directly on our{" "}
-                  <a
-                    href="https://calendly.com/admin-remoteacktive/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary-teal hover:text-primary-cyan underline"
-                  >
-                    Calendly
-                  </a>
-                </p>
-              </form>
-            </div>
-
-            {/* Right: Benefits & What to Expect */}
-            <div className="space-y-8">
-              {/* Benefits */}
-              <div>
-                <h2 className="text-2xl font-bold text-white mb-6">
-                  What You'll Get
-                </h2>
-                <div className="space-y-4">
-                  {benefits.map((benefit, index) => {
-                    const Icon = benefit.icon;
-                    return (
-                      <div
-                        key={index}
-                        className="flex gap-4 p-4 bg-background-darkCard border border-white/10 rounded-lg hover:border-primary-teal/40 transition-all"
-                      >
-                        <div className="flex-shrink-0">
-                          <div className="w-12 h-12 rounded-lg bg-primary-teal/10 flex items-center justify-center">
-                            <Icon className="w-6 h-6 text-primary-teal" />
+                  <h2 className="text-2xl font-bold text-white mb-6">
+                    What You'll Get
+                  </h2>
+                  <div className="space-y-4">
+                    {benefits.map((benefit, index) => {
+                      const Icon = benefit.icon;
+                      return (
+                        <div
+                          key={index}
+                          className="flex gap-4 p-4 bg-background-darkCard border border-white/10 rounded-lg hover:border-primary-teal/40 transition-all"
+                        >
+                          <div className="flex-shrink-0">
+                            <div className="w-12 h-12 rounded-lg bg-primary-teal/10 flex items-center justify-center">
+                              <Icon className="w-6 h-6 text-primary-teal" />
+                            </div>
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-white mb-1">{benefit.title}</h3>
+                            <p className="text-sm text-gray-300">{benefit.description}</p>
                           </div>
                         </div>
-                        <div>
-                          <h3 className="font-bold text-white mb-1">{benefit.title}</h3>
-                          <p className="text-sm text-gray-300">{benefit.description}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* What to Expect */}
+                <div className="bg-gradient-primary p-8 rounded-2xl">
+                  <h2 className="text-2xl font-bold text-white mb-6">
+                    What to Expect on the Call
+                  </h2>
+                  <ul className="space-y-3">
+                    {whatToExpect.map((item, index) => (
+                      <li key={index} className="flex gap-3 items-start">
+                        <Check className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
+                        <span className="text-white/90">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Trust Badge */}
+                <div className="bg-background-darkCard border border-primary-teal/20 rounded-lg p-6 text-center">
+                  <div className="text-4xl font-bold text-primary-teal mb-2">100%</div>
+                  <div className="text-white font-bold mb-2">Client Satisfaction Guarantee</div>
+                  <p className="text-sm text-gray-300">
+                    If your remote team member doesn't meet your expectations, we'll find you a replacement at no extra cost.
+                  </p>
                 </div>
               </div>
 
-              {/* What to Expect */}
-              <div className="bg-gradient-primary p-8 rounded-2xl">
-                <h2 className="text-2xl font-bold text-white mb-6">
-                  What to Expect on the Call
-                </h2>
-                <ul className="space-y-3">
-                  {whatToExpect.map((item, index) => (
-                    <li key={index} className="flex gap-3 items-start">
-                      <Check className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
-                      <span className="text-white/90">{item}</span>
-                    </li>
+              {/* RIGHT: Forms */}
+              <div className="lg:col-span-2">
+                {/* Tab Navigation */}
+                <div className="flex items-stretch justify-center gap-4 mb-12 flex-wrap">
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`
+                        px-8 py-4 rounded-full text-base font-bold transition-all
+                        ${
+                          activeTab === tab.id
+                            ? "bg-[#57C5CF] text-black shadow-lg scale-105"
+                            : "bg-transparent border-2 border-gray-600 text-gray-300 hover:border-[#57C5CF] hover:text-[#57C5CF]"
+                        }
+                      `}
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <span>{tab.label}</span>
+                        {tab.isFeatured && (
+                          <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                        )}
+                      </div>
+                    </button>
                   ))}
-                </ul>
-              </div>
+                </div>
 
-              {/* Trust Badge */}
-              <div className="bg-background-darkCard border border-primary-teal/20 rounded-lg p-6 text-center">
-                <div className="text-4xl font-bold text-primary-teal mb-2">100%</div>
-                <div className="text-white font-bold mb-2">Client Satisfaction Guarantee</div>
-                <p className="text-sm text-gray-300">
-                  If your remote team member doesn't meet your expectations, we'll find you a replacement at no extra cost.
-                </p>
+                {/* Form Container */}
+                <div className="bg-[#1A2332] rounded-2xl p-12 border border-gray-700 shadow-2xl">
+                  {/* Most Popular Badge */}
+                  {currentTab.isFeatured && (
+                    <div className="mb-6">
+                      <span className="inline-block px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-sm font-bold rounded-full uppercase tracking-wider">
+                        ⭐ Most Popular
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Form Title */}
+                  <div className="mb-8">
+                    <h3 className="text-3xl font-bold text-white mb-3">
+                      {currentTab.title}
+                    </h3>
+                    <p className="text-gray-300 text-lg">
+                      {currentTab.description}
+                    </p>
+                  </div>
+
+                  {/* Forms */}
+                  <div className="transition-opacity duration-300">
+                    {activeTab === "hire-only" && <HireOnlyForm />}
+                    {activeTab === "hire-manage" && <HireManageForm />}
+                    {activeTab === "training" && <GeneralContactForm formType="training" />}
+                  </div>
+
+                  {/* Additional Info */}
+                  <p className="text-sm text-gray-400 text-center mt-8">
+                    Or schedule directly on our{" "}
+                    <a
+                      href="https://calendly.com/admin-remoteacktive/30min"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary-teal hover:text-primary-cyan underline"
+                    >
+                      Calendly
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
-      <Footer />
-    </>
+        </section>
+
+        {/* FOOTER */}
+        <Footer />
+      </div>
+    </FormProvider>
   );
 }
