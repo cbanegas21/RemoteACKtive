@@ -3,7 +3,57 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// ─── In-memory rate limiter ───────────────────────────────────────────────────
+// 5 submissions per IP per hour. Resets on server restart (acceptable for a
+// contact form — prevents spam without needing Redis/Upstash).
+const rateLimitStore = new Map<string, number[]>();
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const prev = rateLimitStore.get(ip) ?? [];
+  const recent = prev.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+
+  if (recent.length >= RATE_LIMIT_MAX) {
+    rateLimitStore.set(ip, recent); // keep pruned list
+    return false; // blocked
+  }
+
+  recent.push(now);
+  rateLimitStore.set(ip, recent);
+  return true; // allowed
+}
+
+// Prune stale entries every 30 min to keep memory bounded
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, timestamps] of rateLimitStore.entries()) {
+    const fresh = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+    if (fresh.length === 0) {
+      rateLimitStore.delete(ip);
+    } else {
+      rateLimitStore.set(ip, fresh);
+    }
+  }
+}, 30 * 60 * 1000);
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 export async function POST(request: NextRequest) {
+  // ── Rate limit check ──────────────────────────────────────────────────────
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
+    request.headers.get('x-real-ip') ??
+    'unknown';
+
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { error: 'Too many submissions. Please wait an hour before trying again.' },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await request.json();
     const { name, email, company, roles, description, referral, formType } = body;

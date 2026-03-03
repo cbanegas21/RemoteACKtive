@@ -71,6 +71,8 @@ const BUBBLE_LOCATIONS: BubbleLocation[] = [
 export default function GitHubHeroGlobe({ className = '' }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
+  const [isReady, setIsReady] = useState(false);
+  const isReadyRef = useRef(false);
   const bubblesRef = useRef<Bubble[]>([]);
   const bubbleIdCounter = useRef(0);
   const cameraRef = useRef<PerspectiveCamera | null>(null);
@@ -360,6 +362,12 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
     setSize();
 
     const animate = () => {
+      // Signal that WebGL is up and the first frame is about to render
+      if (!isReadyRef.current) {
+        isReadyRef.current = true;
+        setIsReady(true);
+      }
+
       if (renderCount < 10000) {
         renderCount += 150;
         growTube(currentGrowing, renderCount);
@@ -455,6 +463,24 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
       className={`absolute inset-0 ${className}`}
       style={{ width: '100%', height: '100%', position: 'relative' }}
     >
+      {/* Loading placeholder — visible only until the first WebGL frame fires */}
+      {!isReady && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        >
+          <div
+            className="rounded-full animate-pulse"
+            style={{
+              width: '70%',
+              height: '70%',
+              background:
+                'radial-gradient(circle, rgba(87,197,207,0.15) 0%, rgba(87,197,207,0.06) 50%, transparent 70%)',
+            }}
+          />
+        </div>
+      )}
+
       {bubbles.filter(b => b.active && b.opacity > 0).map(bubble => (
         <div
           key={bubble.id}

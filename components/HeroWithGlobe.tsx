@@ -1,4 +1,4 @@
-import GitHubGlobe from './GitHubHeroGlobe';
+import GlobeWithFallback from './GlobeWithFallback';
 import CompanyLogosSlider from './CompanyLogosSlider';
 
 const stats = [
@@ -49,7 +49,7 @@ export default function HeroWithGlobe() {
               boxShadow: 'none',
             }}
           >
-            <GitHubGlobe />
+            <GlobeWithFallback />
           </div>
         </div>
       </div>

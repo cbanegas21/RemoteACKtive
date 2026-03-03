@@ -142,19 +142,19 @@ Header → HeroWithGlobe → WhyChooseUs → ThreeTierServices → CostCompariso
 
 ### Critical
 - [x] **OG image missing**: ✅ Fixed — `/public/images/og-image.jpg` added (commit 49853b2), wired into layout.tsx openGraph + twitter
-- [ ] **Blog 404**: `/blog` and `/blog/[slug]` referenced in sitemap + nav but not implemented
+- [x] **Blog 404**: ✅ Already implemented — `app/blog/page.tsx`, `app/blog/[slug]/page.tsx`, `app/lib/blog.ts` all exist with 7 articles SSG-prerendered
 
 ### High Priority
 - [x] **Privacy Policy & Terms links**: ✅ Fixed — Footer and CookieConsent now link to real `/privacy-policy` and `/terms` pages (commit a7b1220)
-- [ ] **Blog nav link** in Header points to non-existent route
+- [x] **Blog nav link** in Header: ✅ `/blog` route is live
 
 ### Medium Priority
 - [ ] **ourstory.png** — existence unconfirmed
 - [ ] **Company logos** — 12 `.png` files existence unconfirmed (`/public/images/companies/`)
-- [ ] **No rate limiting** on `/api/contact` — vulnerable to spam
+- [x] **No rate limiting** on `/api/contact`: ✅ Fixed — in-memory sliding-window rate limiter (5 req/IP/hr, no Redis needed)
 
 ### Low Priority / Polish
-- [ ] No loading skeleton/fallback for Three.js globe init
+- [x] No loading skeleton/fallback for Three.js globe init: ✅ Fixed — `GlobeWithFallback.tsx` error boundary + `isReady` pulse placeholder in `GitHubHeroGlobe.tsx`
 - [x] Cookie consent Privacy Policy link is `#` (placeholder) ✅ Fixed in commit a7b1220
 - [ ] Form error messages hardcoded in each form component (not DRY)
 - [ ] Slight focus ring color inconsistency: HireOnlyForm uses `#57C5CF`, HireManageForm uses `#4DD0E1`
@@ -166,10 +166,10 @@ Header → HeroWithGlobe → WhyChooseUs → ThreeTierServices → CostCompariso
 > Add tasks here as they come up during development sessions.
 
 - [x] Create OG image (1200×630) and add to `/public/images/og-image.jpg` ✅ commit 49853b2
-- [ ] Implement blog (`/blog` listing + `/blog/[slug]` pages with 3 articles)
+- [x] Implement blog (`/blog` listing + `/blog/[slug]` pages with 7 articles) ✅ already existed
 - [x] Add Privacy Policy and Terms of Service pages ✅ commit a7b1220
-- [ ] Add rate limiting to `/api/contact` (e.g., `upstash/ratelimit`)
-- [ ] Add Three.js globe error boundary / loading state
+- [x] Add rate limiting to `/api/contact` ✅ in-memory 5 req/IP/hr sliding window
+- [x] Add Three.js globe error boundary / loading state ✅ `GlobeWithFallback.tsx` + `isReady` pulse
 - [ ] Audit and confirm all image files exist in `/public/images/`
 - [ ] Consider adding `StatsSection` to homepage
 
