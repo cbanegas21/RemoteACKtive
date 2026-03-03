@@ -311,7 +311,7 @@ RESEND_API_KEY=re_...    # Resend email delivery API key (required)
 | `b07f99c` | Rate limiting on `/api/contact` (5 req/IP/hr in-memory); `GlobeWithFallback.tsx` error boundary; `GitHubHeroGlobe.tsx` loading state; `HeroWithGlobe.tsx` updated to use wrapper; CLAUDE.md updated |
 | `bfb4be0` | SEO/image audit: all per-route metadata verified ✅; all alt texts verified ✅; all public assets confirmed present ✅; CLAUDE.md updated |
 | `0104372` | PageSpeed performance pass: fixed `sizes` props on all `<Image>` components; hero-glow.svg moved to local path with `fetchPriority="high"`; testimonial dots touch targets fixed (44px); low-contrast text improved; removed unused `fonts.googleapis.com` preconnect; deleted `public/github-globe-main/` dead weight |
-| *(next)* | why-us images changed from `.jpg` → `.png` (user uploaded PNG versions); `WhyChooseUs.tsx` paths updated; hero-glow.svg + globe-dots.png confirmed uploaded; CLAUDE.md updated |
+| `636fa07` | why-us images changed from `.jpg` → `.png` (user uploaded PNG versions); `WhyChooseUs.tsx` paths updated; hero-glow.svg + globe-dots.png confirmed uploaded; CLAUDE.md updated |
 
 ---
 
@@ -319,7 +319,7 @@ RESEND_API_KEY=re_...    # Resend email delivery API key (required)
 
 | Priority | Issue | Status |
 |----------|-------|--------|
-| Low | 3 misplaced files in `public/images/why-us/`: `logo__1_-removebg-preview.png`, `logoblack.png`, `logowhite.png` — not referenced by any component; safe to delete manually | 🔲 Cleanup |
+| ~~Low~~ | ~~3 misplaced files in `public/images/why-us/`~~ | ✅ Deleted |
 | Low | Company logos may still be oversized (e.g. `salesforce.png` 126 KiB, `shopify.png` 85 KiB) — resize per Image Optimization Spec for best PageSpeed score | 🔲 Optional |
 | Low | Form error messages are hardcoded per-form (not DRY) | 🔲 Backlog |
 | Low | Focus ring color inconsistency: `HireOnlyForm` uses `#57C5CF`, `HireManageForm` uses `#4DD0E1` | 🔲 Backlog |
