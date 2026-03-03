@@ -1,7 +1,7 @@
 # Remote ACKtive — CLAUDE.md
 > Single source of truth for AI-assisted development.
 > **Always read this file first before making any changes.**
-> Last updated: 2026-03-03 (post-audit)
+> Last updated: 2026-03-03 (PageSpeed performance pass)
 
 ---
 
@@ -190,8 +190,9 @@ Footer
 | `/public/images/og-image.jpg` | ✅ confirmed (1200×630) | `layout.tsx` OG + Twitter meta |
 | `/public/images/favicon.png` | ✅ confirmed | `layout.tsx` icon |
 | `/public/images/ourstory.png` | ✅ confirmed | `AboutBlock.tsx` |
-| `/public/images/companies/*.png` | ✅ confirmed (14 files) | `CompanyLogosSlider.tsx` — 12 logos + `americanexpress.png` + `walmart.webp` (extras) |
-| `/public/textures/globe-dots.png` | ✅ confirmed | `GitHubHeroGlobe.tsx` dot texture overlay |
+| `/public/images/companies/*.png` | ✅ confirmed (14 files) | `CompanyLogosSlider.tsx` — 12 logos + `americanexpress.png` + `walmart.webp` (extras, not rendered) |
+| `/public/images/hero-glow.svg` | ⚠️ NEEDS UPLOAD | `HeroWithGlobe.tsx` — decorative background glow; code updated to local path; **user must save from** `github.githubassets.com/images/modules/site/home/hero-glow.svg` |
+| `/public/textures/globe-dots.png` | ✅ confirmed (361 KiB — compress!) | `GitHubHeroGlobe.tsx` dot texture overlay |
 | `/public/robots.txt` | ✅ exists | Allows all crawlers, points to sitemap |
 | `/public/sitemap.xml` | ✅ exists | All 9 routes listed; up to date |
 
@@ -304,7 +305,8 @@ RESEND_API_KEY=re_...    # Resend email delivery API key (required)
 | `a7b1220` | Added `/privacy-policy` and `/terms` pages; fixed all `#` placeholder links in Footer and CookieConsent |
 | `59961c5` | *(pre-session baseline — blog, book-a-call, all routes working)* |
 | `b07f99c` | Rate limiting on `/api/contact` (5 req/IP/hr in-memory); `GlobeWithFallback.tsx` error boundary; `GitHubHeroGlobe.tsx` loading state; `HeroWithGlobe.tsx` updated to use wrapper; CLAUDE.md updated |
-| *(next)* | SEO/image audit: all per-route metadata verified ✅; all alt texts verified ✅; all public assets confirmed present ✅; CLAUDE.md updated |
+| `bfb4be0` | SEO/image audit: all per-route metadata verified ✅; all alt texts verified ✅; all public assets confirmed present ✅; CLAUDE.md updated |
+| *(next)* | PageSpeed performance pass: fixed `sizes` props on all `<Image>` components; hero-glow.svg moved to local path with `fetchPriority="high"`; testimonial dots touch targets fixed (44px); low-contrast text improved; removed unused `fonts.googleapis.com` preconnect; deleted `public/github-globe-main/` dead weight |
 
 ---
 
@@ -312,8 +314,32 @@ RESEND_API_KEY=re_...    # Resend email delivery API key (required)
 
 | Priority | Issue | Status |
 |----------|-------|--------|
+| High | `/public/images/hero-glow.svg` not yet uploaded — hero glow won't show until file is added | ⚠️ Pending user upload |
+| Medium | All company logos + why-us images need to be resized/optimized — see Image Optimization Spec below | ⚠️ Pending user upload |
+| Medium | `globe-dots.png` is 361 KiB — compress with tinypng.com (keep PNG format) | ⚠️ Pending user action |
 | Low | Form error messages are hardcoded per-form (not DRY) | 🔲 Backlog |
 | Low | Focus ring color inconsistency: `HireOnlyForm` uses `#57C5CF`, `HireManageForm` uses `#4DD0E1` | 🔲 Backlog |
+
+---
+
+## Image Optimization Spec (PageSpeed — 2026-03-03)
+
+> Sizes props are already fixed in code. User needs to replace source files with correctly-sized versions.
+
+| File | Display Size | **Upload Target** | Format |
+|------|-------------|------------------|--------|
+| `/public/images/logo.png` | 75×75px | **200×200px max** | PNG (transparent bg) |
+| `/public/images/why-us/cost-effective.jpg` | 150×150px (circle crop) | **450×450px max** | JPEG or WebP |
+| `/public/images/why-us/handpicked.jpg` | 150×150px (circle crop) | **450×450px max** | JPEG or WebP |
+| `/public/images/why-us/speedy.jpg` | 150×150px (circle crop) | **450×450px max** | JPEG or WebP |
+| `/public/images/why-us/global.jpg` | 150×150px (circle crop) | **450×450px max** | JPEG or WebP |
+| `/public/images/companies/oracle.png` | ~114×64px | **240×135px max** | PNG (transparent bg) |
+| `/public/images/companies/shopify.png` | ~128×40px | **280×88px max** | PNG (transparent bg) |
+| `/public/images/companies/ibm.png` | ~128×48px | **280×105px max** | PNG (transparent bg) |
+| `/public/images/companies/salesforce.png` | ~91×64px | **200×140px max** | PNG (transparent bg) |
+| `/public/images/companies/*.png` (all others) | ~64–128px tall | **300×150px max** | PNG (transparent bg) |
+| `/public/images/hero-glow.svg` | Full-width bg | **Upload as-is from GitHub** | SVG |
+| `/public/textures/globe-dots.png` | WebGL texture | **Compress only** (tinypng.com) | PNG |
 
 ---
 

@@ -14,11 +14,13 @@ export default function HeroWithGlobe() {
       id="hero"
       className="relative min-h-screen overflow-visible bg-gradient-hero"
     >
-      {/* Background glow */}
+      {/* Background glow — hosted locally for caching + LCP improvement */}
+      {/* TODO: upload hero-glow.svg to /public/images/hero-glow.svg */}
       <img
-        src="https://github.githubassets.com/images/modules/site/home/hero-glow.svg"
+        src="/images/hero-glow.svg"
         alt=""
         aria-hidden="true"
+        fetchPriority="high"
         className="pointer-events-none absolute -z-10 left-1/2 top-[40%] w-[220%] -translate-x-1/2 -translate-y-1/2 opacity-90 mix-blend-screen"
       />
 

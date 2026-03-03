@@ -198,8 +198,7 @@ export default function RootLayout({
           }}
         />
 
-        {/* Preconnect to external domains for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* Preconnect to GTM — fonts.googleapis.com removed (no Google Fonts loaded) */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
       </head>
       <body>

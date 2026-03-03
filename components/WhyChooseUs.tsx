@@ -136,6 +136,7 @@ export default function WhyChooseUs() {
                     src={benefit.image}
                     alt={benefit.imageAlt}
                     fill
+                    sizes="150px"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>

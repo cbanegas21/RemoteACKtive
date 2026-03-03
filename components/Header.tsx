@@ -40,7 +40,7 @@ export default function Header() {
         <div className="flex items-center justify-between gap-10">
           <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
             <div className="relative w-[75px] h-[75px]">
-              <Image src="/images/logo.png" alt="Remote ACKtive Logo" fill className="object-contain" />
+              <Image src="/images/logo.png" alt="Remote ACKtive Logo" fill sizes="75px" priority className="object-contain" />
             </div>
             <span className="font-bold text-2xl transition text-white group-hover:text-primary-teal whitespace-nowrap">Remote ACKtive</span>
           </Link>

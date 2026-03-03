@@ -155,7 +155,7 @@ export default function Testimonials() {
                 <div>
                   <p className="text-white font-semibold text-sm">{item.name}</p>
                   <p className="text-white/50 text-xs">{item.title}, {item.company}</p>
-                  <p className="text-white/35 text-xs">{item.flag} {item.country}</p>
+                  <p className="text-white/55 text-xs">{item.flag} {item.country}</p>
                 </div>
               </div>
             </div>
@@ -178,7 +178,7 @@ export default function Testimonials() {
               <div>
                 <p className="text-white font-semibold text-sm">{t.name}</p>
                 <p className="text-white/50 text-xs">{t.title}, {t.company}</p>
-                <p className="text-white/35 text-xs">{t.flag} {t.country}</p>
+                <p className="text-white/55 text-xs">{t.flag} {t.country}</p>
               </div>
             </div>
           </div>
@@ -196,18 +196,23 @@ export default function Testimonials() {
             </svg>
           </button>
 
-          <div className="flex gap-2">
+          {/* Dots — 44px touch target wrapping the visual dot (WCAG 2.5.5) */}
+          <div className="flex items-center gap-0">
             {testimonials.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActiveIdx(i)}
-                className={`rounded-full transition-all duration-300 ${
-                  i === activeIdx
-                    ? 'w-6 h-2 bg-[#57C5CF]'
-                    : 'w-2 h-2 bg-white/20 hover:bg-white/40'
-                }`}
+                className="flex items-center justify-center h-11 px-1.5"
                 aria-label={`Go to testimonial ${i + 1}`}
-              />
+              >
+                <span
+                  className={`rounded-full transition-all duration-300 block ${
+                    i === activeIdx
+                      ? 'w-6 h-2 bg-[#57C5CF]'
+                      : 'w-2 h-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                />
+              </button>
             ))}
           </div>
 
@@ -232,7 +237,7 @@ export default function Testimonials() {
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="text-2xl font-extrabold text-[#4FFFB0]">{stat.value}</p>
-              <p className="text-xs text-white/45 mt-0.5">{stat.label}</p>
+              <p className="text-xs text-white/60 mt-0.5">{stat.label}</p>
             </div>
           ))}
         </div>

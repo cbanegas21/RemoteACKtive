@@ -26,6 +26,7 @@ export default function CompanyLogosSlider() {
                   src={`/images/companies/${company}.png`}
                   alt={`${company} logo`}
                   fill
+                  sizes="128px"
                   className="object-contain"
                 />
               </div>
@@ -41,6 +42,7 @@ export default function CompanyLogosSlider() {
                   src={`/images/companies/${company}.png`}
                   alt={`${company} logo`}
                   fill
+                  sizes="128px"
                   className="object-contain"
                 />
               </div>
