@@ -132,7 +132,7 @@ Header → HeroWithGlobe → WhyChooseUs → ThreeTierServices → CostCompariso
 |------|--------|---------|
 | `/public/images/logo.png` | ✅ exists | Header |
 | `/public/images/logowhite.png` | ✅ exists | Footer |
-| `/public/images/og-image.jpg` | ❌ MISSING | layout.tsx OG meta |
+| `/public/images/og-image.jpg` | ✅ exists | layout.tsx OG meta (1200×630, commit 49853b2) |
 | `/public/images/ourstory.png` | ❓ unknown | AboutBlock |
 | `/public/images/companies/*.png` | ❓ assumed | CompanyLogosSlider (12 files) |
 
@@ -141,11 +141,11 @@ Header → HeroWithGlobe → WhyChooseUs → ThreeTierServices → CostCompariso
 ## Known Bugs & Issues
 
 ### Critical
-- [ ] **OG image missing**: `/public/images/og-image.jpg` doesn't exist → social previews broken on all platforms
+- [x] **OG image missing**: ✅ Fixed — `/public/images/og-image.jpg` added (commit 49853b2), wired into layout.tsx openGraph + twitter
 - [ ] **Blog 404**: `/blog` and `/blog/[slug]` referenced in sitemap + nav but not implemented
 
 ### High Priority
-- [ ] **Privacy Policy & Terms links** in Footer and CookieConsent point to `#` placeholder
+- [x] **Privacy Policy & Terms links**: ✅ Fixed — Footer and CookieConsent now link to real `/privacy-policy` and `/terms` pages (commit a7b1220)
 - [ ] **Blog nav link** in Header points to non-existent route
 
 ### Medium Priority
@@ -155,7 +155,7 @@ Header → HeroWithGlobe → WhyChooseUs → ThreeTierServices → CostCompariso
 
 ### Low Priority / Polish
 - [ ] No loading skeleton/fallback for Three.js globe init
-- [ ] Cookie consent Privacy Policy link is `#` (placeholder)
+- [x] Cookie consent Privacy Policy link is `#` (placeholder) ✅ Fixed in commit a7b1220
 - [ ] Form error messages hardcoded in each form component (not DRY)
 - [ ] Slight focus ring color inconsistency: HireOnlyForm uses `#57C5CF`, HireManageForm uses `#4DD0E1`
 
@@ -165,9 +165,9 @@ Header → HeroWithGlobe → WhyChooseUs → ThreeTierServices → CostCompariso
 
 > Add tasks here as they come up during development sessions.
 
-- [ ] Create OG image (1200×630) and add to `/public/images/og-image.jpg`
+- [x] Create OG image (1200×630) and add to `/public/images/og-image.jpg` ✅ commit 49853b2
 - [ ] Implement blog (`/blog` listing + `/blog/[slug]` pages with 3 articles)
-- [ ] Add Privacy Policy and Terms of Service pages
+- [x] Add Privacy Policy and Terms of Service pages ✅ commit a7b1220
 - [ ] Add rate limiting to `/api/contact` (e.g., `upstash/ratelimit`)
 - [ ] Add Three.js globe error boundary / loading state
 - [ ] Audit and confirm all image files exist in `/public/images/`
