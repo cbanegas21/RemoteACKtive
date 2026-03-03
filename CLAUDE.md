@@ -1,7 +1,7 @@
 # Remote ACKtive — CLAUDE.md
 > Single source of truth for AI-assisted development.
 > **Always read this file first before making any changes.**
-> Last updated: 2026-03-03 (commit b07f99c)
+> Last updated: 2026-03-03 (post-audit)
 
 ---
 
@@ -189,9 +189,9 @@ Footer
 | `/public/images/logowhite.png` | ✅ confirmed | Footer |
 | `/public/images/og-image.jpg` | ✅ confirmed (1200×630) | `layout.tsx` OG + Twitter meta |
 | `/public/images/favicon.png` | ✅ confirmed | `layout.tsx` icon |
-| `/public/images/ourstory.png` | ❓ unconfirmed | `AboutBlock.tsx` |
-| `/public/images/companies/*.png` | ❓ unconfirmed | `CompanyLogosSlider.tsx` (12 files) |
-| `/public/textures/globe-dots.png` | ✅ required | `GitHubHeroGlobe.tsx` dot texture — must exist |
+| `/public/images/ourstory.png` | ✅ confirmed | `AboutBlock.tsx` |
+| `/public/images/companies/*.png` | ✅ confirmed (14 files) | `CompanyLogosSlider.tsx` — 12 logos + `americanexpress.png` + `walmart.webp` (extras) |
+| `/public/textures/globe-dots.png` | ✅ confirmed | `GitHubHeroGlobe.tsx` dot texture overlay |
 | `/public/robots.txt` | ✅ exists | Allows all crawlers, points to sitemap |
 | `/public/sitemap.xml` | ✅ exists | All 9 routes listed; up to date |
 
@@ -207,6 +207,25 @@ Footer
 - `public/robots.txt`: `Allow: /` — points to sitemap
 - `public/sitemap.xml`: all 9 live routes with `lastmod`, `changefreq`, `priority`
 - Google Search Console verified via meta tag: `lTHT9Cq0sXbeki75IwJfOWCxDfDsP1-Cq87NAvoaOgk`
+
+### Per-Route Metadata Audit (2026-03-03) — All ✅
+| Route | Mechanism | Status |
+|-------|-----------|--------|
+| `/` | `layout.tsx` `metadata` export | ✅ title, description, OG, Twitter, canonical, robots |
+| `/book-a-call` | `layout.tsx` `metadata` export | ✅ title, description, OG, Twitter, canonical |
+| `/blog` | `page.tsx` `metadata` export | ✅ title, description, OG |
+| `/blog/[slug]` | `generateMetadata()` per-post | ✅ title, description, OG (article), Twitter, canonical; + Article + FAQPage JSON-LD |
+| `/privacy-policy` | `page.tsx` `metadata` export | ✅ title, description, canonical, robots index/follow |
+| `/terms` | `page.tsx` `metadata` export | ✅ title, description, canonical, robots index/follow |
+
+### Alt Text Audit (2026-03-03) — All ✅
+| Component | Images | Alt Text Status |
+|-----------|--------|----------------|
+| `Header.tsx` | `logo.png` | ✅ `"Remote ACKtive Logo"` |
+| `Footer.tsx` | `logowhite.png` | ✅ `"Remote ACKtive Logo"` |
+| `CompanyLogosSlider.tsx` | 12 logos | ✅ `"${company} logo"` (dynamic) |
+| `AboutBlock.tsx` | `ourstory.png` | ✅ `alt=""` — decorative, parent `aria-hidden="true"` |
+| `Testimonials.tsx` | None | ✅ CSS-only avatars, no `<img>` tags |
 
 ### When to Resubmit Sitemap to Google Search Console
 **Resubmit ONLY when:**
@@ -285,6 +304,7 @@ RESEND_API_KEY=re_...    # Resend email delivery API key (required)
 | `a7b1220` | Added `/privacy-policy` and `/terms` pages; fixed all `#` placeholder links in Footer and CookieConsent |
 | `59961c5` | *(pre-session baseline — blog, book-a-call, all routes working)* |
 | `b07f99c` | Rate limiting on `/api/contact` (5 req/IP/hr in-memory); `GlobeWithFallback.tsx` error boundary; `GitHubHeroGlobe.tsx` loading state; `HeroWithGlobe.tsx` updated to use wrapper; CLAUDE.md updated |
+| *(next)* | SEO/image audit: all per-route metadata verified ✅; all alt texts verified ✅; all public assets confirmed present ✅; CLAUDE.md updated |
 
 ---
 
@@ -292,8 +312,6 @@ RESEND_API_KEY=re_...    # Resend email delivery API key (required)
 
 | Priority | Issue | Status |
 |----------|-------|--------|
-| Medium | `/public/images/ourstory.png` — existence unconfirmed | ❓ Needs audit |
-| Medium | `/public/images/companies/*.png` — 12 files, existence unconfirmed | ❓ Needs audit |
 | Low | Form error messages are hardcoded per-form (not DRY) | 🔲 Backlog |
 | Low | Focus ring color inconsistency: `HireOnlyForm` uses `#57C5CF`, `HireManageForm` uses `#4DD0E1` | 🔲 Backlog |
 
@@ -311,8 +329,8 @@ RESEND_API_KEY=re_...    # Resend email delivery API key (required)
 | Rate limiting on `/api/contact` | ✅ Done — commit `b07f99c` |
 | Three.js globe error boundary | ✅ Done — commit `b07f99c` |
 | Three.js globe loading state | ✅ Done — commit `b07f99c` |
-| Audit all image files in `/public/images/` | 🔲 Pending |
-| Confirm `/public/textures/globe-dots.png` exists | 🔲 Pending |
+| Audit all image files in `/public/images/` | ✅ Done — all confirmed present |
+| Confirm `/public/textures/globe-dots.png` exists | ✅ Done — confirmed present |
 | Add `StatsSection` to homepage | 🔲 Optional |
 | DRY up form error messages | 🔲 Low priority |
 | Normalize focus ring colors across forms | 🔲 Low priority |
