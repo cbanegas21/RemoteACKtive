@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Remote ACKtive",
     images: [
       {
-        url: "/api/og",
+        url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Remote ACKtive - Global Talent Solutions",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Remote ACKtive | Elite Global Talent",
     description: "Scale your business with elite global talent. Save up to 70% on costs. Hire world-class professionals in 3-10 days.",
-    images: ["/api/og"],
+    images: ["/images/og-image.jpg"],
     creator: "@remoteacktive",
   },
   robots: {
