@@ -28,8 +28,12 @@ type Props = { className?: string };
 interface BubbleLocation {
   lat: number;
   lng: number;
-  quote: string;
-  emoji: string;
+  name: string;
+  role: string;
+  country: string;
+  flag: string;
+  initials: string;
+  avatarColor: string;
 }
 
 interface Bubble {
@@ -45,23 +49,23 @@ interface Bubble {
   active: boolean;
 }
 
-// FIXED LOCATIONS - Like pins on the globe
+// FIXED LOCATIONS - Remote worker cards pinned to the globe
 const BUBBLE_LOCATIONS: BubbleLocation[] = [
-  { lat: 40.7128, lng: -74.006, quote: '"Hire without borders"', emoji: '🌍' },
-  { lat: 51.5074, lng: -0.1278, quote: '"Scale with certainty"', emoji: '📈' },
-  { lat: 35.6762, lng: 139.6503, quote: '"Elite remote execution"', emoji: '⚡' },
-  { lat: -33.8688, lng: 151.2093, quote: '"Proven LATAM power"', emoji: '🚀' },
-  { lat: 1.3521, lng: 103.8198, quote: '"Build elite teams"', emoji: '👥' },
-  { lat: 19.4326, lng: -99.1332, quote: '"Faster hiring cycles"', emoji: '⏱️' },
-  { lat: 55.7558, lng: 37.6173, quote: '"Secure data workflows"', emoji: '🔒' },
-  { lat: -23.5505, lng: -46.6333, quote: '"Transparent predictable pricing"', emoji: '💰' },
-  { lat: 28.6139, lng: 77.209, quote: '"Ready to scale"', emoji: '🌟' },
-  { lat: -1.2921, lng: 36.8219, quote: '"Focus on growth"', emoji: '📊' },
-  { lat: 48.8566, lng: 2.3522, quote: '"Global talent pool"', emoji: '🌐' },
-  { lat: -34.6037, lng: -58.3816, quote: '"Seamless collaboration"', emoji: '🤝' },
-  { lat: 37.7749, lng: -122.4194, quote: '"Expert vetting process"', emoji: '✓' },
-  { lat: 52.52, lng: 13.405, quote: '"Time zone coverage"', emoji: '🕐' },
-  { lat: 25.2048, lng: 55.2708, quote: '"Compliance made easy"', emoji: '📋' }
+  { lat: 40.7128,  lng: -74.006,   name: 'Marcus T.',    role: 'Software Engineer',    country: 'United States', flag: '🇺🇸', initials: 'MT', avatarColor: '#4F46E5' },
+  { lat: 51.5074,  lng: -0.1278,   name: 'Priya S.',     role: 'Digital Marketer',     country: 'United Kingdom', flag: '🇬🇧', initials: 'PS', avatarColor: '#0891B2' },
+  { lat: 35.6762,  lng: 139.6503,  name: 'Kenji A.',     role: 'UI/UX Designer',       country: 'Japan',          flag: '🇯🇵', initials: 'KA', avatarColor: '#7C3AED' },
+  { lat: -33.8688, lng: 151.2093,  name: 'Sofia R.',     role: 'Customer Success',     country: 'Australia',      flag: '🇦🇺', initials: 'SR', avatarColor: '#059669' },
+  { lat: 1.3521,   lng: 103.8198,  name: 'David L.',     role: 'Executive Assistant',  country: 'Singapore',      flag: '🇸🇬', initials: 'DL', avatarColor: '#D97706' },
+  { lat: 19.4326,  lng: -99.1332,  name: 'Ana G.',       role: 'Bookkeeper',           country: 'Mexico',         flag: '🇲🇽', initials: 'AG', avatarColor: '#DC2626' },
+  { lat: 55.7558,  lng: 37.6173,   name: 'Ivan P.',      role: 'Backend Developer',    country: 'Russia',         flag: '🇷🇺', initials: 'IP', avatarColor: '#2563EB' },
+  { lat: -23.5505, lng: -46.6333,  name: 'Carla M.',     role: 'Data Analyst',         country: 'Brazil',         flag: '🇧🇷', initials: 'CM', avatarColor: '#16A34A' },
+  { lat: 28.6139,  lng: 77.209,    name: 'Ravi K.',      role: 'Frontend Developer',   country: 'India',          flag: '🇮🇳', initials: 'RK', avatarColor: '#9333EA' },
+  { lat: -1.2921,  lng: 36.8219,   name: 'Amina O.',     role: 'Content Strategist',   country: 'Kenya',          flag: '🇰🇪', initials: 'AO', avatarColor: '#B45309' },
+  { lat: 48.8566,  lng: 2.3522,    name: 'Julien B.',    role: 'Project Manager',      country: 'France',         flag: '🇫🇷', initials: 'JB', avatarColor: '#0E7490' },
+  { lat: -34.6037, lng: -58.3816,  name: 'Diego F.',     role: 'Sales Specialist',     country: 'Argentina',      flag: '🇦🇷', initials: 'DF', avatarColor: '#1D4ED8' },
+  { lat: 37.7749,  lng: -122.4194, name: 'Mei W.',       role: 'DevOps Engineer',      country: 'United States',  flag: '🇺🇸', initials: 'MW', avatarColor: '#0F766E' },
+  { lat: 52.52,    lng: 13.405,    name: 'Nina H.',      role: 'QA Engineer',          country: 'Germany',        flag: '🇩🇪', initials: 'NH', avatarColor: '#6D28D9' },
+  { lat: 25.2048,  lng: 55.2708,   name: 'Omar Y.',      role: 'Operations Manager',   country: 'UAE',            flag: '🇦🇪', initials: 'OY', avatarColor: '#BE185D' },
 ];
 
 export default function GitHubHeroGlobe({ className = '' }: Props) {
@@ -451,22 +455,92 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
       className={`absolute inset-0 ${className}`}
       style={{ width: '100%', height: '100%', position: 'relative' }}
     >
-      {bubbles.filter(b => b.active).map(bubble => (
+      {bubbles.filter(b => b.active && b.opacity > 0).map(bubble => (
         <div
           key={bubble.id}
           className="absolute pointer-events-none"
           style={{
             left: `${bubble.screenPos.x}px`,
             top: `${bubble.screenPos.y}px`,
-            transform: `translate(-50%, -120%) scale(${bubble.scale})`,
+            transform: `translate(-50%, -115%) scale(${bubble.scale})`,
             opacity: bubble.opacity,
-            transition: 'opacity 0.3s, transform 0.3s',
+            transition: 'opacity 0.3s ease, transform 0.3s ease',
           }}
         >
-          <div className="relative bg-[#007AFF] text-white px-3 py-2 rounded-2xl shadow-xl text-xs font-medium whitespace-nowrap">
-            {bubble.location.emoji} {bubble.location.quote}
-            <div 
-              className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#007AFF]"
+          {/* Worker card */}
+          <div
+            className="relative flex items-center gap-2.5 whitespace-nowrap rounded-2xl shadow-2xl"
+            style={{
+              background: 'rgba(10, 22, 40, 0.90)',
+              border: '1px solid rgba(87, 197, 207, 0.30)',
+              backdropFilter: 'blur(12px)',
+              padding: '8px 12px 8px 8px',
+            }}
+          >
+            {/* Avatar circle */}
+            <div
+              className="flex-shrink-0 flex items-center justify-center rounded-full text-white font-bold"
+              style={{
+                width: 32,
+                height: 32,
+                fontSize: 11,
+                background: bubble.location.avatarColor,
+                letterSpacing: 0.5,
+              }}
+            >
+              {bubble.location.initials}
+            </div>
+
+            {/* Text */}
+            <div className="flex flex-col leading-tight">
+              <span
+                className="font-semibold text-white"
+                style={{ fontSize: 12 }}
+              >
+                {bubble.location.name}
+              </span>
+              <span
+                style={{ fontSize: 10, color: '#57C5CF', marginTop: 1 }}
+              >
+                {bubble.location.role}
+              </span>
+              <span
+                style={{ fontSize: 10, color: 'rgba(255,255,255,0.45)', marginTop: 1 }}
+              >
+                {bubble.location.flag} {bubble.location.country}
+              </span>
+            </div>
+
+            {/* Verified badge */}
+            <div
+              className="flex-shrink-0 self-start"
+              style={{ marginTop: 2 }}
+            >
+              <span
+                className="flex items-center justify-center rounded-full"
+                style={{
+                  width: 16,
+                  height: 16,
+                  background: '#4FFFB0',
+                  fontSize: 9,
+                  color: '#0A1628',
+                  fontWeight: 800,
+                }}
+              >
+                ✓
+              </span>
+            </div>
+
+            {/* Downward caret */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 top-full"
+              style={{
+                width: 0,
+                height: 0,
+                borderLeft: '6px solid transparent',
+                borderRight: '6px solid transparent',
+                borderTop: '6px solid rgba(10, 22, 40, 0.90)',
+              }}
             />
           </div>
         </div>

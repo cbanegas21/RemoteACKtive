@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./providers";
 import Script from "next/script";
+import CookieConsent from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
   title: "Remote ACKtive | Elite Global Talent for Your Business",
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Remote ACKtive",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/api/og",
         width: 1200,
         height: 630,
         alt: "Remote ACKtive - Global Talent Solutions",
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Remote ACKtive | Elite Global Talent",
     description: "Scale your business with elite global talent. Save up to 70% on costs. Hire world-class professionals in 3-10 days.",
-    images: ["/images/og-image.jpg"],
+    images: ["/api/og"],
     creator: "@remoteacktive",
   },
   robots: {
@@ -84,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Analytics - Replace GA_MEASUREMENT_ID with your actual ID */}
+        {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-BEYLVNF0X5"
@@ -96,6 +97,29 @@ export default function RootLayout({
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
+
+              // Consent Mode v2 — default denied until user consents
+              gtag('consent', 'default', {
+                ad_storage: 'denied',
+                analytics_storage: 'denied',
+                functionality_storage: 'denied',
+                personalization_storage: 'denied',
+                wait_for_update: 2000,
+              });
+
+              // Restore consent if user already accepted in a prior visit
+              try {
+                var savedConsent = localStorage.getItem('cookie-consent');
+                if (savedConsent === 'accepted') {
+                  gtag('consent', 'update', {
+                    ad_storage: 'granted',
+                    analytics_storage: 'granted',
+                    functionality_storage: 'granted',
+                    personalization_storage: 'granted',
+                  });
+                }
+              } catch(e) {}
+
               gtag('js', new Date());
               gtag('config', 'G-BEYLVNF0X5', {
                 page_path: window.location.pathname,
@@ -181,6 +205,7 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        <CookieConsent />
       </body>
     </html>
   );

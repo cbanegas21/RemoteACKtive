@@ -107,13 +107,13 @@ export default function WhyChooseUs() {
   };
 
   return (
-    <Section id="why" background="dark">
+    <Section id="why" background="light">
       {/* Header */}
       <div className="text-center mb-8">
-        <h2 className="text-white text-3xl md:text-4xl font-bold mb-3">
+        <h2 className="text-gray-900 text-3xl md:text-4xl font-bold mb-3">
           Why Choose Remote ACKtive?
         </h2>
-        <p className="text-gray-300 text-base md:text-lg max-w-3xl mx-auto">
+        <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
           We make hiring global talent simple, affordable, and stress-free
         </p>
       </div>
@@ -127,11 +127,11 @@ export default function WhyChooseUs() {
           return (
             <div
               key={benefit.title}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-background-darkCard p-4 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-white/20"
+              className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-[#57C5CF]/40"
             >
               {/* Image - Top */}
               <div className="relative z-10 mb-4 mx-auto" style={{ maxWidth: '150px' }}>
-                <div className="relative w-full aspect-square rounded-full overflow-hidden bg-gray-800">
+                <div className="relative w-full aspect-square rounded-full overflow-hidden bg-gray-100">
                   <Image
                     src={benefit.image}
                     alt={benefit.imageAlt}
@@ -149,7 +149,7 @@ export default function WhyChooseUs() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-white text-lg font-bold mb-2">
+                <h3 className="text-gray-900 text-lg font-bold mb-2">
                   {benefit.title}
                 </h3>
 
@@ -164,10 +164,10 @@ export default function WhyChooseUs() {
                 <ul className="space-y-2 mt-3 text-left">
                   {benefit.items.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <span className="text-primary-teal mt-0.5 text-base font-bold flex-shrink-0 transition-transform duration-300 group-hover:scale-125">
+                      <span className="text-[#57C5CF] mt-0.5 text-base font-bold flex-shrink-0 transition-transform duration-300 group-hover:scale-125">
                         •
                       </span>
-                      <span className="text-gray-300 leading-snug text-xs flex-1">
+                      <span className="text-gray-600 leading-snug text-xs flex-1">
                         {item}
                       </span>
                     </li>

@@ -1,5 +1,7 @@
+import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,21 +25,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create transporter with your SendGrid SMTP settings
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
-    // Determine form type for subject
+    // Determine form type label
     let formTypeLabel = 'General Inquiry';
     if (formType === 'hire-only') formTypeLabel = 'Hire-Only Request';
     if (formType === 'hire-manage') formTypeLabel = 'Hire + Manage Request';
+    if (formType === 'training') formTypeLabel = 'Training Program Inquiry';
 
     // Email HTML content
     const htmlContent = `
@@ -45,66 +37,73 @@ export async function POST(request: NextRequest) {
       <html>
         <head>
           <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background-color: #2563eb; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
-            .content { background-color: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
-            .field { margin-bottom: 20px; }
-            .field-label { font-weight: bold; color: #1f2937; margin-bottom: 5px; }
-            .field-value { color: #4b5563; }
-            .footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #6b7280; }
+            .header { background: linear-gradient(135deg, #248B93 0%, #1A5538 100%); color: white; padding: 24px 30px; border-radius: 8px 8px 0 0; }
+            .header h2 { margin: 0; font-size: 20px; font-weight: 700; }
+            .header p { margin: 6px 0 0; font-size: 13px; opacity: 0.85; }
+            .content { background-color: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; border: 1px solid #e5e7eb; border-top: none; }
+            .field { margin-bottom: 18px; }
+            .field-label { font-weight: 700; color: #1f2937; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+            .field-value { color: #374151; font-size: 15px; background: white; padding: 10px 14px; border-radius: 6px; border: 1px solid #e5e7eb; }
+            .field-value a { color: #248B93; text-decoration: none; }
+            .badge { display: inline-block; background: #248B93; color: white; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; }
+            .footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #9ca3af; text-align: center; }
           </style>
         </head>
         <body>
           <div class="container">
             <div class="header">
-              <h2 style="margin: 0;">New ${formTypeLabel}</h2>
+              <h2>New Lead — Remote ACKtive</h2>
+              <p>Someone submitted the contact form on remoteacktive.com</p>
             </div>
             <div class="content">
+              <div class="badge">${formTypeLabel}</div>
+
               <div class="field">
-                <div class="field-label">Name:</div>
+                <div class="field-label">Name</div>
                 <div class="field-value">${name}</div>
               </div>
-              
+
               <div class="field">
-                <div class="field-label">Email:</div>
+                <div class="field-label">Email</div>
                 <div class="field-value"><a href="mailto:${email}">${email}</a></div>
               </div>
-              
+
               ${company ? `
               <div class="field">
-                <div class="field-label">Company:</div>
+                <div class="field-label">Company</div>
                 <div class="field-value">${company}</div>
               </div>
               ` : ''}
-              
+
               ${roles ? `
               <div class="field">
-                <div class="field-label">Role(s) to Fill:</div>
+                <div class="field-label">Role(s) to Fill</div>
                 <div class="field-value">${roles}</div>
               </div>
               ` : ''}
-              
+
               ${description ? `
               <div class="field">
-                <div class="field-label">Description:</div>
+                <div class="field-label">Message / Description</div>
                 <div class="field-value">${description.replace(/\n/g, '<br>')}</div>
               </div>
               ` : ''}
-              
+
               ${referral ? `
               <div class="field">
-                <div class="field-label">How they heard about us:</div>
+                <div class="field-label">How They Heard About Us</div>
                 <div class="field-value">${referral}</div>
               </div>
               ` : ''}
-              
+
               <div class="footer">
-                <p>This email was sent from the Remote ACKtive contact form.</p>
-                <p>Submitted on: ${new Date().toLocaleString('en-US', { 
+                <p>Remote ACKtive · remoteacktive.com · admin@remoteacktive.com</p>
+                <p>Submitted: ${new Date().toLocaleString('en-US', {
                   timeZone: 'America/Chicago',
                   dateStyle: 'full',
-                  timeStyle: 'long'
+                  timeStyle: 'short'
                 })}</p>
               </div>
             </div>
@@ -113,29 +112,39 @@ export async function POST(request: NextRequest) {
       </html>
     `;
 
-    // Send email
-    await transporter.sendMail({
-      from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
-      to: process.env.SMTP_TO_SALES,
+    const { error } = await resend.emails.send({
+      from: 'Remote ACKtive <admin@remoteacktive.com>',
+      to: ['admin@remoteacktive.com'],
       replyTo: email,
-      subject: `New ${formTypeLabel} from ${name}`,
+      subject: `🔔 New ${formTypeLabel} from ${name}`,
       html: htmlContent,
       text: `
-New ${formTypeLabel}
+New ${formTypeLabel} — Remote ACKtive
 
 Name: ${name}
 Email: ${email}
 ${company ? `Company: ${company}` : ''}
 ${roles ? `Role(s): ${roles}` : ''}
-${description ? `Description: ${description}` : ''}
+${description ? `Message: ${description}` : ''}
 ${referral ? `Referral Source: ${referral}` : ''}
+
+Submitted: ${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })}
       `.trim(),
     });
+
+    if (error) {
+      console.error('Resend error:', error);
+      return NextResponse.json(
+        { error: 'Failed to send message. Please try again or contact us directly at admin@remoteacktive.com' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { message: 'Message sent successfully!' },
       { status: 200 }
     );
+
   } catch (error) {
     console.error('Contact form error:', error);
     return NextResponse.json(
