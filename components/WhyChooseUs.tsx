@@ -9,7 +9,7 @@ export default function WhyChooseUs() {
       icon: DollarSign,
       title: "Cost-Effective Solutions",
       tagline: "Save up to 60% on hiring costs",
-      image: "/images/why-us/cost-effective.jpg",
+      image: "/images/why-us/cost-effective.png",
       imageAlt: "Cost effective outsourcing",
       color: "blue",
       items: [
@@ -23,7 +23,7 @@ export default function WhyChooseUs() {
       icon: UserCheck,
       title: "Handpicked Professionals",
       tagline: "Top 5% talent only",
-      image: "/images/why-us/handpicked.jpg",
+      image: "/images/why-us/handpicked.png",
       imageAlt: "Handpicked talent screening",
       color: "purple",
       items: [
@@ -37,7 +37,7 @@ export default function WhyChooseUs() {
       icon: Zap,
       title: "Speedy Onboarding",
       tagline: "Average 7 days to hire",
-      image: "/images/why-us/speedy.jpg",
+      image: "/images/why-us/speedy.png",
       imageAlt: "Fast onboarding process",
       color: "yellow",
       items: [
@@ -51,7 +51,7 @@ export default function WhyChooseUs() {
       icon: Globe,
       title: "Global Perspective",
       tagline: "50+ countries covered",
-      image: "/images/why-us/global.jpg",
+      image: "/images/why-us/global.png",
       imageAlt: "Global remote team",
       color: "green",
       items: [
