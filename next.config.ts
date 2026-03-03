@@ -1,11 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Disable ESLint during build (you can fix warnings later)
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  
   // Enable static optimization for better SEO
   output: 'standalone',
   
