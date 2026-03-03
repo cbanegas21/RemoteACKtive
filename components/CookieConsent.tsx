@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -59,13 +60,12 @@ export default function CookieConsent() {
               <p className="text-white/55 text-xs leading-relaxed">
                 We use analytics cookies to understand how visitors use our site, and marketing cookies
                 for retargeting. You can accept all cookies or decline non-essential ones.{' '}
-                <a
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
+                <Link
+                  href="/privacy-policy"
                   className="text-[#57C5CF] hover:underline"
                 >
                   Privacy Policy
-                </a>
+                </Link>
               </p>
             </div>
           </div>

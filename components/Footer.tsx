@@ -17,8 +17,8 @@ export default function Footer() {
       { label: "Book a Call",     href: "/book-a-call" },
       { label: "Why Choose Us",   href: "/#why" },
       { label: "Contact",         href: "/#contact" },
-      { label: "Privacy Policy",  href: "#" },
-      { label: "Terms of Service", href: "#" },
+      { label: "Privacy Policy",  href: "/privacy-policy" },
+      { label: "Terms of Service", href: "/terms" },
     ],
   };
 
