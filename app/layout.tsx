@@ -143,9 +143,8 @@ export default function RootLayout({
               email: "admin@remoteacktive.com",
               telephone: "+14152511945",
               sameAs: [
-                "https://www.linkedin.com/company/remoteacktive",
-                "https://twitter.com/remoteacktive",
-                "https://www.facebook.com/remoteacktive",
+                "https://www.linkedin.com/company/108573561/",
+                "https://www.facebook.com/profile.php?id=61575144124346",
               ],
               address: {
                 "@type": "PostalAddress",

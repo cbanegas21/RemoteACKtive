@@ -1,30 +1,40 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { blogPosts, formatDate } from '@/lib/blog';
+import type { Metadata } from "next";
+import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { blogPosts } from "@/app/lib/blog";
 
 export const metadata: Metadata = {
-  title: 'Blog | Remote ACKtive — Remote Hiring & Outsourcing Insights',
+  title: "Remote Staffing Blog | Insights on Global Hiring & Outsourcing",
   description:
-    'Practical guides on remote hiring, global outsourcing, cost savings, and building elite distributed teams. Insights from the Remote ACKtive team.',
+    "Expert articles on remote hiring, outsourcing strategy, cost savings, and building global teams. Learn how to scale smarter with Remote ACKtive.",
   alternates: {
-    canonical: 'https://remoteacktive.com/blog',
+    canonical: "https://remoteacktive.com/blog",
   },
   openGraph: {
-    title: 'Blog | Remote ACKtive',
+    title: "Remote Staffing Blog | Remote ACKtive",
     description:
-      'Practical guides on remote hiring, outsourcing, and building elite global teams.',
-    url: 'https://remoteacktive.com/blog',
-    type: 'website',
+      "Expert articles on remote hiring, outsourcing strategy, cost savings, and building global teams.",
+    url: "https://remoteacktive.com/blog",
+    siteName: "Remote ACKtive",
+    type: "website",
   },
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'Cost Savings': 'bg-[#4FFFB0]/15 text-[#1A5538] border-[#4FFFB0]/30',
-  'Hiring Strategy': 'bg-[#57C5CF]/15 text-[#0E7490] border-[#57C5CF]/30',
-  'Our Process': 'bg-[#378B57]/15 text-[#166534] border-[#378B57]/30',
+  "Hiring Strategy": "bg-[#57C5CF]/10 text-[#57C5CF] border-[#57C5CF]/30",
+  "Remote Work": "bg-[#4FFFB0]/10 text-[#4FFFB0] border-[#4FFFB0]/30",
+  "Global Outsourcing": "bg-[#F5A623]/10 text-[#F5A623] border-[#F5A623]/30",
+  "Team Management": "bg-[#378B57]/10 text-[#378B57] border-[#378B57]/30",
+  "Country Guides": "bg-purple-400/10 text-purple-400 border-purple-400/30",
+  "Finance & Growth": "bg-emerald-400/10 text-emerald-400 border-emerald-400/30",
 };
+
+function categoryStyle(cat: string) {
+  return (
+    CATEGORY_COLORS[cat] ?? "bg-[#57C5CF]/10 text-[#57C5CF] border-[#57C5CF]/30"
+  );
+}
 
 export default function BlogPage() {
   const [featured, ...rest] = blogPosts;
@@ -32,125 +42,215 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <main className="bg-[#F7FAFB] min-h-screen pt-24 pb-20">
-        <div className="container mx-auto px-6 max-w-6xl">
 
-          {/* Page Header */}
-          <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-[#4FFFB0]/15 border border-[#378B57]/25 rounded-full px-4 py-1.5 mb-5">
-              <span className="text-sm font-bold text-[#1A5538] tracking-wide uppercase">
-                Insights & Guides
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+      <div className="min-h-screen bg-[#0F1926]">
+        {/* ── Top accent bar ── */}
+        <div
+          className="h-1 w-full"
+          style={{
+            background:
+              "linear-gradient(90deg, #57C5CF 0%, #378B57 50%, #4FFFB0 100%)",
+          }}
+        />
+
+        {/* ── Page header ── */}
+        <div className="pt-24 pb-12 px-6">
+          <div className="max-w-6xl mx-auto text-center">
+            <span className="inline-block bg-[#57C5CF]/10 border border-[#57C5CF]/30 text-[#57C5CF] text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6">
+              Insights &amp; Strategy
+            </span>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
               The Remote ACKtive Blog
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Practical advice on global hiring, outsourcing ROI, and building distributed teams that outperform.
+            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+              Practical guides on remote hiring, outsourcing strategy, global
+              talent, and building high-performance distributed teams.
             </p>
           </div>
+        </div>
 
-          {/* Featured Article */}
-          <Link href={`/blog/${featured.slug}`} className="group block mb-10">
-            <div className="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-lg hover:border-[#57C5CF]/40 transition-all duration-300">
-              <div className="p-8 md:p-10">
-                <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <span
-                    className={`text-xs font-semibold px-3 py-1 rounded-full border ${
-                      CATEGORY_COLORS[featured.category] ?? 'bg-gray-100 text-gray-600 border-gray-200'
-                    }`}
-                  >
-                    {featured.category}
-                  </span>
-                  <span className="text-xs text-gray-400">{formatDate(featured.date)}</span>
-                  <span className="text-xs text-gray-400">·</span>
-                  <span className="text-xs text-gray-400">{featured.readTime}</span>
+        {/* ── Featured post ── */}
+        <div className="px-6 pb-12">
+          <div className="max-w-6xl mx-auto">
+            <Link
+              href={`/blog/${featured.slug}`}
+              className="group block rounded-2xl border border-white/10 bg-[#1E2430] hover:border-[#57C5CF]/40 transition-all duration-300 overflow-hidden"
+            >
+              <div
+                className="h-1 w-full"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #248B93 0%, #1A5538 50%, #4FFFB0 100%)",
+                }}
+              />
+              <div className="p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="bg-[#4FFFB0]/15 border border-[#4FFFB0]/40 text-[#4FFFB0] text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full">
+                      Featured
+                    </span>
+                    <span
+                      className={`border text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-full ${categoryStyle(featured.category)}`}
+                    >
+                      {featured.category}
+                    </span>
+                  </div>
+
+                  <h2 className="text-2xl md:text-3xl font-bold text-white leading-snug group-hover:text-[#57C5CF] transition-colors duration-200 mb-4">
+                    {featured.h1}
+                  </h2>
+
+                  <p className="text-white/60 text-base leading-relaxed mb-6">
+                    {featured.excerpt}
+                  </p>
+
+                  <div className="flex items-center gap-3 text-white/40 text-sm">
+                    <span>{featured.date}</span>
+                    <span>·</span>
+                    <span>{featured.readTime}</span>
+                  </div>
                 </div>
 
-                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-3 group-hover:text-[#0E7490] transition-colors leading-tight">
-                  {featured.title}
-                </h2>
-                <p className="text-gray-600 text-base mb-6 max-w-3xl">{featured.excerpt}</p>
-
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
-                    style={{ background: featured.author.avatarColor }}
-                  >
-                    {featured.author.initials}
+                {/* Right: decorative teaser card */}
+                <div className="hidden md:flex items-center justify-center">
+                  <div className="w-full max-w-xs rounded-xl bg-[#0F1926] border border-white/8 p-6">
+                    <div className="text-[#57C5CF] text-xs font-bold tracking-widest uppercase mb-3">
+                      Key Insight
+                    </div>
+                    <p className="text-white/65 text-sm leading-relaxed">
+                      {featured.sections[0]?.body[0]?.slice(0, 140)}…
+                    </p>
+                    <div className="mt-4 inline-flex items-center gap-2 text-[#4FFFB0] text-sm font-semibold group-hover:gap-3 transition-all duration-200">
+                      Read article
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900">{featured.author.name}</p>
-                    <p className="text-xs text-gray-500">{featured.author.role}</p>
-                  </div>
-                  <span className="ml-auto text-sm font-semibold text-[#0E7490] group-hover:underline">
-                    Read article →
-                  </span>
                 </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
+        </div>
 
-          {/* Article Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {rest.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-                <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 h-full flex flex-col hover:shadow-lg hover:border-[#57C5CF]/40 transition-all duration-300">
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
+        {/* ── All articles grid ── */}
+        <div className="px-6 pb-20">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-white/40 text-xs font-bold tracking-widest uppercase mb-8">
+              All Articles
+            </p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {rest.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group flex flex-col rounded-xl border border-white/10 bg-[#1E2430] hover:border-[#57C5CF]/40 hover:bg-[#1E2430]/80 transition-all duration-300 overflow-hidden"
+                >
+                  <div
+                    className="h-1 w-full flex-shrink-0"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #248B93 0%, #1A5538 100%)",
+                    }}
+                  />
+                  <div className="flex flex-col flex-1 p-6">
                     <span
-                      className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${
-                        CATEGORY_COLORS[post.category] ?? 'bg-gray-100 text-gray-600 border-gray-200'
-                      }`}
+                      className={`self-start border text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-full mb-4 ${categoryStyle(post.category)}`}
                     >
                       {post.category}
                     </span>
-                    <span className="text-xs text-gray-400">{formatDate(post.date)}</span>
-                    <span className="text-xs text-gray-400">· {post.readTime}</span>
-                  </div>
 
-                  <h2 className="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-[#0E7490] transition-colors leading-snug">
-                    {post.title}
-                  </h2>
-                  <p className="text-gray-600 text-sm flex-1 mb-4">{post.excerpt}</p>
+                    <h3 className="text-white font-bold text-lg leading-snug group-hover:text-[#57C5CF] transition-colors duration-200 mb-3 flex-1">
+                      {post.h1}
+                    </h3>
 
-                  <div className="flex items-center gap-2.5 mt-auto">
-                    <div
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
-                      style={{ background: post.author.avatarColor }}
-                    >
-                      {post.author.initials}
+                    <p className="text-white/50 text-sm leading-relaxed mb-6 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between mt-auto">
+                      <div className="text-white/35 text-xs">
+                        {post.date} · {post.readTime}
+                      </div>
+                      <span className="text-[#4FFFB0] text-xs font-semibold group-hover:translate-x-1 transition-transform duration-200 inline-flex items-center gap-1">
+                        Read
+                        <svg
+                          className="w-3 h-3"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2.5}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </span>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-semibold text-gray-900 truncate">{post.author.name}</p>
-                      <p className="text-xs text-gray-500 truncate">{post.author.role}</p>
-                    </div>
-                    <span className="text-xs font-semibold text-[#0E7490] group-hover:underline flex-shrink-0">
-                      Read →
-                    </span>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-
-          {/* CTA */}
-          <div className="mt-16 text-center bg-[#0A1628] rounded-3xl px-8 py-12">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">
-              Ready to Build Your Elite Remote Team?
-            </h2>
-            <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              Get a free 30-minute discovery call. We will map out exactly where you can save and which roles to hire first.
-            </p>
-            <Link
-              href="/book-a-call"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-transparent text-[#4FFFB0] text-base font-bold border-2 border-[#4FFFB0] shadow-lg hover:bg-[#4FFFB0] hover:text-black hover:scale-105 transition-all"
-            >
-              Book a Free Discovery Call
-            </Link>
-          </div>
-
         </div>
-      </main>
+
+        {/* ── CTA banner ── */}
+        <div className="px-6 pb-20">
+          <div className="max-w-6xl mx-auto">
+            <div
+              className="rounded-2xl p-10 md:p-14 text-center border border-[#57C5CF]/15"
+              style={{
+                background:
+                  "linear-gradient(135deg, #0D1F35 0%, #0F1926 55%, #0A2020 100%)",
+              }}
+            >
+              <p className="text-[#57C5CF] text-xs font-bold tracking-widest uppercase mb-4">
+                Ready to act?
+              </p>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
+                Stop overpaying for talent.
+              </h2>
+              <p className="text-white/60 text-lg max-w-xl mx-auto mb-8">
+                Save up to 70% on hiring costs and build a world-class remote
+                team in 3–10 days.
+              </p>
+              <Link
+                href="/book-a-call"
+                className="inline-flex items-center gap-2 bg-[#4FFFB0] text-[#0F1926] font-bold px-8 py-4 rounded-xl hover:bg-[#3de8a0] transition-colors duration-200 text-base"
+              >
+                Book a Free Strategy Call
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <Footer />
     </>
   );
