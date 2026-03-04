@@ -229,7 +229,7 @@ export default function BlogPage() {
               </p>
               <Link
                 href="/book-a-call"
-                className="inline-flex items-center gap-2 bg-[#4FFFB0] text-[#0F1926] font-bold px-8 py-4 rounded-xl hover:bg-[#3de8a0] transition-colors duration-200 text-base"
+                className="inline-flex items-center gap-2 btn-gradient text-[#0F1926] font-bold px-8 py-4 rounded-xl text-base"
               >
                 Book a Free Strategy Call
                 <svg

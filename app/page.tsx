@@ -10,7 +10,7 @@ import DepartmentGrid from "@/components/DepartmentGrid";
 import WhatMakesUsDifferent from "@/components/WhatMakesUsDifferent";
 import AboutBlock from "@/components/AboutBlock";
 import HowItWorks from "@/components/HowItWorks";
-import Testimonials from "@/components/Testimonials";
+import StatsBlock from "@/components/StatsBlock";
 import FAQ from "@/components/FAQ";
 import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
@@ -154,7 +154,7 @@ export default function Home() {
         <WhatMakesUsDifferent />
         <AboutBlock />
         <HowItWorks />
-        <Testimonials />
+        <StatsBlock />
         <FAQ />
         <ContactCTA />
       </main>

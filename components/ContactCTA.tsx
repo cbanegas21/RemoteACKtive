@@ -6,7 +6,6 @@ import { Calendar, Mail, Phone, Star } from "lucide-react";
 import { useFormContext } from "./FormContext";
 import HireOnlyForm from "./HireOnlyForm";
 import HireManageForm from "./HireManageForm";
-import GeneralContactForm from "./GeneralContactForm";
 
 export default function ContactCTA() {
   const { formType, setFormType } = useFormContext();
@@ -27,14 +26,6 @@ export default function ContactCTA() {
       description: "Get recruitment + ongoing management and support",
       buttonText: "Book Discovery Call",
       isFeatured: true
-    },
-    {
-      id: "training" as const,
-      label: "Training Program",
-      title: "Upgrade Your Existing Team?",
-      description: "Training and development for your current offshore team",
-      buttonText: "Learn More",
-      isFeatured: false
     },
   ];
 
@@ -166,7 +157,6 @@ export default function ContactCTA() {
               <div className="transition-opacity duration-300">
                 {formType === "hire-only" && <HireOnlyForm />}
                 {formType === "hire-manage" && <HireManageForm />}
-                {formType === "training" && <GeneralContactForm formType="training" />}
               </div>
             </div>
           </div>

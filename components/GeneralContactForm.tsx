@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { FormSuccess, FormError } from "@/components/FormMessages";
 
 interface GeneralContactFormProps {
   formType?: string;
@@ -154,21 +155,15 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
       </div>
 
       {submitStatus === "success" && (
-        <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400">
-          Thank you! We'll be in touch soon.
-        </div>
+        <FormSuccess message="Thank you! We'll be in touch soon." />
       )}
 
-      {submitStatus === "error" && (
-        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400">
-          Something went wrong. Please try again or email us directly.
-        </div>
-      )}
+      {submitStatus === "error" && <FormError />}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3.5 rounded-full bg-[#4FFFB0] text-black font-bold hover:bg-[#3EE89F] focus:outline-none focus:ring-2 focus:ring-[#4FFFB0] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-[18px]"
+        className="w-full px-6 py-3.5 rounded-full btn-gradient text-black font-bold focus:outline-none focus:ring-2 focus:ring-[#4FFFB0] focus:ring-offset-2 focus:ring-offset-[#1E2430] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-[18px]"
       >
         {isSubmitting ? "Sending..." : "Learn More"}
       </button>

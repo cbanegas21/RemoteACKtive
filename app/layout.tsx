@@ -3,6 +3,21 @@ import "./globals.css";
 import { ThemeProvider } from "./providers";
 import Script from "next/script";
 import CookieConsent from "@/components/CookieConsent";
+import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Remote ACKtive | Elite Global Talent for Your Business",
@@ -83,7 +98,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${bricolage.variable} ${jakarta.variable}`} suppressHydrationWarning>
       <head>
         {/* Google Analytics */}
         <Script
@@ -198,7 +213,7 @@ export default function RootLayout({
           }}
         />
 
-        {/* Preconnect to GTM — fonts.googleapis.com removed (no Google Fonts loaded) */}
+        {/* Preconnect to GTM — Google Fonts loaded via next/font (self-hosted, no external preconnect needed) */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
       </head>
       <body>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState, useRef } from "react";
-import Section from "./Section";
 import { ChevronDown } from "lucide-react";
 
 export default function FAQ() {
@@ -9,158 +8,132 @@ export default function FAQ() {
     () => [
       {
         slug: "timezones",
-        question: "What time zones and hours do offshore professionals work?",
+        question: "My team is in a different time zone — will collaboration still work?",
         answer:
-          "Our offshore professionals work flexible hours and can accommodate most time zones. We'll match you with talent based on your preferred working hours and ensure overlap with your core business hours for seamless collaboration.",
+          "Yes. Our professionals work flexible hours and are matched specifically to your preferred schedule. We ensure meaningful overlap with your core business hours so daily standups, async work, and real-time collaboration all flow without friction.",
       },
       {
         slug: "selection",
-        question: "How do you select the best offshore talent?",
+        question: "How do I know I'm getting the best talent, not just whoever's available?",
         answer:
-          "We use a rigorous 6-step vetting process that includes skills assessment, English fluency testing, personality evaluation, reference checks, AI tool familiarity, and proven track record verification. Only the top candidates make it through to you.",
+          "Every candidate clears a 6-step gauntlet: skills assessments, English fluency testing, personality evaluation, reference verification, AI-tool familiarity, and a proven track record check. Only the top tier reach your shortlist — typically less than 5% of all applicants.",
       },
       {
         slug: "language-barriers",
-        question: "Are there any language barriers with offshore teams?",
+        question: "Will there be communication issues with an overseas hire?",
         answer:
-          "No. We only work with fluent English-speaking professionals who have excellent written and verbal communication skills. Language proficiency is a critical part of our screening process.",
+          "No. English fluency is a hard requirement in our vetting process — both written and verbal. We don't shortlist candidates who can't communicate clearly and confidently, so you'll never experience the friction that comes with weaker language skills.",
       },
       {
         slug: "support",
-        question: "What support do I get when I outsource with Remote ACKtive?",
+        question: "What kind of ongoing support do I actually get?",
         answer:
-          "With our Full Remote ACKtive Experience package, you get end-to-end support including HR assistance, payment management, continuous training, performance monitoring, well-being programs, and access to our expert team for guidance on marketing, AI, SEO, and business operations.",
+          "With our Full Remote ACKtive Experience, you get end-to-end support: HR assistance, payment management, continuous training, performance monitoring, well-being programs, and direct access to our team for guidance on marketing, AI tools, SEO, and operations.",
       },
       {
         slug: "cost",
-        question: "How much does it cost to work with an offshore team?",
+        question: "Is this actually cheaper than hiring locally, once I add everything up?",
         answer:
-          "Our pricing varies based on the role, experience level, and package you choose. On average, clients save 60-70% on operational costs compared to hiring locally. Contact us for a customized quote based on your specific needs.",
+          "Consistently, yes. Our clients average 60–70% savings on total labor costs compared to equivalent U.S. hires — salary, overhead, benefits, and taxes included. Our cost comparison tool on this page breaks it down by role so you can see the real numbers before committing to anything.",
       },
       {
         slug: "not-happy",
-        question: "What if I'm not happy with my outsourced talent?",
+        question: "What if the hire turns out to be a bad fit?",
         answer:
-          "We offer a 100% Client Satisfaction Guarantee. If your outsourced talent isn't the right fit, we'll pause your service and find you a replacement at zero additional cost. Plus, you'll get 1 week of free service to help you settle in with your new team member. This guarantee applies no matter what stage you're in.",
+          "We cover it. If your professional isn't working out, we pause your service, find you a better-matched replacement at zero extra charge, and give you one full week of service free while you transition. This guarantee applies at any stage of the engagement — no time limits, no fine print.",
       },
       {
         slug: "role-types",
-        question: "What types of roles can be outsourced to an offshore team?",
+        question: "What types of work can I actually outsource through Remote ACKtive?",
         answer:
-          "We can help you hire for a wide range of roles including Sales & Business Development, Marketing & Brand Growth, Technical & IT Operations, Finance & Administration, Customer Experience, and Executive & Administrative Support. If you have a specific role in mind, we can likely find the right talent for you.",
+          "Virtually any non-physical role. We place talent across Sales & Business Development, Marketing & Brand Growth, Technical & IT, Finance & Administration, Customer Experience, Creative Services, HR, and Executive Support. If you have a specific role in mind, reach out — we can almost certainly find the right person.",
       },
       {
         slug: "training",
-        question: "Who provides training and ongoing support for offshore teams?",
+        question: "Who handles training and keeping my team sharp over time?",
         answer:
-          "With our Full Remote ACKtive Experience and ACKtive Training Program packages, we provide continuous training, development programs, access to industry experts, and ongoing support to ensure your offshore team stays productive and up-to-date with the latest tools and best practices.",
+          "With our Full Remote ACKtive Experience, we provide continuous development programs, access to industry experts, and ongoing coaching to ensure your remote team stays productive and up-to-date with the latest tools and best practices — without you having to manage it.",
       },
       {
         slug: "quality",
-        question: "How do you ensure the quality of your hires?",
+        question: "How do I know quality won't drop after the first few weeks?",
         answer:
-          "Every candidate undergoes rigorous technical assessments, thorough reference checks, and culture-fit evaluations. We verify work history, test relevant skills, and conduct multiple interviews to ensure they meet our high standards before presenting them to you.",
+          "We don't disappear after placement. Our team actively monitors performance, conducts periodic check-ins, and provides continuous development resources. If we see any issues early, we flag them and course-correct before they become a problem for you.",
       },
       {
         slug: "get-started",
-        question: "How can I get started?",
+        question: "How do I get the process started?",
         answer:
-          "Simply book a discovery call through our website or contact form. We'll have a free strategy session to understand your needs, then begin sourcing candidates. You could be interviewing qualified professionals within 3-10 days.",
+          "Book a free discovery call — it takes 30 minutes. We'll map out exactly where remote talent fits your business, walk you through the process, and start sourcing candidates immediately after. Most clients are interviewing pre-vetted professionals within 3–10 days.",
       },
       {
         slug: "part-time",
-        question: "Can I hire outsourced talent on a part-time basis?",
+        question: "I only need someone part-time — is that possible?",
         answer:
-          "Absolutely! We offer flexible hiring arrangements including full-time, part-time, and project-based engagements. Whether you need 10 hours a week or 40 hours a week, we can match you with professionals who fit your specific requirements and budget.",
+          "Absolutely. We offer full-time, part-time, and project-based arrangements. Whether you need 10 hours a week or 40, we'll match you with a professional whose schedule and capacity align with yours — no forced full-time commitments.",
       },
       {
         slug: "scaling",
-        question: "What if I need to scale my team quickly for an ongoing project?",
+        question: "What if I need to ramp up quickly for a big project?",
         answer:
-          "We specialize in rapid team scaling. Our extensive talent network and streamlined vetting process allow us to quickly deploy multiple team members when you need them. We can help you scale up (or down) as your project demands change, with minimal onboarding friction.",
+          "Rapid scaling is one of our strengths. Our pre-vetted talent pool and streamlined processes let us deploy multiple qualified team members quickly when demand spikes. We can scale up or down as your workload changes, with minimal onboarding friction.",
       },
       {
         slug: "offshore-benefits",
-        question: "What are the benefits of hiring an offshore team?",
+        question: "What's the real advantage over just hiring locally?",
         answer:
-          "Hiring offshore provides significant cost savings (typically 60-70% compared to local hires), access to a global talent pool, round-the-clock productivity across time zones, scalability without long-term commitments, and the ability to focus your local team on core strategic initiatives while offshore teams handle operational tasks.",
+          "60–70% cost savings, access to a larger global talent pool, round-the-clock productivity across time zones, and the ability to scale without long-term overhead commitments. Your local team stays focused on high-leverage strategic work while remote professionals handle the operational load.",
       },
       {
         slug: "start-timeline",
-        question: "Once I decide who to hire, how soon can they start?",
+        question: "Once I pick someone, how long before they actually start?",
         answer:
-          "Once you've selected your ideal candidate, they can typically start within 1-2 weeks. This timeframe includes finalizing contracts, setting up equipment and systems access, and completing any necessary onboarding. In urgent situations, we can often accelerate this timeline to get your new team member working even sooner.",
+          "Typically 1–2 weeks from selection to day one. That covers contract finalization, equipment setup, and onboarding. In urgent situations, we can often compress that timeline — just let us know upfront and we'll build it into the plan.",
       },
     ],
     []
   );
 
   // null = none open, -1 = all open, >=0 = that index open
-  const [openIndex, setOpenIndex] = useState<number | null>(null); // ✅ Fixed: was 0, now null
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const faqRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Handle URL hash on mount and scroll to FAQ if needed
+  /* ── URL hash sync on mount ── */
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const hash = window.location.hash;
-    
-    // Check if it's a FAQ hash
-    if (hash.startsWith("#faq")) {
-      // Extract slug or number from hash
-      const slugMatch = hash.match(/^#faq-(.+)$/);
-      
-      if (slugMatch) {
-        const identifier = slugMatch[1];
-        
-        // Try to find by slug first
-        let idx = faqs.findIndex((faq) => faq.slug === identifier);
-        
-        // Fallback to number (for backward compatibility)
-        if (idx === -1 && !isNaN(Number(identifier))) {
-          idx = Number(identifier);
-        }
-        
-        // If valid index found, open it and scroll to it
-        if (idx >= 0 && idx < faqs.length) {
-          setOpenIndex(idx);
-          
-          // Smooth scroll to the FAQ section after a brief delay
-          setTimeout(() => {
-            faqRefs.current[idx]?.scrollIntoView({
-              behavior: "smooth",
-              block: "center",
-            });
-          }, 100);
-        } else if (hash === "#faq") {
-          // Just scroll to FAQ section
-          setTimeout(() => {
-            const section = document.getElementById("faq");
-            section?.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }, 100);
-        }
+    if (!hash.startsWith("#faq")) return;
+
+    const slugMatch = hash.match(/^#faq-(.+)$/);
+    if (slugMatch) {
+      const identifier = slugMatch[1];
+      let idx = faqs.findIndex((faq) => faq.slug === identifier);
+      if (idx === -1 && !isNaN(Number(identifier))) idx = Number(identifier);
+
+      if (idx >= 0 && idx < faqs.length) {
+        setOpenIndex(idx);
+        setTimeout(() => {
+          faqRefs.current[idx]?.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 100);
+      } else if (hash === "#faq") {
+        setTimeout(() => {
+          document.getElementById("faq")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Sync hash when state changes (only when user interacts)
+  /* ── Write hash when selection changes ── */
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const url = new URL(window.location.href);
-    
     if (openIndex === null || openIndex === -1) {
-      // Only clear hash if we're currently on a FAQ hash
       if (url.hash.startsWith("#faq-")) {
         url.hash = "#faq";
         history.replaceState(null, "", url.toString());
       }
     } else if (openIndex >= 0 && openIndex < faqs.length) {
-      // Use slug instead of index for better URLs
       url.hash = `#faq-${faqs[openIndex].slug}`;
       history.replaceState(null, "", url.toString());
     }
@@ -172,69 +145,120 @@ export default function FAQ() {
 
   const expandAll = () => setOpenIndex(-1);
   const collapseAll = () => setOpenIndex(null);
-
   const isOpen = (idx: number) => openIndex === -1 || openIndex === idx;
 
-  // Keyboard navigation
+  /* ── Keyboard navigation ── */
   const handleKeyDown = (e: React.KeyboardEvent, idx: number) => {
     switch (e.key) {
       case "ArrowDown":
         e.preventDefault();
-        // Focus next FAQ
-        if (idx < faqs.length - 1) {
-          const nextButton = document.getElementById(`faq-btn-${idx + 1}`);
-          nextButton?.focus();
-        }
+        document.getElementById(`faq-btn-${idx + 1}`)?.focus();
         break;
       case "ArrowUp":
         e.preventDefault();
-        // Focus previous FAQ
-        if (idx > 0) {
-          const prevButton = document.getElementById(`faq-btn-${idx - 1}`);
-          prevButton?.focus();
-        }
+        document.getElementById(`faq-btn-${idx - 1}`)?.focus();
         break;
       case "Home":
         e.preventDefault();
-        // Focus first FAQ
-        const firstButton = document.getElementById(`faq-btn-0`);
-        firstButton?.focus();
+        document.getElementById("faq-btn-0")?.focus();
         break;
       case "End":
         e.preventDefault();
-        // Focus last FAQ
-        const lastButton = document.getElementById(`faq-btn-${faqs.length - 1}`);
-        lastButton?.focus();
+        document.getElementById(`faq-btn-${faqs.length - 1}`)?.focus();
         break;
     }
   };
 
-  // Split FAQs into two columns for desktop (7 questions each for 14 total)
-  const leftColumnFaqs = faqs.slice(0, 7);
-  const rightColumnFaqs = faqs.slice(7, 14);
+  /* ── Two-column split ── */
+  const leftFaqs = faqs.slice(0, 7);
+  const rightFaqs = faqs.slice(7);
+
+  /* ── Single FAQ item renderer ── */
+  const renderItem = (faq: (typeof faqs)[0], actualIdx: number) => {
+    const open = isOpen(actualIdx);
+    return (
+      <div
+        key={faq.slug}
+        ref={(el) => {
+          faqRefs.current[actualIdx] = el;
+        }}
+        className="rounded-2xl overflow-hidden border bg-[#1E2430] border-white/8 hover:border-[#57C5CF]/40 transition-colors duration-200"
+        role="listitem"
+      >
+        <button
+          id={`faq-btn-${actualIdx}`}
+          onClick={() => toggleFAQ(actualIdx)}
+          onKeyDown={(e) => handleKeyDown(e, actualIdx)}
+          aria-expanded={open}
+          aria-controls={`faq-panel-${actualIdx}`}
+          className="w-full flex items-center justify-between p-5 text-left gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#57C5CF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2430]"
+        >
+          <span className="text-white font-semibold text-sm leading-snug">
+            {faq.question}
+          </span>
+          <ChevronDown
+            className={`w-4 h-4 flex-shrink-0 text-[#57C5CF] transition-transform duration-300 ${
+              open ? "rotate-180" : ""
+            }`}
+            aria-hidden="true"
+          />
+        </button>
+
+        <div
+          id={`faq-panel-${actualIdx}`}
+          role="region"
+          aria-labelledby={`faq-btn-${actualIdx}`}
+          className={`grid transition-all duration-300 ease-in-out ${
+            open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <div className="px-5 pb-5 pt-0 text-white/55 text-sm leading-relaxed border-t border-white/8 pt-4">
+              {faq.answer}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
-    <Section id="faq" background="gradient">
-      <div className="max-w-7xl mx-auto">
+    <section id="faq" className="py-20 bg-[#0F1926]">
+      <div className="container mx-auto px-6 max-w-6xl">
+
+        {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
-            Frequently Asked Questions
+          <div className="inline-flex items-center gap-2 bg-[#57C5CF]/10 border border-[#57C5CF]/20 rounded-full px-4 py-1.5 mb-5">
+            <span className="text-sm font-bold text-[#57C5CF] tracking-wide uppercase">
+              Got Questions?
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
+            Every concern you have —{" "}
+            <span className="text-[#57C5CF]">answered.</span>
           </h2>
-          <p className="text-gray-300 text-lg">
-            If you can't find the answer you're looking for, simply contact us and one of our friendly admin team will be in touch with you within 1 business day.
+          <p className="text-white/55 text-lg max-w-2xl mx-auto mb-6">
+            Real questions from real clients, answered honestly. Still on the
+            fence?{" "}
+            <a href="/book-a-call" className="text-[#4FFFB0] underline underline-offset-2 hover:text-[#4FFFB0]/80 transition-colors">
+              Book a free call
+            </a>{" "}
+            and we'll answer them live.
           </p>
-          <div className="mt-4 flex items-center justify-center gap-3">
+
+          {/* Expand / Collapse controls */}
+          <div className="flex items-center justify-center gap-3">
             <button
               onClick={expandAll}
-              className="text-sm px-3 py-1.5 rounded-lg border border-white/20 text-white hover:bg-white/5 transition-all duration-200"
               aria-label="Expand all FAQs"
+              className="text-sm px-4 py-2 rounded-lg border border-white/15 text-white/60 hover:border-[#57C5CF]/40 hover:text-white transition-all duration-200"
             >
               Expand all
             </button>
             <button
               onClick={collapseAll}
-              className="text-sm px-3 py-1.5 rounded-lg border border-white/20 text-white hover:bg-white/5 transition-all duration-200"
               aria-label="Collapse all FAQs"
+              className="text-sm px-4 py-2 rounded-lg border border-white/15 text-white/60 hover:border-[#57C5CF]/40 hover:text-white transition-all duration-200"
             >
               Collapse all
             </button>
@@ -242,119 +266,18 @@ export default function FAQ() {
         </div>
 
         {/* Two-column layout on desktop, single column on mobile */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Left Column */}
-          <div className="space-y-4" role="list">
-            {leftColumnFaqs.map((faq, idx) => {
-              const open = isOpen(idx);
-              return (
-                <div
-                  key={faq.slug}
-                  ref={(el) => {
-                    faqRefs.current[idx] = el;
-                  }}
-                  className="rounded-lg overflow-hidden transition-all duration-200
-                    bg-[#1E2430] border border-white/10
-                    hover:shadow-md hover:border-primary-orange/50 hover:bg-[#252b3a]"
-                  role="listitem"
-                >
-                  <button
-                    id={`faq-btn-${idx}`}
-                    onClick={() => toggleFAQ(idx)}
-                    onKeyDown={(e) => handleKeyDown(e, idx)}
-                    aria-expanded={open}
-                    aria-controls={`faq-panel-${idx}`}
-                    className="w-full flex items-center justify-between p-5 text-left transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-orange focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2430]"
-                  >
-                    <span className="text-white font-semibold pr-4">
-                      {faq.question}
-                    </span>
-                    <ChevronDown
-                      className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 text-primary-orange ${
-                        open ? "rotate-180" : ""
-                      }`}
-                      aria-hidden="true"
-                    />
-                  </button>
-
-                  <div
-                    id={`faq-panel-${idx}`}
-                    role="region"
-                    aria-labelledby={`faq-btn-${idx}`}
-                    className={`grid transition-all duration-300 ease-in-out ${
-                      open
-                        ? "grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0"
-                    }`}
-                  >
-                    <div className="min-h-0 overflow-hidden">
-                      <div className="px-5 pb-5 pt-1 leading-relaxed text-gray-300">
-                        {faq.answer}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Left column */}
+          <div className="space-y-3" role="list">
+            {leftFaqs.map((faq, idx) => renderItem(faq, idx))}
           </div>
-
-          {/* Right Column */}
-          <div className="space-y-4" role="list">
-            {rightColumnFaqs.map((faq, idx) => {
-              const actualIdx = idx + 7; // Offset by 7 for correct indexing
-              const open = isOpen(actualIdx);
-              return (
-                <div
-                  key={faq.slug}
-                  ref={(el) => {
-                    faqRefs.current[actualIdx] = el;
-                  }}
-                  className="rounded-lg overflow-hidden transition-all duration-200
-                    bg-[#1E2430] border border-white/10
-                    hover:shadow-md hover:border-primary-orange/50 hover:bg-[#252b3a]"
-                  role="listitem"
-                >
-                  <button
-                    id={`faq-btn-${actualIdx}`}
-                    onClick={() => toggleFAQ(actualIdx)}
-                    onKeyDown={(e) => handleKeyDown(e, actualIdx)}
-                    aria-expanded={open}
-                    aria-controls={`faq-panel-${actualIdx}`}
-                    className="w-full flex items-center justify-between p-5 text-left transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-orange focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2430]"
-                  >
-                    <span className="text-white font-semibold pr-4">
-                      {faq.question}
-                    </span>
-                    <ChevronDown
-                      className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 text-primary-orange ${
-                        open ? "rotate-180" : ""
-                      }`}
-                      aria-hidden="true"
-                    />
-                  </button>
-
-                  <div
-                    id={`faq-panel-${actualIdx}`}
-                    role="region"
-                    aria-labelledby={`faq-btn-${actualIdx}`}
-                    className={`grid transition-all duration-300 ease-in-out ${
-                      open
-                        ? "grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0"
-                    }`}
-                  >
-                    <div className="min-h-0 overflow-hidden">
-                      <div className="px-5 pb-5 pt-1 leading-relaxed text-gray-300">
-                        {faq.answer}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          {/* Right column */}
+          <div className="space-y-3" role="list">
+            {rightFaqs.map((faq, idx) => renderItem(faq, idx + 7))}
           </div>
         </div>
+
       </div>
-    </Section>
+    </section>
   );
 }

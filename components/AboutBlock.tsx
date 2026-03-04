@@ -1,130 +1,189 @@
 "use client";
 import Image from "next/image";
-import Section from "./Section";
-import Card from "./Card";
+
+const values = [
+  {
+    title: "Quality First",
+    description: "We never compromise on the caliber of talent we deliver.",
+  },
+  {
+    title: "Speed & Efficiency",
+    description: "Fast hiring without cutting corners on vetting.",
+  },
+  {
+    title: "Collaboration",
+    description: "We're partners in your success, not just a vendor.",
+  },
+  {
+    title: "Integrity",
+    description: "Transparent pricing, honest communication, no surprises.",
+  },
+  {
+    title: "Innovation",
+    description: "Constantly improving our processes to serve you better.",
+  },
+];
 
 export default function AboutBlock() {
-  // ——— unchanged copy ———
-  const values = [
-    { title: "Quality First",       description: "We never compromise on the caliber of talent we deliver." },
-    { title: "Speed & Efficiency",  description: "Fast hiring without cutting corners on vetting." },
-    { title: "Collaboration",       description: "We're partners in your success, not just a vendor." },
-    { title: "Integrity",           description: "Transparent pricing, honest communication, no surprises." },
-    { title: "Innovation",          description: "Constantly improving our processes to serve you better." },
-  ];
-
   return (
-    <Section id="about" background="gradient">
-      <div className="mx-auto max-w-5xl">
-        {/* Heading */}
-        <div className="text-center mb-10 md:mb-12">
-          <h2 className="text-white text-3xl md:text-4xl font-bold tracking-tight mb-3">
-            About Remote ACKtive
+    <section id="about" className="py-20 bg-[#0F1926]">
+      <div className="container mx-auto px-6 max-w-6xl">
+
+        {/* Header */}
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 bg-[#4FFFB0]/10 border border-[#4FFFB0]/20 rounded-full px-4 py-1.5 mb-5">
+            <span className="text-sm font-bold text-[#4FFFB0] tracking-wide uppercase">
+              Our Story
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
+            Built by founders who felt the pain.{" "}
+            <span className="text-[#4FFFB0]">Built to solve it.</span>
           </h2>
-          <p className="text-base md:text-lg text-primary-teal font-medium">
-            Where global talent meets borderless opportunity
+          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+            Remote ACKtive exists because three people got tired of broken
+            staffing. So they built something better.
           </p>
         </div>
 
-        {/* Story — same text, now with image panel */}
-        <Card variant="dark" className="mb-8 md:mb-10">
-          <div className="grid gap-6 md:grid-cols-3 group">
-            {/* copy (unchanged) */}
-            <div className="md:col-span-2">
-              <h3 className="text-white text-xl font-semibold mb-3">
-                Our Story
+        {/* Story panel */}
+        <div className="rounded-2xl bg-[#1E2430] border border-white/8 overflow-hidden mb-6 group">
+          <div className="grid md:grid-cols-3">
+            {/* Copy — spans 2 cols */}
+            <div className="md:col-span-2 p-8 md:p-10">
+              <h3 className="text-white font-bold text-xl mb-4">
+                How it started
               </h3>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                Remote ACKtive was founded by Andre, Carlos, and Kevin—three
-                professionals who experienced firsthand the challenges of building
-                distributed teams. Frustrated by expensive agencies, lengthy hiring
-                cycles, and inconsistent quality, they set out to create a better way.
+              <p className="text-white/65 leading-relaxed mb-4">
+                Andre, Carlos, and Kevin spent years building distributed teams before
+                founding Remote ACKtive. They knew the frustration firsthand —
+                overpriced agencies, hiring cycles that dragged on for months, and
+                candidates who looked great on paper but disappeared after week two.
               </p>
-              <p className="text-gray-300 leading-relaxed">
-                Today, Remote ACKtive connects businesses with top-tier remote
-                professionals across the globe, combining rigorous vetting with
-                streamlined processes. We believe that the best talent isn't
-                confined by geography, and neither should your growth be.
+              <p className="text-white/65 leading-relaxed mb-8">
+                So they built what they wished existed: a lean, rigorous staffing
+                partner that treats every hire like a long-term investment. Today
+                Remote ACKtive connects businesses worldwide with pre-vetted,
+                high-performing remote professionals — in under two weeks.
               </p>
+
+              {/* Founders strip */}
+              <div className="flex flex-wrap gap-2">
+                {["Andre", "Carlos", "Kevin"].map((name) => (
+                  <div
+                    key={name}
+                    className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1.5"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#57C5CF]/20 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[#57C5CF] text-xs font-extrabold">
+                        {name[0]}
+                      </span>
+                    </div>
+                    <span className="text-white/75 text-sm font-semibold">
+                      {name}
+                    </span>
+                    <span className="text-white/30 text-xs">· Co-Founder</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* image panel using your /public/images/ourstory.png */}
+            {/* Image panel */}
             <div
               aria-hidden="true"
-              className="relative rounded-xl overflow-hidden ring-1 ring-white/10 bg-background-darkCard
-                         transition-transform duration-500 ease-out
-                         group-hover:translate-y-[-2px] group-hover:scale-[1.01]"
+              className="relative md:col-span-1 h-56 md:h-auto overflow-hidden"
             >
-              {/* fixed aspect on desktop, taller on mobile */}
-              <div className="relative h-40 sm:h-48 md:h-full">
-                <Image
-                  src="/images/ourstory.png"
-                  alt=""
-                  fill
-                  priority={false}
-                  className="object-cover"
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                />
-              </div>
-
-              {/* soft gradient for readability + depth */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-transparent" />
-
-              {/* subtle inner border for a premium feel */}
-              <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-white/10" />
+              <Image
+                src="/images/ourstory.png"
+                alt=""
+                fill
+                priority={false}
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                sizes="(min-width: 768px) 33vw, 100vw"
+              />
+              {/* Gradient fade on left edge (desktop) / bottom (mobile) */}
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#1E2430]/80 hidden md:block" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1E2430]/80 to-transparent md:hidden" />
             </div>
           </div>
-        </Card>
-
-        {/* Mission / Vision — same text, cleaner spacing */}
-        <div className="grid gap-6 md:grid-cols-2 mb-8 md:mb-10">
-          <Card variant="dark">
-            <h3 className="text-white text-xl font-semibold mb-2">
-              Our Mission
-            </h3>
-            <p className="text-gray-300 leading-relaxed">
-              To make world-class remote talent accessible, affordable, and
-              effortless for businesses of all sizes.
-            </p>
-          </Card>
-
-          <Card variant="dark">
-            <h3 className="text-white text-xl font-semibold mb-2">
-              Our Vision
-            </h3>
-            <p className="text-gray-300 leading-relaxed">
-              A world where every company can harness global talent to achieve
-              extraordinary results, unrestricted by borders.
-            </p>
-          </Card>
         </div>
 
-        {/* Core Values — same list, tidier layout + tiny hover affordance */}
-        <Card variant="dark" className="bg-gradient-to-br from-[#57C5CF]/10 to-[#378B57]/10 border-[#57C5CF]/20">
-          <h3 className="text-white text-xl font-semibold mb-4">
-            Core Values
-          </h3>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {values.map((value, idx) => (
-              <div
-                key={idx}
-                className="group relative flex items-start gap-3 rounded-lg p-3 -m-1
-                           hover:bg-white/10 transition"
-              >
-                <div className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-primary-teal" />
-                <div>
-                  <h4 className="text-white font-semibold mb-1">
-                    {value.title}
-                  </h4>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+        {/* Mission + Vision */}
+        <div className="grid md:grid-cols-2 gap-5 mb-5">
+          {/* Mission */}
+          <div className="rounded-2xl bg-[#1E2430] border border-[#57C5CF]/20 overflow-hidden">
+            <div
+              className="h-0.5"
+              style={{
+                background:
+                  "linear-gradient(90deg, #57C5CF 0%, transparent 75%)",
+              }}
+            />
+            <div className="p-7">
+              <h3 className="text-white font-bold text-lg mb-3">
+                Our Mission
+              </h3>
+              <p className="text-white/60 leading-relaxed">
+                To make world-class remote talent accessible, affordable, and
+                effortless for businesses of all sizes — so great companies can
+                focus on what they do best.
+              </p>
+            </div>
           </div>
-        </Card>
+
+          {/* Vision */}
+          <div className="rounded-2xl bg-[#1E2430] border border-[#4FFFB0]/20 overflow-hidden">
+            <div
+              className="h-0.5"
+              style={{
+                background:
+                  "linear-gradient(90deg, #4FFFB0 0%, transparent 75%)",
+              }}
+            />
+            <div className="p-7">
+              <h3 className="text-white font-bold text-lg mb-3">
+                Our Vision
+              </h3>
+              <p className="text-white/60 leading-relaxed">
+                A world where every company can harness global talent to achieve
+                extraordinary results — unrestricted by geography, time zones, or
+                budget.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Core Values */}
+        <div className="rounded-2xl bg-[#1E2430] border border-white/8 p-8 md:p-10">
+          <h3 className="text-white font-bold text-lg mb-6">Core Values</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {values.map((value, i) => {
+              const isMint = i % 2 === 1;
+              return (
+                <div
+                  key={value.title}
+                  className="flex items-start gap-3 rounded-xl p-4 bg-white/3 border border-white/6 hover:bg-white/6 transition-colors"
+                >
+                  <div
+                    className={`mt-0.5 h-2.5 w-2.5 rounded-full flex-shrink-0 ${
+                      isMint ? "bg-[#4FFFB0]" : "bg-[#57C5CF]"
+                    }`}
+                  />
+                  <div>
+                    <h4 className="text-white font-semibold text-sm mb-1">
+                      {value.title}
+                    </h4>
+                    <p className="text-white/50 text-sm leading-relaxed">
+                      {value.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
-    </Section>
+    </section>
   );
 }

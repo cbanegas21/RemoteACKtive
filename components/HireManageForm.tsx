@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FormSuccess, FormError } from "@/components/FormMessages";
 
 export default function HireManageForm() {
   const [formData, setFormData] = useState({
@@ -58,7 +59,7 @@ export default function HireManageForm() {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#4DD0E1] bg-[#2A3142] border-gray-600 text-white placeholder-gray-400";
+    "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#57C5CF] bg-[#2A3142] border-gray-600 text-white placeholder-gray-400";
   const labelClass = "block text-sm font-medium mb-2 text-gray-300";
 
   return (
@@ -203,21 +204,15 @@ export default function HireManageForm() {
       </div>
 
       {submitStatus === "success" && (
-        <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400">
-          Thank you! We'll prepare a custom proposal and reach out within 24 hours.
-        </div>
+        <FormSuccess message="Thank you! We'll prepare a custom proposal and reach out within 24 hours." />
       )}
 
-      {submitStatus === "error" && (
-        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400">
-          Something went wrong. Please try again or email us directly at admin@remoteacktive.com
-        </div>
-      )}
+      {submitStatus === "error" && <FormError />}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3.5 rounded-full bg-[#4FFFB0] text-black font-bold hover:bg-[#3EE89F] focus:outline-none focus:ring-2 focus:ring-[#4FFFB0] focus:ring-offset-2 focus:ring-offset-[#1E2430] transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-[18px]"
+        className="w-full px-6 py-3.5 rounded-full btn-gradient text-black font-bold focus:outline-none focus:ring-2 focus:ring-[#4FFFB0] focus:ring-offset-2 focus:ring-offset-[#1E2430] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-[18px]"
       >
         {isSubmitting ? "Sending..." : "Book Discovery Call"}
       </button>

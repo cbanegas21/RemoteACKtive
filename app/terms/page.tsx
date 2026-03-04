@@ -60,10 +60,6 @@ const sections = [
               name: "Full Remote ACKtive Experience",
               desc: "An end-to-end managed solution including candidate sourcing, vetting, HR assistance, payment management, continuous training, performance monitoring, well-being programs, and ongoing operational support.",
             },
-            {
-              name: "ACKtive Training Program",
-              desc: "Ongoing professional development, technical training, and performance enhancement programs for your existing or newly placed offshore team members.",
-            },
           ].map((s) => (
             <div key={s.name} className="bg-[#252c3b] rounded-lg p-4">
               <p className="text-white font-semibold mb-1">{s.name}</p>
@@ -340,12 +336,12 @@ const sections = [
         <p className="mb-3">
           These Terms and any disputes arising hereunder shall be governed by and construed
           in accordance with the laws of the{" "}
-          <strong className="text-white">State of California, United States</strong>, without
+          <strong className="text-white">State of Wyoming, United States</strong>, without
           regard to its conflict of law provisions.
         </p>
         <p>
           You consent to the exclusive jurisdiction of the state and federal courts located
-          in San Francisco County, California for any disputes arising from these Terms or
+          in Laramie County, Wyoming for any disputes arising from these Terms or
           your use of our services. If you are a consumer in a jurisdiction that prohibits
           this choice of law, the laws of your jurisdiction may apply to the extent required.
         </p>
@@ -365,7 +361,7 @@ const sections = [
         <p>
           If a dispute cannot be resolved through negotiation, it shall be submitted to
           binding arbitration under the rules of the American Arbitration Association (AAA),
-          conducted in English in San Francisco, California. The arbitrator&rsquo;s decision
+          conducted in English in Cheyenne, Wyoming. The arbitrator&rsquo;s decision
           shall be final and binding and may be entered as a judgment in any court of
           competent jurisdiction. This clause does not prevent either party from seeking
           emergency injunctive relief.
@@ -417,6 +413,10 @@ const sections = [
         </p>
         <div className="bg-[#252c3b] rounded-xl p-5 space-y-2 text-sm">
           <p className="text-white font-semibold text-base">Remote ACKtive</p>
+          <p>
+            <span className="text-white/50">Address: </span>
+            <span className="text-white/70">1621 Central Ave, Cheyenne, WY 82001</span>
+          </p>
           <p>
             <span className="text-white/50">Email: </span>
             <a href="mailto:admin@remoteacktive.com" className="text-[#57C5CF] hover:underline">
@@ -542,7 +542,7 @@ export default function TermsPage() {
               </p>
               <Link
                 href="/book-a-call"
-                className="flex-shrink-0 inline-flex items-center gap-2 bg-[#4FFFB0] text-[#0F1926] font-bold px-5 py-2.5 rounded-xl hover:bg-[#3de8a0] transition-colors text-sm"
+                className="flex-shrink-0 inline-flex items-center gap-2 btn-gradient text-[#0F1926] font-bold px-5 py-2.5 rounded-xl text-sm"
               >
                 Book a Free Call
               </Link>

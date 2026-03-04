@@ -325,6 +325,10 @@ const sections = [
         <div className="bg-[#252c3b] rounded-xl p-5 space-y-2 text-sm">
           <p className="text-white font-semibold text-base">Remote ACKtive</p>
           <p>
+            <span className="text-white/50">Address: </span>
+            <span className="text-white/70">1621 Central Ave, Cheyenne, WY 82001</span>
+          </p>
+          <p>
             <span className="text-white/50">Email: </span>
             <a href="mailto:admin@remoteacktive.com" className="text-[#57C5CF] hover:underline">
               admin@remoteacktive.com

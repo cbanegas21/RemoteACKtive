@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState } from "react";
 
-type FormType = "general" | "hire-only" | "hire-manage" | "training";
+type FormType = "general" | "hire-only" | "hire-manage";
 
 interface FormContextType {
   formType: FormType;

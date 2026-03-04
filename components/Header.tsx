@@ -58,7 +58,7 @@ export default function Header() {
           </div>
 
           <div className="hidden lg:flex items-center flex-shrink-0">
-            <Link href="/book-a-call" className="px-7 py-3 rounded-full bg-[#4FFFB0] text-black font-bold text-[16px] hover:bg-[#3EE89F] hover:text-black transition shadow-md hover:shadow-lg whitespace-nowrap">
+            <Link href="/book-a-call" className="px-7 py-3 rounded-full btn-gradient text-black font-bold text-[16px] shadow-md hover:shadow-lg whitespace-nowrap">
               Book a Call
             </Link>
           </div>
@@ -87,7 +87,7 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/book-a-call" className="px-6 py-2.5 rounded-full bg-[#4FFFB0] text-black font-bold hover:bg-[#3EE89F] hover:text-black transition text-center shadow-md">
+              <Link href="/book-a-call" className="px-6 py-2.5 rounded-full btn-gradient text-black font-bold text-center shadow-md">
                 Book a Call
               </Link>
             </div>

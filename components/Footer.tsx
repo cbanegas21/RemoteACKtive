@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Mail, Phone, Linkedin, CalendarCheck } from "lucide-react";
+import { Mail, Phone, Linkedin, CalendarCheck, Facebook, MapPin } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -28,6 +28,11 @@ export default function Footer() {
       label: "LinkedIn",
       icon: <Linkedin className="w-4 h-4" />,
     },
+    {
+      href: "https://www.facebook.com/profile.php?id=61575144124346",
+      label: "Facebook",
+      icon: <Facebook className="w-4 h-4" />,
+    },
   ];
 
   return (
@@ -53,16 +58,22 @@ export default function Footer() {
               </span>
             </div>
 
-            <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
+            <p className="text-white/60 text-sm leading-relaxed mb-4 max-w-xs">
               Your gateway to the top 5% of global talent. We vet, place, and
               support elite remote professionals so you can scale faster for
               less.
             </p>
 
+            {/* Address */}
+            <div className="flex items-center gap-2 text-white/40 text-xs mb-6">
+              <MapPin className="w-3.5 h-3.5 flex-shrink-0 text-[#57C5CF]/60" />
+              <span>1621 Central Ave, Cheyenne, WY 82001</span>
+            </div>
+
             {/* CTA button */}
             <a
               href="/book-a-call"
-              className="inline-flex items-center gap-2 bg-[#4FFFB0] text-[#060F1E] text-sm font-bold px-5 py-2.5 rounded-full hover:bg-[#3BECA0] transition-colors"
+              className="inline-flex items-center gap-2 btn-gradient text-[#060F1E] text-sm font-bold px-5 py-2.5 rounded-full"
             >
               <CalendarCheck className="w-4 h-4" />
               Book a Free Call

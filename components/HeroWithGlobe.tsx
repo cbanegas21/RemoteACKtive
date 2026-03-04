@@ -90,7 +90,7 @@ export default function HeroWithGlobe() {
           <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <a
               href="/book-a-call"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#4FFFB0] text-black text-lg font-bold shadow-[0_4px_18px_rgba(79,255,176,0.4)] transition-all hover:bg-[#3EE89F] hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(79,255,176,0.55)] focus:outline-none focus:ring-2 focus:ring-[#4FFFB0]/60"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full btn-gradient text-black text-lg font-bold shadow-[0_4px_18px_rgba(79,255,176,0.4)] hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(79,255,176,0.55)] focus:outline-none focus:ring-2 focus:ring-[#4FFFB0]/60"
             >
               Book a Free Discovery Call
             </a>

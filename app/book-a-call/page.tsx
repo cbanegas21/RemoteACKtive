@@ -5,11 +5,10 @@ import { FormProvider } from "@/components/FormContext";
 import Header from "@/components/Header";
 import HireOnlyForm from "@/components/HireOnlyForm";
 import HireManageForm from "@/components/HireManageForm";
-import GeneralContactForm from "@/components/GeneralContactForm";
 import Footer from "@/components/Footer";
 
 export default function BookACallPage() {
-  const [activeTab, setActiveTab] = useState<"hire-only" | "hire-manage" | "training">("hire-manage");
+  const [activeTab, setActiveTab] = useState<"hire-only" | "hire-manage">("hire-manage");
 
   const tabs = [
     {
@@ -25,13 +24,6 @@ export default function BookACallPage() {
       title: "Ready for Full Outsourcing Support?",
       description: "Get recruitment + ongoing management and support",
       isFeatured: true
-    },
-    {
-      id: "training" as const,
-      label: "Training Program",
-      title: "Upgrade Your Existing Team?",
-      description: "Training and development for your current offshore team",
-      isFeatured: false
     },
   ];
 
@@ -192,7 +184,6 @@ export default function BookACallPage() {
                   <div className="transition-opacity duration-300">
                     {activeTab === "hire-only" && <HireOnlyForm />}
                     {activeTab === "hire-manage" && <HireManageForm />}
-                    {activeTab === "training" && <GeneralContactForm formType="training" />}
                   </div>
 
                   {/* Additional Info */}

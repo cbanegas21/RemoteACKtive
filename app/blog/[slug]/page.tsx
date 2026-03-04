@@ -228,7 +228,7 @@ export default async function BlogPostPage({ params }: Props) {
               </p>
               <Link
                 href="/book-a-call"
-                className="inline-flex items-center gap-2 bg-[#4FFFB0] text-[#0F1926] font-bold px-7 py-3.5 rounded-xl hover:bg-[#3de8a0] transition-colors duration-200 text-sm"
+                className="inline-flex items-center gap-2 btn-gradient text-[#0F1926] font-bold px-7 py-3.5 rounded-xl text-sm"
               >
                 Book a Free Strategy Call
                 <svg

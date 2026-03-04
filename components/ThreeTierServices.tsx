@@ -29,7 +29,7 @@ export default function ThreeTierServices() {
       onClick: () => handleGetStarted("hire-only"),
       highlighted: false,
       checkColor: "text-primary-teal",
-      buttonStyle: "bg-[#4FFFB0] text-black border-2 border-[#4FFFB0] hover:bg-[#3EE89F] hover:text-black",
+      buttonStyle: "btn-gradient text-black",
     },
     {
       name: "Full Remote ACKtive Experience",
@@ -48,7 +48,7 @@ export default function ThreeTierServices() {
       onClick: () => handleGetStarted("hire-manage"),
       highlighted: true,
       checkColor: "text-white",
-      buttonStyle: "bg-[#4FFFB0] text-black hover:bg-[#3EE89F] hover:text-black hover:scale-105 shadow-lg",
+      buttonStyle: "btn-gradient text-black hover:scale-105 shadow-lg",
     },
     {
       name: "ACKtive Training Program",
@@ -66,7 +66,7 @@ export default function ThreeTierServices() {
       onClick: () => handleGetStarted("hire-only"),
       highlighted: false,
       checkColor: "text-primary-teal",
-      buttonStyle: "bg-[#4FFFB0] text-black border-2 border-[#4FFFB0] hover:bg-[#3EE89F] hover:text-black",
+      buttonStyle: "btn-gradient text-black",
     },
   ];
 

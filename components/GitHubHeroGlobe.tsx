@@ -120,7 +120,37 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     scene.add(light1, light2, light3);
 
-    // ATMOSPHERE REMOVED - was creating dark contour around globe
+    // Atmospheric teal halo — soft rim glow, additive so it never darkens the globe
+    const atmosphereMat = new ShaderMaterial({
+      uniforms: {
+        uColor:     { value: new THREE.Color('#57C5CF') },
+        uIntensity: { value: 1.4 },
+      },
+      vertexShader: `
+        varying vec3 vNormal;
+        void main() {
+          vNormal = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3  uColor;
+        uniform float uIntensity;
+        varying vec3  vNormal;
+        void main() {
+          float rim   = 1.0 - abs(dot(normalize(vNormal), vec3(0.0, 0.0, 1.0)));
+          float power = pow(rim, 2.2) * uIntensity;
+          gl_FragColor = vec4(uColor * power, power * 0.6);
+        }
+      `,
+      blending:    AdditiveBlending,
+      transparent: true,
+      depthTest:   false,
+      depthWrite:  false,
+      side:        BackSide,
+    });
+    const atmosphereMesh = new Mesh(new SphereGeometry(2.35, 64, 64), atmosphereMat);
+    scene.add(atmosphereMesh);
 
     const sphereGeometry = new SphereGeometry(2, 64, 64);
     const sphereMaterial = new MeshLambertMaterial({
@@ -323,7 +353,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
           opacity: 0,
           scale: 0,
           birthTime: 0,
-          lifetime: 5000,
+          lifetime: 6000,
           visible: false,
           active: false
         };
@@ -493,69 +523,69 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
             transition: 'opacity 0.3s ease, transform 0.3s ease',
           }}
         >
-          {/* Worker card */}
+          {/* Worker card — compact square ~1:1 ratio */}
           <div
-            className="relative flex items-center gap-2.5 whitespace-nowrap rounded-2xl shadow-2xl"
+            className="relative flex flex-col items-center text-center rounded-2xl shadow-2xl"
             style={{
-              background: 'rgba(10, 22, 40, 0.90)',
-              border: '1px solid rgba(87, 197, 207, 0.30)',
+              background: 'rgba(15, 32, 58, 0.95)',
+              border: '1px solid rgba(87, 197, 207, 0.35)',
               backdropFilter: 'blur(12px)',
-              padding: '8px 12px 8px 8px',
+              padding: '10px 10px',
+              width: 108,
+              boxSizing: 'border-box',
             }}
           >
-            {/* Avatar circle */}
-            <div
-              className="flex-shrink-0 flex items-center justify-center rounded-full text-white font-bold"
-              style={{
-                width: 32,
-                height: 32,
-                fontSize: 11,
-                background: bubble.location.avatarColor,
-                letterSpacing: 0.5,
-              }}
-            >
-              {bubble.location.initials}
-            </div>
-
-            {/* Text */}
-            <div className="flex flex-col leading-tight">
-              <span
-                className="font-semibold text-white"
-                style={{ fontSize: 12 }}
-              >
-                {bubble.location.name}
-              </span>
-              <span
-                style={{ fontSize: 10, color: '#57C5CF', marginTop: 1 }}
-              >
-                {bubble.location.role}
-              </span>
-              <span
-                style={{ fontSize: 10, color: 'rgba(255,255,255,0.45)', marginTop: 1 }}
-              >
-                {bubble.location.flag} {bubble.location.country}
-              </span>
-            </div>
-
-            {/* Verified badge */}
-            <div
-              className="flex-shrink-0 self-start"
-              style={{ marginTop: 2 }}
-            >
-              <span
-                className="flex items-center justify-center rounded-full"
+            {/* Avatar with verified badge overlay */}
+            <div className="relative mb-2">
+              <div
+                className="flex items-center justify-center rounded-full text-white font-bold"
                 style={{
-                  width: 16,
-                  height: 16,
+                  width: 36,
+                  height: 36,
+                  fontSize: 12,
+                  background: bubble.location.avatarColor,
+                  letterSpacing: 0.5,
+                }}
+              >
+                {bubble.location.initials}
+              </div>
+              <span
+                className="absolute -bottom-0.5 -right-0.5 flex items-center justify-center rounded-full"
+                style={{
+                  width: 14,
+                  height: 14,
                   background: '#4FFFB0',
-                  fontSize: 9,
+                  fontSize: 8,
                   color: '#0A1628',
                   fontWeight: 800,
+                  border: '1.5px solid rgba(15, 32, 58, 0.95)',
                 }}
               >
                 ✓
               </span>
             </div>
+
+            {/* Name */}
+            <span
+              className="font-semibold text-white leading-tight"
+              style={{ fontSize: 11 }}
+            >
+              {bubble.location.name}
+            </span>
+
+            {/* Role */}
+            <span
+              style={{ fontSize: 9.5, color: '#57C5CF', marginTop: 2, lineHeight: 1.2 }}
+            >
+              {bubble.location.role}
+            </span>
+
+            {/* Country */}
+            <span
+              style={{ fontSize: 9, color: 'rgba(255,255,255,0.45)', marginTop: 2 }}
+            >
+              {bubble.location.flag} {bubble.location.country}
+            </span>
 
             {/* Downward caret */}
             <div
@@ -565,7 +595,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
                 height: 0,
                 borderLeft: '6px solid transparent',
                 borderRight: '6px solid transparent',
-                borderTop: '6px solid rgba(10, 22, 40, 0.90)',
+                borderTop: '6px solid rgba(15, 32, 58, 0.90)',
               }}
             />
           </div>
