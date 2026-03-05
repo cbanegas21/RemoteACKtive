@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
 import {
+  Color,
   Scene,
   WebGLRenderer,
   PerspectiveCamera,
@@ -133,11 +133,11 @@ const DECO_POSITIONS = [
 
 export default function GitHubHeroGlobe({ className = '' }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [isReady, setIsReady] = useState(false);
   const [cardScale, setCardScale] = useState(1);
   const isReadyRef = useRef(false);
   const bubblesRef = useRef<Bubble[]>([]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const cameraRef = useRef<PerspectiveCamera | null>(null);
   const sphereRef = useRef<Mesh | null>(null);
   const activeIndices = useRef<Set<number>>(new Set());
@@ -150,7 +150,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     const scene = new Scene();
 
-    const renderer = new WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new WebGLRenderer({ alpha: true, antialias: window.innerWidth > 768 });
     renderer.setClearColor(0x000000, 0);
     renderer.domElement.style.display = 'block';
     renderer.domElement.style.position = 'absolute';
@@ -191,7 +191,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     scene.add(light1, light2, light3, light4);
 
-    const sphereGeometry = new SphereGeometry(2, 64, 64);
+    const sphereGeometry = new SphereGeometry(2, 48, 48);
     // ── SILHOUETTE-FADE ShaderMaterial ───────────────────────────────────────
     // MeshLambertMaterial was OPAQUE: WebGL antialiasing at the silhouette created
     // semi-transparent dark pixels that composited over the bright green hero
@@ -201,8 +201,8 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
     //                             — cosA≥0.28 inward     → alpha=1 (fully opaque).
     const sphereMaterial = new ShaderMaterial({
       uniforms: {
-        uColor:     { value: new THREE.Color(0x061828) },
-        uEmissive:  { value: new THREE.Color(0x183848) },
+        uColor:     { value: new Color(0x061828) },
+        uEmissive:  { value: new Color(0x183848) },
         uEmissiveI: { value: 0.45 },
       },
       vertexShader: `
@@ -238,7 +238,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     const daySideMat = new ShaderMaterial({
       uniforms: {
-        uColor: { value: new THREE.Color('#1A9AB5') },   // teal-blue lit side — shifts globe from blue to teal-cyan
+        uColor: { value: new Color('#1A9AB5') },   // teal-blue lit side — shifts globe from blue to teal-cyan
         uLight: { value: new Vector3(-0.6, 0.97, 0.3).normalize() },
         uGain:  { value: 1.4 },
         uSoft:  { value: 1.2 }
@@ -268,7 +268,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
       depthWrite: false,
       side: FrontSide
     });
-    const daySideMesh = new Mesh(new SphereGeometry(2.006, 64, 64), daySideMat);
+    const daySideMesh = new Mesh(new SphereGeometry(2.006, 48, 48), daySideMat);
     sphere.add(daySideMesh);
 
     const loader = new TextureLoader();
@@ -283,13 +283,13 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
       opacity: 0.85
     });
 
-    const overlaySphereGeometry = new SphereGeometry(2.003, 64, 64);
+    const overlaySphereGeometry = new SphereGeometry(2.003, 48, 48);
     const overlaySphere = new Mesh(overlaySphereGeometry, overlayMaterial);
     overlaySphere.castShadow = false;
     overlaySphere.receiveShadow = false;
     sphere.add(overlaySphere);
 
-    const numPoints = 100;
+    const numPoints = 64;
     const start = new Vector3(0, 1.5, 1.3);
     const middle = new Vector3(0.6, 0.6, 3.2);
     const end = new Vector3(1.5, -1, 0.8);
@@ -298,7 +298,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
     const tubeMaterial = new MeshBasicMaterial({ color: 0xd965fa });
 
     const makeTube = (rot: { x?: number; y?: number; z?: number } = {}) => {
-      const geom = new TubeGeometry(curveQuad, numPoints, 0.01, 20, false);
+      const geom = new TubeGeometry(curveQuad, numPoints, 0.01, 8, false);
       geom.setDrawRange(0, 10000);
       const mesh = new Mesh(geom, tubeMaterial);
       mesh.rotation.set(rot.x ?? 0, rot.y ?? 0, rot.z ?? 0);
@@ -589,7 +589,20 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
       });
 
       bubblesRef.current = updatedBubbles;
-      setBubbles([...updatedBubbles]);
+
+      // ── DIRECT DOM UPDATE — eliminates 60fps React re-renders ──────────
+      updatedBubbles.forEach((bubble, i) => {
+        const el = cardRefs.current[i];
+        if (!el) return;
+        if (bubble.active && bubble.opacity > 0) {
+          el.style.display = '';
+          el.style.left = `${bubble.screenPos.x}px`;
+          el.style.top = `${bubble.screenPos.y}px`;
+          el.style.opacity = String(bubble.opacity);
+        } else if (el.style.display !== 'none') {
+          el.style.display = 'none';
+        }
+      });
 
       renderer.render(scene, camera);
       animFrameId = requestAnimationFrame(animate);
@@ -648,26 +661,18 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
         </div>
       )}
 
-      {bubbles.filter(b => b.active && b.opacity > 0).map(bubble => (
+      {/* ── PRE-RENDERED WORKER CARDS — positioned via refs in rAF loop ── */}
+      {BUBBLE_LOCATIONS.map((location, i) => (
         <div
-          key={bubble.id}
+          key={i}
+          ref={el => { cardRefs.current[i] = el; }}
           className="absolute pointer-events-none"
-          style={{
-            left: `${bubble.screenPos.x}px`,
-            top: `${bubble.screenPos.y}px`,
-            opacity: bubble.opacity,
-          }}
+          style={{ display: 'none' }}
         >
-          {/* ── WORKER CARD — floats up from the base of the pillar ──────── */}
           <div
             className="absolute"
             style={{ transform: 'translate(-50%, -115%)' }}
           >
-            {/*
-              Scale wrapper — anchored at bottom-center (the pillar contact point).
-              When the globe container is smaller than 1100px, cards shrink from
-              their base upward so they stay visually connected to the pillar.
-            */}
             <div style={{ transform: `scale(${cardScale})`, transformOrigin: 'center bottom' }}>
               <div
                 className="relative flex flex-col items-center text-center rounded-2xl shadow-2xl"
@@ -681,7 +686,6 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
                   boxSizing: 'border-box',
                 }}
               >
-                {/* Avatar with verified badge overlay */}
                 <div className="relative mb-2">
                   <div
                     className="flex items-center justify-center rounded-full text-white font-bold"
@@ -689,11 +693,11 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
                       width: 36,
                       height: 36,
                       fontSize: 12,
-                      background: bubble.location.avatarColor,
+                      background: location.avatarColor,
                       letterSpacing: 0.5,
                     }}
                   >
-                    {bubble.location.initials}
+                    {location.initials}
                   </div>
                   <span
                     className="absolute -bottom-0.5 -right-0.5 flex items-center justify-center rounded-full"
@@ -710,30 +714,22 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
                     ✓
                   </span>
                 </div>
-
-                {/* Name */}
                 <span
                   className="font-semibold text-[#0F1926] leading-tight"
                   style={{ fontSize: 11 }}
                 >
-                  {bubble.location.name}
+                  {location.name}
                 </span>
-
-                {/* Role */}
                 <span
                   style={{ fontSize: 9.5, color: '#374151', marginTop: 2, lineHeight: 1.2 }}
                 >
-                  {bubble.location.role}
+                  {location.role}
                 </span>
-
-                {/* Country */}
                 <span
                   style={{ fontSize: 9, color: 'rgba(15,25,38,0.55)', marginTop: 2 }}
                 >
-                  {bubble.location.flag} {bubble.location.country}
+                  {location.flag} {location.country}
                 </span>
-
-                {/* Downward caret — points toward the pillar base */}
                 <div
                   className="absolute left-1/2 -translate-x-1/2 top-full"
                   style={{

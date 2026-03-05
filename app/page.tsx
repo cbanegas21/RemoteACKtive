@@ -1,22 +1,27 @@
 "use client";
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
 import Script from "next/script";
 import Header from "@/components/Header";
 import HeroWithGlobe from "@/components/HeroWithGlobe";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import ThreeTierServices from "@/components/ThreeTierServices";
-import CostComparison from "@/components/CostComparison";
-import GuaranteeSection from "@/components/GuaranteeSection";
-import DepartmentGrid from "@/components/DepartmentGrid";
-import WhatMakesUsDifferent from "@/components/WhatMakesUsDifferent";
-import AboutBlock from "@/components/AboutBlock";
-import HowItWorks from "@/components/HowItWorks";
-import StatsBlock from "@/components/StatsBlock";
-import FAQ from "@/components/FAQ";
-import ContactCTA from "@/components/ContactCTA";
-import Footer from "@/components/Footer";
 import CompanyLogosSlider from "@/components/CompanyLogosSlider";
 import { FormProvider } from "@/components/FormContext";
+
+// ── Lazy-load below-fold sections ──────────────────────────────────────────
+// These components are NOT visible in the initial viewport. Loading them on
+// demand cuts the initial JS bundle dramatically → lower TBT + faster SI.
+const WhyChooseUs = dynamic(() => import("@/components/WhyChooseUs"));
+const ThreeTierServices = dynamic(() => import("@/components/ThreeTierServices"));
+const CostComparison = dynamic(() => import("@/components/CostComparison"));
+const GuaranteeSection = dynamic(() => import("@/components/GuaranteeSection"));
+const DepartmentGrid = dynamic(() => import("@/components/DepartmentGrid"));
+const WhatMakesUsDifferent = dynamic(() => import("@/components/WhatMakesUsDifferent"));
+const AboutBlock = dynamic(() => import("@/components/AboutBlock"));
+const HowItWorks = dynamic(() => import("@/components/HowItWorks"));
+const StatsBlock = dynamic(() => import("@/components/StatsBlock"));
+const FAQ = dynamic(() => import("@/components/FAQ"));
+const ContactCTA = dynamic(() => import("@/components/ContactCTA"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 const faqSchema = {
   "@context": "https://schema.org",
