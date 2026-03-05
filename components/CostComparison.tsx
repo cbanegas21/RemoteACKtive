@@ -230,7 +230,7 @@ export default function CostComparison() {
               <div className="px-6 py-3.5 font-semibold text-white text-sm">
                 {row.label}
               </div>
-              <div className="px-6 py-3.5 text-white/45 text-sm line-through decoration-red-300">
+              <div className="px-6 py-3.5 text-white/70 text-sm line-through decoration-red-300">
                 {row.usRange}
               </div>
               <div className="px-6 py-3.5 text-[#4FFFB0] font-semibold text-sm">

@@ -65,7 +65,7 @@ export default function Footer() {
             </p>
 
             {/* Address */}
-            <div className="flex items-center gap-2 text-white/40 text-xs mb-6">
+            <div className="flex items-center gap-2 text-white/60 text-xs mb-6">
               <MapPin className="w-3.5 h-3.5 flex-shrink-0 text-[#57C5CF]/60" />
               <span>1621 Central Ave, Cheyenne, WY 82001</span>
             </div>
@@ -106,7 +106,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-white/55 text-sm hover:text-white transition-colors"
+                    className="text-white/70 text-sm hover:text-white transition-colors"
                   >
                     {link.label}
                   </a>
@@ -125,7 +125,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-white/55 text-sm hover:text-white transition-colors"
+                    className="text-white/70 text-sm hover:text-white transition-colors"
                   >
                     {link.label}
                   </a>
@@ -156,9 +156,9 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/35">
+        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/60">
           <p>© {currentYear} Remote ACKtive. All rights reserved.</p>
-          <p className="text-white/25">
+          <p className="text-white/50">
             Built for businesses that think globally.
           </p>
         </div>

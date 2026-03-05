@@ -1,7 +1,25 @@
 'use client';
 
 import { Component, ReactNode, ErrorInfo } from 'react';
-import GitHubHeroGlobe from './GitHubHeroGlobe';
+import dynamic from 'next/dynamic';
+
+// ─── Lazy-load Three.js globe ─────────────────────────────────────────────────
+// The globe chunk (~146 KiB) was blocking the main thread for 27+ seconds on
+// initial load. Dynamically importing it with ssr:false defers the entire
+// Three.js bundle until after the critical render path completes.
+const GitHubHeroGlobe = dynamic(() => import('./GitHubHeroGlobe'), {
+  ssr: false,
+  loading: () => (
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 rounded-full animate-pulse"
+      style={{
+        background:
+          'radial-gradient(circle at 50% 50%, rgba(87,197,207,0.18) 0%, rgba(87,197,207,0.06) 40%, transparent 65%)',
+      }}
+    />
+  ),
+});
 
 // ─── Error Boundary ───────────────────────────────────────────────────────────
 // Catches WebGL / Three.js crashes so the rest of the hero never breaks.
