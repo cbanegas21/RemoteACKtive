@@ -43,34 +43,23 @@ export default function BlogPage() {
     <>
       <Header />
 
-      <div className="min-h-screen bg-[#0F1926]">
-        {/* ── Top accent bar ── */}
-        <div
-          className="h-1 w-full"
-          style={{
-            background:
-              "linear-gradient(90deg, #57C5CF 0%, #378B57 50%, #4FFFB0 100%)",
-          }}
-        />
-
-        {/* ── Page header ── */}
-        <div className="pt-24 pb-12 px-6">
-          <div className="max-w-6xl mx-auto text-center">
-            <span className="inline-block bg-[#57C5CF]/10 border border-[#57C5CF]/30 text-[#57C5CF] text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6">
-              Insights &amp; Strategy
-            </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-              The Remote ACKtive Blog
-            </h1>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
-              Practical guides on remote hiring, outsourcing strategy, global
-              talent, and building high-performance distributed teams.
-            </p>
-          </div>
+      {/* ── Hero Section ── */}
+      <section className="relative pt-32 pb-16 bg-gradient-hero overflow-hidden">
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            The Remote ACKtive Blog
+          </h1>
+          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
+            Practical guides on remote hiring, outsourcing strategy, global
+            talent, and building high-performance distributed teams.
+          </p>
         </div>
+      </section>
+
+      <div style={{ background: 'linear-gradient(to right, #2C5364, #203A43, #0F2027)' }}>
 
         {/* ── Featured post ── */}
-        <div className="px-6 pb-12">
+        <div className="px-6 pt-14 pb-12">
           <div className="max-w-6xl mx-auto">
             <Link
               href={`/blog/${featured.slug}`}
@@ -100,11 +89,11 @@ export default function BlogPage() {
                     {featured.h1}
                   </h2>
 
-                  <p className="text-white/60 text-base leading-relaxed mb-6">
+                  <p className="text-white font-medium text-base leading-relaxed mb-6">
                     {featured.excerpt}
                   </p>
 
-                  <div className="flex items-center gap-3 text-white/40 text-sm">
+                  <div className="flex items-center gap-3 text-white/70 font-medium text-sm">
                     <span>{featured.date}</span>
                     <span>·</span>
                     <span>{featured.readTime}</span>
@@ -117,7 +106,7 @@ export default function BlogPage() {
                     <div className="text-[#57C5CF] text-xs font-bold tracking-widest uppercase mb-3">
                       Key Insight
                     </div>
-                    <p className="text-white/65 text-sm leading-relaxed">
+                    <p className="text-white font-medium text-sm leading-relaxed">
                       {featured.sections[0]?.body[0]?.slice(0, 140)}…
                     </p>
                     <div className="mt-4 inline-flex items-center gap-2 text-[#4FFFB0] text-sm font-semibold group-hover:gap-3 transition-all duration-200">
@@ -146,7 +135,7 @@ export default function BlogPage() {
         {/* ── All articles grid ── */}
         <div className="px-6 pb-20">
           <div className="max-w-6xl mx-auto">
-            <p className="text-white/40 text-xs font-bold tracking-widest uppercase mb-8">
+            <p className="text-white text-xs font-bold tracking-widest uppercase mb-8">
               All Articles
             </p>
 
@@ -175,12 +164,12 @@ export default function BlogPage() {
                       {post.h1}
                     </h3>
 
-                    <p className="text-white/50 text-sm leading-relaxed mb-6 line-clamp-3">
+                    <p className="text-white font-medium text-sm leading-relaxed mb-6 line-clamp-3">
                       {post.excerpt}
                     </p>
 
                     <div className="flex items-center justify-between mt-auto">
-                      <div className="text-white/35 text-xs">
+                      <div className="text-white/70 font-medium text-xs">
                         {post.date} · {post.readTime}
                       </div>
                       <span className="text-[#4FFFB0] text-xs font-semibold group-hover:translate-x-1 transition-transform duration-200 inline-flex items-center gap-1">
@@ -223,13 +212,13 @@ export default function BlogPage() {
               <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
                 Stop overpaying for talent.
               </h2>
-              <p className="text-white/60 text-lg max-w-xl mx-auto mb-8">
+              <p className="text-white font-medium text-lg max-w-xl mx-auto mb-8">
                 Save up to 70% on hiring costs and build a world-class remote
                 team in 3–10 days.
               </p>
               <Link
                 href="/book-a-call"
-                className="inline-flex items-center gap-2 btn-gradient text-[#0F1926] font-bold px-8 py-4 rounded-xl text-base"
+                className="inline-flex items-center gap-2 btn-grad text-white font-bold px-8 py-4 rounded-full text-base"
               >
                 Book a Free Strategy Call
                 <svg

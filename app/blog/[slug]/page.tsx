@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: Props) {
         />
       )}
 
-      <div className="min-h-screen bg-[#0F1926]">
+      <div className="min-h-screen" style={{ background: 'linear-gradient(to right, #2C5364, #203A43, #0F2027)' }}>
         {/* Top accent */}
         <div
           className="h-1 w-full"
@@ -119,7 +119,7 @@ export default async function BlogPostPage({ params }: Props) {
             {/* ── Breadcrumb ── */}
             <nav
               aria-label="Breadcrumb"
-              className="flex items-center gap-2 text-sm text-white/40 mb-10"
+              className="flex items-center gap-2 text-sm text-white/70 font-medium mb-10"
             >
               <Link href="/" className="hover:text-white transition-colors">
                 Home
@@ -133,7 +133,7 @@ export default async function BlogPostPage({ params }: Props) {
               <svg className="w-3 h-3 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
-              <span className="text-white/60 truncate max-w-[200px]">{post.h1}</span>
+              <span className="text-white truncate max-w-[200px]">{post.h1}</span>
             </nav>
 
             {/* ── Article header ── */}
@@ -142,16 +142,16 @@ export default async function BlogPostPage({ params }: Props) {
                 <span className="bg-[#57C5CF]/10 border border-[#57C5CF]/30 text-[#57C5CF] text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full">
                   {post.category}
                 </span>
-                <span className="text-white/40 text-sm">{post.date}</span>
-                <span className="text-white/25 text-sm">·</span>
-                <span className="text-white/40 text-sm">{post.readTime}</span>
+                <span className="text-white font-medium text-sm">{post.date}</span>
+                <span className="text-white/50 text-sm">·</span>
+                <span className="text-white font-medium text-sm">{post.readTime}</span>
               </div>
 
               <h1 className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-5">
                 {post.h1}
               </h1>
 
-              <p className="text-lg text-white/65 leading-relaxed mb-8">
+              <p className="text-lg text-white font-medium leading-relaxed mb-8">
                 {post.excerpt}
               </p>
 
@@ -175,7 +175,7 @@ export default async function BlogPostPage({ params }: Props) {
                   {section.body.map((para, pIdx) => (
                     <p
                       key={pIdx}
-                      className="text-white/70 text-base leading-relaxed mb-4"
+                      className="text-white font-medium text-base leading-relaxed mb-4"
                     >
                       {para}
                     </p>
@@ -200,7 +200,7 @@ export default async function BlogPostPage({ params }: Props) {
                               />
                             </svg>
                           </span>
-                          <span className="text-white/70 text-base">{item}</span>
+                          <span className="text-white font-medium text-base">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -223,12 +223,12 @@ export default async function BlogPostPage({ params }: Props) {
               <h2 className="text-xl md:text-2xl font-extrabold text-white mb-3">
                 Find Out How Much You Could Save in 30 Minutes
               </h2>
-              <p className="text-white/55 text-sm max-w-md mx-auto mb-6">
+              <p className="text-white font-medium text-sm max-w-md mx-auto mb-6">
                 Book a free discovery call and we&apos;ll show you exactly which roles to hire first and how much you&apos;ll save.
               </p>
               <Link
                 href="/book-a-call"
-                className="inline-flex items-center gap-2 btn-gradient text-[#0F1926] font-bold px-7 py-3.5 rounded-xl text-sm"
+                className="inline-flex items-center gap-2 btn-grad text-white font-bold px-7 py-3.5 rounded-full text-sm"
               >
                 Book a Free Strategy Call
                 <svg
@@ -259,10 +259,10 @@ export default async function BlogPostPage({ params }: Props) {
                       key={idx}
                       className="rounded-xl border border-white/10 bg-[#1E2430] p-6"
                     >
-                      <h3 className="text-white font-semibold mb-3 leading-snug">
+                      <h3 className="text-white font-bold mb-3 leading-snug">
                         {item.q}
                       </h3>
-                      <p className="text-white/60 text-sm leading-relaxed">
+                      <p className="text-white font-medium text-sm leading-relaxed">
                         {item.a}
                       </p>
                     </div>
@@ -319,7 +319,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="text-center">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-white/70 font-medium hover:text-white transition-colors"
               >
                 <svg
                   className="w-4 h-4"

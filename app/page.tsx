@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import Script from "next/script";
 import Header from "@/components/Header";
 import HeroWithGlobe from "@/components/HeroWithGlobe";
@@ -14,6 +15,7 @@ import StatsBlock from "@/components/StatsBlock";
 import FAQ from "@/components/FAQ";
 import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
+import CompanyLogosSlider from "@/components/CompanyLogosSlider";
 import { FormProvider } from "@/components/FormContext";
 
 const faqSchema = {
@@ -22,120 +24,127 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What time zones and hours do offshore professionals work?",
+      name: "My team is in a different time zone — will collaboration still work?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Our offshore professionals work flexible hours and can accommodate most time zones. We'll match you with talent based on your preferred working hours and ensure overlap with your core business hours for seamless collaboration.",
+        text: "Yes. Our professionals work flexible hours and are matched specifically to your preferred schedule. We ensure meaningful overlap with your core business hours so daily standups, async work, and real-time collaboration all flow without friction.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you select the best offshore talent?",
+      name: "How do I know I'm getting the best talent, not just whoever's available?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We use a rigorous 6-step vetting process that includes skills assessment, English fluency testing, personality evaluation, reference checks, AI tool familiarity, and proven track record verification. Only the top candidates make it through to you.",
+        text: "Every candidate clears a 6-step gauntlet: skills assessments, English fluency testing, personality evaluation, reference verification, AI-tool familiarity, and a proven track record check. Only the top tier reach your shortlist — typically less than 5% of all applicants.",
       },
     },
     {
       "@type": "Question",
-      name: "Are there any language barriers with offshore teams?",
+      name: "Will there be communication issues with an overseas hire?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No. We only work with fluent English-speaking professionals who have excellent written and verbal communication skills. Language proficiency is a critical part of our screening process.",
+        text: "No. English fluency is a hard requirement in our vetting process — both written and verbal. We don't shortlist candidates who can't communicate clearly and confidently, so you'll never experience the friction that comes with weaker language skills.",
       },
     },
     {
       "@type": "Question",
-      name: "What support do I get when I outsource with Remote ACKtive?",
+      name: "What kind of ongoing support do I actually get?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "With our Full Remote ACKtive Experience package, you get end-to-end support including HR assistance, payment management, continuous training, performance monitoring, well-being programs, and access to our expert team for guidance on marketing, AI, SEO, and business operations.",
+        text: "With our Full Remote ACKtive Experience, you get end-to-end support: HR assistance, payment management, continuous training, performance monitoring, well-being programs, and direct access to our team for guidance on marketing, AI tools, SEO, and operations.",
       },
     },
     {
       "@type": "Question",
-      name: "How much does it cost to work with an offshore team?",
+      name: "Is this actually cheaper than hiring locally, once I add everything up?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Our pricing varies based on the role, experience level, and package you choose. On average, clients save 60-70% on operational costs compared to hiring locally. Contact us for a customized quote based on your specific needs.",
+        text: "Consistently, yes. Our clients average 60–70% savings on total labor costs compared to equivalent U.S. hires — salary, overhead, benefits, and taxes included. Our cost comparison tool on this page breaks it down by role so you can see the real numbers before committing to anything.",
       },
     },
     {
       "@type": "Question",
-      name: "What if I'm not happy with my outsourced talent?",
+      name: "What if the hire turns out to be a bad fit?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We offer a 100% Client Satisfaction Guarantee. If your outsourced talent isn't the right fit, we'll pause your service and find you a replacement at zero additional cost. Plus, you'll get 1 week of free service to help you settle in with your new team member.",
+        text: "We cover it. If your professional isn't working out, we pause your service, find you a better-matched replacement at zero extra charge, and give you one full week of service free while you transition. This guarantee applies at any stage of the engagement — no time limits, no fine print.",
       },
     },
     {
       "@type": "Question",
-      name: "What types of roles can be outsourced to an offshore team?",
+      name: "What types of work can I actually outsource through Remote ACKtive?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We can help you hire for a wide range of roles including Sales & Business Development, Marketing & Brand Growth, Technical & IT Operations, Finance & Administration, Customer Experience, and Executive & Administrative Support.",
+        text: "Virtually any non-physical role. We place talent across Sales & Business Development, Marketing & Brand Growth, Technical & IT, Finance & Administration, Customer Experience, Creative Services, HR, and Executive Support. If you have a specific role in mind, reach out — we can almost certainly find the right person.",
       },
     },
     {
       "@type": "Question",
-      name: "Who provides training and ongoing support for offshore teams?",
+      name: "Who handles training and keeping my team sharp over time?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "With our Full Remote ACKtive Experience and ACKtive Training Program packages, we provide continuous training, development programs, access to industry experts, and ongoing support to ensure your offshore team stays productive and up-to-date.",
+        text: "With our Full Remote ACKtive Experience, we provide continuous development programs, access to industry experts, and ongoing coaching to ensure your remote team stays productive and up-to-date with the latest tools and best practices — without you having to manage it.",
       },
     },
     {
       "@type": "Question",
-      name: "How do you ensure the quality of your hires?",
+      name: "How do I know quality won't drop after the first few weeks?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Every candidate undergoes rigorous technical assessments, thorough reference checks, and culture-fit evaluations. We verify work history, test relevant skills, and conduct multiple interviews to ensure they meet our high standards before presenting them to you.",
+        text: "We don't disappear after placement. Our team actively monitors performance, conducts periodic check-ins, and provides continuous development resources. If we see any issues early, we flag them and course-correct before they become a problem for you.",
       },
     },
     {
       "@type": "Question",
-      name: "How can I get started?",
+      name: "How do I get the process started?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Simply book a discovery call through our website or contact form. We'll have a free strategy session to understand your needs, then begin sourcing candidates. You could be interviewing qualified professionals within 3-10 days.",
+        text: "Book a free discovery call — it takes 30 minutes. We'll map out exactly where remote talent fits your business, walk you through the process, and start sourcing candidates immediately after. Most clients are interviewing pre-vetted professionals within 3–10 days.",
       },
     },
     {
       "@type": "Question",
-      name: "Can I hire outsourced talent on a part-time basis?",
+      name: "I only need someone part-time — is that possible?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Absolutely! We offer flexible hiring arrangements including full-time, part-time, and project-based engagements. Whether you need 10 hours a week or 40 hours a week, we can match you with professionals who fit your specific requirements and budget.",
+        text: "Absolutely. We offer full-time, part-time, and project-based arrangements. Whether you need 10 hours a week or 40, we'll match you with a professional whose schedule and capacity align with yours — no forced full-time commitments.",
       },
     },
     {
       "@type": "Question",
-      name: "What if I need to scale my team quickly for an ongoing project?",
+      name: "What if I need to ramp up quickly for a big project?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We specialize in rapid team scaling. Our extensive talent network and streamlined vetting process allow us to quickly deploy multiple team members when you need them. We can help you scale up (or down) as your project demands change.",
+        text: "Rapid scaling is one of our strengths. Our pre-vetted talent pool and streamlined processes let us deploy multiple qualified team members quickly when demand spikes. We can scale up or down as your workload changes, with minimal onboarding friction.",
       },
     },
     {
       "@type": "Question",
-      name: "What are the benefits of hiring an offshore team?",
+      name: "What's the real advantage over just hiring locally?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Hiring offshore provides significant cost savings (typically 60-70% compared to local hires), access to a global talent pool, round-the-clock productivity across time zones, scalability without long-term commitments, and the ability to focus your local team on core strategic initiatives.",
+        text: "60–70% cost savings, access to a larger global talent pool, round-the-clock productivity across time zones, and the ability to scale without long-term overhead commitments. Your local team stays focused on high-leverage strategic work while remote professionals handle the operational load.",
       },
     },
     {
       "@type": "Question",
-      name: "Once I decide who to hire, how soon can they start?",
+      name: "Once I pick someone, how long before they actually start?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Once you've selected your ideal candidate, they can typically start within 1-2 weeks. This timeframe includes finalizing contracts, setting up equipment and systems access, and completing any necessary onboarding. In urgent situations, we can often accelerate this timeline.",
+        text: "Typically 1–2 weeks from selection to day one. That covers contract finalization, equipment setup, and onboarding. In urgent situations, we can often compress that timeline — just let us know upfront and we'll build it into the plan.",
       },
     },
   ],
 };
 
 export default function Home() {
+  useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   return (
     <FormProvider>
       <Script
@@ -146,6 +155,9 @@ export default function Home() {
       <Header />
       <main>
         <HeroWithGlobe />
+        <section style={{ background: 'linear-gradient(to right, #2C5364, #203A43, #0F2027)' }}>
+          <CompanyLogosSlider />
+        </section>
         <WhyChooseUs />
         <ThreeTierServices />
         <CostComparison />

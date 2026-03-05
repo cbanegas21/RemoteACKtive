@@ -1,7 +1,5 @@
 "use client";
 import { useState } from "react";
-import Section from "./Section";
-import Card from "./Card";
 import { Calendar, Mail, Phone, Star } from "lucide-react";
 import { useFormContext } from "./FormContext";
 import HireOnlyForm from "./HireOnlyForm";
@@ -21,7 +19,7 @@ export default function ContactCTA() {
     },
     {
       id: "hire-manage" as const,
-      label: "Full Experience",
+      label: "Recruit + Manage",
       title: "Ready for Full Outsourcing Support?",
       description: "Get recruitment + ongoing management and support",
       buttonText: "Book Discovery Call",
@@ -32,14 +30,14 @@ export default function ContactCTA() {
   const currentTab = tabs.find(tab => tab.id === formType) || tabs[1];
 
   return (
-    <section id="contact" className="relative py-20 bg-background-dark overflow-hidden">
+    <section id="contact" className="relative pt-20 pb-28 overflow-hidden" style={{ background: 'linear-gradient(to right, #3A6073, #16222A)' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-white text-4xl md:text-5xl font-bold mb-4 tracking-tight">
             Ready to Build Your Dream Team?
           </h2>
-          <p className="text-white/90 text-lg md:text-xl">
+          <p className="text-white text-lg md:text-xl">
             Get in touch and let's discuss how we can help you scale
           </p>
         </div>
@@ -55,7 +53,7 @@ export default function ContactCTA() {
               <h3 className="font-bold text-white mb-2 text-lg">
                 Schedule a Meeting
               </h3>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-white text-sm mb-4">
                 Book a time that works for you
               </p>
               <a
@@ -75,7 +73,7 @@ export default function ContactCTA() {
               <h3 className="font-bold text-white mb-2 text-lg">
                 Email Us
               </h3>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-white text-sm mb-4">
                 We'll respond within 24 hours
               </p>
               <a
@@ -93,7 +91,7 @@ export default function ContactCTA() {
               <h3 className="font-bold text-white mb-2 text-lg">
                 Call or Text
               </h3>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-white text-sm mb-4">
                 Speak with our team directly
               </p>
               <a
@@ -114,11 +112,11 @@ export default function ContactCTA() {
                   key={tab.id}
                   onClick={() => setFormType(tab.id)}
                   className={`
-                    px-8 py-4 rounded-full text-base font-bold transition-all
+                    px-8 py-4 rounded-full text-base font-bold transition-all btn-grad
                     ${
                       formType === tab.id
-                        ? "bg-[#4FFFB0] text-black shadow-lg scale-105"
-                        : "bg-transparent border-2 border-gray-600 text-gray-300 hover:border-[#4FFFB0] hover:text-[#4FFFB0]"
+                        ? "scale-105 shadow-xl ring-2 ring-white/20"
+                        : "opacity-50 hover:opacity-80"
                     }
                   `}
                 >
@@ -133,7 +131,7 @@ export default function ContactCTA() {
             </div>
 
             {/* Form Container */}
-            <div className="bg-[#1A2332] rounded-2xl p-8 border border-gray-700 shadow-2xl h-full">
+            <div className="bg-[#1A2332] rounded-2xl p-8 pb-12 border border-white/20 shadow-2xl h-full">
               {/* Most Popular Badge for Featured Tab */}
               {currentTab.isFeatured && (
                 <div className="mb-6">
@@ -148,7 +146,7 @@ export default function ContactCTA() {
                 <h3 className="text-3xl font-bold text-white mb-3">
                   {currentTab.title}
                 </h3>
-                <p className="text-gray-300 text-lg">
+                <p className="text-white text-lg">
                   {currentTab.description}
                 </p>
               </div>

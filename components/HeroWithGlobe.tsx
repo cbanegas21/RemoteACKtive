@@ -1,5 +1,4 @@
 import GlobeWithFallback from './GlobeWithFallback';
-import CompanyLogosSlider from './CompanyLogosSlider';
 
 const stats = [
   { value: '70%',  label: 'Cost Savings'    },
@@ -12,10 +11,10 @@ export default function HeroWithGlobe() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-visible bg-gradient-hero"
+      className="relative min-h-screen overflow-visible"
+      style={{ background: 'linear-gradient(to right, #155799, #159957)' }}
     >
       {/* Background glow — hosted locally for caching + LCP improvement */}
-      {/* TODO: upload hero-glow.svg to /public/images/hero-glow.svg */}
       <img
         src="/images/hero-glow.svg"
         alt=""
@@ -24,40 +23,54 @@ export default function HeroWithGlobe() {
         className="pointer-events-none absolute -z-10 left-1/2 top-[40%] w-[220%] -translate-x-1/2 -translate-y-1/2 opacity-90 mix-blend-screen"
       />
 
-      {/* Globe — right side */}
-      <div className="absolute z-0 right-[-15%] top-[-30vh] w-[min(78vw,1900px)] min-w-[1200px] aspect-square">
-        <div className="relative w-full h-full">
-          {/* Teal halo */}
-          <div
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              width: '90%',
-              height: '90%',
-              transform: 'translate(-50%, -50%)',
-              background: 'radial-gradient(circle, rgba(87,197,207,0.6) 0%, rgba(87,197,207,0.4) 20%, rgba(87,197,207,0.2) 40%, rgba(87,197,207,0) 60%)',
-              filter: 'blur(60px)',
-              pointerEvents: 'none',
-              zIndex: -1,
-              borderRadius: '50%',
-            }}
-          />
-          <div
-            className="pointer-events-auto touch-none w-full h-full opacity-90 rounded-full"
-            style={{
-              filter: 'sepia(100%) saturate(400%) hue-rotate(140deg) brightness(85%)',
-              boxShadow: 'none',
-            }}
-          >
-            <GlobeWithFallback />
-          </div>
+      {/*
+        ── SUN GLOW ──────────────────────────────────────────────────────────────
+        Soft radial "sun behind the planet" effect. Slightly larger and further
+        right than the globe itself so it bleeds out from behind the sphere edge.
+        Colors: bright warm-white core → pale yellow → cool white → transparent.
+        These lighter-than-mint tones are visible against the #34e89e right edge
+        of the hero gradient (the original mint/white colors had zero contrast).
+      */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute z-0
+                   right-[-35%] top-[50vh] -translate-y-1/2
+                   w-[min(117vw,2223px)] min-w-[1650px] aspect-square"
+        style={{
+          background:
+            'radial-gradient(circle at 50% 50%, ' +
+            'rgba(255,255,255,0.92)  0%,  ' +
+            'rgba(255,255,210,0.70)  8%,  ' +
+            'rgba(220,255,245,0.44)  20%, ' +
+            'rgba(160,240,255,0.22)  35%, ' +
+            'rgba(100,215,255,0.08)  52%, ' +
+            'transparent             68%)',
+        }}
+      />
+
+      {/*
+        ── GLOBE ─────────────────────────────────────────────────────────────────
+        FIXED: top-[-30vh] caused viewport-height drift; top-1/2 caused globe to
+        fall to the bottom when the section grew taller than 100vh on small screens.
+        FIX:   top-[50vh] (viewport units) + -translate-y-1/2 → globe center is
+               ALWAYS pinned at exactly 50% of the VIEWPORT height, never shifts.
+        right-[-15%] anchors the globe to the right edge. As the viewport narrows,
+        the globe shifts LEFT (not shrinks) because min-w-[1100px] prevents it from
+        scaling down — it stays large and bleeds off the right naturally. ✅
+        78vw (~1123px at 1440px viewport) matches GitHub's large globe presence;
+        left edge at ~37% from left on desktop, bleeds ~15% off the right.
+      */}
+      <div className="absolute z-0 right-[-15%] top-[50vh] -translate-y-1/2 w-[min(78vw,1900px)] min-w-[1100px] aspect-square">
+        <div
+          className="pointer-events-auto touch-none w-full h-full opacity-90 rounded-full"
+          style={{ boxShadow: 'none' }}
+        >
+          <GlobeWithFallback />
         </div>
       </div>
 
       {/* ── MAIN CONTENT ── */}
-      <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-40 md:pt-44 xl:pt-48 pb-20 min-h-screen flex flex-col justify-center">
+      <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-28 md:pt-32 xl:pt-36 pb-20 min-h-screen flex flex-col justify-center">
         <div className="max-w-[45rem] xl:max-w-[50rem] 2xl:max-w-[54rem] flex-1 flex flex-col justify-center">
 
           {/* Badge pill */}
@@ -68,20 +81,20 @@ export default function HeroWithGlobe() {
             </span>
           </div>
 
-          {/* H1 — two-line money-savings hook */}
+          {/* H1 */}
           <h1 className="text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.08] text-white">
             Stop Overpaying
             <br />
             <span className="text-[#4FFFB0]">for Talent.</span>
           </h1>
 
-          {/* Supporting headline */}
-          <p className="mt-5 text-xl md:text-2xl xl:text-3xl font-semibold text-[#57C5CF] leading-snug">
+          {/* Supporting headline — white, not teal. Teal-on-teal has zero contrast. */}
+          <p className="mt-5 text-xl md:text-2xl xl:text-3xl font-semibold text-white leading-snug">
             Get U.S.-quality work at 70% less — same skill level, zero compromise.
           </p>
 
           {/* Body copy */}
-          <p className="mt-5 text-base md:text-lg xl:text-xl text-white/75 leading-relaxed max-w-xl">
+          <p className="mt-5 text-base md:text-lg xl:text-xl text-white leading-relaxed max-w-xl">
             Pre-vetted professionals from 18+ countries, ready to join your team in 3–10 days.
             No middlemen, no inflated agency fees — just elite global talent that performs.
           </p>
@@ -96,7 +109,7 @@ export default function HeroWithGlobe() {
             </a>
             <a
               href="#how-it-works"
-              className="text-white/80 hover:text-white transition-colors text-base md:text-lg font-medium flex items-center gap-1.5"
+              className="text-white hover:text-white transition-colors text-base md:text-lg font-medium flex items-center gap-1.5"
             >
               See How It Works
               <span aria-hidden="true">→</span>
@@ -110,7 +123,7 @@ export default function HeroWithGlobe() {
                 <span className="text-3xl md:text-4xl font-extrabold text-[#4FFFB0] leading-none tabular-nums">
                   {value}
                 </span>
-                <span className="mt-1.5 text-sm text-white/50 font-medium tracking-wide">
+                <span className="mt-1.5 text-sm text-white font-medium tracking-wide">
                   {label}
                 </span>
               </div>
@@ -119,10 +132,6 @@ export default function HeroWithGlobe() {
 
         </div>
 
-        {/* Logo slider */}
-        <div className="relative z-20 mt-16">
-          <CompanyLogosSlider />
-        </div>
       </div>
     </section>
   );

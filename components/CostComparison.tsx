@@ -68,20 +68,20 @@ export default function CostComparison() {
   const inc = () => setHeadcount((h) => Math.min(20, h + 1));
 
   return (
-    <section id="cost-comparison" className="py-20 bg-[#F7FAFB]">
+    <section id="cost-comparison" className="py-20" style={{ background: 'linear-gradient(to right, #135058, #F1F2B5)' }}>
       <div className="container mx-auto px-6 max-w-6xl">
 
         {/* ── Header ── */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#4FFFB0]/15 border border-[#378B57]/25 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-sm font-bold text-[#1A5538] tracking-wide uppercase">
+          <div className="inline-flex items-center gap-2 bg-black/10 border border-black/20 rounded-full px-4 py-1.5 mb-5">
+            <span className="text-sm font-bold text-black tracking-wide uppercase">
               Real Cost Comparison
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black mb-4 leading-tight">
             See Exactly How Much You Save
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-black max-w-2xl mx-auto">
             Pick a role, set your headcount, and watch the savings add up in real time.
           </p>
         </div>
@@ -90,9 +90,9 @@ export default function CostComparison() {
         <div className="grid lg:grid-cols-2 gap-6 mb-10">
 
           {/* Left — inputs */}
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+          <div className="bg-[#1E2430] rounded-2xl border border-white/10 p-8">
             {/* Step 1: role */}
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+            <p className="text-xs font-bold text-white uppercase tracking-widest mb-4">
               1&nbsp;·&nbsp;Pick a role
             </p>
             <div className="grid grid-cols-2 gap-2 mb-8">
@@ -103,7 +103,7 @@ export default function CostComparison() {
                   className={`text-left px-4 py-3 rounded-xl border text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#57C5CF] ${
                     selectedIdx === i
                       ? 'bg-[#0A1628] border-[#57C5CF]/60 text-white shadow-md'
-                      : 'bg-gray-50 border-gray-200 text-gray-700 hover:border-[#57C5CF]/40 hover:bg-[#57C5CF]/5'
+                      : 'bg-white/5 border-white/10 text-white hover:border-[#57C5CF]/40 hover:bg-[#57C5CF]/5'
                   }`}
                 >
                   {r.label}
@@ -112,28 +112,28 @@ export default function CostComparison() {
             </div>
 
             {/* Step 2: headcount */}
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+            <p className="text-xs font-bold text-white uppercase tracking-widest mb-4">
               2&nbsp;·&nbsp;How many hires?
             </p>
             <div className="flex items-center gap-5">
               <button
                 onClick={dec}
                 aria-label="Decrease headcount"
-                className="w-11 h-11 rounded-full border-2 border-gray-200 text-gray-500 text-xl font-bold hover:border-[#57C5CF] hover:text-[#57C5CF] transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#57C5CF]"
+                className="w-11 h-11 rounded-full border-2 border-white/15 text-white/50 text-xl font-bold hover:border-[#57C5CF] hover:text-[#57C5CF] transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#57C5CF]"
               >
                 −
               </button>
-              <span className="text-5xl font-extrabold text-gray-900 w-14 text-center tabular-nums">
+              <span className="text-5xl font-extrabold text-white w-14 text-center tabular-nums">
                 {headcount}
               </span>
               <button
                 onClick={inc}
                 aria-label="Increase headcount"
-                className="w-11 h-11 rounded-full border-2 border-gray-200 text-gray-500 text-xl font-bold hover:border-[#57C5CF] hover:text-[#57C5CF] transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#57C5CF]"
+                className="w-11 h-11 rounded-full border-2 border-white/15 text-white/50 text-xl font-bold hover:border-[#57C5CF] hover:text-[#57C5CF] transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#57C5CF]"
               >
                 +
               </button>
-              <span className="text-gray-400 text-sm">
+              <span className="text-white text-sm">
                 {headcount === 1 ? 'person' : 'people'}
               </span>
             </div>
@@ -154,13 +154,13 @@ export default function CostComparison() {
 
               {/* US vs RA line items */}
               <div className="flex items-center justify-between mb-2">
-                <span className="text-white/50 text-sm">🇺🇸 U.S. hire / year</span>
-                <span className="text-white/45 text-sm line-through decoration-red-400 tabular-nums">
+                <span className="text-white text-sm">🇺🇸 U.S. hire / year</span>
+                <span className="text-white text-sm line-through decoration-red-400 tabular-nums">
                   {fmt(usTotal)}
                 </span>
               </div>
               <div className="flex items-center justify-between mb-7">
-                <span className="text-white/50 text-sm">✅ Remote ACKtive / year</span>
+                <span className="text-white text-sm">✅ Remote ACKtive / year</span>
                 <span className="text-[#4FFFB0] text-sm font-semibold tabular-nums">
                   {fmt(raTotal)}
                 </span>
@@ -176,7 +176,7 @@ export default function CostComparison() {
               />
 
               {/* Big savings number */}
-              <p className="text-white/40 text-xs uppercase tracking-widest mb-1.5">
+              <p className="text-white text-xs uppercase tracking-widest mb-1.5">
                 Your annual savings
               </p>
               <p className="text-5xl md:text-6xl font-extrabold text-[#4FFFB0] leading-none tabular-nums">
@@ -184,8 +184,8 @@ export default function CostComparison() {
               </p>
 
               <div className="flex flex-wrap items-center gap-3 mt-4">
-                <span className="text-white/45 text-sm tabular-nums">
-                  {fmt(savedMonthly)}<span className="text-white/25"> /mo</span>
+                <span className="text-white text-sm tabular-nums">
+                  {fmt(savedMonthly)}<span className="text-white"> /mo</span>
                 </span>
                 <span className="bg-[#4FFFB0]/15 border border-[#4FFFB0]/30 text-[#4FFFB0] text-xs font-bold px-3 py-1 rounded-full">
                   {pct}% saved
@@ -196,7 +196,7 @@ export default function CostComparison() {
             {/* CTA */}
             <a
               href="/book-a-call"
-              className="mt-8 inline-flex items-center justify-center gap-2 btn-gradient text-[#0F1926] font-bold px-6 py-4 rounded-xl text-sm w-full"
+              className="mt-8 inline-flex items-center justify-center gap-2 btn-grad text-white font-bold px-6 py-4 rounded-full text-sm w-full"
             >
               Like the savings? Book a Free Strategy Call
               <svg
@@ -213,31 +213,31 @@ export default function CostComparison() {
         </div>
 
         {/* ── Reference table — desktop ── */}
-        <div className="hidden md:block rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+        <div className="hidden md:block rounded-2xl overflow-hidden border border-white/10">
           <div className="grid grid-cols-4 bg-[#0A1628] text-white text-xs font-semibold">
-            <div className="px-6 py-4 text-white/50 uppercase tracking-wider">Role</div>
-            <div className="px-6 py-4 text-white/50 uppercase tracking-wider">🇺🇸 U.S. / Year</div>
-            <div className="px-6 py-4 text-white/50 uppercase tracking-wider">✅ Remote ACKtive / Year</div>
+            <div className="px-6 py-4 text-white uppercase tracking-wider">Role</div>
+            <div className="px-6 py-4 text-white uppercase tracking-wider">🇺🇸 U.S. / Year</div>
+            <div className="px-6 py-4 text-white uppercase tracking-wider">✅ Remote ACKtive / Year</div>
             <div className="px-6 py-4 text-[#4FFFB0] uppercase tracking-wider font-bold">💰 Savings</div>
           </div>
           {roles.map((row, idx) => (
             <div
               key={row.label}
-              className={`grid grid-cols-4 border-t border-gray-100 transition-colors hover:bg-[#57C5CF]/5 ${
-                idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'
+              className={`grid grid-cols-4 border-t border-white/5 transition-colors hover:bg-[#57C5CF]/5 ${
+                idx % 2 === 0 ? 'bg-[#1E2430]' : 'bg-[#242C3B]'
               }`}
             >
-              <div className="px-6 py-3.5 font-semibold text-gray-900 text-sm">
+              <div className="px-6 py-3.5 font-semibold text-white text-sm">
                 {row.label}
               </div>
-              <div className="px-6 py-3.5 text-gray-400 text-sm line-through decoration-red-300">
+              <div className="px-6 py-3.5 text-white/45 text-sm line-through decoration-red-300">
                 {row.usRange}
               </div>
-              <div className="px-6 py-3.5 text-[#1A5538] font-semibold text-sm">
+              <div className="px-6 py-3.5 text-[#4FFFB0] font-semibold text-sm">
                 {row.raRange}
               </div>
               <div className="px-6 py-3.5">
-                <span className="inline-block bg-[#4FFFB0]/20 text-[#1A5538] text-xs font-bold px-3 py-1 rounded-full border border-[#4FFFB0]/40">
+                <span className="inline-block bg-[#4FFFB0]/20 text-[#4FFFB0] text-xs font-bold px-3 py-1 rounded-full border border-[#4FFFB0]/40">
                   Up to {Math.round(((roles[idx].usMid - roles[idx].raMid) / roles[idx].usMid) * 100)}% off
                 </span>
               </div>
@@ -250,19 +250,19 @@ export default function CostComparison() {
           {roles.map((row) => (
             <div
               key={row.label}
-              className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm"
+              className="bg-[#1E2430] rounded-xl border border-white/10 p-5"
             >
-              <h3 className="font-bold text-gray-900 mb-3">{row.label}</h3>
+              <h3 className="font-bold text-white mb-3">{row.label}</h3>
               <div className="flex justify-between items-center mb-2">
-                <span className="text-xs text-gray-500 uppercase tracking-wide">🇺🇸 U.S. Cost</span>
-                <span className="text-gray-400 text-sm line-through decoration-red-300">{row.usRange}</span>
+                <span className="text-xs text-white uppercase tracking-wide">🇺🇸 U.S. Cost</span>
+                <span className="text-white text-sm line-through decoration-red-300">{row.usRange}</span>
               </div>
               <div className="flex justify-between items-center mb-3">
-                <span className="text-xs text-gray-500 uppercase tracking-wide">✅ With Us</span>
-                <span className="text-[#1A5538] font-semibold text-sm">{row.raRange}</span>
+                <span className="text-xs text-white uppercase tracking-wide">✅ With Us</span>
+                <span className="text-[#4FFFB0] font-semibold text-sm">{row.raRange}</span>
               </div>
               <div className="text-right">
-                <span className="inline-block bg-[#4FFFB0]/20 text-[#1A5538] text-xs font-bold px-3 py-1 rounded-full border border-[#4FFFB0]/40">
+                <span className="inline-block bg-[#4FFFB0]/20 text-[#4FFFB0] text-xs font-bold px-3 py-1 rounded-full border border-[#4FFFB0]/40">
                   Save {Math.round(((row.usMid - row.raMid) / row.usMid) * 100)}%
                 </span>
               </div>
@@ -270,7 +270,7 @@ export default function CostComparison() {
           ))}
         </div>
 
-        <p className="text-xs text-gray-400 text-center mt-6">
+        <p className="text-sm text-black font-medium text-center mt-6">
           * Figures represent approximate annual all-in costs (salary + overhead + benefits).
           Actual savings vary by role, region, and engagement type.
         </p>

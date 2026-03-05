@@ -20,7 +20,7 @@ export default function BookACallPage() {
     },
     {
       id: "hire-manage" as const,
-      label: "Full Experience",
+      label: "Recruit + Manage",
       title: "Ready for Full Outsourcing Support?",
       description: "Get recruitment + ongoing management and support",
       isFeatured: true
@@ -142,10 +142,11 @@ export default function BookACallPage() {
                       onClick={() => setActiveTab(tab.id)}
                       className={`
                         px-8 py-4 rounded-full text-base font-bold transition-all
+                        btn-grad
                         ${
                           activeTab === tab.id
-                            ? "bg-[#4FFFB0] text-black shadow-lg scale-105"
-                            : "bg-transparent border-2 border-gray-600 text-gray-300 hover:border-[#4FFFB0] hover:text-[#4FFFB0]"
+                            ? "scale-105 shadow-xl ring-2 ring-white/20"
+                            : "opacity-50 hover:opacity-80"
                         }
                       `}
                     >

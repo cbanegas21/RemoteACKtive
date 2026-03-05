@@ -27,13 +27,13 @@ const guarantees = [
 
 export default function GuaranteeSection() {
   return (
-    <section className="py-20 bg-[#0F1926]">
+    <section className="py-20" style={{ background: 'linear-gradient(to right, #2C5364, #203A43, #0F2027)' }}>
       <div className="container mx-auto px-6 max-w-6xl">
 
         {/* Header */}
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 bg-[#4FFFB0]/10 border border-[#4FFFB0]/20 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-sm font-bold text-[#4FFFB0] tracking-wide uppercase">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-5">
+            <span className="text-sm font-bold text-[#57C5CF] tracking-wide uppercase">
               Our Promise
             </span>
           </div>
@@ -41,7 +41,7 @@ export default function GuaranteeSection() {
             100% Satisfaction,{" "}
             <span className="text-[#4FFFB0]">No Exceptions</span>
           </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <p className="text-white/80 text-lg max-w-2xl mx-auto">
             We stand behind every placement. If it&apos;s not right, we make it
             right — immediately and at no cost to you.
           </p>
@@ -55,11 +55,12 @@ export default function GuaranteeSection() {
             return (
               <div
                 key={g.title}
-                className={`rounded-2xl border bg-[#1E2430] p-7 transition-all duration-300 hover:-translate-y-1 ${
+                className={`rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${
                   isMint
                     ? "border-[#4FFFB0]/20 hover:border-[#4FFFB0]/40"
                     : "border-[#57C5CF]/20 hover:border-[#57C5CF]/40"
                 }`}
+                style={{ background: 'linear-gradient(to right, #928DAB, #1F1C2C)' }}
               >
                 <div
                   className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 ${
@@ -75,7 +76,7 @@ export default function GuaranteeSection() {
                 <h3 className="text-white font-bold text-lg mb-2">
                   {g.title}
                 </h3>
-                <p className="text-white/55 text-sm leading-relaxed">
+                <p className="text-white text-sm leading-relaxed">
                   {g.description}
                 </p>
               </div>
@@ -91,14 +92,14 @@ export default function GuaranteeSection() {
             </div>
             <div>
               <p className="text-white font-bold text-lg">Lifetime Guarantee</p>
-              <p className="text-white/50 text-sm">
+              <p className="text-white text-sm">
                 Every hire, every contract, covered — forever.
               </p>
             </div>
           </div>
           <a
             href="/book-a-call"
-            className="inline-flex items-center gap-2 btn-gradient text-[#0F1926] font-bold px-6 py-3 rounded-full text-sm whitespace-nowrap flex-shrink-0"
+            className="inline-flex items-center gap-2 btn-grad text-white font-bold px-6 py-3 rounded-full text-sm whitespace-nowrap flex-shrink-0"
           >
             Claim Your Risk-Free Hire
             <ArrowRight className="w-4 h-4" />

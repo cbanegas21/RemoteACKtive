@@ -1,7 +1,71 @@
 # Remote ACKtive — CLAUDE.md
 > Single source of truth for AI-assisted development.
 > **Always read this file first before making any changes.**
-> Last updated: 2026-03-03 (full visual redesign pass — all homepage components rewritten; legal pages corrected)
+> Last updated: 2026-03-04 (visual overhaul session — gradient alternation, `.btn-grad` buttons, full redesigns of WhyChooseUs + WhatMakesUsDifferent, looping HowItWorks animation, CompanyLogosSlider extracted to own section)
+
+---
+
+## ⚠️ Contrast & Color Rules — READ BEFORE TOUCHING ANY TEXT COLOR
+
+> These rules exist because the hero section was broken by teal text on a teal background. **Never repeat these mistakes.**
+
+### The Hero Background
+`bg-gradient-hero` = `linear-gradient(to right, #0f3443, #34e89e)` — dark navy LEFT → bright **mint green** RIGHT.
+This is a **teal/green gradient**. Any teal, cyan, or mint text placed on it will be invisible.
+
+### Forbidden color combinations
+| Text color | Background | Why it's broken |
+|-----------|-----------|----------------|
+| `text-[#57C5CF]` (teal) | `bg-gradient-hero` | Teal text on teal/green background = zero contrast |
+| `text-[#4FFFB0]` (mint) | `bg-gradient-hero` | Mint text on mint gradient = invisible at right edge |
+| `btn-gradient` button | `bg-gradient-hero` | Mint→teal gradient button on teal background = no separation |
+| `color: '#248B93'` (teal) | white card background | "Blue" role text on white = low contrast, looks broken |
+
+### Rules for text on `bg-gradient-hero` (hero section)
+- **Headings**: `text-white` ✅
+- **Subheadings / supporting text**: `text-white` or `text-white/75` ✅ — NEVER teal/cyan
+- **Stat values**: `text-[#4FFFB0]` ✅ — large enough that mint-on-gradient is readable
+- **Badge text**: `text-[#57C5CF]` ✅ — small pill on dark left side of gradient, acceptable
+- **Body copy**: `text-white/75` ✅
+
+### Rules for the Header "Book a Call" button
+- Use **`.btn-grad`** class — dark purple→teal animated gradient with white text; high contrast against ANY background
+- Do NOT use `btn-gradient` (mint/teal) in the header — it blends into the hero gradient
+
+### Rules for globe worker cards (white card background)
+- Name: `text-[#0F1926]` (near-black) ✅
+- Role: `color: '#374151'` (dark gray) ✅ — NEVER teal/cyan
+- Country: `color: 'rgba(15,25,38,0.55)'` (muted dark) ✅
+
+### CSS filter rule for the Three.js globe
+- **Never apply CSS `filter` (especially `sepia`, `saturate`, `hue-rotate`) to the globe wrapper**
+- Adding a CSS filter on top of the Three.js render doubles/triples saturation and creates a harsh visible ring
+- Globe wrapper must only have: `style={{ boxShadow: 'none' }}`
+
+### Three.js BackSide atmosphere sphere — DO NOT USE
+- A `SphereGeometry(2.8)` with `THREE.BackSide` + Fresnel rim shader was trialled and **rejected**
+- It renders as a **hard glowing ring** at the planet silhouette, NOT a soft "sun behind" halo
+- The Fresnel formula `pow(rim, 2.5) * 2.2` concentrated brightness into a visible cyan band
+- **Correct approach**: CSS `radial-gradient` div in `HeroWithGlobe.tsx` (see Sun Glow section below)
+
+### Sun glow (CSS radial-gradient in HeroWithGlobe.tsx)
+- A `position: absolute` div centered on the globe using a multi-stop `radial-gradient`
+- Positioned with same `right-[-35%] top-[50vh] -translate-y-1/2` as globe but ~1.5× larger
+- **Color rule**: never use mint/teal tones — they're invisible on the `#34e89e` mint right side of the hero gradient
+- **Correct colors**: warm white core → pale yellow → cool white → transparent
+  ```
+  rgba(255,255,255,0.92)  0%    ← bright white (visible on mint)
+  rgba(255,255,210,0.70)  8%    ← warm pale yellow
+  rgba(220,255,245,0.44)  20%   ← cool white
+  rgba(160,240,255,0.22)  35%   ← soft sky
+  rgba(100,215,255,0.08)  52%   ← whisper
+  transparent             68%
+  ```
+
+### General contrast checklist (run mentally before writing ANY text color)
+1. What is the background color / gradient of this section?
+2. Is my text color in the same color family as the background? If yes → use white or near-black instead.
+3. Does this button visually separate from the section background? If not → use a contrasting solid color.
 
 ---
 
@@ -69,7 +133,7 @@
 Header
   └─ HeroWithGlobe
        └─ GlobeWithFallback → GitHubHeroGlobe (Three.js)
-       └─ CompanyLogosSlider
+CompanyLogosSlider (standalone section — FIXED gradient)
 WhyChooseUs
 ThreeTierServices
 CostComparison
@@ -78,11 +142,31 @@ DepartmentGrid
 WhatMakesUsDifferent
 AboutBlock
 HowItWorks
-Testimonials
+StatsBlock
 FAQ
 ContactCTA
 Footer
 ```
+
+### Gradient Map (top → bottom)
+
+| # | Section | Gradient |
+|---|---------|----------|
+| 1 | HeroWithGlobe | `#155799 → #159957` (hero, unchanged) |
+| 2 | CompanyLogosSlider | **FIXED** `#2C5364 → #203A43 → #0F2027` |
+| 3 | WhyChooseUs | `#78ffd6 → #007991` |
+| 4 | ThreeTierServices | **FIXED** `#2C5364 → #203A43 → #0F2027` · boxes: `#30cfd0 → #330867` |
+| 5 | CostComparison | `#135058 → #F1F2B5` |
+| 6 | GuaranteeSection | **FIXED** `#2C5364 → #203A43 → #0F2027` · cards: `#30cfd0 → #330867` |
+| 7 | DepartmentGrid | `#237A57 → #093028` |
+| 8 | WhatMakesUsDifferent | **FIXED** `#2C5364 → #203A43 → #0F2027` |
+| 9 | AboutBlock | `#78ffd6 → #007991` |
+| 10 | HowItWorks | **FIXED** `#2C5364 → #203A43 → #0F2027` |
+| 11 | StatsBlock | `#243B55 → #141E30` |
+| 12 | FAQ | `#135058 → #F1F2B5` |
+| 13 | ContactCTA | `#373B44 → #73C8A9` |
+
+> **FIXED gradient** = `linear-gradient(to right, #2C5364, #203A43, #0F2027)` — a dark ocean-to-charcoal 3-stop gradient used on 5 sections to create visual rhythm via alternation with colored gradients.
 
 ---
 
@@ -91,7 +175,7 @@ Footer
 ### Layout / Shell
 | Component | Purpose |
 |-----------|---------|
-| `Header.tsx` | Fixed nav, scroll-aware blur, mobile hamburger, "Book a Call" CTA; nav links to `/blog` (live) |
+| `Header.tsx` | Fixed nav, scroll-aware blur, mobile hamburger; "Book a Call" uses `.btn-grad` class (both desktop + mobile); logo name uses heading font (`var(--font-heading)`); nav links are `font-bold`; nav links to `/blog` (live) |
 | `Footer.tsx` | Links, LinkedIn + Facebook social icons, email/phone, physical address (1621 Central Ave, Cheyenne, WY 82001), dynamic copyright year; Privacy Policy + Terms link to real pages |
 | `Section.tsx` | Section wrapper — background variants: `light` / `white` / `dark` / `gradient` (used in some components; newer components use direct `<section>` tags instead) |
 | `Card.tsx` | Reusable card — variants: `light` / `dark` (used in some components; newer components use direct `<div>` tags instead) |
@@ -100,45 +184,46 @@ Footer
 ### Hero
 | Component | Purpose |
 |-----------|---------|
-| `HeroWithGlobe.tsx` | Server component; headline, CTA buttons, stats strip, logo slider; hosts globe via `<GlobeWithFallback />` |
+| `HeroWithGlobe.tsx` | Server component; headline, CTA buttons, stats strip; hosts globe via `<GlobeWithFallback />`; CompanyLogosSlider removed (now standalone section in `page.tsx`); reduced top padding (`pt-28 md:pt-32 xl:pt-36`) |
 | `GlobeWithFallback.tsx` | `'use client'`; React Error Boundary (`GlobeErrorBoundary` class) wrapping `GitHubHeroGlobe`; on WebGL crash shows a teal radial glow fallback instead of breaking |
-| `GitHubHeroGlobe.tsx` | `'use client'`; Three.js 3D globe: purple sphere + dot texture + 10 arc tubes + 15 cyan spires + 15 floating worker cards (pinned by lat/lng, up to 3 visible at once, fade in/out, rotate with globe); `isReady` state shows pulsing teal placeholder until first WebGL frame fires |
-| `CompanyLogosSlider.tsx` | 12 company logos (Meta, Google, MSFT, etc.) in an infinite CSS scroll strip |
+| `GitHubHeroGlobe.tsx` | `'use client'`; Three.js 3D globe: purple sphere + dot texture + 10 arc tubes + 15 cyan spires + 15 floating worker cards (pinned by lat/lng, up to 3 visible at once, fade in/out, rotate with globe); `isReady` state shows pulsing teal placeholder until first WebGL frame fires; `cardScale = Math.min(1, Math.max(0.45, window.innerWidth / 1440))` — cards scale aggressively with viewport (1440px→1.0, 1024px→0.71, 768px→0.53, floor 0.45) |
+| `HeroWithGlobe.tsx` | Sun glow CSS div: `right-[-35%] top-[50vh]`, `w-[min(117vw,2223px)] min-w-[1650px]`, warm-white radial-gradient; Globe div: `right-[-15%] top-[50vh]`, `w-[min(78vw,1900px)] min-w-[1100px]` — large `min-w` means globe slides LEFT instead of shrinking on narrow viewports |
+| `CompanyLogosSlider.tsx` | 12 company logos (Meta, Google, MSFT, etc.) in an infinite CSS scroll strip; now rendered in its own `<section>` in `page.tsx` with FIXED gradient (was previously inside HeroWithGlobe) |
 
 ### Services & Pricing
 | Component | Purpose |
 |-----------|---------|
-| `ThreeTierServices.tsx` | 3 packages: Recruitment-Only · Full Experience (featured/highlighted) · Training |
-| `CostComparison.tsx` | Interactive cost calculator — 6 roles, headcount slider (1–20), live savings calculation showing 70–73% vs US equivalent; light `bg-[#F7FAFB]` section |
-| `GuaranteeSection.tsx` | 3 guarantee cards (Replacement Guarantee, No Setup Fees, Ongoing Support) + badge strip with lifetime guarantee CTA; dark `bg-[#0F1926]` section |
+| `ThreeTierServices.tsx` | 3 packages: Recruitment-Only · Full Experience (featured/highlighted) · Training; FIXED gradient section; tier boxes use box gradient (`#30cfd0 → #330867`) |
+| `CostComparison.tsx` | Interactive cost calculator — 6 roles, headcount slider (1–20), live savings calculation showing 70–73% vs US equivalent; gradient `#135058 → #F1F2B5` |
+| `GuaranteeSection.tsx` | 3 guarantee cards (Replacement Guarantee, No Setup Fees, Ongoing Support) + badge strip with lifetime guarantee CTA; FIXED gradient section; cards use box gradient (`#30cfd0 → #330867`) |
 
 ### Departments
 | Component | Purpose |
 |-----------|---------|
-| `DepartmentGrid.tsx` | 9 department cards, 79+ total roles, searchable input, expandable role lists; teal/mint alternating `palette` array (indexed by `departments.indexOf(dept) % 2` for stable colors even when search filters results); top accent bar per card; role count pill; `grid-rows-[0fr]/[1fr]` accordion animation |
+| `DepartmentGrid.tsx` | 9 department cards, 79+ total roles, searchable input, expandable role lists; teal/mint alternating `palette` array (indexed by `departments.indexOf(dept) % 2` for stable colors even when search filters results); top accent bar per card; role count pill; `grid-rows-[0fr]/[1fr]` accordion animation; gradient `#237A57 → #093028` |
 
 ### About
 | Component | Purpose |
 |-----------|---------|
-| `WhyChooseUs.tsx` | 4 metric cards (Cost Efficiency, Handpicked Talent, Speedy Hiring, Global Reach) with alternating teal/mint accents; dark `bg-[#0F1926]` section; no Section/Card wrappers |
-| `WhatMakesUsDifferent.tsx` | 3 differentiators: Veteran founders, 6-step vetting process, True partnership model |
+| `WhyChooseUs.tsx` | 4 horizontal alternating LEFT-RIGHT rows (Cost-Effective, Handpicked, Lightning-Fast, Global Reach); each row has image panel + stat + proof chips; teal/mint palette by index; gradient `#78ffd6 → #007991`; uses `next/image` with `fill` for `/images/why-us/*.png` |
+| `WhatMakesUsDifferent.tsx` | "What Others Do vs What We Do" — 6 comparison rows (red X vs green check); IntersectionObserver stagger animation (150ms intervals); FIXED gradient; uses lucide `X` + `Check` icons |
 | `AboutBlock.tsx` | Human/story-driven: founder narrative (Andre, Carlos, Kevin spent years building distributed teams before founding Remote ACKtive), initials avatar strip, image panel with hover scale, Mission card (teal accent bar), Vision card (mint accent bar), 5 Core Values with alternating teal/mint dots; uses `/images/ourstory.png` |
-| `HowItWorks.tsx` | 4-step process with IntersectionObserver stagger animation (280ms delay between cards); gradient connector line on desktop; CTA button → `/book-a-call`; light `bg-[#F7FAFB]` section |
+| `HowItWorks.tsx` | 4-step process with IntersectionObserver stagger animation (280ms delay between cards); **looping**: resets and replays every 20s after last step reveals; gradient connector line on desktop; CTA button → `/book-a-call`; FIXED gradient section |
 
 ### Social Proof
 | Component | Purpose |
 |-----------|---------|
-| `Testimonials.tsx` | 6 hardcoded testimonials; carousel (3 per slide on desktop, 1 on mobile); trust bar with rating |
+| `Testimonials.tsx` | 6 hardcoded testimonials; carousel (3 per slide on desktop, 1 on mobile); trust bar with rating; **currently NOT rendered in `page.tsx`** |
 
 ### Contact & Forms
 | Component | Purpose |
 |-----------|---------|
-| `ContactCTA.tsx` | 3 contact cards + tabbed form interface (driven by FormContext) |
+| `ContactCTA.tsx` | 3 contact cards + tabbed form interface (driven by FormContext); tab buttons use `.btn-grad` with active/inactive conditional styling (active: `scale-105 shadow-xl ring-2 ring-white/20`, inactive: `opacity-50 hover:opacity-80`); form container has `pb-12` for bottom breathing room |
 | `FormContext.tsx` | React Context — `formType`: `general` / `hire-only` / `hire-manage` / `training` |
 | `HireOnlyForm.tsx` | Recruitment-Only form → POST `/api/contact` with `formType=hire-only` |
 | `HireManageForm.tsx` | Full Experience form → POST `/api/contact` with `formType=hire-manage` |
 | `GeneralContactForm.tsx` | Training / general inquiry form → POST `/api/contact` |
-| `FAQ.tsx` | 14 FAQs reframed as first-person client objections (e.g. "My team is in a different time zone — will collaboration still work?"); URL hash deep-link per slug; expand/collapse all toggle; keyboard nav (ArrowUp/Down/Home/End); `renderItem` helper for DRY left/right column rendering; all colors use hardcoded hex `#57C5CF` (no CSS variables) |
+| `FAQ.tsx` | 14 FAQs reframed as first-person client objections (e.g. "My team is in a different time zone — will collaboration still work?"); URL hash deep-link per slug; expand/collapse all toggle with `font-bold` buttons; `font-semibold` subheader; "answered." span is `text-[#0A3040]`; keyboard nav (ArrowUp/Down/Home/End); `renderItem` helper for DRY left/right column rendering; all colors use hardcoded hex `#57C5CF` (no CSS variables) |
 
 ### Blog
 | Component / File | Purpose |
@@ -156,7 +241,6 @@ Footer
 ### Unused Components (exist in repo, not rendered on homepage)
 | Component | Notes |
 |-----------|-------|
-| `StatsSection.tsx` | Animated number counters — could be added to homepage |
 | `ServicesSplit.tsx` | Alternative services layout |
 | `GlobalPerspective.tsx` | World map / global reach visual |
 | `Handpicked.tsx` | Standalone handpicked talent section |
@@ -177,6 +261,10 @@ Footer
 | Card bg | `#1E2430` / `#2A3142` | Form inputs, dark cards |
 | Footer bg | `#060F1E` | Footer only |
 | Gradient | `#248B93 → #1A5538` | `gradient-primary` utility |
+| FIXED gradient | `#2C5364 → #203A43 → #0F2027` | 5 sections (CompanyLogosSlider, ThreeTierServices, GuaranteeSection, WhatMakesUsDifferent, HowItWorks) |
+| Box gradient | `#30cfd0 → #330867` (to top) | ThreeTierServices tier boxes, GuaranteeSection guarantee cards |
+| `.btn-grad` | `#360033 → #0b8793 → #360033` | Dark purple→teal animated button; used on Header "Book a Call" (desktop + mobile), ContactCTA tab buttons |
+| `.btn-gradient` | `#4FFFB0 → #57C5CF → #4FFFB0` | Mint→teal sliding CTA button; used on various section CTAs |
 
 > **Teal/mint alternating pattern**: Newer components (DepartmentGrid, AboutBlock, WhyChooseUs, FAQ) use hardcoded `#57C5CF` (teal) and `#4FFFB0` (mint) alternating by index — no CSS variable dependency.
 
@@ -316,6 +404,8 @@ RESEND_API_KEY=re_...    # Resend email delivery API key (required)
 | `0104372` | PageSpeed performance pass: fixed `sizes` props on all `<Image>` components; hero-glow.svg moved to local path with `fetchPriority="high"`; testimonial dots touch targets fixed (44px); low-contrast text improved; removed unused `fonts.googleapis.com` preconnect; deleted `public/github-globe-main/` dead weight |
 | `636fa07` | why-us images changed from `.jpg` → `.png` (user uploaded PNG versions); `WhyChooseUs.tsx` paths updated; hero-glow.svg + globe-dots.png confirmed uploaded; CLAUDE.md updated |
 | *(pending)* | Full visual redesign pass: `Footer` (Wyoming address + Facebook), `WhyChooseUs` (dark redesign, alternating teal/mint metric cards), `CostComparison` (interactive headcount calculator), `HowItWorks` (IntersectionObserver stagger), `GuaranteeSection` (3 guarantee cards), `DepartmentGrid` (palette fix, accent bars, role pills), `AboutBlock` (founder story, initials strip), `FAQ` (14 objection-framed questions, orange→teal); `app/terms/page.tsx` (removed ACKtive Training Program, California→Wyoming governing law, address); `app/privacy-policy/page.tsx` (address added) |
+| *(pending)* | Globe polish: CSS sun glow div restored to `HeroWithGlobe.tsx` with warm-white/yellow colors (original mint colors were invisible on mint gradient); Three.js BackSide atmosphere sphere trialled and removed (rendered as harsh ring not soft halo); `cardScale` formula changed from `containerWidth/1100` to `window.innerWidth/1440` with 0.45 floor (cards now scale aggressively on narrow viewports); globe `min-w` raised from `900px` → `1100px` so globe slides left rather than shrinking on narrow viewports; sun glow `min-w` raised to `1650px` proportionally |
+| *(pending)* | Visual overhaul session (2026-03-04): **Header** — `.btn-grad` on CTA buttons, heading font on logo, `font-bold` nav links; **HeroWithGlobe** — reduced top padding, removed CompanyLogosSlider; **page.tsx** — CompanyLogosSlider extracted to standalone FIXED gradient section, StatsBlock positioned between HowItWorks and FAQ; **WhyChooseUs** — full redesign to horizontal alternating LEFT-RIGHT rows with image panels; **ThreeTierServices** — FIXED gradient + box gradient on tier boxes; **CostComparison** — gradient swap to `#135058 → #F1F2B5`; **GuaranteeSection** — FIXED gradient + box gradient on cards; **DepartmentGrid** — gradient swap to `#237A57 → #093028`; **WhatMakesUsDifferent** — full redesign to "What Others Do vs What We Do" comparison table with IntersectionObserver stagger; **AboutBlock** — "Built to solve it." span changed to `text-[#4FFFB0]`; **HowItWorks** — FIXED gradient + looping animation (20s pause between cycles); **StatsBlock** — gradient changed to `#243B55 → #141E30`; **FAQ** — `font-bold` buttons, `font-semibold` subheader, "answered." span to `text-[#0A3040]`; **ContactCTA** — `.btn-grad` on tab buttons with conditional active/inactive styling, `pb-12` on form container; **globals.css** — added `.btn-grad` utility class |
 
 ---
 
@@ -404,6 +494,28 @@ const c = palette[originalIdx % 2];
 </div>
 ```
 
+### FIXED gradient section (dark ocean-charcoal)
+```tsx
+<section className="py-20" style={{ background: 'linear-gradient(to right, #2C5364, #203A43, #0F2027)' }}>
+  <div className="container mx-auto px-6 max-w-6xl">...</div>
+</section>
+```
+
+### Box gradient (inner cards on FIXED sections)
+```tsx
+<div style={{ background: 'linear-gradient(to top, #30cfd0 0%, #330867 100%)' }} className="rounded-2xl p-7">
+  ...
+</div>
+```
+
+### `.btn-grad` button (dark purple→teal animated)
+```tsx
+<Link href="/book-a-call" className="btn-grad rounded-full px-8 py-3.5 font-bold">
+  Book a Call
+</Link>
+```
+> Defined in `globals.css`. Background slides on hover via `background-size: 200% auto` + `background-position: right center`. White text, box-shadow glow, uppercase.
+
 ---
 
 ## Feature Backlog
@@ -430,7 +542,20 @@ const c = palette[originalIdx % 2];
 | Footer: add Wyoming address + Facebook social link | ✅ Done — 2026-03-03 redesign session |
 | Terms: fix governing law California→Wyoming, remove ACKtive Training Program, add address | ✅ Done — 2026-03-03 redesign session |
 | Privacy Policy: add physical address | ✅ Done — 2026-03-03 redesign session |
-| Add `StatsBlock` to homepage | ✅ Done — already rendered in `app/page.tsx` (was listed under wrong name `StatsSection`) |
+| Add `StatsBlock` to homepage | ✅ Done — rendered in `app/page.tsx` between HowItWorks and FAQ |
 | DRY up form error messages | ✅ Done — `FormMessages.tsx` created; `FormSuccess`/`FormError` imported in all 3 form components |
 | Normalize focus ring colors across forms | ✅ Done — `HireManageForm` fixed from `#4DD0E1` → `#57C5CF`; all forms now consistent |
 | Resize oversized company logos | ✅ Done — `sharp` installed as devDep; `scripts/resize-logos.mjs` written and executed; all 13 PNGs resized |
+| Globe sun glow — restore CSS radial-gradient with visible colors | ✅ Done — 2026-03-04; warm-white/yellow stops replace original invisible mint stops |
+| Globe worker cards — scale with viewport width | ✅ Done — 2026-03-04; `cardScale = window.innerWidth / 1440` with 0.45 floor |
+| Globe responsive — slide not shrink on narrow viewports | ✅ Done — 2026-03-04; `min-w-[1100px]` holds size, globe shifts left naturally |
+| Visual overhaul — gradient alternation system | ✅ Done — 2026-03-04; FIXED gradient on 5 sections, colored gradients on rest; alternation creates visual rhythm |
+| Visual overhaul — Header `.btn-grad` + heading font | ✅ Done — 2026-03-04 |
+| Visual overhaul — WhyChooseUs horizontal alternating rows | ✅ Done — 2026-03-04; full redesign from card grid to LEFT-RIGHT rows with image panels |
+| Visual overhaul — WhatMakesUsDifferent comparison table | ✅ Done — 2026-03-04; full redesign to "What Others Do vs What We Do" with stagger animation |
+| Visual overhaul — HowItWorks looping animation | ✅ Done — 2026-03-04; `runSequence` loops with 20s pause, timer cleanup on unmount |
+| Visual overhaul — CompanyLogosSlider standalone section | ✅ Done — 2026-03-04; extracted from HeroWithGlobe into own `<section>` in `page.tsx` |
+| Visual overhaul — ContactCTA `.btn-grad` tabs | ✅ Done — 2026-03-04; active/inactive conditional styling |
+| Visual overhaul — FAQ font-weight + color fixes | ✅ Done — 2026-03-04; bold buttons, semibold subheader, `#0A3040` answered span |
+| Visual overhaul — StatsBlock gradient | ✅ Done — 2026-03-04; changed to `#243B55 → #141E30` |
+| Visual overhaul — AboutBlock mint accent | ✅ Done — 2026-03-04; "Built to solve it." → `text-[#4FFFB0]` |

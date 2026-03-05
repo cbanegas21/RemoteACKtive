@@ -5,10 +5,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     margin: 0;
+    overflow-x: hidden;
     background-color: #0F1926;
     background-image: linear-gradient(180deg, #0A1628 0%, #0F1926 100%);
     color: #E5E7EB;
@@ -52,12 +54,32 @@
    * Owns its own transitions; do NOT combine with Tailwind transition-* utils.
    * ─────────────────────────────────────────────────────────────────────── */
   .btn-gradient {
+    -webkit-background-image: linear-gradient(90deg, #4FFFB0 0%, #57C5CF 50%, #4FFFB0 100%);
     background-image: linear-gradient(90deg, #4FFFB0 0%, #57C5CF 50%, #4FFFB0 100%);
     background-size: 200% auto;
+    -webkit-background-size: 200% auto;
     transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.3s ease;
   }
   .btn-gradient:hover {
     background-position: right center;
+    -webkit-background-position: right center;
+  }
+
+  /* ── Dark purple→teal animated CTA button ──────────────────────────────
+   * Usage: add `btn-grad` class to any button/link element.
+   * Gradient slides dark-purple→teal on hover (background-position shift).
+   * ─────────────────────────────────────────────────────────────────────── */
+  .btn-grad {
+    background-image: linear-gradient(to right, #134E5E 0%, #71B280 51%, #134E5E 100%);
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+  }
+  .btn-grad:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
   }
 }
 
@@ -70,6 +92,19 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* ── Company logos infinite scroll ──────────────────────────────────── */
+@keyframes logo-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-logo-scroll {
+  display: flex;
+  animation: logo-scroll 40s linear infinite;
+}
+.animate-logo-scroll:hover {
+  animation-play-state: paused;
 }
 
 /* Fix scroll offset for fixed header */

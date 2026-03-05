@@ -203,13 +203,13 @@ export default function DepartmentGrid() {
   );
 
   return (
-    <section id="departments" className="py-20 bg-[#0F1926]">
+    <section id="departments" className="py-20" style={{ background: 'linear-gradient(to right, #237A57, #093028)' }}>
       <div className="container mx-auto px-6 max-w-6xl">
 
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#57C5CF]/10 border border-[#57C5CF]/20 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-sm font-bold text-[#57C5CF] tracking-wide uppercase">
+          <div className="inline-flex items-center gap-2 bg-white/80 border border-white/30 rounded-full px-4 py-1.5 mb-5">
+            <span className="text-sm font-bold text-black tracking-wide uppercase">
               9 Departments · 79+ Roles
             </span>
           </div>
@@ -217,22 +217,27 @@ export default function DepartmentGrid() {
             Whatever Your Business Needs,{" "}
             <span className="text-[#4FFFB0]">We Know How to Hire It</span>
           </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <p className="text-white text-lg max-w-2xl mx-auto">
             Browse every department below and click any card to see the exact
-            roles we place — all pre-vetted and ready to start.
+            roles we place — all pre-vetted and ready to start. Don&apos;t see
+            your role?{" "}
+            <a href="#contact" className="text-[#4FFFB0] underline underline-offset-2 hover:text-[#4FFFB0]/80 transition-colors">
+              Ask us
+            </a>{" "}
+            — we place many more on request.
           </p>
         </div>
 
         {/* Search */}
         <div className="max-w-md mx-auto mb-10">
           <div className="relative">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/35" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white" />
             <input
               type="text"
               placeholder="Search for a role or department…"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-[#1E2430] pl-10 pr-4 py-3 rounded-xl border border-white/10 text-white placeholder-white/35 text-sm
+              className="w-full bg-[#1E2430] pl-10 pr-4 py-3 rounded-xl border border-white/10 text-white placeholder-white/60 text-sm
                 focus:border-[#57C5CF] focus:outline-none focus:ring-2 focus:ring-[#57C5CF]/20 transition-colors"
             />
           </div>
@@ -277,14 +282,14 @@ export default function DepartmentGrid() {
                           {dept.title}
                         </h3>
                         <ChevronDown
-                          className={`w-4 h-4 flex-shrink-0 text-white/40 transition-transform duration-300 ${
+                          className={`w-4 h-4 flex-shrink-0 text-white transition-transform duration-300 ${
                             isExpanded ? "rotate-180" : ""
                           }`}
                         />
                       </div>
 
                       {/* Description */}
-                      <p className="text-white/55 text-sm leading-relaxed">
+                      <p className="text-white text-sm leading-relaxed">
                         {dept.description}
                       </p>
 
@@ -305,14 +310,14 @@ export default function DepartmentGrid() {
                   >
                     <div className="overflow-hidden">
                       <div className={`pt-4 border-t ${c.divider}`}>
-                        <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-3">
+                        <p className="text-white text-xs font-bold uppercase tracking-widest mb-3">
                           Available Roles
                         </p>
                         <ul className="grid grid-cols-1 gap-1.5">
                           {dept.roles.map((role) => (
                             <li
                               key={role}
-                              className="text-white/70 text-sm flex items-start gap-2"
+                              className="text-white text-sm flex items-start gap-2"
                             >
                               <span className={`mt-0.5 text-xs ${c.checkColor}`}>
                                 ✓
@@ -332,7 +337,7 @@ export default function DepartmentGrid() {
 
         {/* Empty state */}
         {filteredDepartments.length === 0 && (
-          <p className="text-white/40 text-center text-base mt-10">
+          <p className="text-white text-center text-base mt-10">
             No results for &ldquo;{searchTerm}&rdquo; — try a different role or department.
           </p>
         )}

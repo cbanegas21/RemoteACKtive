@@ -1,5 +1,5 @@
 "use client";
-import { Check } from "lucide-react";
+import { Check, Star, ArrowRight } from "lucide-react";
 import { useFormContext } from "./FormContext";
 
 export default function ThreeTierServices() {
@@ -15,8 +15,10 @@ export default function ThreeTierServices() {
 
   const tiers = [
     {
-      name: "Recruitment-Only Package",
-      description: "Ideal for teams ready to manage talent independently",
+      name: "Recruitment-Only",
+      bestFor: "Teams ready to manage talent on their own",
+      description:
+        "We find, vet, and deliver top-tier candidates — you handle the rest.",
       features: [
         "Single upfront investment",
         "30-day satisfaction replacement guarantee",
@@ -25,109 +27,139 @@ export default function ThreeTierServices() {
         "Complete interview facilitation",
         "Initial integration assistance",
       ],
-      cta: "BOOK A DISCOVERY CALL",
+      cta: "GET STARTED",
       onClick: () => handleGetStarted("hire-only"),
       highlighted: false,
-      checkColor: "text-primary-teal",
-      buttonStyle: "btn-gradient text-black",
     },
     {
-      name: "Full Remote ACKtive Experience",
-      badge: "⭐ MOST POPULAR",
-      description: "Complete hiring, management, and development solution",
+      name: "Recruit + Manage",
+      badge: "MOST POPULAR",
+      bestFor: "Businesses that want a fully managed remote team",
+      description:
+        "End-to-end hiring, management, and ongoing development — hands-free.",
       features: [
-        "All Recruitment-Only features included",
+        "Everything in Recruitment-Only",
         "Full-service hiring and team integration",
-        "Complete HR administration and payroll processing",
+        "Complete HR administration and payroll",
         "Ongoing professional development programs",
         "Employee wellness and engagement initiatives",
         "Performance recognition systems",
         "Enterprise-grade security and productivity platforms",
       ],
-      cta: "BOOK A DISCOVERY CALL",
+      cta: "GET STARTED",
       onClick: () => handleGetStarted("hire-manage"),
       highlighted: true,
-      checkColor: "text-white",
-      buttonStyle: "btn-gradient text-black hover:scale-105 shadow-lg",
-    },
-    {
-      name: "ACKtive Training Program",
-      badge: "NEW",
-      description: "Elevate your current remote workforce",
-      features: [
-        "Designed for companies with existing remote teams",
-        "Interactive monthly skill-building sessions",
-        "Direct access to specialists in operations and marketing",
-        "Collaborative learning community",
-        "Custom team engagement events",
-        "Multi-enrollment savings: 10% off for 2+ participants",
-      ],
-      cta: "LEARN MORE",
-      onClick: () => handleGetStarted("hire-only"),
-      highlighted: false,
-      checkColor: "text-primary-teal",
-      buttonStyle: "btn-gradient text-black",
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-gradient-primary">
-      <div className="container mx-auto px-6">
+    <section
+      id="services"
+      className="py-20"
+      style={{
+        background: "linear-gradient(to right, #2C5364, #203A43, #0F2027)",
+      }}
+    >
+      <div className="container mx-auto px-6 max-w-5xl">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <div className="inline-flex items-center gap-2 bg-[#57C5CF]/10 border border-[#57C5CF]/20 rounded-full px-4 py-1.5 mb-5">
+            <span className="text-sm font-bold text-[#57C5CF] tracking-wide uppercase">
+              Our Packages
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
             Choose Your Perfect Package
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            From recruitment to ongoing management and training, we have the right solution for your business
+          <p className="text-lg text-white max-w-2xl mx-auto">
+            From recruitment to ongoing management, we have the right solution
+            for your business
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        {/* Tier cards */}
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
           {tiers.map((tier, index) => (
             <div
               key={index}
-              className={`relative rounded-2xl p-8 transition-all duration-300 ${
+              className={`relative rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col ${
                 tier.highlighted
-                  ? "bg-gradient-primary shadow-2xl scale-105 md:scale-110 border-4 border-primary-gold"
-                  : "bg-background-darkCard shadow-lg hover:shadow-xl border-2 border-primary-teal/20"
+                  ? "ring-2 ring-[#4FFFB0]/60 shadow-2xl shadow-[#4FFFB0]/10"
+                  : "ring-1 ring-white/10 hover:ring-[#57C5CF]/40"
               }`}
+              style={{
+                background:
+                  "linear-gradient(to top, #30cfd0 0%, #330867 100%)",
+              }}
             >
-              {tier.badge && (
-                <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full font-bold text-sm whitespace-nowrap ${
-                  tier.highlighted ? "bg-primary-gold text-white" : "bg-[#4FFFB0] text-black"
-                }`}>
-                  {tier.badge}
-                </div>
+              {/* Top accent bar for highlighted */}
+              {tier.highlighted && (
+                <div className="h-1 w-full bg-gradient-to-r from-[#4FFFB0] via-[#57C5CF] to-[#4FFFB0]" />
               )}
 
-              <div className="text-center mb-6">
-                <h3 className={`text-2xl font-bold mb-3 ${tier.highlighted ? "text-white" : "text-white"}`}>
+              <div className="p-8 flex flex-col flex-1">
+                {/* Badge */}
+                {tier.badge && (
+                  <div className="mb-4">
+                    <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                      <Star className="w-3.5 h-3.5 fill-white" />
+                      {tier.badge}
+                    </span>
+                  </div>
+                )}
+
+                {/* Name + best for */}
+                <h3 className="text-2xl font-extrabold text-white mb-2">
                   {tier.name}
                 </h3>
-                <p className={`text-sm ${tier.highlighted ? "text-white/90" : "text-gray-300"}`}>
+                <p className="text-[#4FFFB0] text-sm font-semibold mb-3">
+                  Best for: {tier.bestFor}
+                </p>
+                <p className="text-white text-sm leading-relaxed mb-6">
                   {tier.description}
                 </p>
+
+                {/* Divider */}
+                <div className="h-px w-full bg-white/10 mb-6" />
+
+                {/* Features */}
+                <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-4">
+                  What&apos;s included
+                </p>
+                <ul className="space-y-3 mb-8 flex-1">
+                  {tier.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start gap-3">
+                      <Check className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#4FFFB0]" />
+                      <span className="text-sm text-white">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <button
+                  onClick={tier.onClick}
+                  className="w-full py-3.5 px-6 rounded-full font-bold text-sm transition-all duration-300 btn-grad text-white flex items-center justify-center gap-2"
+                >
+                  {tier.cta}
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
-
-              <ul className="space-y-4 mb-8">
-                {tier.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start gap-3">
-                    <Check className={`w-5 h-5 mt-0.5 flex-shrink-0 ${tier.highlighted ? "text-white" : tier.checkColor}`} />
-                    <span className={`text-sm ${tier.highlighted ? "text-white" : "text-gray-300"}`}>
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                onClick={tier.onClick}
-                className={`w-full py-3 px-6 rounded-full font-bold text-sm transition-all duration-300 shadow-md hover:shadow-lg ${tier.buttonStyle}`}
-              >
-                {tier.cta}
-              </button>
             </div>
           ))}
+        </div>
+
+        {/* Decision helper */}
+        <div className="text-center mt-10">
+          <p className="text-white text-sm">
+            Not sure which one is right?{" "}
+            <a
+              href="/book-a-call"
+              className="text-[#57C5CF] font-semibold hover:text-[#4DD0E1] transition-colors underline underline-offset-2"
+            >
+              Book a free call
+            </a>{" "}
+            and we&apos;ll help you decide.
+          </p>
         </div>
       </div>
     </section>

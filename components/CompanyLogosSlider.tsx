@@ -10,12 +10,12 @@ export default function CompanyLogosSlider() {
   return (
     <div className="w-full py-12 overflow-hidden">
       <p className="text-center text-[22px] font-bold mb-8 text-white/95 leading-relaxed">
-        Join successful companies who outsource and save massively on revenue!
+        Join successful companies who outsource and save massively on hiring costs!
       </p>
       
       {/* Infinite Scroll Container */}
       <div className="relative flex overflow-hidden">
-        <div className="flex animate-scroll">
+        <div className="flex animate-logo-scroll">
           {companies.map((company, index) => (
             <div
               key={`${company}-1-${index}`}
@@ -50,26 +50,6 @@ export default function CompanyLogosSlider() {
           ))}
         </div>
       </div>
-      
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        
-        .animate-scroll {
-          display: flex;
-          animation: scroll 40s linear infinite;
-        }
-        
-        .animate-scroll:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </div>
   );
 }

@@ -98,7 +98,7 @@ export default function Testimonials() {
   const t = testimonials[activeIdx];
 
   return (
-    <section className="py-20 bg-[#0A1628] overflow-hidden">
+    <section className="py-20 overflow-hidden" style={{ background: 'linear-gradient(to right, #237A57, #093028)' }}>
       <div className="container mx-auto px-6 max-w-6xl">
 
         {/* Header */}
@@ -111,7 +111,7 @@ export default function Testimonials() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
             Trusted by Teams Worldwide
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-white max-w-2xl mx-auto">
             Real results from real businesses that made the switch to elite global talent.
           </p>
         </div>
@@ -132,7 +132,7 @@ export default function Testimonials() {
               className={`relative rounded-2xl p-6 border transition-all duration-300 ${
                 i === 1
                   ? 'bg-[#0F1F35] border-[#57C5CF]/40 shadow-xl shadow-[#57C5CF]/10 scale-[1.03]'
-                  : 'bg-[#0D1A2D] border-white/8 opacity-60 hover:opacity-80 cursor-pointer'
+                  : 'bg-[#0D1A2D] border-white/8 cursor-pointer'
               }`}
             >
               {/* Quote mark */}
@@ -140,7 +140,7 @@ export default function Testimonials() {
 
               <StarRating count={item.rating} />
 
-              <p className="text-white/80 text-sm leading-relaxed mt-3 mb-5">
+              <p className="text-white text-sm leading-relaxed mt-3 mb-5">
                 {item.quote}
               </p>
 
@@ -154,8 +154,8 @@ export default function Testimonials() {
                 </div>
                 <div>
                   <p className="text-white font-semibold text-sm">{item.name}</p>
-                  <p className="text-white/50 text-xs">{item.title}, {item.company}</p>
-                  <p className="text-white/55 text-xs">{item.flag} {item.country}</p>
+                  <p className="text-white text-xs">{item.title}, {item.company}</p>
+                  <p className="text-white text-xs">{item.flag} {item.country}</p>
                 </div>
               </div>
             </div>
@@ -167,7 +167,7 @@ export default function Testimonials() {
           <div className="relative rounded-2xl p-6 bg-[#0F1F35] border border-[#57C5CF]/40 shadow-xl">
             <div className="text-5xl font-serif leading-none text-[#57C5CF]/20 mb-3 select-none">&ldquo;</div>
             <StarRating count={t.rating} />
-            <p className="text-white/80 text-sm leading-relaxed mt-3 mb-5">{t.quote}</p>
+            <p className="text-white text-sm leading-relaxed mt-3 mb-5">{t.quote}</p>
             <div className="flex items-center gap-3">
               <div
                 className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold"
@@ -177,8 +177,8 @@ export default function Testimonials() {
               </div>
               <div>
                 <p className="text-white font-semibold text-sm">{t.name}</p>
-                <p className="text-white/50 text-xs">{t.title}, {t.company}</p>
-                <p className="text-white/55 text-xs">{t.flag} {t.country}</p>
+                <p className="text-white text-xs">{t.title}, {t.company}</p>
+                <p className="text-white text-xs">{t.flag} {t.country}</p>
               </div>
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function Testimonials() {
         <div className="flex items-center justify-center gap-6 mt-10">
           <button
             onClick={prev}
-            className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[#57C5CF]/60 hover:text-[#57C5CF] transition-all"
+            className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:border-[#57C5CF]/60 hover:text-[#57C5CF] transition-all"
             aria-label="Previous testimonial"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -209,7 +209,7 @@ export default function Testimonials() {
                   className={`rounded-full transition-all duration-300 block ${
                     i === activeIdx
                       ? 'w-6 h-2 bg-[#57C5CF]'
-                      : 'w-2 h-2 bg-white/20 hover:bg-white/40'
+                      : 'w-2 h-2 bg-white/50 hover:bg-white/80'
                   }`}
                 />
               </button>
@@ -218,7 +218,7 @@ export default function Testimonials() {
 
           <button
             onClick={next}
-            className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[#57C5CF]/60 hover:text-[#57C5CF] transition-all"
+            className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:border-[#57C5CF]/60 hover:text-[#57C5CF] transition-all"
             aria-label="Next testimonial"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -237,7 +237,7 @@ export default function Testimonials() {
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="text-2xl font-extrabold text-[#4FFFB0]">{stat.value}</p>
-              <p className="text-xs text-white/60 mt-0.5">{stat.label}</p>
+              <p className="text-xs text-white mt-0.5">{stat.label}</p>
             </div>
           ))}
         </div>

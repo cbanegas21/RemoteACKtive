@@ -5,7 +5,7 @@ import { Users, Star, ShieldCheck, Globe } from "lucide-react";
 const stats = [
   {
     icon: Users,
-    value: "50+",
+    value: "500+",
     label: "Successful Placements",
     detail: "Professionals placed and thriving globally",
     color: "#57C5CF",
@@ -26,7 +26,7 @@ const stats = [
   },
   {
     icon: Globe,
-    value: "15+",
+    value: "18+",
     label: "Countries Covered",
     detail: "Global talent, carefully handpicked for your team",
     color: "#378B57",
@@ -35,7 +35,7 @@ const stats = [
 
 export default function StatsBlock() {
   return (
-    <section className="py-24 bg-[#060F1E] overflow-hidden relative">
+    <section className="py-24 overflow-hidden relative" style={{ background: 'linear-gradient(to right, #243B55, #141E30)' }}>
       {/* Subtle background grid */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -59,7 +59,7 @@ export default function StatsBlock() {
             Small Team.{" "}
             <span className="text-[#57C5CF]">Proven Results.</span>
           </h2>
-          <p className="text-white/55 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white text-lg max-w-2xl mx-auto leading-relaxed">
             Every number here is a real client, a real hire, a real outcome.
             We&apos;re building our track record — one win at a time.
           </p>
@@ -110,7 +110,7 @@ export default function StatsBlock() {
                 </div>
 
                 {/* Detail */}
-                <div className="text-white/45 text-xs leading-relaxed">
+                <div className="text-white text-xs leading-relaxed">
                   {stat.detail}
                 </div>
               </div>
@@ -120,14 +120,14 @@ export default function StatsBlock() {
 
         {/* Bottom trust line + CTA */}
         <div className="text-center mt-14">
-          <p className="text-white/40 text-sm mb-6 italic">
-            These aren&apos;t projections — they&apos;re our track record, and we&apos;re just getting started.
+          <p className="text-white text-base mb-6 font-semibold">
+            Yep, we started in 2024 — and these aren&apos;t projections. They&apos;re our real track record, and we&apos;re just getting started.
           </p>
           <a
             href="/book-a-call"
-            className="inline-flex items-center gap-2 btn-gradient text-[#060F1E] font-bold px-8 py-3.5 rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#4FFFB0]/25 text-sm"
+            className="inline-flex items-center gap-2 btn-grad text-white font-bold px-8 py-3.5 rounded-full text-sm"
           >
-            Add Your Success Story
+            Tell Us Your Success Story and Let Us Be Part of It
             <span aria-hidden="true">→</span>
           </a>
         </div>

@@ -13,7 +13,7 @@ export default function Header() {
       setIsScrolled(window.scrollY > 32);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -42,7 +42,7 @@ export default function Header() {
             <div className="relative w-[75px] h-[75px]">
               <Image src="/images/logo.png" alt="Remote ACKtive Logo" fill sizes="75px" priority className="object-contain" />
             </div>
-            <span className="font-bold text-2xl transition text-white group-hover:text-primary-teal whitespace-nowrap">Remote ACKtive</span>
+            <span className="font-bold text-2xl transition text-white group-hover:text-primary-teal whitespace-nowrap" style={{ fontFamily: "var(--font-heading)" }}>Remote ACKtive</span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-8 flex-1 justify-center">
@@ -50,7 +50,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-medium text-[17px] transition text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg whitespace-nowrap"
+                className="font-bold text-[17px] transition text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg whitespace-nowrap"
               >
                 {link.label}
               </Link>
@@ -58,7 +58,7 @@ export default function Header() {
           </div>
 
           <div className="hidden lg:flex items-center flex-shrink-0">
-            <Link href="/book-a-call" className="px-7 py-3 rounded-full btn-gradient text-black font-bold text-[16px] shadow-md hover:shadow-lg whitespace-nowrap">
+            <Link href="/book-a-call" className="btn-grad rounded-full px-8 py-3.5 font-bold text-[17px] whitespace-nowrap">
               Book a Call
             </Link>
           </div>
@@ -81,13 +81,13 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-medium transition px-3 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg"
+                  className="font-bold transition px-3 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
-              <Link href="/book-a-call" className="px-6 py-2.5 rounded-full btn-gradient text-black font-bold text-center shadow-md">
+              <Link href="/book-a-call" className="px-6 py-2.5 rounded-full btn-grad font-bold text-center shadow-md">
                 Book a Call
               </Link>
             </div>
