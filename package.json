@@ -37,5 +37,13 @@
     "tailwindcss": "^3.4.0",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@10.30.2"
+  "packageManager": "pnpm@10.30.2",
+  "browserslist": [
+    "Chrome >= 87",
+    "Firefox >= 78",
+    "Safari >= 14",
+    "Edge >= 88",
+    "not dead",
+    "not ie 11"
+  ]
 }
