@@ -163,6 +163,10 @@ export default function RootLayout({
               ],
               address: {
                 "@type": "PostalAddress",
+                streetAddress: "1621 Central Ave",
+                addressLocality: "Cheyenne",
+                addressRegion: "WY",
+                postalCode: "82001",
                 addressCountry: "US",
               },
             }),

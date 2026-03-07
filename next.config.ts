@@ -42,21 +42,27 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Redirects for SEO (add any old URLs you want to redirect)
+  // Redirects for SEO
   async redirects() {
     return [
-      // Example: redirect www to non-www
-      // {
-      //   source: '/:path*',
-      //   has: [
-      //     {
-      //       type: 'host',
-      //       value: 'www.remoteacktive.com',
-      //     },
-      //   ],
-      //   destination: 'https://remoteacktive.com/:path*',
-      //   permanent: true,
-      // },
+      // www → non-www (consolidate domain authority)
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.remoteacktive.com',
+          },
+        ],
+        destination: 'https://remoteacktive.com/:path*',
+        permanent: true,
+      },
+      // /index.html → / (Google found phantom URLs returning 404)
+      {
+        source: '/index.html',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
 };
