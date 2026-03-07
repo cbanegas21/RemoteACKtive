@@ -290,6 +290,12 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
     sphere.add(overlaySphere);
 
     const numPoints = 64;
+    // Tube geometry produces: tubularSegments × radialSegments × 2 triangles × 3 indices each
+    // 64 × 8 × 2 × 3 = 3072 total indices — used as the cap for setDrawRange animations
+    const tubeIndexCount = numPoints * 8 * 6;   // 3072
+    // Grow speed per frame: targets ~1.2 seconds at 60fps (73 frames → 3072/73 ≈ 42)
+    const tubeGrowSpeed = 42;
+
     const start = new Vector3(0, 1.5, 1.3);
     const middle = new Vector3(0.6, 0.6, 3.2);
     const end = new Vector3(1.5, -1, 0.8);
@@ -299,7 +305,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     const makeTube = (rot: { x?: number; y?: number; z?: number } = {}) => {
       const geom = new TubeGeometry(curveQuad, numPoints, 0.01, 8, false);
-      geom.setDrawRange(0, 10000);
+      geom.setDrawRange(0, tubeIndexCount);
       const mesh = new Mesh(geom, tubeMaterial);
       mesh.rotation.set(rot.x ?? 0, rot.y ?? 0, rot.z ?? 0);
       sphere.add(mesh);
@@ -424,9 +430,9 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
       const c = Math.ceil(count / 3) * 3;
       tubes[index].geom.setDrawRange(0, c);
       if (index > 2) {
-        tubes[index - 3].geom.setDrawRange(c, 10000);
+        tubes[index - 3].geom.setDrawRange(c, tubeIndexCount);
       } else {
-        tubes[(tubes.length - 3) + index].geom.setDrawRange(c, 10000);
+        tubes[(tubes.length - 3) + index].geom.setDrawRange(c, tubeIndexCount);
       }
     };
 
@@ -521,8 +527,8 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
         setIsReady(true);
       }
 
-      if (renderCount < 10000) {
-        renderCount += 150;
+      if (renderCount < tubeIndexCount) {
+        renderCount += tubeGrowSpeed;
         growTube(currentGrowing, renderCount);
       } else {
         renderCount = 0;
@@ -667,7 +673,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
           key={i}
           ref={el => { cardRefs.current[i] = el; }}
           className="absolute pointer-events-none"
-          style={{ display: 'none' }}
+          style={{ display: 'none', zIndex: 10 }}
         >
           <div
             className="absolute"
