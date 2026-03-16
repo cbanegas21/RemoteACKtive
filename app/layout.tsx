@@ -103,7 +103,7 @@ export default function RootLayout({
         {/* Google Analytics */}
         <Script
           strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=G-BEYLVNF0X5"
+          src="https://www.googletagmanager.com/gtag/js?id=G-2608332GQP"
         />
         <Script
           id="google-analytics"
@@ -136,7 +136,7 @@ export default function RootLayout({
               } catch(e) {}
 
               gtag('js', new Date());
-              gtag('config', 'G-BEYLVNF0X5', {
+              gtag('config', 'G-2608332GQP', {
                 page_path: window.location.pathname,
               });
             `,
