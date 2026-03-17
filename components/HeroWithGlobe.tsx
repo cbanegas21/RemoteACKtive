@@ -85,7 +85,7 @@ export default function HeroWithGlobe() {
           <h1 className="text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.08] text-white">
             Stop Overpaying
             <br />
-            <span className="text-[#4FFFB0]">for LATAM Talent.</span>
+            <span className="text-[#4FFFB0]">for Talent.</span>
           </h1>
 
           {/* Supporting headline — white, not teal. Teal-on-teal has zero contrast. */}
