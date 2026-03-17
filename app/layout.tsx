@@ -20,11 +20,11 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Remote ACKtive | Elite Global Talent for Your Business",
+  title: "LATAM Staffing Agency | Remote ACKtive — Save 70% on Hiring",
   icons: {
     icon: '/images/favicon.png',
   },
-  description: "Scale your business with Remote ACKtive. Access elite global talent, save up to 70% on costs, and hire world-class professionals in 3-10 days.",
+  description: "Remote ACKtive is a LATAM staffing agency placing pre-vetted remote professionals in 3–10 days. Save up to 70% vs. US hiring costs. Book a free call.",
   keywords: [
     "remote staffing",
     "outsourcing services",

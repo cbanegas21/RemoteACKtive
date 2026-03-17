@@ -31,11 +31,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `https://remoteacktive.com/blog/${post.slug}`,
       siteName: "Remote ACKtive",
       type: "article",
+      authors: ["Remote ACKtive"],
+      images: [
+        {
+          url: "/images/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: post.metaTitle,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.metaTitle,
       description: post.metaDescription,
+      images: ["/images/og-image.jpg"],
     },
   };
 }
@@ -73,10 +83,20 @@ export default async function BlogPostPage({ params }: Props) {
     headline: post.h1,
     description: post.metaDescription,
     datePublished: post.date,
+    author: {
+      "@type": "Organization",
+      name: "Remote ACKtive",
+      url: "https://remoteacktive.com",
+    },
+    image: "https://remoteacktive.com/images/og-image.jpg",
     publisher: {
       "@type": "Organization",
       name: "Remote ACKtive",
       url: "https://remoteacktive.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://remoteacktive.com/images/logo.png",
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",

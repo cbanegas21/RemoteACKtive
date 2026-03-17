@@ -4,12 +4,18 @@
 User-agent: *
 Allow: /
 
+# AI crawlers — explicit allow for GEO/AI search citation eligibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 # Sitemap location
 Sitemap: https://remoteacktive.com/sitemap.xml
-
-# Block access to admin or private areas (add if needed)
-# Disallow: /admin/
-# Disallow: /api/
-
-# Crawl-delay (optional, usually not needed)
-# Crawl-delay: 1
