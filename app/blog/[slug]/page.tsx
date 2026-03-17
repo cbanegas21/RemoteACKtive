@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import Header from "@/components/Header";
@@ -155,6 +156,21 @@ export default async function BlogPostPage({ params }: Props) {
               </svg>
               <span className="text-white truncate max-w-[200px]">{post.h1}</span>
             </nav>
+
+            {/* ── Cover image ── */}
+            {post.coverImage && (
+              <div className="relative w-full h-56 md:h-72 rounded-2xl overflow-hidden mb-10">
+                <Image
+                  src={post.coverImage}
+                  alt={post.h1}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </div>
+            )}
 
             {/* ── Article header ── */}
             <header className="mb-10">
