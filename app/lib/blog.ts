@@ -2,6 +2,7 @@ export interface BlogSection {
   h2: string;
   body: string[];
   bullets?: string[];
+  stat?: { value: string; label: string };
 }
 
 export interface BlogFaq {
@@ -21,6 +22,8 @@ export interface BlogPost {
   sections: BlogSection[];
   faq: BlogFaq[];
   relatedSlugs: string[];
+  tldr?: string;
+  coverImage?: string;
 }
 
 export const blogPosts: BlogPost[] = [

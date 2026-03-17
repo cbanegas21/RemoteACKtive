@@ -171,7 +171,7 @@ export default async function BlogPostPage({ params }: Props) {
                 {post.h1}
               </h1>
 
-              <p className="text-lg text-white font-medium leading-relaxed mb-8">
+              <p className="text-lg text-white/80 leading-relaxed mb-8">
                 {post.excerpt}
               </p>
 
@@ -184,25 +184,54 @@ export default async function BlogPostPage({ params }: Props) {
               />
             </header>
 
+            {/* ── TL;DR box ── */}
+            {post.tldr && (
+              <div
+                className="rounded-xl border border-[#4FFFB0]/25 mb-10 overflow-hidden"
+                style={{ background: "linear-gradient(135deg, #0a2a1a 0%, #0D1F35 100%)" }}
+              >
+                <div className="flex items-center gap-2 px-5 py-3 border-b border-[#4FFFB0]/15">
+                  <span className="w-2 h-2 rounded-full bg-[#4FFFB0]" />
+                  <span className="text-[#4FFFB0] text-xs font-bold tracking-widest uppercase">TL;DR</span>
+                </div>
+                <p className="px-5 py-4 text-white font-medium text-sm leading-relaxed">
+                  {post.tldr}
+                </p>
+              </div>
+            )}
+
             {/* ── Article body ── */}
             <article className="mb-14">
               {post.sections.map((section, idx) => (
-                <div key={idx} className="mb-10">
-                  <h2 className="text-xl md:text-2xl font-bold text-white mb-4 leading-snug">
+                <div key={idx} className="mb-12">
+                  {/* Section divider (skip first) */}
+                  {idx > 0 && (
+                    <div className="h-px w-full mb-10" style={{ background: "linear-gradient(90deg, rgba(87,197,207,0.15) 0%, transparent 80%)" }} />
+                  )}
+
+                  <h2 className="text-xl md:text-2xl font-bold text-white mb-5 leading-snug">
                     {section.h2}
                   </h2>
+
+                  {/* Optional stat callout */}
+                  {section.stat && (
+                    <div className="flex items-center gap-4 rounded-xl border border-[#57C5CF]/20 bg-[#57C5CF]/5 px-5 py-4 mb-6">
+                      <span className="text-3xl font-extrabold text-[#4FFFB0] leading-none shrink-0">{section.stat.value}</span>
+                      <span className="text-white/80 text-sm font-medium leading-snug">{section.stat.label}</span>
+                    </div>
+                  )}
 
                   {section.body.map((para, pIdx) => (
                     <p
                       key={pIdx}
-                      className="text-white font-medium text-base leading-relaxed mb-4"
+                      className={`leading-relaxed mb-4 ${pIdx === 0 ? "text-white text-base md:text-[17px] font-medium" : "text-white/85 text-base font-normal"}`}
                     >
                       {para}
                     </p>
                   ))}
 
                   {section.bullets && section.bullets.length > 0 && (
-                    <ul className="mt-4 space-y-3">
+                    <ul className="mt-5 space-y-3">
                       {section.bullets.map((item, bIdx) => (
                         <li key={bIdx} className="flex items-start gap-3">
                           <span className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-[#4FFFB0]/15 flex items-center justify-center">
