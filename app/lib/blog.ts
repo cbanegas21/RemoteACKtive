@@ -114,7 +114,7 @@ export const blogPosts: BlogPost[] = [
       "reinvest-payroll-savings-from-remote-hiring",
     ],
     tldr: "A new LLC's true cost of a local hire often exceeds $80,000 in year one once you add taxes, benefits, and recruiter fees. Remote contractors in LATAM deliver comparable skills at 60–70% less, with no mandatory benefits burden. Starting with well-defined roles — VA, bookkeeper, CSR — and reinvesting the savings into marketing or systems is how lean LLCs compound fastest.",
-    coverImage: "/images/blog/save-on-hiring-costs-new-llc.jpg",
+    coverImage: "/images/blog/save-on-hiring-costs-new-llc.png",
   },
 
   // ─── BLOG 2 ───────────────────────────────────────────────────────────────
@@ -197,7 +197,7 @@ export const blogPosts: BlogPost[] = [
       "save-on-hiring-costs-new-llc",
     ],
     tldr: "Remote contractors typically cost 60–70% less than equivalent US hires — with no benefits obligations and no payroll tax burden. The model fails only when structure is missing: clear KPIs, SOPs, and weekly check-ins are what separate high-performing remote contractors from expensive experiments.",
-    coverImage: "/images/blog/advantages-of-hiring-remote-contractors.jpg",
+    coverImage: "/images/blog/advantages-of-hiring-remote-contractors.png",
   },
 
   // ─── BLOG 3 ───────────────────────────────────────────────────────────────
@@ -280,7 +280,7 @@ export const blogPosts: BlogPost[] = [
       "how-to-manage-a-remote-team",
     ],
     tldr: "Location-based hiring is dying for white-collar roles because cloud tools, video communication, and output-based management have removed the need for physical proximity. Companies that succeed with global remote teams invest in systems before people — documented processes, clear KPIs, and consistent communication rhythms replace the ambient accountability of an office.",
-    coverImage: "/images/blog/era-of-remote-contracting.jpg",
+    coverImage: "/images/blog/era-of-remote-contracting.png",
   },
 
   // ─── BLOG 4 ───────────────────────────────────────────────────────────────
@@ -363,7 +363,7 @@ export const blogPosts: BlogPost[] = [
       "save-on-hiring-costs-new-llc",
     ],
     tldr: "Remote teams fail because of missing management infrastructure — not because people work from home. The fix is outcome-based management: measurable KPIs, weekly scorecards, documented SOPs, and a consistent operating cadence that replaces the ambient signals of office culture.",
-    coverImage: "/images/blog/how-to-manage-a-remote-team.jpg",
+    coverImage: "/images/blog/how-to-manage-a-remote-team.png",
   },
 
   // ─── BLOG 5 ───────────────────────────────────────────────────────────────
@@ -439,7 +439,7 @@ export const blogPosts: BlogPost[] = [
       "advantages-of-hiring-remote-contractors",
     ],
     tldr: "LATAM is not one talent market — English proficiency, cost, timezone, and role maturity differ meaningfully by country. Honduras and Costa Rica lead for customer-facing English quality; Colombia and Mexico for ops depth and volume; screening rigorously for individual performance matters more than any country stereotype.",
-    coverImage: "/images/blog/latam-outsourcing-country-comparison.jpg",
+    coverImage: "/images/blog/latam-outsourcing-country-comparison.png",
   },
 
   // ─── BLOG 6 ───────────────────────────────────────────────────────────────
@@ -522,7 +522,7 @@ export const blogPosts: BlogPost[] = [
       "advantages-of-hiring-remote-contractors",
     ],
     tldr: "Honduras has a mature BPO sector, strong English proficiency relative to LATAM peers, and full US time zone alignment — making it one of the most underrated nearshore markets for customer-facing roles. The quality difference between a good and a great Honduran hire comes down entirely to screening rigor, not geography.",
-    coverImage: "/images/blog/honduras-english-proficiency-outsourcing.jpg",
+    coverImage: "/images/blog/honduras-english-proficiency-outsourcing.png",
   },
 
   // ─── BLOG 7 ───────────────────────────────────────────────────────────────
@@ -605,7 +605,7 @@ export const blogPosts: BlogPost[] = [
       "advantages-of-hiring-remote-contractors",
     ],
     tldr: "Switching from local to remote hires generates real, investable savings — a single bookkeeper swap can free up $30,000+ annually. Businesses that treat those savings as growth capital and deploy them into marketing, automation, or additional remote hires compound significantly faster than those that let the savings disappear into overhead.",
-    coverImage: "/images/blog/reinvest-payroll-savings-from-remote-hiring.jpg",
+    coverImage: "/images/blog/reinvest-payroll-savings-from-remote-hiring.png",
   },
 
   // ─── BLOG 8 ───────────────────────────────────────────────────────────────
@@ -724,7 +724,7 @@ export const blogPosts: BlogPost[] = [
       "how-remote-acktive-works-latam-staffing-process",
     ],
     tldr: "LATAM staffing places dedicated, English-speaking remote professionals from Latin America at US companies — typically at 40-60% below US labor costs. Most roles land between $28k-$40k per year. Timezone overlap is full. Placement takes 3-5 business days. The economics work for CX, ops, SDR, data, and bookkeeping roles.",
-    coverImage: "/images/blog/latam-staffing-guide.jpg",
+    coverImage: "/images/blog/latam-staffing-guide.png",
   },
 
   // ─── BLOG 9 ───────────────────────────────────────────────────────────────
@@ -828,7 +828,7 @@ export const blogPosts: BlogPost[] = [
       "roles-to-outsource-latin-america",
     ],
     tldr: "For a single mid-level CX rep, the fully-loaded cost difference between a US hire and a LATAM hire is roughly $40,000-$50,000 per year. For a five-person team, that's $200,000+ annually. The math works because LATAM compensation levels are genuinely lower — not because quality is lower.",
-    coverImage: "/images/blog/cost-savings-hiring-remote-workers-latin-america.jpg",
+    coverImage: "/images/blog/cost-savings-hiring-remote-workers-latin-america.png",
   },
 
   // ─── BLOG 10 ──────────────────────────────────────────────────────────────
@@ -928,7 +928,7 @@ export const blogPosts: BlogPost[] = [
       "hire-remote-workers-colombia",
     ],
     tldr: "Colombia is the strongest all-around market for CX and ops. Honduras is most cost-efficient for English-speaking support. Mexico offers the most volume. Argentina is the go-to for bookkeeping and data. Costa Rica delivers the highest US corporate-standard execution for senior ops and executive VA roles.",
-    coverImage: "/images/blog/top-countries-latin-america-remote-hiring.jpg",
+    coverImage: "/images/blog/top-countries-latin-america-remote-hiring.png",
   },
 
   // ─── BLOG 11 ──────────────────────────────────────────────────────────────
@@ -1014,7 +1014,7 @@ export const blogPosts: BlogPost[] = [
       "build-customer-support-team-latin-america",
     ],
     tldr: "LATAM customer support works well when the hire is properly vetted for English, the processes are documented, and the worker is dedicated to your company (not shared). It fails when vetting is weak, onboarding is skipped, or you expect the hire to figure everything out independently from day one.",
-    coverImage: "/images/blog/outsource-customer-support-latin-america.jpg",
+    coverImage: "/images/blog/outsource-customer-support-latin-america.png",
   },
 
   // ─── BLOG 12 ──────────────────────────────────────────────────────────────
@@ -1087,7 +1087,7 @@ export const blogPosts: BlogPost[] = [
       "latam-staffing-cost",
     ],
     tldr: "Traditional agencies are built for US placements and slow for LATAM. BPOs are right for high-volume managed outcomes. Remote ACKtive is built for fast, dedicated LATAM placements at 1-10 seats where you want someone who knows your product and represents your brand.",
-    coverImage: "/images/blog/remote-acktive-vs-traditional-staffing-agencies.jpg",
+    coverImage: "/images/blog/remote-acktive-vs-traditional-staffing-agencies.png",
   },
 
   // ─── BLOG 13 ──────────────────────────────────────────────────────────────
@@ -1187,7 +1187,7 @@ export const blogPosts: BlogPost[] = [
       "roles-to-outsource-latin-america",
     ],
     tldr: "Vet in five stages: written pre-screen, English assessment (written and spoken separately), role-specific task exercise, work-style evaluation, and reference check. Skip any stage and you're accepting risk. The English assessment is the most commonly skipped and the most predictive.",
-    coverImage: "/images/blog/how-to-vet-remote-latam-candidates.jpg",
+    coverImage: "/images/blog/how-to-vet-remote-latam-candidates.png",
   },
 
   // ─── BLOG 14 ──────────────────────────────────────────────────────────────
@@ -1257,7 +1257,7 @@ export const blogPosts: BlogPost[] = [
       "remote-acktive-vs-traditional-staffing-agencies",
     ],
     tldr: "A single failed mid-level hire — salary, double recruiting fees, management time, team disruption, onboarding write-off — typically costs $37,500 to $76,500. A LATAM hire with a 90-day free replacement guarantee caps that exposure at $8,000-$12,000. The guarantee isn't a nice-to-have. It's the primary risk mitigation mechanism.",
-    coverImage: "/images/blog/real-cost-of-bad-hire.jpg",
+    coverImage: "/images/blog/real-cost-of-bad-hire.png",
   },
 
   // ─── BLOG 15 ──────────────────────────────────────────────────────────────
@@ -1330,7 +1330,7 @@ export const blogPosts: BlogPost[] = [
       "nearshore-vs-offshore-staffing",
     ],
     tldr: "Colombia, Mexico, Honduras, and Costa Rica all operate within one hour of US Eastern Time. The Philippines is +13 hours. India is +10.5 hours. For customer-facing, ops, and SDR roles that require real-time collaboration, this isn't a preference — it's a functional requirement.",
-    coverImage: "/images/blog/latam-time-zones-remote-work-advantage.jpg",
+    coverImage: "/images/blog/latam-time-zones-remote-work-advantage.png",
   },
 
   // ─── BLOG 16 ──────────────────────────────────────────────────────────────
@@ -1413,7 +1413,7 @@ export const blogPosts: BlogPost[] = [
       "how-to-vet-remote-latam-candidates",
     ],
     tldr: "Discovery call → role brief (Day 1) → sourcing (Days 1-2) → vetting (Days 2-4) → shortlist delivery (Days 3-5) → client interview (Days 4-6) → placement (Days 5-10) → 90-day support. Total: 7-12 business days versus 6-10 weeks for traditional recruiting.",
-    coverImage: "/images/blog/how-remote-acktive-works-latam-staffing-process.jpg",
+    coverImage: "/images/blog/how-remote-acktive-works-latam-staffing-process.png",
   },
 
   // ─── BLOG 17 ──────────────────────────────────────────────────────────────
@@ -1487,7 +1487,7 @@ export const blogPosts: BlogPost[] = [
       "how-to-vet-remote-latam-candidates",
     ],
     tldr: "The highest-ROI LATAM hires are CX reps, ops admins, bookkeepers, SDR support, and data analysts. These roles are process-driven, language-dependent, and timezone-sensitive — all factors that favor LATAM's structural advantages over other offshore markets.",
-    coverImage: "/images/blog/roles-to-outsource-latin-america.jpg",
+    coverImage: "/images/blog/roles-to-outsource-latin-america.png",
   },
 
   // ─── BLOG 18 ──────────────────────────────────────────────────────────────
@@ -1583,7 +1583,7 @@ export const blogPosts: BlogPost[] = [
       "scale-remote-team-saas",
     ],
     tldr: "A mid-level LATAM VA costs $26,000-$36,000 per year — 40-60% below a US executive assistant. The cost works. What makes or breaks the engagement is onboarding quality and scope clarity, not geography.",
-    coverImage: "/images/blog/hire-virtual-assistant-latin-america.jpg",
+    coverImage: "/images/blog/hire-virtual-assistant-latin-america.png",
   },
 
   // ─── BLOG 19 ──────────────────────────────────────────────────────────────
@@ -1663,7 +1663,7 @@ export const blogPosts: BlogPost[] = [
       "build-customer-support-team-latin-america",
     ],
     tldr: "The two-speed model works: a small US leadership layer making high-judgment decisions, supported by a LATAM execution layer handling CX, ops, SDR, data, and bookkeeping at 40-60% below US cost. Companies that build the execution layer early consistently outperform those that delay until the operational debt is a crisis.",
-    coverImage: "/images/blog/scale-remote-team-saas.jpg",
+    coverImage: "/images/blog/scale-remote-team-saas.png",
   },
 
   // ─── BLOG 20 ──────────────────────────────────────────────────────────────
@@ -1745,7 +1745,7 @@ export const blogPosts: BlogPost[] = [
       "latam-staffing-guide",
     ],
     tldr: "LATAM SDRs excel at prospecting, list building, LinkedIn outreach, email sequence management, and CRM hygiene. They're not a substitute for a US-based closer or enterprise discovery specialist. The model works when you use them to handle top-of-funnel volume so your US team can focus exclusively on qualified opportunities.",
-    coverImage: "/images/blog/outsource-sdr-latin-america.jpg",
+    coverImage: "/images/blog/outsource-sdr-latin-america.png",
   },
 
   // ─── BLOG 21 ──────────────────────────────────────────────────────────────
@@ -1836,7 +1836,7 @@ export const blogPosts: BlogPost[] = [
       "latam-staffing-cost",
     ],
     tldr: "A mid-level LATAM bookkeeper costs $24,000-$32,000 per year — 40-55% below a US equivalent. The model works best as LATAM bookkeeper handling daily/weekly operations + US CPA reviewing monthly close. The oversight structure is what makes this safe.",
-    coverImage: "/images/blog/hire-remote-bookkeeper-latin-america.jpg",
+    coverImage: "/images/blog/hire-remote-bookkeeper-latin-america.png",
   },
 
   // ─── BLOG 22 ──────────────────────────────────────────────────────────────
@@ -1914,7 +1914,7 @@ export const blogPosts: BlogPost[] = [
       "outsource-customer-support-latin-america",
     ],
     tldr: "Nearshore LATAM is the right choice for roles requiring real-time collaboration, customer-facing communication, and same-day feedback loops. Offshore is the right choice for highly structured work where cost minimization is the primary variable and timezone overlap isn't required. Most SaaS and eCommerce companies benefit from nearshore for CX, ops, and SDR — and offshore for high-volume async work like data processing.",
-    coverImage: "/images/blog/nearshore-vs-offshore-staffing.jpg",
+    coverImage: "/images/blog/nearshore-vs-offshore-staffing.png",
   },
 
   // ─── BLOG 23 ──────────────────────────────────────────────────────────────
@@ -1994,7 +1994,7 @@ export const blogPosts: BlogPost[] = [
       "remote-acktive-vs-traditional-staffing-agencies",
     ],
     tldr: "Total cost of a LATAM hire has four components: contractor compensation ($28k-$40k/year), a one-time placement fee ($4k-$10k), an ongoing management fee ($300-$800/month), and your own internal management time. Even with all four layers, the total is 40-60% below a comparable US hire. Payback on the placement fee is typically 1-3 months.",
-    coverImage: "/images/blog/latam-staffing-cost.jpg",
+    coverImage: "/images/blog/latam-staffing-cost.png",
   },
 
   // ─── BLOG 24 ──────────────────────────────────────────────────────────────
@@ -2079,7 +2079,7 @@ export const blogPosts: BlogPost[] = [
       "latam-staffing-cost",
     ],
     tldr: "Two Tier 1 support reps + one Senior CX Lead, all in LATAM, all on US business hours, costs $92,000-$115,000/year fully loaded — compared to $130,000-$180,000 for two US-based CX hires. The LATAM three-person team delivers more coverage at lower total cost, with a documented playbook, clear SLAs, and three metrics that actually tell you if it's working.",
-    coverImage: "/images/blog/build-customer-support-team-latin-america.jpg",
+    coverImage: "/images/blog/build-customer-support-team-latin-america.png",
   },
 
   // ─── BLOG 25 ──────────────────────────────────────────────────────────────
@@ -2168,7 +2168,7 @@ export const blogPosts: BlogPost[] = [
       "latam-staffing-cost",
     ],
     tldr: "Remote staffing fails for five reasons: poor vetting, no onboarding, unclear scope, no performance tracking, and no cultural alignment work. All five are avoidable. None of them are caused by geography.",
-    coverImage: "/images/blog/why-remote-staffing-fails.jpg",
+    coverImage: "/images/blog/why-remote-staffing-fails.png",
   },
 
   // ─── BLOG 26 ──────────────────────────────────────────────────────────────
@@ -2250,7 +2250,7 @@ export const blogPosts: BlogPost[] = [
       "outsource-customer-support-latin-america",
     ],
     tldr: "Colombia's combination of ET timezone alignment, improving English proficiency, deep professional talent pool in major cities, and strong work culture makes it the leading single-country LATAM market for US-facing remote roles. Cost ranges $18,000-$38,000/year depending on role and experience level.",
-    coverImage: "/images/blog/hire-remote-workers-colombia.jpg",
+    coverImage: "/images/blog/hire-remote-workers-colombia.png",
   },
 
   // ─── BLOG 27 ──────────────────────────────────────────────────────────────
@@ -2330,7 +2330,7 @@ export const blogPosts: BlogPost[] = [
       "why-remote-staffing-fails",
     ],
     tldr: "Deel is payroll and compliance infrastructure — it pays the people you already have, legally and compliantly, in 150+ countries. Remote ACKtive is a managed staffing service — it finds, vets, places, and manages qualified LATAM talent for US companies. One solves the 'how do I pay my people' problem. The other solves the 'who are my people' problem.",
-    coverImage: "/images/blog/remote-acktive-vs-deel.jpg",
+    coverImage: "/images/blog/remote-acktive-vs-deel.png",
   },
 ];
 
