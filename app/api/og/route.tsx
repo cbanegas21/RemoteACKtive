@@ -174,7 +174,7 @@ export async function GET() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span style={{ color: '#4FFFB0', fontSize: 42, fontWeight: 800, lineHeight: 1 }}>
-                18+
+                20+
               </span>
               <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: 15, marginTop: 6 }}>
                 Countries
@@ -182,7 +182,7 @@ export async function GET() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span style={{ color: '#4FFFB0', fontSize: 42, fontWeight: 800, lineHeight: 1 }}>
-                500+
+                30+
               </span>
               <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: 15, marginTop: 6 }}>
                 Placements

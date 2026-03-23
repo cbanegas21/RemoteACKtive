@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, useRef } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MessageCircleQuestion } from "lucide-react";
 
 export default function FAQ() {
   const faqs = useMemo(
@@ -182,7 +182,11 @@ export default function FAQ() {
         ref={(el) => {
           faqRefs.current[actualIdx] = el;
         }}
-        className="rounded-2xl overflow-hidden border bg-[#1E2430] border-white/8 hover:border-[#57C5CF]/40 transition-colors duration-200"
+        className={`rounded-2xl overflow-hidden border bg-white shadow-sm transition-all duration-200 ${
+          open
+            ? "border-[#57C5CF]/60 shadow-md"
+            : "border-gray-200 hover:border-[#57C5CF]/40 hover:shadow-md"
+        }`}
         role="listitem"
       >
         <button
@@ -191,14 +195,27 @@ export default function FAQ() {
           onKeyDown={(e) => handleKeyDown(e, actualIdx)}
           aria-expanded={open}
           aria-controls={`faq-panel-${actualIdx}`}
-          className="w-full flex items-center justify-between p-5 text-left gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#57C5CF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2430]"
+          className={`w-full flex items-start justify-between p-5 text-left gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#57C5CF] focus-visible:ring-inset transition-colors duration-200 ${
+            open ? "bg-[#57C5CF]/5" : "bg-white hover:bg-gray-50"
+          }`}
         >
-          <span className="text-white font-semibold text-sm leading-snug">
+          {/* Left accent bar */}
+          <span
+            className={`flex-shrink-0 w-0.5 self-stretch rounded-full transition-colors duration-300 ${
+              open ? "bg-[#57C5CF]" : "bg-transparent"
+            }`}
+            aria-hidden="true"
+          />
+          <span
+            className={`flex-1 font-bold text-sm leading-snug transition-colors duration-200 ${
+              open ? "text-[#0F1926]" : "text-[#1E2430]"
+            }`}
+          >
             {faq.question}
           </span>
           <ChevronDown
-            className={`w-4 h-4 flex-shrink-0 text-[#57C5CF] transition-transform duration-300 ${
-              open ? "rotate-180" : ""
+            className={`w-4 h-4 flex-shrink-0 transition-all duration-300 mt-0.5 ${
+              open ? "rotate-180 text-[#57C5CF]" : "text-gray-400"
             }`}
             aria-hidden="true"
           />
@@ -213,7 +230,7 @@ export default function FAQ() {
           }`}
         >
           <div className="min-h-0 overflow-hidden">
-            <div className="px-5 pb-5 text-white text-sm leading-relaxed border-t border-white/8 pt-4">
+            <div className="px-5 pb-5 pt-3 text-[#374151] text-sm leading-relaxed border-t border-gray-100 ml-5">
               {faq.answer}
             </div>
           </div>
@@ -223,44 +240,54 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-20" style={{ background: 'linear-gradient(to right, #135058, #F1F2B5)' }}>
+    <section
+      id="faq"
+      className="py-20"
+      style={{ background: "linear-gradient(to right, #135058, #F1F2B5)" }}
+    >
       <div className="container mx-auto px-6 max-w-6xl">
 
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-black/10 border border-black/20 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-sm font-bold text-black tracking-wide uppercase">
+          <div className="inline-flex items-center gap-2 bg-[#0F1926]/10 border border-[#0F1926]/20 rounded-full px-4 py-1.5 mb-5">
+            <MessageCircleQuestion className="w-4 h-4 text-[#0F1926]" aria-hidden="true" />
+            <span className="text-sm font-bold text-[#0F1926] tracking-wide uppercase">
               Got Questions?
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black mb-4 leading-tight">
+
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0F1926] mb-4 leading-tight"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
             Every concern you have —{" "}
             <span className="text-[#0A3040]">answered.</span>
           </h2>
-          <p className="text-black font-semibold text-lg max-w-2xl mx-auto mb-5">
+
+          <p className="text-[#1E2430] font-semibold text-lg max-w-2xl mx-auto mb-6">
             Real questions from real clients, answered honestly. Still on the
             fence? Book a free call and we&apos;ll answer them live.
           </p>
-          <a
-            href="/book-a-call"
-            className="inline-flex items-center gap-2 btn-gradient text-[#0F1926] font-bold px-6 py-3 rounded-full text-sm shadow-md hover:shadow-lg mb-6"
-          >
-            Book a Free Call →
-          </a>
 
-          {/* Expand / Collapse controls */}
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="/book-a-call"
+              className="inline-flex items-center gap-2 btn-gradient text-[#0F1926] font-bold px-6 py-3 rounded-full text-sm shadow-md hover:shadow-lg transition-shadow"
+            >
+              Book a Free Call →
+            </a>
+
             <button
               onClick={expandAll}
               aria-label="Expand all FAQs"
-              className="text-sm font-bold px-4 py-2 rounded-lg border border-black/20 text-black hover:border-[#57C5CF]/40 hover:text-black transition-all duration-200"
+              className="btn-grad text-sm font-bold px-5 py-3 rounded-full transition-all duration-200"
             >
               Expand all
             </button>
             <button
               onClick={collapseAll}
               aria-label="Collapse all FAQs"
-              className="text-sm font-bold px-4 py-2 rounded-lg border border-black/20 text-black hover:border-[#57C5CF]/40 hover:text-black transition-all duration-200"
+              className="text-sm font-bold px-5 py-3 rounded-full border-2 border-[#0F1926]/25 text-[#0F1926] hover:border-[#57C5CF]/60 hover:text-[#0A3040] transition-all duration-200 bg-white/40 backdrop-blur-sm"
             >
               Collapse all
             </button>

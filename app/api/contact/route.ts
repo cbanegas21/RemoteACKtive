@@ -75,6 +75,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Guard against email header injection (CRLF injection)
+    if (/[\r\n]/.test(email) || /[\r\n]/.test(name)) {
+      return NextResponse.json(
+        { error: 'Invalid input' },
+        { status: 400 }
+      );
+    }
+
     // Determine form type label
     let formTypeLabel = 'General Inquiry';
     if (formType === 'hire-only') formTypeLabel = 'Hire-Only Request';

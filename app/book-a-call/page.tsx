@@ -1,211 +1,456 @@
 "use client";
 import { useState } from "react";
-import { Check, Calendar, Clock, Users, Star } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  Users,
+  Star,
+  ShieldCheck,
+  ArrowRight,
+  CheckCircle2,
+  Globe,
+  Zap,
+} from "lucide-react";
 import { FormProvider } from "@/components/FormContext";
 import Header from "@/components/Header";
 import HireOnlyForm from "@/components/HireOnlyForm";
 import HireManageForm from "@/components/HireManageForm";
 import Footer from "@/components/Footer";
 
+const tabs = [
+  {
+    id: "hire-only" as const,
+    label: "Recruitment-Only",
+    title: "Get Pre-Vetted Candidates Fast",
+    description:
+      "We source, screen, and deliver a shortlist of top-tier LATAM professionals — you make the final call.",
+    isFeatured: false,
+    accentColor: "#57C5CF",
+    borderIdle: "rgba(87,197,207,0.25)",
+    borderHover: "rgba(87,197,207,0.6)",
+  },
+  {
+    id: "hire-manage" as const,
+    label: "Full Service Staffing",
+    title: "Your Entire Remote Team — Handled",
+    description:
+      "Full-cycle hiring, HR administration, performance management, and ongoing development. Completely hands-free.",
+    isFeatured: true,
+    accentColor: "#4FFFB0",
+    borderIdle: "rgba(79,255,176,0.3)",
+    borderHover: "rgba(79,255,176,0.7)",
+  },
+];
+
+const stats = [
+  { value: "30+", label: "Placements", color: "#57C5CF" },
+  { value: "4.9/5", label: "Client Rating", color: "#F5A623" },
+  { value: "94%", label: "12-Mo Retention", color: "#4FFFB0" },
+  { value: "3–10", label: "Days to Hire", color: "#57C5CF" },
+];
+
+const benefits = [
+  {
+    icon: Calendar,
+    title: "Free 30-Minute Strategy Call",
+    description:
+      "No commitment, no pitch. We map your hiring needs and identify where remote talent delivers the most value.",
+    color: "#57C5CF",
+  },
+  {
+    icon: Zap,
+    title: "Candidates in 3–10 Days",
+    description:
+      "Our pre-vetted LATAM talent pool means you get qualified candidates weeks faster than traditional recruiting.",
+    color: "#4FFFB0",
+  },
+  {
+    icon: Globe,
+    title: "LATAM Talent, 20+ Countries",
+    description:
+      "English-fluent, timezone-aligned professionals from top talent markets across Latin America.",
+    color: "#57C5CF",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Lifetime Replacement Guarantee",
+    description:
+      "If a placement underperforms, we find you a better match at zero extra charge — no questions asked.",
+    color: "#4FFFB0",
+  },
+];
+
+const whatToExpect = [
+  "Understand your business challenges and growth goals",
+  "Identify where remote talent delivers the biggest ROI",
+  "Walk through our vetting process and quality standards",
+  "Review pricing and expected savings (typically 60–70%)",
+  "Get a custom hiring roadmap tailored to your team",
+  "Answer every question — no pressure, ever",
+];
+
 export default function BookACallPage() {
-  const [activeTab, setActiveTab] = useState<"hire-only" | "hire-manage">("hire-manage");
+  const [activeTab, setActiveTab] = useState<"hire-only" | "hire-manage">(
+    "hire-manage"
+  );
 
-  const tabs = [
-    {
-      id: "hire-only" as const,
-      label: "Recruitment-Only",
-      title: "Interested in Recruitment-Only?",
-      description: "Get expert recruitment without ongoing management",
-      isFeatured: false
-    },
-    {
-      id: "hire-manage" as const,
-      label: "Recruit + Manage",
-      title: "Ready for Full Outsourcing Support?",
-      description: "Get recruitment + ongoing management and support",
-      isFeatured: true
-    },
-  ];
-
-  const benefits = [
-    {
-      icon: Calendar,
-      title: "Free 30-Minute Strategy Session",
-      description: "No commitment, no pressure—just valuable insights tailored to your business needs.",
-    },
-    {
-      icon: Users,
-      title: "Custom Talent Recommendations",
-      description: "We'll identify the exact roles that will drive the most value for your organization.",
-    },
-    {
-      icon: Clock,
-      title: "Fast Response Time",
-      description: "Get pre-qualified candidates within 3-10 days of your consultation.",
-    },
-  ];
-
-  const whatToExpect = [
-    "Understand your current business challenges and growth goals",
-    "Identify where remote talent can deliver the biggest impact",
-    "Discuss our vetting process and how we ensure quality",
-    "Review pricing options and ROI expectations",
-    "Answer all your questions about remote team building",
-    "Receive a custom hiring roadmap tailored to your needs",
-  ];
-
-  const currentTab = tabs.find(tab => tab.id === activeTab) || tabs[1];
+  const currentTab = tabs.find((t) => t.id === activeTab) || tabs[1];
 
   return (
     <FormProvider>
-      <div className="min-h-screen bg-background-dark">
+      <div
+        className="min-h-screen"
+        style={{ background: "linear-gradient(to right, #0F2027, #203A43, #2C5364)" }}
+      >
         <Header />
 
-        {/* HERO SECTION - GRADIENT BACKGROUND */}
-        <section className="relative pt-32 pb-16 bg-gradient-hero overflow-hidden">
-          <div className="container mx-auto px-6 text-center relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Book Your Free Discovery Call
+        {/* ── Hero ──────────────────────────────────────────────────────── */}
+        <section className="relative pt-32 pb-16 overflow-hidden">
+          {/* ambient top glow */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(87,197,207,0.08) 0%, transparent 70%)",
+            }}
+          />
+
+          <div className="relative z-10 container mx-auto px-6 max-w-5xl text-center">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-[#57C5CF]/10 border border-[#57C5CF]/20 rounded-full px-4 py-1.5 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4FFFB0] animate-pulse" />
+              <span className="text-sm font-bold text-[#57C5CF] tracking-wide uppercase">
+                Free Discovery Call
+              </span>
+            </div>
+
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 leading-tight"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              Build Your Dream Remote Team{" "}
+              <span className="text-[#4FFFB0]">in Days, Not Months</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Let's discuss how Remote ACKtive can help you build a world-class remote team and save up to 70% on costs
+            <p
+              className="text-white/75 text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Tell us what you need. We&apos;ll show you how to hire top LATAM
+              professionals at up to 70% less — fully vetted and ready to start.
             </p>
+
+            {/* Stats strip */}
+            <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+              {stats.map((s) => (
+                <div key={s.label} className="text-center">
+                  <div
+                    className="text-2xl md:text-3xl font-black leading-none mb-0.5"
+                    style={{
+                      color: s.color,
+                      fontFamily: "var(--font-heading)",
+                      textShadow: `0 0 20px ${s.color}40`,
+                    }}
+                  >
+                    {s.value}
+                  </div>
+                  <div
+                    className="text-xs text-white/55 font-semibold uppercase tracking-wide"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* FORMS & BENEFITS SECTION */}
-        <section className="py-20 bg-background-dark">
-          <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+        {/* ── Main Content ──────────────────────────────────────────────── */}
+        <section className="pb-24">
+          <div className="container mx-auto px-6 max-w-7xl">
+            <div className="grid lg:grid-cols-5 gap-10 items-start">
+
               {/* LEFT: Benefits */}
-              <div className="lg:col-span-1 space-y-8">
-                {/* Benefits Cards */}
-                <div>
-                  <h2 className="text-2xl font-bold text-white mb-6">
-                    What You'll Get
-                  </h2>
-                  <div className="space-y-4">
-                    {benefits.map((benefit, index) => {
-                      const Icon = benefit.icon;
-                      return (
-                        <div
-                          key={index}
-                          className="flex gap-4 p-4 bg-background-darkCard border border-white/10 rounded-lg hover:border-primary-teal/40 transition-all"
-                        >
-                          <div className="flex-shrink-0">
-                            <div className="w-12 h-12 rounded-lg bg-primary-teal/10 flex items-center justify-center">
-                              <Icon className="w-6 h-6 text-primary-teal" />
+              <div className="lg:col-span-2 space-y-5">
+                {/* Benefits */}
+                <div
+                  className="rounded-2xl overflow-hidden"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    backdropFilter: "blur(12px)",
+                    WebkitBackdropFilter: "blur(12px)",
+                    border: "1px solid rgba(87,197,207,0.15)",
+                  }}
+                >
+                  {/* Top accent */}
+                  <div
+                    className="h-0.5 w-full"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #57C5CF 0%, #4FFFB0 50%, transparent 100%)",
+                    }}
+                  />
+                  <div className="p-7">
+                    <p
+                      className="text-xs font-bold text-white/45 uppercase tracking-widest mb-5"
+                      style={{ fontFamily: "var(--font-body)" }}
+                    >
+                      Why book a call
+                    </p>
+                    <div className="space-y-5">
+                      {benefits.map((b) => {
+                        const Icon = b.icon;
+                        return (
+                          <div key={b.title} className="flex gap-4">
+                            <div
+                              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                              style={{
+                                background: `${b.color}18`,
+                                border: `1px solid ${b.color}30`,
+                              }}
+                            >
+                              <Icon
+                                className="w-5 h-5"
+                                style={{ color: b.color }}
+                              />
+                            </div>
+                            <div>
+                              <p
+                                className="text-white font-bold text-sm mb-0.5"
+                                style={{ fontFamily: "var(--font-heading)" }}
+                              >
+                                {b.title}
+                              </p>
+                              <p
+                                className="text-white/60 text-xs leading-relaxed"
+                                style={{ fontFamily: "var(--font-body)" }}
+                              >
+                                {b.description}
+                              </p>
                             </div>
                           </div>
-                          <div>
-                            <h3 className="font-bold text-white mb-1">{benefit.title}</h3>
-                            <p className="text-sm text-gray-300">{benefit.description}</p>
-                          </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
 
-                {/* What to Expect */}
-                <div className="bg-gradient-primary p-8 rounded-2xl">
-                  <h2 className="text-2xl font-bold text-white mb-6">
-                    What to Expect on the Call
-                  </h2>
-                  <ul className="space-y-3">
-                    {whatToExpect.map((item, index) => (
-                      <li key={index} className="flex gap-3 items-start">
-                        <Check className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
-                        <span className="text-white/90">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* What to expect */}
+                <div
+                  className="rounded-2xl overflow-hidden"
+                  style={{
+                    background: "rgba(255,255,255,0.03)",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                    border: "1px solid rgba(79,255,176,0.15)",
+                  }}
+                >
+                  <div
+                    className="h-0.5 w-full"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #4FFFB0 0%, transparent 75%)",
+                    }}
+                  />
+                  <div className="p-7">
+                    <p
+                      className="text-xs font-bold text-white/45 uppercase tracking-widest mb-4"
+                      style={{ fontFamily: "var(--font-body)" }}
+                    >
+                      What happens on the call
+                    </p>
+                    <ul className="space-y-2.5">
+                      {whatToExpect.map((item) => (
+                        <li key={item} className="flex items-start gap-3">
+                          <CheckCircle2
+                            className="w-4 h-4 flex-shrink-0 mt-0.5"
+                            style={{ color: "#4FFFB0" }}
+                          />
+                          <span
+                            className="text-white/75 text-sm leading-snug"
+                            style={{ fontFamily: "var(--font-body)" }}
+                          >
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                {/* Trust Badge */}
-                <div className="bg-background-darkCard border border-primary-teal/20 rounded-lg p-6 text-center">
-                  <div className="text-4xl font-bold text-primary-teal mb-2">100%</div>
-                  <div className="text-white font-bold mb-2">Client Satisfaction Guarantee</div>
-                  <p className="text-sm text-gray-300">
-                    If your remote team member doesn't meet your expectations, we'll find you a replacement at no extra cost.
+                {/* Guarantee pill */}
+                <div
+                  className="rounded-2xl p-6 text-center"
+                  style={{
+                    background: "rgba(79,255,176,0.06)",
+                    border: "1px solid rgba(79,255,176,0.2)",
+                  }}
+                >
+                  <ShieldCheck
+                    className="w-8 h-8 mx-auto mb-3"
+                    style={{ color: "#4FFFB0" }}
+                  />
+                  <p
+                    className="text-white font-extrabold text-base mb-1"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    Lifetime Guarantee
+                  </p>
+                  <p
+                    className="text-white/60 text-xs leading-relaxed"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    Every placement — covered forever. If it&apos;s not right,
+                    we make it right at no cost.
                   </p>
                 </div>
               </div>
 
-              {/* RIGHT: Forms */}
-              <div className="lg:col-span-2">
-                {/* Tab Navigation */}
-                <div className="flex items-stretch justify-center gap-4 mb-12 flex-wrap">
+              {/* RIGHT: Form */}
+              <div className="lg:col-span-3">
+                {/* Service tabs */}
+                <div className="flex gap-3 mb-6">
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`
-                        px-8 py-4 rounded-full text-base font-bold transition-all
-                        btn-grad
-                        ${
+                      className="flex-1 relative rounded-xl py-3.5 px-4 font-bold text-sm transition-all duration-200"
+                      style={{
+                        background:
                           activeTab === tab.id
-                            ? "scale-105 shadow-xl ring-2 ring-white/20"
-                            : "opacity-50 hover:opacity-80"
-                        }
-                      `}
+                            ? `${tab.accentColor}15`
+                            : "rgba(255,255,255,0.04)",
+                        border: `1px solid ${
+                          activeTab === tab.id
+                            ? tab.borderIdle
+                            : "rgba(255,255,255,0.08)"
+                        }`,
+                        color:
+                          activeTab === tab.id ? tab.accentColor : "rgba(255,255,255,0.5)",
+                        transform: activeTab === tab.id ? "translateY(-1px)" : "none",
+                      }}
                     >
-                      <div className="flex items-center justify-center gap-2">
-                        <span>{tab.label}</span>
+                      <span className="flex items-center justify-center gap-1.5">
+                        {tab.label}
                         {tab.isFeatured && (
-                          <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="w-3.5 h-3.5 fill-[#F5A623] text-[#F5A623]" />
                         )}
-                      </div>
+                      </span>
+                      {activeTab === tab.id && (
+                        <div
+                          className="absolute bottom-0 inset-x-0 h-0.5 rounded-b-xl"
+                          style={{
+                            background: tab.accentColor,
+                          }}
+                        />
+                      )}
                     </button>
                   ))}
                 </div>
 
-                {/* Form Container */}
-                <div className="bg-[#1A2332] rounded-2xl p-12 border border-gray-700 shadow-2xl">
-                  {/* Most Popular Badge */}
+                {/* Form card */}
+                <div
+                  className="rounded-2xl overflow-hidden"
+                  style={{
+                    background: "rgba(15,25,38,0.75)",
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                    border: `1px solid ${currentTab.borderIdle}`,
+                    boxShadow: currentTab.isFeatured
+                      ? `0 0 0 1px ${currentTab.borderIdle}, 0 24px 60px rgba(79,255,176,0.08)`
+                      : "none",
+                  }}
+                >
+                  {/* Gradient top bar for featured */}
                   {currentTab.isFeatured && (
-                    <div className="mb-6">
-                      <span className="inline-block px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-sm font-bold rounded-full uppercase tracking-wider">
-                        ⭐ Most Popular
-                      </span>
-                    </div>
+                    <div
+                      className="h-0.5 w-full flex-shrink-0"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, transparent 0%, #4FFFB0 40%, #57C5CF 70%, transparent 100%)",
+                      }}
+                    />
                   )}
 
-                  {/* Form Title */}
-                  <div className="mb-8">
-                    <h3 className="text-3xl font-bold text-white mb-3">
-                      {currentTab.title}
-                    </h3>
-                    <p className="text-gray-300 text-lg">
-                      {currentTab.description}
-                    </p>
-                  </div>
+                  <div className="p-8 md:p-10">
+                    {/* Most Popular badge */}
+                    {currentTab.isFeatured && (
+                      <div className="mb-5">
+                        <span
+                          className="inline-flex items-center gap-1.5 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-widest"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
+                            color: "#fff",
+                            boxShadow: "0 4px 14px rgba(245,158,11,0.35)",
+                          }}
+                        >
+                          <Star className="w-3 h-3 fill-white" />
+                          Most Popular
+                        </span>
+                      </div>
+                    )}
 
-                  {/* Forms */}
-                  <div className="transition-opacity duration-300">
+                    {/* Tab title */}
+                    <div className="mb-7">
+                      <h2
+                        className="text-2xl md:text-3xl font-extrabold text-white mb-2 leading-tight"
+                        style={{ fontFamily: "var(--font-heading)" }}
+                      >
+                        {currentTab.title}
+                      </h2>
+                      <p
+                        className="text-white/65 text-sm leading-relaxed"
+                        style={{ fontFamily: "var(--font-body)" }}
+                      >
+                        {currentTab.description}
+                      </p>
+                    </div>
+
+                    {/* Active form */}
                     {activeTab === "hire-only" && <HireOnlyForm />}
                     {activeTab === "hire-manage" && <HireManageForm />}
-                  </div>
 
-                  {/* Additional Info */}
-                  <p className="text-sm text-gray-400 text-center mt-8">
-                    Or schedule directly on our{" "}
-                    <a
-                      href="https://calendly.com/admin-remoteacktive/30min"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary-teal hover:text-primary-cyan underline"
+                    {/* Calendly fallback */}
+                    <p
+                      className="text-xs text-white/40 text-center mt-6"
+                      style={{ fontFamily: "var(--font-body)" }}
                     >
-                      Calendly
-                    </a>
-                  </p>
+                      Prefer to schedule directly?{" "}
+                      <a
+                        href="https://calendly.com/admin-remoteacktive/30min"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#57C5CF] hover:text-[#4FFFB0] transition-colors underline underline-offset-2"
+                      >
+                        Open Calendly
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Trust bar */}
+                <div className="flex flex-wrap items-center justify-center gap-6 mt-6 px-2">
+                  {[
+                    { icon: ShieldCheck, text: "No setup fees, ever" },
+                    { icon: Clock, text: "Response within 24 hours" },
+                    { icon: Users, text: "30+ teams already scaling" },
+                  ].map(({ icon: Icon, text }) => (
+                    <div
+                      key={text}
+                      className="flex items-center gap-1.5 text-white/45 text-xs"
+                      style={{ fontFamily: "var(--font-body)" }}
+                    >
+                      <Icon className="w-3.5 h-3.5 text-[#57C5CF]" />
+                      {text}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* FOOTER */}
         <Footer />
       </div>
     </FormProvider>

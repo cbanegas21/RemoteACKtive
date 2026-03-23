@@ -1,10 +1,10 @@
 import GlobeWithFallback from './GlobeWithFallback';
 
 const stats = [
-  { value: '70%',  label: 'Cost Savings'    },
-  { value: '3–10', label: 'Days to Hire'    },
-  { value: '18+',  label: 'Countries'       },
-  { value: '500+', label: 'Placements'      },
+  { value: 'Up to 70%', label: 'Cost Savings'    },
+  { value: '3–10',      label: 'Days to Hire'    },
+  { value: '20+',       label: 'Countries'       },
+  { value: '30+',       label: 'Placements'      },
 ];
 
 export default function HeroWithGlobe() {
@@ -73,11 +73,11 @@ export default function HeroWithGlobe() {
       <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-28 md:pt-32 xl:pt-36 pb-20 min-h-screen flex flex-col justify-center">
         <div className="max-w-[45rem] xl:max-w-[50rem] 2xl:max-w-[54rem] flex-1 flex flex-col justify-center">
 
-          {/* Badge pill */}
-          <div className="inline-flex items-center gap-2 mb-7 w-fit">
-            <span className="inline-block w-2 h-2 rounded-full bg-[#4FFFB0] animate-pulse" aria-hidden="true" />
-            <span className="text-xs sm:text-sm font-semibold tracking-widest text-[#57C5CF] uppercase">
-              Remote Staffing &amp; Outsourcing
+          {/* Trust badge */}
+          <div className="inline-flex items-center gap-2 mb-7 w-fit bg-white/8 border border-white/15 rounded-full px-4 py-1.5">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#4FFFB0]" aria-hidden="true" />
+            <span className="text-xs sm:text-sm font-semibold text-white/80">
+              LATAM Remote Staffing — Vetted Talent in 3–10 Days
             </span>
           </div>
 
@@ -90,12 +90,12 @@ export default function HeroWithGlobe() {
 
           {/* Supporting headline — white, not teal. Teal-on-teal has zero contrast. */}
           <p className="mt-5 text-xl md:text-2xl xl:text-3xl font-semibold text-white leading-snug">
-            Get U.S.-quality work at 70% less — same skill level, zero compromise.
+            Hire vetted LATAM professionals at 70% less — same skill level, zero compromise.
           </p>
 
           {/* Body copy */}
           <p className="mt-5 text-base md:text-lg xl:text-xl text-white leading-relaxed max-w-xl">
-            Pre-vetted professionals from 18+ countries, ready to join your team in 3–10 days.
+            Pre-vetted professionals from 20+ countries, ready to join your team in 3–10 days.
             No middlemen, no inflated agency fees — just elite global talent that performs.
           </p>
 

@@ -158,6 +158,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
     renderer.domElement.style.margin = 'auto';
     renderer.domElement.style.maxWidth = 'none';
     renderer.domElement.style.maxHeight = 'none';
+    renderer.domElement.style.zIndex = '0';
 
     scene.background = null;
     container.appendChild(renderer.domElement);

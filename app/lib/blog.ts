@@ -532,7 +532,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       "Remote hiring can reduce payroll costs. Here's how to reinvest those savings into marketing, systems, training, and scalable growth for your business.",
     h1: "How to Invest the Money You're Spending on Local Hires",
-    category: "Business Growth",
+    category: "Finance & Growth",
     date: "March 3, 2026",
     readTime: "6 min read",
     excerpt:
