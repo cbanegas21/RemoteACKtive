@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { BlogPost } from "@/app/lib/blog";
 
 /* ─── helpers ─────────────────────────────────────────────────────────────── */
@@ -496,6 +497,27 @@ export default function ArticleClient({ post, relatedPosts }: Props) {
                     }}
                   />
                 </header>
+
+                {/* Cover image */}
+                {post.coverImage && (
+                  <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-10">
+                    <Image
+                      src={post.coverImage}
+                      alt={post.h1}
+                      fill
+                      priority
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 65vw, 100vw"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(15,25,38,0.35) 0%, transparent 60%)",
+                      }}
+                    />
+                  </div>
+                )}
 
                 {/* HERO_IMAGE_PLACEHOLDER */}
 

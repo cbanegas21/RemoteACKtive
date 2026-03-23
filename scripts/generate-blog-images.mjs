@@ -94,7 +94,7 @@ const POSTS = [
 
 // ── Gemini API endpoint ──────────────────────────────────────────────────────
 const GEMINI_ENDPOINT =
-  `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${GEMINI_API_KEY}`;
+  `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${GEMINI_API_KEY}`;
 
 // ── Output directory ─────────────────────────────────────────────────────────
 const OUTPUT_DIR = join(ROOT, "public", "images", "blog");
@@ -164,7 +164,7 @@ async function generateImage(slug, prompt, attempt = 1) {
 async function main() {
   console.log("═══════════════════════════════════════════════════════");
   console.log("  Remote ACKtive — Blog Image Generator");
-  console.log("  Model: gemini-2.0-flash-preview-image-generation");
+  console.log("  Model: gemini-2.5-flash-image");
   console.log(`  Output: public/images/blog/`);
   console.log("═══════════════════════════════════════════════════════");
 

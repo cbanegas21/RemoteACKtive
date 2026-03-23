@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { blogPosts, type BlogPost } from "@/app/lib/blog";
 
@@ -151,30 +152,35 @@ export default function BlogClientPage() {
                   </div>
                 </div>
 
-                {/* Right: key insight card — 2 cols */}
-                <div className="hidden md:block md:col-span-2">
-                  <div className="rounded-xl bg-[#0F1926]/80 border border-[#57C5CF]/15 p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-2 h-2 rounded-full bg-[#57C5CF]" />
-                      <span className="text-[#57C5CF] text-xs font-bold tracking-widest uppercase">
-                        Key Insight
-                      </span>
+                {/* Right: cover image — 2 cols */}
+                {featured.coverImage ? (
+                  <div className="hidden md:block md:col-span-2">
+                    <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+                      <Image
+                        src={featured.coverImage}
+                        alt={featured.h1}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        sizes="(min-width: 768px) 40vw, 100vw"
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "linear-gradient(to top, rgba(15,25,38,0.4) 0%, transparent 60%)",
+                        }}
+                      />
                     </div>
-                    <p className="text-white/80 text-sm leading-relaxed">
-                      {featured.sections[0]?.body[0]?.slice(0, 180)}…
-                    </p>
-                    {featured.sections[0]?.bullets && featured.sections[0].bullets!.length > 0 && (
-                      <ul className="mt-4 space-y-2">
-                        {featured.sections[0].bullets!.slice(0, 3).map((b, i) => (
-                          <li key={i} className="flex items-start gap-2 text-xs text-white/60">
-                            <span className="mt-0.5 w-1.5 h-1.5 rounded-full bg-[#4FFFB0] flex-shrink-0" />
-                            {b}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
-                </div>
+                ) : (
+                  <div className="hidden md:block md:col-span-2">
+                    <div className="rounded-xl bg-[#0F1926]/80 border border-[#57C5CF]/15 p-6">
+                      <p className="text-white/80 text-sm leading-relaxed">
+                        {featured.sections[0]?.body[0]?.slice(0, 220)}…
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </Link>
           </div>
@@ -198,13 +204,33 @@ export default function BlogClientPage() {
                   href={`/blog/${post.slug}`}
                   className="group flex flex-col rounded-2xl border border-white/10 bg-[#1E2430] hover:border-[#57C5CF]/40 hover:bg-[#1a2535] transition-all duration-300 overflow-hidden"
                 >
-                  {/* Category color accent bar */}
-                  <div
-                    className="h-0.5 w-full flex-shrink-0"
-                    style={{
-                      background: `linear-gradient(90deg, ${categoryBar(post.category)} 0%, transparent 80%)`,
-                    }}
-                  />
+                  {/* Cover image */}
+                  {post.coverImage ? (
+                    <div className="relative w-full aspect-[16/9] overflow-hidden flex-shrink-0">
+                      <Image
+                        src={post.coverImage}
+                        alt={post.h1}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "linear-gradient(to top, rgba(30,36,48,0.7) 0%, transparent 50%)",
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    /* Fallback: category color accent bar */
+                    <div
+                      className="h-0.5 w-full flex-shrink-0"
+                      style={{
+                        background: `linear-gradient(90deg, ${categoryBar(post.category)} 0%, transparent 80%)`,
+                      }}
+                    />
+                  )}
 
                   <div className="flex flex-col flex-1 p-6">
                     <span
