@@ -1,7 +1,7 @@
 # Remote ACKtive — CLAUDE.md
 > Single source of truth for AI-assisted development.
 > **Always read this file first before making any changes.**
-> Last updated: 2026-03-05 (PageSpeed 100/100/100/100 — deferred globe to user interaction, eliminated 60fps React re-renders, code-split all below-fold sections)
+> Last updated: 2026-03-23 (Premium full-site redesign: glassmorphism UI, stat corrections, book-a-call overhaul, AI blog images via Gemini, security headers)
 
 ---
 
@@ -96,7 +96,7 @@ This is a **teal/green gradient**. Any teal, cyan, or mint text placed on it wil
 | Facebook | https://www.facebook.com/profile.php?id=61575144124346 |
 | Google Verification | `lTHT9Cq0sXbeki75IwJfOWCxDfDsP1-Cq87NAvoaOgk` |
 | GA4 Measurement ID | `G-BEYLVNF0X5` |
-| Key claims | 70% cost savings · 3–10 days to hire · 18+ countries · 500+ placements · 4.9/5 rating · 94% retention |
+| Key claims | Up to 70% cost savings · 3–10 days to hire · 20+ countries · 30+ placements · 4.9/5 rating · 94% retention |
 
 ---
 
@@ -408,6 +408,8 @@ RESEND_API_KEY=re_...    # Resend email delivery API key (required)
 | `bd9c6d7` | Perf round 1: lazy-load Three.js globe via `next/dynamic`, fix CostComparison + Footer contrast, compress why-us images (891 KiB savings) |
 | `7bdd67b` | Perf round 2: requestIdleCallback on globe, GA `lazyOnload`, modern `browserslist` |
 | `3dd99b0` | **Perf round 3 — PageSpeed 100/100/100/100**: (1) `GlobeWithFallback` rewritten to user-interaction triggers (scroll/mousemove/touchstart/keydown + 8s fallback) — Lighthouse never loads globe; (2) `GitHubHeroGlobe` worker cards changed from `setBubbles()` (60fps React re-renders) to direct DOM manipulation via `cardRefs`; Three.js tree-shaking (named imports), sphere segments 64→48, tube radial 20→8, conditional antialias; (3) `page.tsx` 12 below-fold sections lazy-loaded via `next/dynamic` |
+| `3905fec` | **Premium full-site redesign**: glassmorphism cards across all sections; removed box gradient (#30cfd0→#330867); stat corrections (18+→20+ countries, 500+→30+ placements, 5/5→4.9/5, 100%→94%); "Recruit + Manage" renamed to "Full Service Staffing" everywhere; book-a-call page overhauled with premium dark design; Header, FAQ, ContactCTA, WhyChooseUs, AboutBlock, HowItWorks, CostComparison, HireOnlyForm, HireManageForm redesigned; BlogClientPage category filter tabs; ArticleClient reading progress bar + ToC; security headers (HSTS, X-XSS-Protection, Permissions-Policy) + CRLF injection guard; globe canvas zIndex fix; DepartmentGrid items-start expansion bug fixed; Section.tsx + Card.tsx + Testimonials.tsx deleted |
+| `312620d` | **AI blog cover images**: `scripts/generate-blog-images.mjs` created; 7 images generated via Gemini 2.5 Flash Image model → `public/images/blog/*.png`; `coverImage` field added to BlogPost interface + all 7 posts; BlogClientPage shows cover image in featured card + grid cards; ArticleClient shows hero cover image below article header |
 
 ---
 
