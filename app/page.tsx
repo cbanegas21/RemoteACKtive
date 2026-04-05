@@ -17,7 +17,6 @@ const GuaranteeSection = dynamic(() => import("@/components/GuaranteeSection"));
 const DepartmentGrid = dynamic(() => import("@/components/DepartmentGrid"));
 const WhatMakesUsDifferent = dynamic(() => import("@/components/WhatMakesUsDifferent"));
 const AboutBlock = dynamic(() => import("@/components/AboutBlock"));
-const HowItWorks = dynamic(() => import("@/components/HowItWorks"));
 const StatsBlock = dynamic(() => import("@/components/StatsBlock"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const ContactCTA = dynamic(() => import("@/components/ContactCTA"));
@@ -145,8 +144,11 @@ const faqSchema = {
 export default function Home() {
   useEffect(() => {
     if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname);
-      window.scrollTo(0, 0);
+      const id = window.location.hash.slice(1);
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 200);
     }
   }, []);
 
@@ -160,9 +162,7 @@ export default function Home() {
       <Header />
       <main>
         <HeroWithGlobe />
-        <section style={{ background: 'linear-gradient(to right, #2C5364, #203A43, #0F2027)' }}>
-          <CompanyLogosSlider />
-        </section>
+        <CompanyLogosSlider />
         <WhyChooseUs />
         <ThreeTierServices />
         <CostComparison />
@@ -170,7 +170,6 @@ export default function Home() {
         <DepartmentGrid />
         <WhatMakesUsDifferent />
         <AboutBlock />
-        <HowItWorks />
         <StatsBlock />
         <FAQ />
         <ContactCTA />

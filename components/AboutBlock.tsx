@@ -1,306 +1,470 @@
 "use client";
-import Image from "next/image";
-import { Heart, Eye, Shield, Users, Zap, Star, Award } from "lucide-react";
 
+import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HandwritingText } from "@/components/ui/HandwritingText";
+import Link from "next/link";
+
+const TEAL      = "#a8e8f5";
+const MINT      = "#b8fce8";
+const TEAL_RGB  = "168,232,245";
+const MINT_RGB  = "184,252,232";
+const TEAL_TEXT = "#a8e8f5";
+const MINT_TEXT = "#b8fce8";
+
+// ─── Founders / Values
 const founders = [
-  { initials: "A", name: "Andre", role: "Co-Founder" },
-  { initials: "C", name: "Carlos", role: "Co-Founder" },
-  { initials: "K", name: "Kevin", role: "Co-Founder" },
+  { initials: "A", name: "Andre" },
+  { initials: "C", name: "Carlos" },
+  { initials: "K", name: "Kevin" },
 ];
 
-const coreValues = [
-  { icon: Shield, label: "Integrity First", color: "#57C5CF" },
-  { icon: Star, label: "Quality Over Volume", color: "#4FFFB0" },
-  { icon: Users, label: "People-Centered", color: "#57C5CF" },
-  { icon: Zap, label: "Move Fast", color: "#4FFFB0" },
-  { icon: Award, label: "Long-Term Thinking", color: "#57C5CF" },
+const values = [
+  "Transparency", "Excellence", "Speed",
+  "Partnership", "Growth", "Trust",
+  "Results", "People", "Impact",
 ];
+
+const valueAccents  = [TEAL_TEXT, MINT_TEXT, TEAL_TEXT, MINT_TEXT, TEAL_TEXT, MINT_TEXT, TEAL_TEXT, MINT_TEXT, TEAL_TEXT];
+const valueSizes    = [
+  "text-3xl md:text-4xl",
+  "text-xl md:text-2xl",
+  "text-4xl md:text-5xl",
+  "text-2xl md:text-3xl",
+  "text-5xl md:text-6xl",
+  "text-xl md:text-2xl",
+  "text-3xl md:text-4xl",
+  "text-2xl md:text-3xl",
+  "text-4xl md:text-5xl",
+];
+const valueOpacity  = ["0.9", "0.5", "0.7", "0.9", "0.6", "0.8", "0.5", "0.9", "0.7"];
+
+// ─── Process steps
+const STEPS = [
+  {
+    number: "01",
+    title: "Tell Us Your Needs",
+    tagline: "Free discovery call. No commitment.",
+    description:
+      "We start with a free discovery call to understand exactly what you're looking for — the role, the skills, the team culture, and the timeline. The more context you give us, the better we match.",
+    bullets: [
+      "Define role requirements and must-have skills",
+      "Specify team size and management structure",
+      "Share culture fit and communication preferences",
+    ],
+    accent: "#a8e8f5",
+  },
+  {
+    number: "02",
+    title: "We Find Your Team",
+    tagline: "Top 5% — vetted, tested, ready.",
+    description:
+      "Our recruiters tap into a vetted LATAM talent network across 20+ countries. Every candidate goes through a rigorous 6-step screening — English fluency, technical skills, timezone alignment, and work ethic.",
+    bullets: [
+      "6-step vetting — only top 5% advance",
+      "Sourced from 20+ countries across LATAM",
+      "Shortlist delivered in 3–10 business days",
+    ],
+    accent: "#b8fce8",
+  },
+  {
+    number: "03",
+    title: "You Meet Candidates",
+    tagline: "Interview on your schedule. You choose.",
+    description:
+      "You interview our shortlisted candidates directly. Run a test project if you'd like. We stay in the loop to help you evaluate fit — then you make the final call with full confidence.",
+    bullets: [
+      "Live interviews on your schedule",
+      "Optional paid test projects to validate skills",
+      "You make the final hiring decision",
+    ],
+    accent: "#a8e8f5",
+  },
+  {
+    number: "04",
+    title: "They Start Working",
+    tagline: "Productive from day one.",
+    description:
+      "We handle contracts, onboarding paperwork, and setup so your new team member hits the ground running. You get ongoing support from us for the life of the placement.",
+    bullets: [
+      "Contracts and compliance handled end-to-end",
+      "Structured first-week onboarding plan",
+      "Ongoing support + replacement guarantee",
+    ],
+    accent: "#b8fce8",
+  },
+] as const;
+
+// ─── Direction-aware hover
+type Direction = "top" | "right" | "bottom" | "left";
+
+function getDirection(e: React.MouseEvent<HTMLDivElement>, el: HTMLDivElement): Direction {
+  const rect  = el.getBoundingClientRect();
+  const x     = e.clientX - rect.left - rect.width / 2;
+  const y     = e.clientY - rect.top - rect.height / 2;
+  const angle = (Math.atan2(y, x) * 180) / Math.PI;
+  if (angle > -45 && angle <= 45)  return "right";
+  if (angle > 45 && angle <= 135)  return "bottom";
+  if (angle > -135 && angle <= -45) return "top";
+  return "left";
+}
+
+function getSlideOrigin(direction: Direction): { x: number; y: number } {
+  switch (direction) {
+    case "top":    return { x: 0,    y: -100 };
+    case "bottom": return { x: 0,    y: 100  };
+    case "left":   return { x: -100, y: 0    };
+    case "right":  return { x: 100,  y: 0    };
+  }
+}
+
+// ─── Step card with direction-aware hover
+function StepCard({ step }: { step: (typeof STEPS)[number] }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [hovered, setHovered] = useState(false);
+  const [dir, setDir] = useState<Direction>("top");
+
+  const onEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    setDir(getDirection(e, cardRef.current));
+    setHovered(true);
+  };
+
+  const onLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    setDir(getDirection(e, cardRef.current));
+    setHovered(false);
+  };
+
+  const origin = getSlideOrigin(dir);
+
+  return (
+    <div
+      ref={cardRef}
+      className="relative overflow-hidden rounded-2xl min-h-[300px] cursor-default"
+      style={{
+        background: "rgba(255,255,255,0.025)",
+        border: `1px solid ${step.accent}18`,
+      }}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
+      {/* Always-visible base layer */}
+      <div className="h-full min-h-[300px] p-8 md:p-10 flex flex-col justify-between select-none">
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-6 -right-3 font-black leading-none pointer-events-none"
+          style={{ fontSize: "9rem", color: step.accent, opacity: 0.055 }}
+        >
+          {step.number}
+        </span>
+
+        <span
+          className="text-[11px] font-black tracking-[0.28em] uppercase"
+          style={{ color: step.accent + "70" }}
+        >
+          Step {step.number}
+        </span>
+
+        <div>
+          <h3 className="text-2xl md:text-3xl font-black text-white leading-tight mb-2">
+            {step.title}
+          </h3>
+          <p className="text-sm text-white/55">{step.tagline}</p>
+        </div>
+      </div>
+
+      {/* Direction-aware hover overlay */}
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            className="absolute inset-0 rounded-2xl p-8 md:p-10 flex flex-col justify-between"
+            style={{
+              background: "linear-gradient(135deg, rgba(4,9,15,0.96) 0%, rgba(9,15,13,0.94) 100%)",
+              backdropFilter: "blur(14px)",
+              WebkitBackdropFilter: "blur(14px)",
+              border: `1px solid ${step.accent}35`,
+            }}
+            initial={{ x: `${origin.x}%`, y: `${origin.y}%`, opacity: 0 }}
+            animate={{ x: "0%", y: "0%", opacity: 1 }}
+            exit={{ x: `${origin.x}%`, y: `${origin.y}%`, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            <span
+              className="text-[11px] font-black tracking-[0.28em] uppercase"
+              style={{ color: step.accent }}
+            >
+              Step {step.number}
+            </span>
+
+            <div>
+              <h3 className="text-xl font-black text-white mb-3">{step.title}</h3>
+              <p className="text-sm text-white/80 leading-relaxed mb-5">{step.description}</p>
+              <div className="flex flex-col gap-2.5">
+                {step.bullets.map((b, i) => (
+                  <div key={i} className="flex items-start gap-2.5 text-sm text-white/70">
+                    <span className="mt-0.5 flex-shrink-0 text-base leading-none" style={{ color: step.accent }}>
+                      ✓
+                    </span>
+                    <span>{b}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function AboutBlock() {
   return (
     <section
       id="about"
-      className="py-24"
-      style={{ background: "linear-gradient(to right, #78ffd6, #007991)" }}
+      className="relative overflow-hidden"
+      style={{ background: "#04090f" }}
     >
-      <div className="container mx-auto px-6 max-w-6xl">
-
-        {/* Section header */}
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 bg-black/10 border border-black/20 rounded-full px-4 py-1.5 mb-5">
-            <span
-              className="text-sm font-bold text-[#0F1926] tracking-wide uppercase"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Our Story
-            </span>
-          </div>
-          <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0F1926] mb-4 leading-tight"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            Built by founders who felt the pain.{" "}
-            <span className="text-[#0F1926] underline decoration-[#0F1926]/30 underline-offset-4">
-              Built to solve it.
-            </span>
-          </h2>
-          <p
-            className="text-[#0F1926]/70 text-lg max-w-2xl mx-auto"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            Remote ACKtive exists because three people got tired of broken
-            staffing. So they built something better.
-          </p>
+      {/* ─── Gradient blobs background ─── */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            filter: "blur(60px)",
+            ["--color-1" as string]: "87,197,207",
+            ["--color-2" as string]: "79,255,176",
+            ["--color-3" as string]: "168,223,240",
+            ["--color-4" as string]: "57,139,87",
+            ["--color-5" as string]: "11,23,39",
+          } as React.CSSProperties}
+        >
+          <div className="absolute animate-first opacity-70" style={{ top: "calc(50% - 300px)", left: "calc(50% - 300px)", width: 600, height: 600, background: "radial-gradient(circle at center, rgba(var(--color-1),0.5) 0, rgba(var(--color-1),0) 50%) no-repeat" }} />
+          <div className="absolute animate-second opacity-70" style={{ top: "calc(50% - 300px)", left: "calc(50% - 300px)", width: 600, height: 600, background: "radial-gradient(circle at center, rgba(var(--color-2),0.5) 0, rgba(var(--color-2),0) 50%) no-repeat", transformOrigin: "calc(50% - 300px) center" }} />
+          <div className="absolute animate-third opacity-70" style={{ top: "calc(50% - 300px)", left: "calc(50% - 300px)", width: 600, height: 600, background: "radial-gradient(circle at center, rgba(var(--color-3),0.4) 0, rgba(var(--color-3),0) 50%) no-repeat", transformOrigin: "calc(50% + 300px) center" }} />
+          <div className="absolute animate-fourth opacity-60" style={{ top: "calc(50% - 300px)", left: "calc(50% - 300px)", width: 600, height: 600, background: "radial-gradient(circle at center, rgba(var(--color-4),0.4) 0, rgba(var(--color-4),0) 50%) no-repeat", transformOrigin: "calc(50% - 150px) center" }} />
+          <div className="absolute animate-fifth opacity-50" style={{ top: "calc(50% - 300px)", left: "calc(50% - 300px)", width: 600, height: 600, background: "radial-gradient(circle at center, rgba(var(--color-5),0.4) 0, rgba(var(--color-5),0) 50%) no-repeat", transformOrigin: "calc(50% - 600px) calc(50% + 600px)" }} />
         </div>
+      </div>
 
-        {/* Story panel — full-bleed image with overlay */}
-        <div className="rounded-2xl overflow-hidden mb-6 group" style={{ background: "rgba(13,26,45,0.92)" }}>
-          <div className="grid md:grid-cols-5">
-            {/* Story copy — spans 3 cols */}
-            <div className="md:col-span-3 p-9 md:p-12 flex flex-col justify-center">
+      {/* ══ STORY SECTION ══ */}
+      <div className="relative z-10 container mx-auto px-6 max-w-6xl py-20">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
 
-              {/* Founder avatars */}
-              <div className="flex items-center gap-3 mb-7">
-                <div className="flex -space-x-3">
-                  {founders.map((f, i) => (
-                    <div
-                      key={f.initials}
-                      className="w-11 h-11 rounded-full flex items-center justify-center text-sm font-extrabold text-white ring-2 ring-[#0D1A2D] flex-shrink-0"
-                      style={{
-                        background:
-                          i % 2 === 0
-                            ? "linear-gradient(135deg, #248B93, #1A5538)"
-                            : "linear-gradient(135deg, #330867, #248B93)",
-                        fontFamily: "var(--font-heading)",
-                        zIndex: founders.length - i,
-                      }}
-                      title={f.name}
-                    >
-                      {f.initials}
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <p
-                    className="text-white font-semibold text-sm leading-tight"
-                    style={{ fontFamily: "var(--font-body)" }}
+          {/* LEFT — Story */}
+          <div>
+            <h2
+              className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-7"
+              style={{ color: "#ffffff", fontFamily: "var(--font-heading)" }}
+            >
+              Built by founders who{" "}
+              <br className="hidden sm:block" />
+              <HandwritingText color={TEAL_TEXT} rx={10} delay={0.4}>
+                felt the pain.
+              </HandwritingText>
+            </h2>
+
+            {/* Founder avatars */}
+            <div className="flex items-center gap-3 mb-8">
+              <div className="flex -space-x-3">
+                {founders.map((f, i) => (
+                  <div
+                    key={f.initials}
+                    className="h-11 w-11 rounded-full flex items-center justify-center font-black text-sm flex-shrink-0"
+                    style={{
+                      background: `linear-gradient(135deg, ${TEAL}, ${MINT})`,
+                      color:      "#04090f",
+                      zIndex:     founders.length - i,
+                      boxShadow:  "0 0 0 2px #04090f",
+                      fontFamily: "var(--font-heading)",
+                    }}
+                    title={f.name}
                   >
-                    Andre, Carlos &amp; Kevin
-                  </p>
-                  <p
-                    className="text-white/50 text-xs"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    Co-Founders, Remote ACKtive
-                  </p>
-                </div>
-              </div>
-
-              <h3
-                className="text-white font-bold text-xl mb-5 leading-snug"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                How it started
-              </h3>
-
-              <p
-                className="text-white/75 leading-relaxed mb-4 text-[15px]"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                Andre, Carlos, and Kevin spent years building distributed teams
-                before founding Remote ACKtive. They knew the frustration
-                firsthand —{" "}
-                <span className="text-white font-medium">
-                  overpriced agencies, hiring cycles that dragged on for months,
-                </span>{" "}
-                and candidates who looked great on paper but disappeared after
-                week two.
-              </p>
-
-              <p
-                className="text-white/75 leading-relaxed text-[15px]"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                So they built what they wished existed: a lean, rigorous staffing
-                partner that treats every hire like a long-term investment. Today
-                Remote ACKtive connects businesses worldwide with{" "}
-                <span className="text-[#4FFFB0] font-medium">
-                  pre-vetted, high-performing remote professionals
-                </span>{" "}
-                — in under two weeks.
-              </p>
-
-              {/* Proof strip */}
-              <div className="flex flex-wrap gap-5 mt-7 pt-7 border-t border-white/10">
-                {[
-                  { value: "30+", label: "Placements" },
-                  { value: "94%", label: "Retention Rate" },
-                  { value: "4.9/5", label: "Client Rating" },
-                ].map((stat) => (
-                  <div key={stat.label}>
-                    <p
-                      className="text-2xl font-extrabold text-[#57C5CF] leading-none tabular-nums"
-                      style={{ fontFamily: "var(--font-heading)" }}
-                    >
-                      {stat.value}
-                    </p>
-                    <p
-                      className="text-white/50 text-xs mt-0.5"
-                      style={{ fontFamily: "var(--font-body)" }}
-                    >
-                      {stat.label}
-                    </p>
+                    {f.initials}
                   </div>
+                ))}
+              </div>
+              <div>
+                <p className="font-bold text-sm" style={{ color: "#ffffff", fontFamily: "var(--font-body)" }}>
+                  Andre, Carlos &amp; Kevin
+                </p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)" }}>
+                  Co-Founders, Remote ACKtive
+                </p>
+              </div>
+            </div>
+
+            <p className="text-base leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.65)", fontFamily: "var(--font-body)" }}>
+              Andre, Carlos, and Kevin spent years building distributed teams before
+              founding Remote ACKtive. They knew the frustration firsthand —{" "}
+              <span className="font-bold" style={{ color: TEAL_TEXT }}>
+                overpriced agencies, hiring cycles that dragged for months,
+              </span>{" "}
+              and candidates who looked great on paper but disappeared after week two.
+            </p>
+
+            <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)", fontFamily: "var(--font-body)" }}>
+              So they built what they wished existed: a lean, rigorous staffing partner
+              that treats every hire like a long-term investment. Today Remote ACKtive
+              connects businesses worldwide with{" "}
+              <span className="font-bold" style={{ color: MINT_TEXT }}>
+                pre-vetted, high-performing remote professionals
+              </span>{" "}
+              — in under two weeks.
+            </p>
+
+            {/* Stats strip */}
+            <div
+              className="flex gap-8 mt-10 pt-8"
+              style={{ borderTop: `1px solid rgba(${TEAL_RGB},0.25)` }}
+            >
+              {[
+                { value: "30+",   label: "Placements",    color: TEAL_TEXT },
+                { value: "94%",   label: "Retention Rate", color: MINT_TEXT },
+                { value: "4.9/5", label: "Client Rating",  color: TEAL_TEXT },
+              ].map((s) => (
+                <div key={s.label}>
+                  <p
+                    className="text-3xl font-black leading-none tabular-nums"
+                    style={{ color: s.color, fontFamily: "var(--font-heading)" }}
+                  >
+                    {s.value}
+                  </p>
+                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)" }}>
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — Mission / Vision + Values */}
+          <div className="flex flex-col gap-10">
+
+            <div
+              className="rounded-2xl p-6"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: `1px solid rgba(${TEAL_RGB},0.3)`,
+              }}
+            >
+              <p
+                className="text-[10px] font-black tracking-[0.35em] uppercase mb-3"
+                style={{ color: TEAL_TEXT, fontFamily: "var(--font-body)" }}
+              >
+                Our Mission
+              </p>
+              <div className="pl-4" style={{ borderLeft: `2px solid ${TEAL}` }}>
+                <p
+                  className="text-lg md:text-xl font-bold leading-snug"
+                  style={{ color: "#ffffff", fontFamily: "var(--font-body)" }}
+                >
+                  To make world-class remote talent accessible, affordable, and
+                  effortless — so great companies can focus on what they do best.
+                </p>
+              </div>
+            </div>
+
+            <div
+              className="rounded-2xl p-6"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: `1px solid rgba(${MINT_RGB},0.35)`,
+              }}
+            >
+              <p
+                className="text-[10px] font-black tracking-[0.35em] uppercase mb-3"
+                style={{ color: MINT_TEXT, fontFamily: "var(--font-body)" }}
+              >
+                Our Vision
+              </p>
+              <div className="pl-4" style={{ borderLeft: `2px solid ${MINT}` }}>
+                <p
+                  className="text-lg md:text-xl font-bold leading-snug"
+                  style={{ color: "#ffffff", fontFamily: "var(--font-body)" }}
+                >
+                  A world where every company can harness global talent — unrestricted
+                  by geography, time zones, or budget.
+                </p>
+              </div>
+            </div>
+
+            <div className="h-px" style={{ background: `rgba(${TEAL_RGB},0.25)` }} />
+
+            {/* Word cloud */}
+            <div>
+              <p
+                className="text-[10px] font-black tracking-[0.35em] uppercase mb-6"
+                style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)" }}
+              >
+                Core Values
+              </p>
+              <div className="flex flex-wrap gap-x-5 gap-y-2 items-baseline">
+                {values.map((v, i) => (
+                  <span
+                    key={v}
+                    className={`font-black leading-none ${valueSizes[i]}`}
+                    style={{
+                      color:      valueAccents[i],
+                      opacity:    valueOpacity[i],
+                      fontFamily: "var(--font-heading)",
+                    }}
+                  >
+                    {v}
+                  </span>
                 ))}
               </div>
             </div>
 
-            {/* Image panel — full bleed with gradient overlay */}
-            <div
-              aria-hidden="true"
-              className="relative md:col-span-2 h-72 md:h-auto overflow-hidden"
+          </div>
+        </div>
+      </div>
+
+      {/* ── Section divider ── */}
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="h-px" style={{ background: "rgba(255,255,255,0.06)" }} />
+      </div>
+
+      {/* ══ HOW IT WORKS SECTION ══ */}
+      <div id="how-it-works" className="relative z-10 container mx-auto px-6 max-w-6xl py-20 md:py-28">
+
+        {/* Header */}
+        <div className="mb-14 md:mb-20">
+          <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.05] mb-5">
+            Four steps.{" "}
+            <span
+              className="block"
+              style={{
+                backgroundImage: "linear-gradient(90deg, #a8e8f5, #b8fce8)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
-              <Image
-                src="/images/ourstory.png"
-                alt=""
-                fill
-                priority={false}
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                sizes="(min-width: 768px) 40vw, 100vw"
-              />
-              {/* Multi-stop gradient overlay — desktop: left fade + bottom tint */}
-              <div
-                className="absolute inset-0 hidden md:block"
-                style={{
-                  background:
-                    "linear-gradient(to right, rgba(13,26,45,0.95) 0%, rgba(13,26,45,0.5) 30%, transparent 60%), linear-gradient(to top, rgba(13,26,45,0.6) 0%, transparent 40%)",
-                }}
-              />
-              {/* Mobile: bottom fade */}
-              <div
-                className="absolute inset-0 md:hidden"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(13,26,45,1) 0%, rgba(13,26,45,0.6) 30%, transparent 60%)",
-                }}
-              />
-            </div>
-          </div>
+              One great hire.
+            </span>
+          </h2>
+          <p className="text-white/45 text-base md:text-lg max-w-lg leading-relaxed">
+            Most clients are up and running with their new hire in under two weeks. Hover each step to see what happens.
+          </p>
         </div>
 
-        {/* Mission + Vision — side by side */}
-        <div className="grid md:grid-cols-2 gap-5 mb-5">
-
-          {/* Mission */}
-          <div
-            className="rounded-2xl overflow-hidden border border-[#57C5CF]/20 group"
-            style={{ background: "rgba(13,26,45,0.92)" }}
-          >
-            {/* Accent bar */}
-            <div
-              className="h-1"
-              style={{
-                background:
-                  "linear-gradient(90deg, #57C5CF 0%, rgba(87,197,207,0.3) 70%, transparent 100%)",
-              }}
-            />
-            <div className="p-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-[#57C5CF]/10 flex items-center justify-center flex-shrink-0">
-                  <Heart className="w-5 h-5 text-[#57C5CF]" />
-                </div>
-                <h3
-                  className="text-white font-bold text-lg"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  Our Mission
-                </h3>
-              </div>
-              <p
-                className="text-white/70 leading-relaxed text-[15px]"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                To make world-class remote talent accessible, affordable, and
-                effortless for businesses of all sizes — so great companies can
-                focus on what they do best.
-              </p>
-            </div>
-          </div>
-
-          {/* Vision */}
-          <div
-            className="rounded-2xl overflow-hidden border border-[#4FFFB0]/20 group"
-            style={{ background: "rgba(13,26,45,0.92)" }}
-          >
-            {/* Accent bar */}
-            <div
-              className="h-1"
-              style={{
-                background:
-                  "linear-gradient(90deg, #4FFFB0 0%, rgba(79,255,176,0.3) 70%, transparent 100%)",
-              }}
-            />
-            <div className="p-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-[#4FFFB0]/10 flex items-center justify-center flex-shrink-0">
-                  <Eye className="w-5 h-5 text-[#4FFFB0]" />
-                </div>
-                <h3
-                  className="text-white font-bold text-lg"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  Our Vision
-                </h3>
-              </div>
-              <p
-                className="text-white/70 leading-relaxed text-[15px]"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                A world where every company can harness global talent to achieve
-                extraordinary results — unrestricted by geography, time zones, or
-                budget.
-              </p>
-            </div>
-          </div>
+        {/* 2 × 2 card grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+          {STEPS.map((step) => (
+            <StepCard key={step.number} step={step} />
+          ))}
         </div>
 
-        {/* Core Values */}
-        <div
-          className="rounded-2xl border border-white/8 p-8"
-          style={{ background: "rgba(13,26,45,0.92)" }}
-        >
-          <h3
-            className="text-white font-bold text-lg mb-6 text-center"
-            style={{ fontFamily: "var(--font-heading)" }}
+        {/* CTA row */}
+        <div className="flex flex-wrap items-center gap-4">
+          <Link
+            href="/book-a-call"
+            className="rounded-full px-8 py-3.5 font-bold text-sm inline-block text-[#04090f] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+            style={{ background: "linear-gradient(135deg, #ffffff 0%, #a8e8f5 50%, #b8fce8 100%)" }}
           >
-            Core Values
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {coreValues.map((value) => {
-              const Icon = value.icon;
-              return (
-                <div
-                  key={value.label}
-                  className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border transition-all duration-200 hover:-translate-y-0.5"
-                  style={{
-                    background: `${value.color}10`,
-                    borderColor: `${value.color}25`,
-                  }}
-                >
-                  <Icon
-                    className="w-4 h-4 flex-shrink-0"
-                    style={{ color: value.color }}
-                  />
-                  <span
-                    className="text-sm font-semibold text-white"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {value.label}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+            Start the Process →
+          </Link>
+          <span className="text-white/25 text-sm">No commitment required</span>
         </div>
 
       </div>

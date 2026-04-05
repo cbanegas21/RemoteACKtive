@@ -279,7 +279,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
 
     const overlayMaterial = new MeshBasicMaterial({
       map: dotMap,
-      color: 0x6CD4DC,    // Teal-cyan — visibly shifts the globe dots from blue to teal, matching brand #57C5CF
+      color: 0x6CD4DC,    // Teal-cyan — visibly shifts the globe dots from blue to teal, matching brand #C3EDD8
       transparent: true,
       opacity: 0.85
     });
@@ -347,7 +347,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
     // Mint pillars at card locations — slightly tapered, more prominent
     const workerPillarGeo = new CylinderGeometry(0.008, 0.015, workerPillarHeight, 8);
     const workerPillarMat = new MeshBasicMaterial({
-      color: 0x4FFFB0,   // mint — matches brand CTA color
+      color: 0xA8DFF0,   // sky blue — matches brand CTA color
       transparent: true,
       opacity: 0.90
     });
@@ -355,7 +355,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
     // City-light dots at deco positions — small teal spheres sitting flush on the surface
     const dotGeo = new SphereGeometry(0.018, 6, 6);
     const dotMat = new MeshBasicMaterial({
-      color: 0x57C5CF,   // teal — brand accent
+      color: 0xC3EDD8,   // teal — brand accent
       transparent: true,
       opacity: 0.60
     });
@@ -662,7 +662,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
               width: '70%',
               height: '70%',
               background:
-                'radial-gradient(circle, rgba(87,197,207,0.15) 0%, rgba(87,197,207,0.06) 50%, transparent 70%)',
+                'radial-gradient(circle, rgba(195,237,216,0.15) 0%, rgba(195,237,216,0.06) 50%, transparent 70%)',
             }}
           />
         </div>
@@ -711,9 +711,9 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
                     style={{
                       width: 14,
                       height: 14,
-                      background: '#4FFFB0',
+                      background: '#a8e8f5',
                       fontSize: 8,
-                      color: '#0A1628',
+                      color: '#04090f',
                       fontWeight: 800,
                       border: '1.5px solid rgba(255, 255, 255, 0.9)',
                     }}

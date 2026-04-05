@@ -60,10 +60,10 @@ export default function HireManageForm() {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-xl border bg-[#0D1A2D] border-white/10 text-white placeholder-white/30 transition-all duration-200 focus:outline-none focus:border-[#57C5CF] focus:ring-1 focus:ring-[#57C5CF]/30 focus:bg-[#0D1A2D]";
+    "w-full px-4 py-3 rounded-xl border bg-[#04090f] border-white/10 text-white placeholder-white/30 transition-all duration-200 focus:outline-none focus:border-[#b8fce8] focus:ring-1 focus:ring-[#b8fce8]/30 focus:bg-[#04090f]";
 
   const labelClass =
-    "block text-[11px] font-bold mb-1.5 text-[#57C5CF] uppercase tracking-widest";
+    "block text-[11px] font-bold mb-1.5 text-[#b8fce8] uppercase tracking-widest";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -72,7 +72,7 @@ export default function HireManageForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="name" className={labelClass}>
-            Your Name <span className="text-white/40 normal-case tracking-normal font-normal">*</span>
+            Your Name <span className="text-white/60 normal-case tracking-normal font-normal">*</span>
           </label>
           <input
             type="text"
@@ -87,7 +87,7 @@ export default function HireManageForm() {
         </div>
         <div>
           <label htmlFor="email" className={labelClass}>
-            Email <span className="text-white/40 normal-case tracking-normal font-normal">*</span>
+            Email <span className="text-white/60 normal-case tracking-normal font-normal">*</span>
           </label>
           <input
             type="email"
@@ -106,7 +106,7 @@ export default function HireManageForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="company" className={labelClass}>
-            Company <span className="text-white/40 normal-case tracking-normal font-normal">*</span>
+            Company <span className="text-white/60 normal-case tracking-normal font-normal">*</span>
           </label>
           <input
             type="text"
@@ -121,7 +121,7 @@ export default function HireManageForm() {
         </div>
         <div>
           <label htmlFor="roles" className={labelClass}>
-            Role(s) Needed <span className="text-white/40 normal-case tracking-normal font-normal">*</span>
+            Role(s) Needed <span className="text-white/60 normal-case tracking-normal font-normal">*</span>
           </label>
           <input
             type="text"
@@ -140,7 +140,7 @@ export default function HireManageForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="teamSize" className={labelClass}>
-            Team Size <span className="text-white/40 normal-case tracking-normal font-normal">*</span>
+            Team Size <span className="text-white/60 normal-case tracking-normal font-normal">*</span>
           </label>
           <select
             id="teamSize"
@@ -159,7 +159,7 @@ export default function HireManageForm() {
         </div>
         <div>
           <label htmlFor="timeline" className={labelClass}>
-            Start Timeline <span className="text-white/40 normal-case tracking-normal font-normal">*</span>
+            Start Timeline <span className="text-white/60 normal-case tracking-normal font-normal">*</span>
           </label>
           <select
             id="timeline"
@@ -181,7 +181,7 @@ export default function HireManageForm() {
       {/* Project Description */}
       <div>
         <label htmlFor="description" className={labelClass}>
-          Project Description <span className="text-white/40 normal-case tracking-normal font-normal">*</span>
+          Project Description <span className="text-white/60 normal-case tracking-normal font-normal">*</span>
         </label>
         <textarea
           id="description"
@@ -199,7 +199,7 @@ export default function HireManageForm() {
       <div>
         <label htmlFor="budget" className={labelClass}>
           Monthly Budget Range{" "}
-          <span className="text-white/40 normal-case tracking-normal font-normal">(optional)</span>
+          <span className="text-white/60 normal-case tracking-normal font-normal">(optional)</span>
         </label>
         <select
           id="budget"
@@ -224,7 +224,8 @@ export default function HireManageForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-4 rounded-full btn-gradient text-[#0F1926] font-bold text-base flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#4FFFB0] focus:ring-offset-2 focus:ring-offset-[#1E2430] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg transition-all duration-200 hover:shadow-[0_0_24px_rgba(79,255,176,0.35)]"
+        className="w-full px-6 py-4 rounded-full font-bold text-base flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-[#04090f] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 text-[#04090f] shadow-[0_0_32px_rgba(255,255,255,0.18),0_8px_24px_rgba(184,252,232,0.25)] hover:shadow-[0_0_44px_rgba(255,255,255,0.28),0_12px_32px_rgba(184,252,232,0.4)] hover:-translate-y-0.5"
+        style={{ background: 'linear-gradient(135deg, #ffffff 0%, #a8e8f5 50%, #b8fce8 100%)' }}
       >
         {isSubmitting ? (
           <>

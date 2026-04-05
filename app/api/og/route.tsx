@@ -22,7 +22,7 @@ export async function GET() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, #0D1F35 0%, #0F1926 55%, #0A2020 100%)',
+            background: 'linear-gradient(135deg, #0D1F35 0%, #0D1612 55%, #0A2020 100%)',
             display: 'flex',
           }}
         />
@@ -36,7 +36,7 @@ export async function GET() {
             width: 600,
             height: 600,
             borderRadius: '50%',
-            border: '1px solid rgba(87, 197, 207, 0.12)',
+            border: '1px solid rgba(195, 237, 216, 0.12)',
             display: 'flex',
           }}
         />
@@ -49,7 +49,7 @@ export async function GET() {
             width: 440,
             height: 440,
             borderRadius: '50%',
-            border: '1px solid rgba(87, 197, 207, 0.18)',
+            border: '1px solid rgba(195, 237, 216, 0.18)',
             display: 'flex',
           }}
         />
@@ -62,7 +62,7 @@ export async function GET() {
             width: 280,
             height: 280,
             borderRadius: '50%',
-            border: '1px solid rgba(87, 197, 207, 0.25)',
+            border: '1px solid rgba(195, 237, 216, 0.25)',
             display: 'flex',
           }}
         />
@@ -75,7 +75,7 @@ export async function GET() {
             left: 0,
             right: 0,
             height: 5,
-            background: 'linear-gradient(90deg, #57C5CF 0%, #378B57 50%, #4FFFB0 100%)',
+            background: 'linear-gradient(90deg, #C3EDD8 0%, #378B57 50%, #A8DFF0 100%)',
             display: 'flex',
           }}
         />
@@ -95,8 +95,8 @@ export async function GET() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              background: 'rgba(87, 197, 207, 0.1)',
-              border: '1px solid rgba(87, 197, 207, 0.35)',
+              background: 'rgba(195, 237, 216, 0.1)',
+              border: '1px solid rgba(195, 237, 216, 0.35)',
               borderRadius: 30,
               padding: '8px 22px',
               marginBottom: 36,
@@ -105,7 +105,7 @@ export async function GET() {
           >
             <span
               style={{
-                color: '#57C5CF',
+                color: '#C3EDD8',
                 fontSize: 15,
                 fontWeight: 700,
                 letterSpacing: 2,
@@ -130,7 +130,7 @@ export async function GET() {
             </span>
             <span
               style={{
-                color: '#57C5CF',
+                color: '#C3EDD8',
                 fontSize: 34,
                 fontWeight: 600,
                 marginTop: 14,
@@ -157,7 +157,7 @@ export async function GET() {
           {/* Stats row */}
           <div style={{ display: 'flex', gap: 56 }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ color: '#4FFFB0', fontSize: 42, fontWeight: 800, lineHeight: 1 }}>
+              <span style={{ color: '#A8DFF0', fontSize: 42, fontWeight: 800, lineHeight: 1 }}>
                 70%
               </span>
               <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: 15, marginTop: 6 }}>
@@ -165,7 +165,7 @@ export async function GET() {
               </span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ color: '#4FFFB0', fontSize: 42, fontWeight: 800, lineHeight: 1 }}>
+              <span style={{ color: '#A8DFF0', fontSize: 42, fontWeight: 800, lineHeight: 1 }}>
                 3–10
               </span>
               <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: 15, marginTop: 6 }}>
@@ -173,7 +173,7 @@ export async function GET() {
               </span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ color: '#4FFFB0', fontSize: 42, fontWeight: 800, lineHeight: 1 }}>
+              <span style={{ color: '#A8DFF0', fontSize: 42, fontWeight: 800, lineHeight: 1 }}>
                 20+
               </span>
               <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: 15, marginTop: 6 }}>
@@ -181,7 +181,7 @@ export async function GET() {
               </span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ color: '#4FFFB0', fontSize: 42, fontWeight: 800, lineHeight: 1 }}>
+              <span style={{ color: '#A8DFF0', fontSize: 42, fontWeight: 800, lineHeight: 1 }}>
                 30+
               </span>
               <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: 15, marginTop: 6 }}>

@@ -21,7 +21,7 @@ function GlobePlaceholder() {
       className="absolute inset-0 rounded-full"
       style={{
         background:
-          'radial-gradient(circle at 50% 50%, rgba(87,197,207,0.18) 0%, rgba(87,197,207,0.06) 40%, transparent 65%)',
+          'radial-gradient(circle at 50% 50%, rgba(42,176,122,0.18) 0%, rgba(42,176,122,0.06) 40%, transparent 65%)',
       }}
     />
   );
@@ -52,7 +52,7 @@ class GlobeErrorBoundary extends Component<{ children: ReactNode }, EBState> {
           className="absolute inset-0 rounded-full"
           style={{
             background:
-              'radial-gradient(circle at 50% 50%, rgba(87,197,207,0.20) 0%, rgba(87,197,207,0.08) 35%, transparent 65%)',
+              'radial-gradient(circle at 50% 50%, rgba(42,176,122,0.20) 0%, rgba(42,176,122,0.08) 35%, transparent 65%)',
           }}
         />
       );

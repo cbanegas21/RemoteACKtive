@@ -38,7 +38,6 @@ export const blogPosts: BlogPost[] = [
     category: "Hiring Strategy",
     date: "February 10, 2026",
     readTime: "7 min read",
-    coverImage: "/images/blog/save-on-hiring-costs-new-llc.png",
     excerpt:
       "The real cost of local hiring surprises most new LLCs. Here's how remote talent changes the math — and what to do with the savings.",
     sections: [
@@ -129,7 +128,6 @@ export const blogPosts: BlogPost[] = [
     category: "Remote Work",
     date: "February 14, 2026",
     readTime: "6 min read",
-    coverImage: "/images/blog/advantages-of-hiring-remote-contractors.png",
     excerpt:
       "Speed, cost, and flexibility — remote contracting delivers all three. Here's what the model actually looks like when it's done right.",
     sections: [
@@ -213,7 +211,6 @@ export const blogPosts: BlogPost[] = [
     category: "Remote Work",
     date: "February 18, 2026",
     readTime: "7 min read",
-    coverImage: "/images/blog/era-of-remote-contracting.png",
     excerpt:
       "Location-based hiring is dying. Here's what changed, what the data shows, and how smart businesses are building teams without borders.",
     sections: [
@@ -297,7 +294,6 @@ export const blogPosts: BlogPost[] = [
     category: "Team Management",
     date: "February 22, 2026",
     readTime: "8 min read",
-    coverImage: "/images/blog/how-to-manage-a-remote-team.png",
     excerpt:
       "Remote teams don't fail because people work from home. They fail because of missing structure. Here's how to build the system that makes it work.",
     sections: [
@@ -381,7 +377,6 @@ export const blogPosts: BlogPost[] = [
     category: "Global Hiring",
     date: "February 26, 2026",
     readTime: "7 min read",
-    coverImage: "/images/blog/latam-outsourcing-country-comparison.png",
     excerpt:
       "Mexico, Colombia, Honduras, Costa Rica — same region, very different talent markets. Here's how to match your role to the right country.",
     sections: [
@@ -458,7 +453,6 @@ export const blogPosts: BlogPost[] = [
     category: "Global Hiring",
     date: "March 1, 2026",
     readTime: "6 min read",
-    coverImage: "/images/blog/honduras-english-proficiency-outsourcing.png",
     excerpt:
       "Honduras is one of LATAM's most underrated nearshore markets. Here's what the data and experience actually show about English quality and role fit.",
     sections: [
@@ -542,7 +536,6 @@ export const blogPosts: BlogPost[] = [
     category: "Finance & Growth",
     date: "March 3, 2026",
     readTime: "6 min read",
-    coverImage: "/images/blog/reinvest-payroll-savings-from-remote-hiring.png",
     excerpt:
       "Switching to remote talent generates real savings. The businesses that grow fastest are the ones that reinvest it with intention. Here's the framework.",
     sections: [

@@ -1,243 +1,374 @@
 "use client";
-import Image from "next/image";
-import { DollarSign, UserCheck, Zap, Globe, CheckCircle2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
 
-const benefits = [
+const TEAL     = "#a8e8f5";
+const MINT     = "#b8fce8";
+const TEAL_RGB = "168,232,245";
+const MINT_RGB = "184,252,232";
+
+/* ─── Mini savings calculator ─── */
+const roles = [
+  { label: "Software Dev",  us: 110000, remote: 32000 },
+  { label: "Designer",      us: 85000,  remote: 26000 },
+  { label: "Sales Rep",     us: 75000,  remote: 22000 },
+  { label: "Virtual Asst.", us: 55000,  remote: 14000 },
+  { label: "Data Analyst",  us: 90000,  remote: 28000 },
+];
+
+function fmt(n: number) {
+  return "$" + n.toLocaleString("en-US");
+}
+
+function SavingsCalc() {
+  const [selected, setSelected] = useState(0);
+  const role = roles[selected];
+  const saved = role.us - role.remote;
+  const pct = Math.round((saved / role.us) * 100);
+
+  return (
+    <div className="mt-5">
+      <div className="flex flex-wrap gap-2 mb-5">
+        {roles.map((r, i) => (
+          <button
+            key={r.label}
+            onClick={() => setSelected(i)}
+            className="text-xs font-semibold px-3 py-1.5 rounded-full transition-all duration-200"
+            style={
+              i === selected
+                ? { background: TEAL, color: "#04090f" }
+                : {
+                    background: `rgba(${TEAL_RGB},0.1)`,
+                    border: `1px solid rgba(${TEAL_RGB},0.3)`,
+                    color: TEAL,
+                  }
+            }
+          >
+            {r.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="space-y-3 mb-4">
+        <div>
+          <div className="flex justify-between text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.45)" }}>
+            <span>US Hire / year</span>
+            <span className="font-semibold text-white">{fmt(role.us)}</span>
+          </div>
+          <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
+            <div className="h-full rounded-full" style={{ width: "100%", background: "rgba(255,255,255,0.18)" }} />
+          </div>
+        </div>
+        <div>
+          <div className="flex justify-between text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.45)" }}>
+            <span>Remote ACKtive / year</span>
+            <span className="font-semibold" style={{ color: MINT }}>{fmt(role.remote)}</span>
+          </div>
+          <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
+            <div
+              className="h-full rounded-full transition-all duration-500"
+              style={{
+                width: `${(role.remote / role.us) * 100}%`,
+                background: `linear-gradient(90deg, ${TEAL}, ${MINT})`,
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="flex items-center justify-between rounded-xl px-4 py-3"
+        style={{ background: `rgba(${TEAL_RGB},0.07)`, border: `1px solid rgba(${TEAL_RGB},0.2)` }}
+      >
+        <span className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>You save per hire / year</span>
+        <span className="text-lg font-black" style={{ color: MINT, fontFamily: "var(--font-heading)" }}>
+          {fmt(saved)}{" "}
+          <span className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.45)" }}>({pct}%)</span>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Spotlight glow ─── */
+function useSpotlight(accentRgb: string) {
+  const ref = useRef<HTMLDivElement>(null);
+  const dark = `rgba(255,255,255,0.04)`;
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    el.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(${accentRgb},0.08), transparent 50%), rgba(255,255,255,0.04)`;
+  };
+  const handleLeave = () => {
+    const el = ref.current;
+    if (el) el.style.background = dark;
+  };
+  return { ref, handleMove, handleLeave };
+}
+
+/* ─── Supporting cards ─── */
+const supporting = [
   {
-    icon: DollarSign,
-    stat: "70%",
-    statLabel: "average cost savings",
-    statSub: "vs. equivalent U.S. hires",
-    title: "Cost-Effective Solutions",
-    description:
-      "Replace six-figure salaries with globally competitive rates — same output, a fraction of the cost. Transparent pricing, zero hidden fees.",
-    proof: ["Transparent pricing", "No hidden fees", "Flex scale"],
-    color: "teal" as const,
-    image: "/images/why-us/cost-effective.png",
-    imageAlt: "Cost-effective remote staffing",
-  },
-  {
-    icon: UserCheck,
     stat: "Top 5%",
-    statLabel: "of applicants",
-    statSub: "make it through our vetting",
-    title: "Handpicked Professionals",
-    description:
-      "Every hire clears a 6-step vetting gauntlet — skills tests, reference checks, and culture-fit evaluation before they reach you.",
-    proof: ["Background-screened", "Culture-matched", "Performance-tracked"],
-    color: "mint" as const,
-    image: "/images/why-us/handpicked.png",
-    imageAlt: "Handpicked remote professionals",
+    label: "Talent Quality",
+    sub: "Rigorously Vetted",
+    accent: MINT,
+    accentRgb: MINT_RGB,
+    desc: "6-step vetting: skills test, English, background check, culture-fit interview, and live evaluation.",
+    points: ["Background-screened", "Culture-matched", "Skill-tested"],
   },
   {
-    icon: Zap,
     stat: "3–10",
-    statLabel: "days to your first hire",
-    statSub: "from kickoff call to signed offer",
-    title: "Lightning-Fast Onboarding",
-    description:
-      "Pre-vetted talent pool means you go from intake call to signed offer in under two weeks — not months.",
-    proof: ["Pre-vetted pool", "Fewer interview rounds", "Same-week starts"],
-    color: "teal" as const,
-    image: "/images/why-us/speedy.png",
-    imageAlt: "Fast remote hiring",
+    label: "Days to Hire",
+    sub: "Fast Shortlist",
+    accent: TEAL,
+    accentRgb: TEAL_RGB,
+    desc: "Skip months of sourcing. Your shortlist of pre-vetted candidates arrives in days, not quarters.",
+    points: ["Pre-vetted pool", "Same-week starts"],
   },
   {
-    icon: Globe,
     stat: "20+",
-    statLabel: "countries in our network",
-    statSub: "LATAM, SE Asia & beyond",
-    title: "Truly Global Reach",
-    description:
-      "Tap into cross-cultural talent across LATAM, SE Asia, and beyond for round-the-clock productivity and regional expertise.",
-    proof: ["Multi-timezone", "Regional expertise", "30+ placed"],
-    color: "mint" as const,
-    image: "/images/why-us/global.png",
-    imageAlt: "Global remote talent network",
+    label: "Countries",
+    sub: "Global Reach",
+    accent: MINT,
+    accentRgb: MINT_RGB,
+    desc: "Time-zone-aligned talent from the richest LATAM and global markets — ready to join your team.",
+    points: ["Multi-timezone", "30+ placements"],
   },
 ];
 
-const palette = {
-  teal: {
-    iconBg: "bg-[#57C5CF]/15",
-    iconColor: "text-[#57C5CF]",
-    statColor: "#57C5CF",
-    glowColor: "rgba(87,197,207,0.35)",
-    ringColor: "rgba(87,197,207,0.5)",
-    accentHex: "#57C5CF",
-    tagClass:
-      "bg-[#57C5CF]/10 border border-[#57C5CF]/20 text-[#57C5CF]",
-    dividerGrad:
-      "linear-gradient(90deg, #57C5CF 0%, rgba(87,197,207,0.2) 60%, transparent 100%)",
-  },
-  mint: {
-    iconBg: "bg-[#4FFFB0]/15",
-    iconColor: "text-[#4FFFB0]",
-    statColor: "#4FFFB0",
-    glowColor: "rgba(79,255,176,0.3)",
-    ringColor: "rgba(79,255,176,0.5)",
-    accentHex: "#4FFFB0",
-    tagClass:
-      "bg-[#4FFFB0]/10 border border-[#4FFFB0]/20 text-[#4FFFB0]",
-    dividerGrad:
-      "linear-gradient(90deg, #4FFFB0 0%, rgba(79,255,176,0.2) 60%, transparent 100%)",
-  },
-};
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return { ref, visible };
+}
+
+function SmallCard({ card, delay }: { card: (typeof supporting)[0]; delay: number }) {
+  const reveal = useReveal();
+  const spotlight = useSpotlight(card.accentRgb);
+
+  const bindRef = (node: HTMLDivElement | null) => {
+    (reveal.ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    (spotlight.ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+  };
+
+  return (
+    <div
+      ref={bindRef}
+      className="relative rounded-2xl overflow-hidden flex flex-col p-6 lg:p-7 cursor-default"
+      style={{
+        background: "rgba(255,255,255,0.04)",
+        border: `1px solid rgba(${card.accentRgb},0.2)`,
+        boxShadow: "0 2px 20px rgba(0,0,0,0.3)",
+        transform: reveal.visible ? "translateY(0)" : "translateY(20px)",
+        opacity: reveal.visible ? 1 : 0,
+        transition: `transform 0.6s cubic-bezier(0.16,1,0.3,1) ${delay}ms, opacity 0.6s ease ${delay}ms, border-color 0.3s ease, box-shadow 0.3s ease`,
+      }}
+      onMouseMove={(e) => {
+        spotlight.handleMove(e);
+        (e.currentTarget as HTMLDivElement).style.borderColor = `rgba(${card.accentRgb},0.45)`;
+        (e.currentTarget as HTMLDivElement).style.boxShadow = `0 4px 32px rgba(${card.accentRgb},0.15)`;
+      }}
+      onMouseLeave={(e) => {
+        spotlight.handleLeave();
+        (e.currentTarget as HTMLDivElement).style.borderColor = `rgba(${card.accentRgb},0.2)`;
+        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 20px rgba(0,0,0,0.3)";
+      }}
+    >
+      <div className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: `linear-gradient(90deg, transparent, ${card.accent}88, transparent)` }} />
+
+      <div
+        className="font-black leading-none mb-1"
+        style={{ fontSize: "clamp(34px,4.5vw,48px)", color: card.accent, fontFamily: "var(--font-heading)" }}
+      >
+        {card.stat}
+      </div>
+      <div className="font-bold text-base mb-0.5 text-white">{card.label}</div>
+      <div className="text-xs font-semibold mb-4" style={{ color: "rgba(255,255,255,0.45)" }}>{card.sub}</div>
+
+      <div className="h-px mb-4" style={{ background: `rgba(${card.accentRgb},0.2)` }} />
+
+      <p className="text-sm leading-relaxed flex-1 mb-4" style={{ color: "rgba(255,255,255,0.65)" }}>{card.desc}</p>
+
+      <ul className="space-y-1.5 mt-auto">
+        {card.points.map((p) => (
+          <li key={p} className="flex items-center gap-2 text-xs font-medium" style={{ color: "rgba(255,255,255,0.6)" }}>
+            <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: card.accent }} />
+            {p}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function WhyChooseUs() {
+  const heroReveal = useReveal();
+  const heroSpotlight = useSpotlight(TEAL_RGB);
+
+  const bindHeroRef = (node: HTMLDivElement | null) => {
+    (heroReveal.ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    (heroSpotlight.ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+  };
+
   return (
     <section
       id="why"
-      className="py-24"
-      style={{ background: "linear-gradient(to right, #78ffd6, #007991)" }}
+      className="relative overflow-hidden py-16"
+      style={{ background: "#04090f" }}
     >
-      <div className="container mx-auto px-6 max-w-6xl">
+      {/* Gradient blobs background */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            filter: 'blur(60px)',
+            ['--color-1' as string]: '87,197,207',
+            ['--color-2' as string]: '79,255,176',
+            ['--color-3' as string]: '168,223,240',
+            ['--color-4' as string]: '57,139,87',
+            ['--color-5' as string]: '11,23,39',
+          } as React.CSSProperties}
+        >
+          <div className="absolute animate-first opacity-70" style={{ top: 'calc(50% - 300px)', left: 'calc(50% - 300px)', width: 600, height: 600, background: 'radial-gradient(circle at center, rgba(var(--color-1),0.5) 0, rgba(var(--color-1),0) 50%) no-repeat' }} />
+          <div className="absolute animate-second opacity-70" style={{ top: 'calc(50% - 300px)', left: 'calc(50% - 300px)', width: 600, height: 600, background: 'radial-gradient(circle at center, rgba(var(--color-2),0.5) 0, rgba(var(--color-2),0) 50%) no-repeat', transformOrigin: 'calc(50% - 300px) center' }} />
+          <div className="absolute animate-third opacity-70" style={{ top: 'calc(50% - 300px)', left: 'calc(50% - 300px)', width: 600, height: 600, background: 'radial-gradient(circle at center, rgba(var(--color-3),0.4) 0, rgba(var(--color-3),0) 50%) no-repeat', transformOrigin: 'calc(50% + 300px) center' }} />
+          <div className="absolute animate-fourth opacity-60" style={{ top: 'calc(50% - 300px)', left: 'calc(50% - 300px)', width: 600, height: 600, background: 'radial-gradient(circle at center, rgba(var(--color-4),0.4) 0, rgba(var(--color-4),0) 50%) no-repeat', transformOrigin: 'calc(50% - 150px) center' }} />
+          <div className="absolute animate-fifth opacity-50" style={{ top: 'calc(50% - 300px)', left: 'calc(50% - 300px)', width: 600, height: 600, background: 'radial-gradient(circle at center, rgba(var(--color-5),0.4) 0, rgba(var(--color-5),0) 50%) no-repeat', transformOrigin: 'calc(50% - 600px) calc(50% + 600px)' }} />
+        </div>
+      </div>
 
-        {/* Section header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-black/10 border border-black/20 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-sm font-bold text-[#0F1926] tracking-wide uppercase" style={{ fontFamily: "var(--font-body)" }}>
-              Why We&apos;re Different
-            </span>
-          </div>
+      <div className="container mx-auto px-6 max-w-6xl relative z-10">
+
+        {/* Header */}
+        <div className="mb-10">
           <h2
-            className="text-[#0F1926] text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-black leading-[0.95] mb-4 text-white"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Why Choose Remote ACKtive?
+            Built different.{" "}
+            <span
+              className="text-transparent bg-clip-text"
+              style={{ backgroundImage: `linear-gradient(135deg, ${TEAL} 0%, ${MINT} 100%)` }}
+            >
+              Priced fairly.
+            </span>
           </h2>
-          <p className="text-[#0F1926]/75 text-lg max-w-2xl mx-auto" style={{ fontFamily: "var(--font-body)" }}>
-            We make hiring global talent simple, affordable, and stress-free —
-            so you can focus on growing.
+          <p className="text-lg max-w-lg leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+            Four reasons fast-growing companies choose Remote ACKtive over agencies, job boards, and freelance platforms.
           </p>
         </div>
 
-        {/* Alternating rows */}
-        <div className="space-y-5">
-          {benefits.map((benefit, idx) => {
-            const Icon = benefit.icon;
-            const c = palette[benefit.color];
-            const isReversed = idx % 2 === 1;
+        {/* ── HERO CARD ── */}
+        <div
+          ref={bindHeroRef}
+          className="relative rounded-2xl overflow-hidden mb-4 cursor-default"
+          style={{
+            background: "rgba(255,255,255,0.04)",
+            border: `1px solid rgba(${TEAL_RGB},0.2)`,
+            boxShadow: "0 2px 20px rgba(0,0,0,0.4)",
+            transform: heroReveal.visible ? "translateY(0)" : "translateY(24px)",
+            opacity: heroReveal.visible ? 1 : 0,
+            transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.7s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+          }}
+          onMouseMove={(e) => {
+            heroSpotlight.handleMove(e);
+            (e.currentTarget as HTMLDivElement).style.borderColor = `rgba(${TEAL_RGB},0.4)`;
+            (e.currentTarget as HTMLDivElement).style.boxShadow = `0 4px 40px rgba(${TEAL_RGB},0.12)`;
+          }}
+          onMouseLeave={(e) => {
+            heroSpotlight.handleLeave();
+            (e.currentTarget as HTMLDivElement).style.borderColor = `rgba(${TEAL_RGB},0.2)`;
+            (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 20px rgba(0,0,0,0.4)";
+          }}
+        >
+          <div className="absolute top-0 left-0 right-0 h-px"
+            style={{ background: `linear-gradient(90deg, transparent, ${TEAL}88, ${MINT}55, transparent)` }} />
 
-            return (
+          {/* Ghost number */}
+          <div
+            className="absolute bottom-0 right-0 font-black select-none pointer-events-none"
+            style={{
+              fontSize: "clamp(90px, 14vw, 180px)",
+              color: `rgba(${TEAL_RGB},0.06)`,
+              fontFamily: "var(--font-heading)",
+              lineHeight: 0.8,
+            }}
+            aria-hidden="true"
+          >
+            70
+          </div>
+
+          <div className="relative z-10 grid md:grid-cols-2">
+            {/* Left — stat + copy */}
+            <div className="p-7 lg:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
               <div
-                key={benefit.title}
-                className={`group relative flex flex-col md:flex-row items-stretch rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_24px_64px_rgba(0,0,0,0.45)] hover:-translate-y-0.5 ${
-                  isReversed ? "md:flex-row-reverse" : ""
-                }`}
-                style={{ background: "rgba(13,26,45,0.92)", backdropFilter: "blur(12px)" }}
+                className="font-black leading-none mb-2"
+                style={{ fontSize: "clamp(40px, 6vw, 64px)", color: TEAL, fontFamily: "var(--font-heading)" }}
               >
-                {/* Colored left/right accent edge */}
-                <div
-                  className={`absolute inset-y-0 w-1 flex-shrink-0 ${isReversed ? "right-0" : "left-0"}`}
-                  style={{ background: c.accentHex }}
-                />
-
-                {/* Image panel with circular image */}
-                <div
-                  className={`relative flex items-center justify-center flex-shrink-0 bg-[#0A1628] px-10 py-8 md:py-0 md:min-h-[220px] md:w-56 ${
-                    isReversed ? "md:pl-6 md:pr-10" : "md:pl-10 md:pr-6"
-                  }`}
-                >
-                  {/* Ambient glow behind image */}
-                  <div
-                    className="absolute inset-0 opacity-20"
-                    style={{
-                      background: `radial-gradient(ellipse at center, ${c.glowColor} 0%, transparent 70%)`,
-                    }}
-                  />
-                  {/* Circular image with glow ring */}
-                  <div
-                    className="relative w-32 h-32 rounded-full overflow-hidden flex-shrink-0 transition-transform duration-500 group-hover:scale-105"
-                    style={{
-                      boxShadow: `0 0 0 3px rgba(255,255,255,0.06), 0 0 0 7px ${c.ringColor}, 0 12px 40px ${c.glowColor}`,
-                    }}
-                  >
-                    <Image
-                      src={benefit.image}
-                      alt={benefit.imageAlt}
-                      fill
-                      sizes="128px"
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-
-                {/* Vertical divider — desktop only */}
-                <div
-                  className="hidden md:block w-px self-stretch flex-shrink-0"
-                  style={{
-                    background: isReversed
-                      ? `linear-gradient(180deg, transparent 0%, ${c.accentHex}40 40%, ${c.accentHex}40 60%, transparent 100%)`
-                      : `linear-gradient(180deg, transparent 0%, ${c.accentHex}40 40%, ${c.accentHex}40 60%, transparent 100%)`,
-                  }}
-                />
-
-                {/* Content area */}
-                <div className="flex-1 px-8 py-8 md:py-9">
-                  {/* Icon + stat block */}
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-5">
-                    <div
-                      className={`inline-flex items-center justify-center w-11 h-11 rounded-xl flex-shrink-0 ${c.iconBg}`}
-                    >
-                      <Icon className={`w-5 h-5 ${c.iconColor}`} />
-                    </div>
-                    <div>
-                      <div className="flex items-baseline gap-2 flex-wrap">
-                        <span
-                          className="text-5xl md:text-6xl font-extrabold leading-none tabular-nums"
-                          style={{ color: c.statColor, fontFamily: "var(--font-heading)" }}
-                        >
-                          {benefit.stat}
-                        </span>
-                        <div className="flex flex-col">
-                          <span className="text-white font-semibold text-sm leading-tight">
-                            {benefit.statLabel}
-                          </span>
-                          <span className="text-white/50 text-xs">
-                            {benefit.statSub}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Thin divider */}
-                  <div
-                    className="h-px w-full mb-5"
-                    style={{ background: c.dividerGrad }}
-                  />
-
-                  <h3
-                    className="text-white font-bold text-xl mb-2.5 leading-snug"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    {benefit.title}
-                  </h3>
-                  <p
-                    className="text-white/70 text-sm leading-relaxed mb-5 max-w-xl"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {benefit.description}
-                  </p>
-
-                  {/* Proof chips — glassmorphism pill badges */}
-                  <div className="flex flex-wrap gap-2">
-                    {benefit.proof.map((tag) => (
-                      <span
-                        key={tag}
-                        className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm ${c.tagClass}`}
-                        style={{ fontFamily: "var(--font-body)" }}
-                      >
-                        <CheckCircle2 className="w-3 h-3 flex-shrink-0" />
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                Up to 70%
               </div>
-            );
-          })}
+              <div className="font-bold text-lg mb-1 text-white">Average Cost Savings</div>
+              <div className="text-sm mb-5" style={{ color: "rgba(255,255,255,0.45)" }}>vs equivalent US hires</div>
+
+              <div className="h-px mb-5" style={{ background: `rgba(${TEAL_RGB},0.2)` }} />
+
+              <p className="text-sm leading-relaxed max-w-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
+                Replace $80–120k/yr US roles with top-tier remote professionals at a fraction of the cost.
+              </p>
+
+              <div className="mt-4 pl-3 py-0.5" style={{ borderLeft: `2px solid ${MINT}` }}>
+                <span className="font-bold text-sm" style={{ color: MINT }}>
+                  Without sacrificing a single bit of quality.
+                </span>
+              </div>
+            </div>
+
+            {/* Right — calculator */}
+            <div className="p-7 lg:p-10 flex flex-col justify-center">
+              <div className="text-[11px] font-bold uppercase tracking-widest mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>
+                See your savings
+              </div>
+              <div className="font-bold text-base mb-0.5 text-white">Pick a role to compare</div>
+              <SavingsCalc />
+            </div>
+          </div>
+        </div>
+
+        {/* ── 3 SUPPORTING CARDS ── */}
+        <div className="grid sm:grid-cols-3 gap-4">
+          {supporting.map((card, i) => (
+            <SmallCard key={card.label} card={card} delay={i * 120} />
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-12">
+          <a
+            href="/book-a-call"
+            className="inline-flex items-center gap-3 px-10 py-4 rounded-full text-sm font-bold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+            style={{
+              background: "linear-gradient(135deg, #ffffff 0%, #a8e8f5 50%, #b8fce8 100%)",
+              color: "#04090f",
+            }}
+          >
+            Start Saving Today
+            <ArrowRight className="w-4 h-4 flex-shrink-0" />
+          </a>
         </div>
       </div>
     </section>

@@ -199,7 +199,7 @@ export default function RootLayout({
                     "@type": "Offer",
                     itemOffered: {
                       "@type": "Service",
-                      name: "Hire-Only Service",
+                      name: "Remote Outsourcing",
                       description: "We find and deliver pre-vetted talent ready to join your team",
                     },
                   },
@@ -207,7 +207,7 @@ export default function RootLayout({
                     "@type": "Offer",
                     itemOffered: {
                       "@type": "Service",
-                      name: "Hire + Manage Service",
+                      name: "Full Service Staffing",
                       description: "Complete recruitment and ongoing operations management",
                     },
                   },

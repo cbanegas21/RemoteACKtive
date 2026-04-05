@@ -1,259 +1,311 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { ArrowRight, MessageSquare, Users, CheckSquare, TrendingUp } from "lucide-react";
 
-const steps = [
+import { useRef, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+
+// ─── Direction-aware hover logic (from design-inspo/cards/direction-aware-hover.tsx)
+type Direction = "top" | "right" | "bottom" | "left";
+
+function getDirection(
+  e: React.MouseEvent<HTMLDivElement>,
+  el: HTMLDivElement
+): Direction {
+  const rect = el.getBoundingClientRect();
+  const x = e.clientX - rect.left - rect.width / 2;
+  const y = e.clientY - rect.top - rect.height / 2;
+  const angle = (Math.atan2(y, x) * 180) / Math.PI;
+  if (angle > -45 && angle <= 45) return "right";
+  if (angle > 45 && angle <= 135) return "bottom";
+  if (angle > -135 && angle <= -45) return "top";
+  return "left";
+}
+
+function getSlideOrigin(direction: Direction): { x: number; y: number } {
+  switch (direction) {
+    case "top":    return { x: 0,    y: -100 };
+    case "bottom": return { x: 0,    y: 100  };
+    case "left":   return { x: -100, y: 0    };
+    case "right":  return { x: 100,  y: 0    };
+  }
+}
+
+// ─── Step data
+const STEPS = [
   {
     number: "01",
-    icon: MessageSquare,
-    title: "Tell Us Your Goals",
+    title: "Tell Us Your Needs",
+    tagline: "Free discovery call. No commitment.",
     description:
-      "Share what you need in a free discovery call. We'll pinpoint exactly where remote talent saves you the most money and time.",
-    accentColor: "#57C5CF",
+      "We start with a free discovery call to understand exactly what you're looking for — the role, the skills, the team culture, and the timeline. The more context you give us, the better we match.",
+    bullets: [
+      "Define role requirements and must-have skills",
+      "Specify team size and management structure",
+      "Share culture fit and communication preferences",
+    ],
+    accent: "#a8e8f5",
   },
   {
     number: "02",
-    icon: Users,
-    title: "We Get You Your People",
+    title: "We Find Your Team",
+    tagline: "Top 5% — vetted, tested, ready.",
     description:
-      "Our team hand-screens every candidate through a rigorous vetting process and delivers a shortlist of top-tier professionals.",
-    accentColor: "#4FFFB0",
+      "Our recruiters tap into a vetted LATAM talent network across 20+ countries. Every candidate goes through a rigorous 6-step screening — English fluency, technical skills, timezone alignment, and work ethic.",
+    bullets: [
+      "6-step vetting — only top 5% advance",
+      "Sourced from 20+ countries across LATAM",
+      "Shortlist delivered in 3–10 business days",
+    ],
+    accent: "#b8fce8",
   },
   {
     number: "03",
-    icon: CheckSquare,
-    title: "We Get Them Onboarded",
+    title: "You Meet Candidates",
+    tagline: "Interview on your schedule. You choose.",
     description:
-      "We handle contracts, onboarding, and setup so your new team member hits the ground running — zero friction on your end.",
-    accentColor: "#57C5CF",
+      "You interview our shortlisted candidates directly. Run a test project if you'd like. We stay in the loop to help you evaluate fit — then you make the final call with full confidence.",
+    bullets: [
+      "Live interviews on your schedule",
+      "Optional paid test projects to validate skills",
+      "You make the final hiring decision",
+    ],
+    accent: "#a8e8f5",
   },
   {
     number: "04",
-    icon: TrendingUp,
-    title: "Start Earning Money & Time Back",
+    title: "They Start Working",
+    tagline: "Productive from day one.",
     description:
-      "Watch your costs drop and your calendar open up. Reinvest the savings into growing your business.",
-    accentColor: "#4FFFB0",
+      "We handle contracts, onboarding paperwork, and setup so your new team member hits the ground running. You get ongoing support from us for the life of the placement.",
+    bullets: [
+      "Contracts and compliance handled end-to-end",
+      "Structured first-week onboarding plan",
+      "Ongoing support + replacement guarantee",
+    ],
+    accent: "#b8fce8",
   },
-];
+] as const;
 
+// ─── Single step card
+function StepCard({ step }: { step: (typeof STEPS)[number] }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [hovered, setHovered] = useState(false);
+  const [dir, setDir] = useState<Direction>("top");
+
+  const onEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    setDir(getDirection(e, cardRef.current));
+    setHovered(true);
+  };
+
+  const onLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    setDir(getDirection(e, cardRef.current));
+    setHovered(false);
+  };
+
+  const origin = getSlideOrigin(dir);
+
+  return (
+    <div
+      ref={cardRef}
+      className="relative overflow-hidden rounded-2xl min-h-[300px] cursor-default"
+      style={{
+        background: "rgba(255,255,255,0.025)",
+        border: `1px solid ${step.accent}18`,
+      }}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
+      {/* ── Always-visible base layer ── */}
+      <div className="h-full min-h-[300px] p-8 md:p-10 flex flex-col justify-between select-none">
+        {/* Ghost number watermark */}
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-6 -right-3 font-black leading-none pointer-events-none"
+          style={{ fontSize: "9rem", color: step.accent, opacity: 0.055 }}
+        >
+          {step.number}
+        </span>
+
+        {/* Step label */}
+        <span
+          className="text-[11px] font-black tracking-[0.28em] uppercase"
+          style={{ color: step.accent + "70" }}
+        >
+          Step {step.number}
+        </span>
+
+        {/* Title + tagline */}
+        <div>
+          <h3 className="text-2xl md:text-3xl font-black text-white leading-tight mb-2">
+            {step.title}
+          </h3>
+          <p className="text-sm text-white/55">{step.tagline}</p>
+        </div>
+      </div>
+
+      {/* ── Direction-aware hover overlay ── */}
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            className="absolute inset-0 rounded-2xl p-8 md:p-10 flex flex-col justify-between"
+            style={{
+              background: `linear-gradient(135deg, rgba(4,9,15,0.96) 0%, rgba(9,15,13,0.94) 100%)`,
+              backdropFilter: "blur(14px)",
+              WebkitBackdropFilter: "blur(14px)",
+              border: `1px solid ${step.accent}35`,
+            }}
+            initial={{ x: `${origin.x}%`, y: `${origin.y}%`, opacity: 0 }}
+            animate={{ x: "0%", y: "0%", opacity: 1 }}
+            exit={{ x: `${origin.x}%`, y: `${origin.y}%`, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            <span
+              className="text-[11px] font-black tracking-[0.28em] uppercase"
+              style={{ color: step.accent }}
+            >
+              Step {step.number}
+            </span>
+
+            <div>
+              <h3 className="text-xl font-black text-white mb-3">{step.title}</h3>
+              <p className="text-sm text-white/80 leading-relaxed mb-5">
+                {step.description}
+              </p>
+              <div className="flex flex-col gap-2.5">
+                {step.bullets.map((b, i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-2.5 text-sm text-white/70"
+                  >
+                    <span
+                      className="mt-0.5 flex-shrink-0 text-base leading-none"
+                      style={{ color: step.accent }}
+                    >
+                      ✓
+                    </span>
+                    <span>{b}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// ─── Section
 export default function HowItWorks() {
-  const [visibleCount, setVisibleCount] = useState(0);
-  const sectionRef = useRef<HTMLElement>(null);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const beamsCanvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
+    const canvas = beamsCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    const clearTimers = () => {
-      timersRef.current.forEach(clearTimeout);
-      timersRef.current = [];
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     };
+    resize();
+    window.addEventListener('resize', resize);
 
-    const runSequence = () => {
-      clearTimers();
-      setVisibleCount(0);
-      steps.forEach((_, i) => {
-        const t = setTimeout(() => setVisibleCount(i + 1), 100 + i * 280);
-        timersRef.current.push(t);
-      });
-      const lastStepDelay = 100 + (steps.length - 1) * 280;
-      const loopTimer = setTimeout(runSequence, lastStepDelay + 20000);
-      timersRef.current.push(loopTimer);
-    };
+    type Beam = { x: number; y: number; width: number; speed: number; opacity: number; hue: number };
+    const beams: Beam[] = Array.from({ length: 25 }, () => ({
+      x: Math.random() * canvas.width,
+      y: canvas.height + Math.random() * 100,
+      width: Math.random() * 2 + 0.5,
+      speed: Math.random() * 1 + 0.3,
+      opacity: Math.random() * 0.12 + 0.03,
+      hue: [180, 190, 165, 175][Math.floor(Math.random() * 4)],
+    }));
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          runSequence();
-          observer.disconnect();
+    let rafId = 0;
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const b of beams) {
+        b.y -= b.speed;
+        if (b.y < -canvas.height * 0.5) {
+          b.y = canvas.height + 100;
+          b.x = Math.random() * canvas.width;
         }
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(el);
+        const grad = ctx.createLinearGradient(b.x, b.y, b.x, b.y - canvas.height * 0.6);
+        grad.addColorStop(0, `hsla(${b.hue},80%,70%,0)`);
+        grad.addColorStop(0.4, `hsla(${b.hue},80%,70%,${b.opacity})`);
+        grad.addColorStop(1, `hsla(${b.hue},80%,70%,0)`);
+        ctx.beginPath();
+        ctx.moveTo(b.x, b.y);
+        ctx.lineTo(b.x, b.y - canvas.height * 0.6);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = b.width;
+        ctx.stroke();
+      }
+      rafId = requestAnimationFrame(draw);
+    };
+    draw();
 
     return () => {
-      observer.disconnect();
-      clearTimers();
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', resize);
     };
   }, []);
 
   return (
     <section
       id="how-it-works"
-      ref={sectionRef}
-      className="py-24"
-      style={{ background: "linear-gradient(to right, #2C5364, #203A43, #0F2027)" }}
+      className="relative overflow-hidden py-24 md:py-32"
+      style={{ background: '#0b1117' }}
     >
-      <div className="container mx-auto px-6 max-w-6xl">
-
-        {/* Section header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 bg-[#57C5CF]/10 border border-[#57C5CF]/20 rounded-full px-4 py-1.5 mb-5">
+      {/* Beams background */}
+      <canvas
+        ref={beamsCanvasRef}
+        className="pointer-events-none absolute inset-0 w-full h-full"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 container mx-auto px-6 max-w-6xl">
+        {/* Header */}
+        <div className="mb-14 md:mb-20">
+          <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.05] mb-5">
+            Four steps.{" "}
             <span
-              className="text-sm font-bold text-[#57C5CF] tracking-wide uppercase"
-              style={{ fontFamily: "var(--font-body)" }}
+              className="block"
+              style={{
+                backgroundImage: "linear-gradient(90deg, #a8e8f5, #b8fce8)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
-              Simple Process
+              One great hire.
             </span>
-          </div>
-          <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            From Discovery to Delegation
           </h2>
-          <p
-            className="text-lg text-white/70 max-w-2xl mx-auto"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            Four steps. Most clients are up and running in under two weeks.
+          <p className="text-white/45 text-base md:text-lg max-w-lg leading-relaxed">
+            Most clients are up and running with their new hire in under two weeks. Hover each step to see what happens.
           </p>
         </div>
 
-        {/* Timeline container */}
-        <div className="relative">
-
-          {/* Animated connector line — desktop only */}
-          <div
-            aria-hidden="true"
-            className="hidden lg:block absolute top-[52px] left-[calc(12.5%-16px)] right-[calc(12.5%-16px)] h-px bg-white/8 z-0"
-          >
-            <div
-              className="h-full transition-all duration-700 ease-out"
-              style={{
-                width:
-                  visibleCount >= steps.length
-                    ? "100%"
-                    : `${(visibleCount / steps.length) * 100}%`,
-                background:
-                  "linear-gradient(90deg, #248B93 0%, #57C5CF 50%, #4FFFB0 100%)",
-              }}
-            />
-          </div>
-
-          {/* Step cards grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
-            {steps.map((step, i) => {
-              const Icon = step.icon;
-              const isVisible = visibleCount > i;
-
-              return (
-                <div
-                  key={step.number}
-                  className={`relative flex flex-col transition-all duration-500 ease-out ${
-                    isVisible
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-8"
-                  }`}
-                >
-                  {/* Faded giant step number — behind card */}
-                  <div
-                    className="absolute -top-5 left-4 text-[96px] font-extrabold leading-none select-none pointer-events-none z-0"
-                    style={{
-                      color: isVisible ? step.accentColor : "transparent",
-                      opacity: isVisible ? 0.07 : 0,
-                      fontFamily: "var(--font-heading)",
-                      transition: "opacity 0.6s ease-out",
-                    }}
-                    aria-hidden="true"
-                  >
-                    {step.number}
-                  </div>
-
-                  {/* Numbered badge — sits on the connector line */}
-                  <div className="flex justify-center mb-5 relative z-10">
-                    <div
-                      className={`w-[104px] h-[104px] rounded-full flex items-center justify-center transition-all duration-500 ${
-                        isVisible ? "shadow-lg" : ""
-                      }`}
-                      style={{
-                        background: isVisible
-                          ? `linear-gradient(135deg, ${step.accentColor}22 0%, ${step.accentColor}10 100%)`
-                          : "rgba(255,255,255,0.04)",
-                        border: `2px solid ${isVisible ? step.accentColor + "50" : "rgba(255,255,255,0.08)"}`,
-                        boxShadow: isVisible
-                          ? `0 0 0 6px ${step.accentColor}12, 0 12px 32px ${step.accentColor}20`
-                          : "none",
-                      }}
-                    >
-                      <div className="flex flex-col items-center gap-0.5">
-                        <Icon
-                          className="w-6 h-6"
-                          style={{ color: isVisible ? step.accentColor : "rgba(255,255,255,0.2)" }}
-                        />
-                        <span
-                          className="text-xs font-bold tabular-nums"
-                          style={{
-                            color: isVisible ? step.accentColor : "rgba(255,255,255,0.2)",
-                            fontFamily: "var(--font-heading)",
-                          }}
-                        >
-                          {step.number}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card body */}
-                  <div
-                    className="relative z-10 flex-1 rounded-2xl p-6 border transition-all duration-500"
-                    style={{
-                      background: isVisible
-                        ? "rgba(255,255,255,0.04)"
-                        : "rgba(255,255,255,0.02)",
-                      borderColor: isVisible
-                        ? `${step.accentColor}30`
-                        : "rgba(255,255,255,0.06)",
-                      backdropFilter: "blur(8px)",
-                      boxShadow: isVisible
-                        ? `0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 ${step.accentColor}15`
-                        : "none",
-                    }}
-                  >
-                    {/* Top accent line */}
-                    <div
-                      className="absolute top-0 left-6 right-6 h-px rounded-full transition-all duration-500"
-                      style={{
-                        background: isVisible
-                          ? `linear-gradient(90deg, transparent, ${step.accentColor}60, transparent)`
-                          : "transparent",
-                      }}
-                    />
-
-                    <h3
-                      className="text-white font-bold text-base mb-2.5 leading-snug"
-                      style={{ fontFamily: "var(--font-heading)" }}
-                    >
-                      {step.title}
-                    </h3>
-                    <p
-                      className="text-white/60 text-sm leading-relaxed"
-                      style={{ fontFamily: "var(--font-body)" }}
-                    >
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        {/* 2 × 2 card grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+          {STEPS.map((step) => (
+            <StepCard key={step.number} step={step} />
+          ))}
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-16">
-          <a
+        {/* CTA row */}
+        <div className="flex flex-wrap items-center gap-4">
+          <Link
             href="/book-a-call"
-            className="inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-full btn-grad text-white text-base font-bold shadow-xl"
-            style={{ fontFamily: "var(--font-body)" }}
+            className="rounded-full px-8 py-3.5 font-bold text-sm inline-block text-[#04090f] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+              style={{ background: "linear-gradient(135deg, #ffffff 0%, #a8e8f5 50%, #b8fce8 100%)" }}
           >
-            Want to Start Saving More Money and Time? Book a Discovery Call
-            <ArrowRight className="w-4 h-4 flex-shrink-0" />
-          </a>
+            Start the Process →
+          </Link>
+          <span className="text-white/25 text-sm">No commitment required</span>
         </div>
-
       </div>
     </section>
   );

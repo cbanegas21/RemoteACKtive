@@ -47,7 +47,7 @@ export default function CookieConsent() {
       aria-live="polite"
     >
       {/* Backdrop blur edge */}
-      <div className="bg-[#0D1A2D]/95 backdrop-blur-sm border-t border-[#57C5CF]/20 shadow-2xl">
+      <div className="bg-[#04090f]/95 backdrop-blur-sm border-t border-[#b8fce8]/20 shadow-2xl">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
 
           {/* Cookie icon + text */}
@@ -62,7 +62,7 @@ export default function CookieConsent() {
                 for retargeting. You can accept all cookies or decline non-essential ones.{' '}
                 <Link
                   href="/privacy-policy"
-                  className="text-[#57C5CF] hover:underline"
+                  className="text-[#b8fce8] hover:underline"
                 >
                   Privacy Policy
                 </Link>
@@ -80,7 +80,7 @@ export default function CookieConsent() {
             </button>
             <button
               onClick={handleAccept}
-              className="flex-1 sm:flex-none px-6 py-2.5 text-sm font-bold text-[#0A1628] btn-gradient rounded-lg shadow-lg shadow-[#4FFFB0]/20"
+              className="flex-1 sm:flex-none px-6 py-2.5 text-sm font-bold text-[#04090f] btn-gradient rounded-lg shadow-lg shadow-[#a8e8f5]/20"
             >
               Accept All
             </button>

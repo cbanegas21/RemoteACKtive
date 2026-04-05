@@ -4,7 +4,6 @@ import {
   Calendar,
   Clock,
   Users,
-  Star,
   ShieldCheck,
   ArrowRight,
   CheckCircle2,
@@ -20,14 +19,14 @@ import Footer from "@/components/Footer";
 const tabs = [
   {
     id: "hire-only" as const,
-    label: "Recruitment-Only",
+    label: "Remote Outsourcing",
     title: "Get Pre-Vetted Candidates Fast",
     description:
       "We source, screen, and deliver a shortlist of top-tier LATAM professionals — you make the final call.",
     isFeatured: false,
-    accentColor: "#57C5CF",
-    borderIdle: "rgba(87,197,207,0.25)",
-    borderHover: "rgba(87,197,207,0.6)",
+    accentColor: "#b8fce8",
+    borderIdle: "rgba(184,252,232,0.25)",
+    borderHover: "rgba(184,252,232,0.6)",
   },
   {
     id: "hire-manage" as const,
@@ -36,17 +35,17 @@ const tabs = [
     description:
       "Full-cycle hiring, HR administration, performance management, and ongoing development. Completely hands-free.",
     isFeatured: true,
-    accentColor: "#4FFFB0",
-    borderIdle: "rgba(79,255,176,0.3)",
-    borderHover: "rgba(79,255,176,0.7)",
+    accentColor: "#a8e8f5",
+    borderIdle: "rgba(168,232,245,0.3)",
+    borderHover: "rgba(168,232,245,0.7)",
   },
 ];
 
 const stats = [
-  { value: "30+", label: "Placements", color: "#57C5CF" },
-  { value: "4.9/5", label: "Client Rating", color: "#F5A623" },
-  { value: "94%", label: "12-Mo Retention", color: "#4FFFB0" },
-  { value: "3–10", label: "Days to Hire", color: "#57C5CF" },
+  { value: "30+", label: "Placements", color: "#b8fce8" },
+  { value: "4.9/5", label: "Client Rating", color: "#b8fce8" },
+  { value: "94%", label: "12-Mo Retention", color: "#a8e8f5" },
+  { value: "3–10", label: "Days to Hire", color: "#b8fce8" },
 ];
 
 const benefits = [
@@ -55,28 +54,28 @@ const benefits = [
     title: "Free 30-Minute Strategy Call",
     description:
       "No commitment, no pitch. We map your hiring needs and identify where remote talent delivers the most value.",
-    color: "#57C5CF",
+    color: "#b8fce8",
   },
   {
     icon: Zap,
     title: "Candidates in 3–10 Days",
     description:
       "Our pre-vetted LATAM talent pool means you get qualified candidates weeks faster than traditional recruiting.",
-    color: "#4FFFB0",
+    color: "#a8e8f5",
   },
   {
     icon: Globe,
     title: "LATAM Talent, 20+ Countries",
     description:
       "English-fluent, timezone-aligned professionals from top talent markets across Latin America.",
-    color: "#57C5CF",
+    color: "#b8fce8",
   },
   {
     icon: ShieldCheck,
     title: "Lifetime Replacement Guarantee",
     description:
       "If a placement underperforms, we find you a better match at zero extra charge — no questions asked.",
-    color: "#4FFFB0",
+    color: "#a8e8f5",
   },
 ];
 
@@ -100,26 +99,25 @@ export default function BookACallPage() {
     <FormProvider>
       <div
         className="min-h-screen"
-        style={{ background: "linear-gradient(to right, #0F2027, #203A43, #2C5364)" }}
+        style={{ background: "#04090f" }}
       >
         <Header />
 
         {/* ── Hero ──────────────────────────────────────────────────────── */}
         <section className="relative pt-32 pb-16 overflow-hidden">
-          {/* ambient top glow */}
           <div
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(87,197,207,0.08) 0%, transparent 70%)",
+                "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(168,232,245,0.06) 0%, transparent 70%)",
             }}
           />
 
           <div className="relative z-10 container mx-auto px-6 max-w-5xl text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#57C5CF]/10 border border-[#57C5CF]/20 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4FFFB0] animate-pulse" />
-              <span className="text-sm font-bold text-[#57C5CF] tracking-wide uppercase">
+            <div className="inline-flex items-center gap-2 bg-[#b8fce8]/10 border border-[#b8fce8]/20 rounded-full px-4 py-1.5 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#a8e8f5] animate-pulse" />
+              <span className="text-sm font-bold text-[#b8fce8] tracking-wide uppercase">
                 Free Discovery Call
               </span>
             </div>
@@ -129,10 +127,10 @@ export default function BookACallPage() {
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Build Your Dream Remote Team{" "}
-              <span className="text-[#4FFFB0]">in Days, Not Months</span>
+              <span className="text-[#a8e8f5]">in Days, Not Months</span>
             </h1>
             <p
-              className="text-white/75 text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
+              className="text-white text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Tell us what you need. We&apos;ll show you how to hire top LATAM
@@ -154,7 +152,7 @@ export default function BookACallPage() {
                     {s.value}
                   </div>
                   <div
-                    className="text-xs text-white/55 font-semibold uppercase tracking-wide"
+                    className="text-xs text-white font-semibold uppercase tracking-wide"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     {s.label}
@@ -168,7 +166,7 @@ export default function BookACallPage() {
         {/* ── Main Content ──────────────────────────────────────────────── */}
         <section className="pb-24">
           <div className="container mx-auto px-6 max-w-7xl">
-            <div className="grid lg:grid-cols-5 gap-10 items-start">
+            <div className="grid lg:grid-cols-5 gap-6 lg:gap-10 items-start">
 
               {/* LEFT: Benefits */}
               <div className="lg:col-span-2 space-y-5">
@@ -176,10 +174,10 @@ export default function BookACallPage() {
                 <div
                   className="rounded-2xl overflow-hidden"
                   style={{
-                    background: "rgba(255,255,255,0.04)",
+                    background: "rgba(255,255,255,0.05)",
                     backdropFilter: "blur(12px)",
                     WebkitBackdropFilter: "blur(12px)",
-                    border: "1px solid rgba(87,197,207,0.15)",
+                    border: "1px solid rgba(184,252,232,0.15)",
                   }}
                 >
                   {/* Top accent */}
@@ -187,12 +185,12 @@ export default function BookACallPage() {
                     className="h-0.5 w-full"
                     style={{
                       background:
-                        "linear-gradient(90deg, #57C5CF 0%, #4FFFB0 50%, transparent 100%)",
+                        "linear-gradient(90deg, #b8fce8 0%, #a8e8f5 50%, transparent 100%)",
                     }}
                   />
                   <div className="p-7">
                     <p
-                      className="text-xs font-bold text-white/45 uppercase tracking-widest mb-5"
+                      className="text-xs font-bold text-white uppercase tracking-widest mb-5"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       Why book a call
@@ -222,7 +220,7 @@ export default function BookACallPage() {
                                 {b.title}
                               </p>
                               <p
-                                className="text-white/60 text-xs leading-relaxed"
+                                className="text-white text-xs leading-relaxed"
                                 style={{ fontFamily: "var(--font-body)" }}
                               >
                                 {b.description}
@@ -239,22 +237,22 @@ export default function BookACallPage() {
                 <div
                   className="rounded-2xl overflow-hidden"
                   style={{
-                    background: "rgba(255,255,255,0.03)",
+                    background: "rgba(255,255,255,0.05)",
                     backdropFilter: "blur(8px)",
                     WebkitBackdropFilter: "blur(8px)",
-                    border: "1px solid rgba(79,255,176,0.15)",
+                    border: "1px solid rgba(168,232,245,0.15)",
                   }}
                 >
                   <div
                     className="h-0.5 w-full"
                     style={{
                       background:
-                        "linear-gradient(90deg, #4FFFB0 0%, transparent 75%)",
+                        "linear-gradient(90deg, #a8e8f5 0%, transparent 75%)",
                     }}
                   />
                   <div className="p-7">
                     <p
-                      className="text-xs font-bold text-white/45 uppercase tracking-widest mb-4"
+                      className="text-xs font-bold text-white uppercase tracking-widest mb-4"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       What happens on the call
@@ -264,10 +262,10 @@ export default function BookACallPage() {
                         <li key={item} className="flex items-start gap-3">
                           <CheckCircle2
                             className="w-4 h-4 flex-shrink-0 mt-0.5"
-                            style={{ color: "#4FFFB0" }}
+                            style={{ color: "#a8e8f5" }}
                           />
                           <span
-                            className="text-white/75 text-sm leading-snug"
+                            className="text-white text-sm leading-snug"
                             style={{ fontFamily: "var(--font-body)" }}
                           >
                             {item}
@@ -282,13 +280,13 @@ export default function BookACallPage() {
                 <div
                   className="rounded-2xl p-6 text-center"
                   style={{
-                    background: "rgba(79,255,176,0.06)",
-                    border: "1px solid rgba(79,255,176,0.2)",
+                    background: "rgba(168,232,245,0.08)",
+                    border: "1px solid rgba(168,232,245,0.2)",
                   }}
                 >
                   <ShieldCheck
                     className="w-8 h-8 mx-auto mb-3"
-                    style={{ color: "#4FFFB0" }}
+                    style={{ color: "#a8e8f5" }}
                   />
                   <p
                     className="text-white font-extrabold text-base mb-1"
@@ -297,7 +295,7 @@ export default function BookACallPage() {
                     Lifetime Guarantee
                   </p>
                   <p
-                    className="text-white/60 text-xs leading-relaxed"
+                    className="text-white text-xs leading-relaxed"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     Every placement — covered forever. If it&apos;s not right,
@@ -318,7 +316,7 @@ export default function BookACallPage() {
                       style={{
                         background:
                           activeTab === tab.id
-                            ? `${tab.accentColor}15`
+                            ? "linear-gradient(135deg, #ffffff 0%, #a8e8f5 50%, #b8fce8 100%)"
                             : "rgba(255,255,255,0.04)",
                         border: `1px solid ${
                           activeTab === tab.id
@@ -326,15 +324,12 @@ export default function BookACallPage() {
                             : "rgba(255,255,255,0.08)"
                         }`,
                         color:
-                          activeTab === tab.id ? tab.accentColor : "rgba(255,255,255,0.5)",
+                          activeTab === tab.id ? "#04090f" : "rgba(255,255,255,0.5)",
                         transform: activeTab === tab.id ? "translateY(-1px)" : "none",
                       }}
                     >
                       <span className="flex items-center justify-center gap-1.5">
                         {tab.label}
-                        {tab.isFeatured && (
-                          <Star className="w-3.5 h-3.5 fill-[#F5A623] text-[#F5A623]" />
-                        )}
                       </span>
                       {activeTab === tab.id && (
                         <div
@@ -352,12 +347,12 @@ export default function BookACallPage() {
                 <div
                   className="rounded-2xl overflow-hidden"
                   style={{
-                    background: "rgba(15,25,38,0.75)",
+                    background: "rgba(11,17,23,0.85)",
                     backdropFilter: "blur(16px)",
                     WebkitBackdropFilter: "blur(16px)",
                     border: `1px solid ${currentTab.borderIdle}`,
                     boxShadow: currentTab.isFeatured
-                      ? `0 0 0 1px ${currentTab.borderIdle}, 0 24px 60px rgba(79,255,176,0.08)`
+                      ? `0 0 0 1px ${currentTab.borderIdle}, 0 24px 60px rgba(168,232,245,0.08)`
                       : "none",
                   }}
                 >
@@ -367,30 +362,12 @@ export default function BookACallPage() {
                       className="h-0.5 w-full flex-shrink-0"
                       style={{
                         background:
-                          "linear-gradient(90deg, transparent 0%, #4FFFB0 40%, #57C5CF 70%, transparent 100%)",
+                          "linear-gradient(90deg, transparent 0%, #a8e8f5 40%, #b8fce8 70%, transparent 100%)",
                       }}
                     />
                   )}
 
-                  <div className="p-8 md:p-10">
-                    {/* Most Popular badge */}
-                    {currentTab.isFeatured && (
-                      <div className="mb-5">
-                        <span
-                          className="inline-flex items-center gap-1.5 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-widest"
-                          style={{
-                            background:
-                              "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
-                            color: "#fff",
-                            boxShadow: "0 4px 14px rgba(245,158,11,0.35)",
-                          }}
-                        >
-                          <Star className="w-3 h-3 fill-white" />
-                          Most Popular
-                        </span>
-                      </div>
-                    )}
-
+                  <div className="p-5 sm:p-8 md:p-10">
                     {/* Tab title */}
                     <div className="mb-7">
                       <h2
@@ -400,7 +377,7 @@ export default function BookACallPage() {
                         {currentTab.title}
                       </h2>
                       <p
-                        className="text-white/65 text-sm leading-relaxed"
+                        className="text-white text-sm leading-relaxed"
                         style={{ fontFamily: "var(--font-body)" }}
                       >
                         {currentTab.description}
@@ -413,7 +390,7 @@ export default function BookACallPage() {
 
                     {/* Calendly fallback */}
                     <p
-                      className="text-xs text-white/40 text-center mt-6"
+                      className="text-xs text-white/60 text-center mt-6"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       Prefer to schedule directly?{" "}
@@ -421,7 +398,7 @@ export default function BookACallPage() {
                         href="https://calendly.com/admin-remoteacktive/30min"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#57C5CF] hover:text-[#4FFFB0] transition-colors underline underline-offset-2"
+                        className="text-[#b8fce8] hover:text-[#a8e8f5] transition-colors underline underline-offset-2"
                       >
                         Open Calendly
                       </a>
@@ -438,10 +415,10 @@ export default function BookACallPage() {
                   ].map(({ icon: Icon, text }) => (
                     <div
                       key={text}
-                      className="flex items-center gap-1.5 text-white/45 text-xs"
+                      className="flex items-center gap-1.5 text-white text-xs"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
-                      <Icon className="w-3.5 h-3.5 text-[#57C5CF]" />
+                      <Icon className="w-3.5 h-3.5 text-[#b8fce8]" />
                       {text}
                     </div>
                   ))}

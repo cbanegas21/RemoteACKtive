@@ -61,7 +61,7 @@ const sections = [
               desc: "An end-to-end managed solution including candidate sourcing, vetting, HR assistance, payment management, continuous training, performance monitoring, well-being programs, and ongoing operational support.",
             },
           ].map((s) => (
-            <div key={s.name} className="bg-[#252c3b] rounded-lg p-4">
+            <div key={s.name} className="bg-white/[0.06] rounded-lg p-4">
               <p className="text-white font-semibold mb-1">{s.name}</p>
               <p className="text-sm">{s.desc}</p>
             </div>
@@ -93,7 +93,7 @@ const sections = [
             "Upload or transmit viruses or any other malicious code.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-sm">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#57C5CF] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#b8fce8] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
@@ -119,7 +119,7 @@ const sections = [
             "Honor payment obligations as specified in your service agreement.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-sm">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#4FFFB0] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#a8e8f5] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
@@ -136,7 +136,7 @@ const sections = [
           Remote ACKtive stands behind the quality of every placement with our{" "}
           <strong className="text-white">100% Client Satisfaction Guarantee</strong>:
         </p>
-        <div className="bg-[#4FFFB0]/5 border border-[#4FFFB0]/20 rounded-xl p-5 space-y-3">
+        <div className="bg-[#a8e8f5]/5 border border-[#a8e8f5]/20 rounded-xl p-5 space-y-3">
           {[
             "If you are not satisfied with a placed candidate at any stage of the engagement, notify us and we will pause your service at no charge.",
             "We will identify and present replacement candidates at zero additional placement cost.",
@@ -144,8 +144,8 @@ const sections = [
             "This guarantee applies regardless of the stage or duration of the engagement.",
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-3 text-sm">
-              <span className="mt-0.5 w-5 h-5 rounded-full bg-[#4FFFB0]/15 flex items-center justify-center flex-shrink-0">
-                <svg className="w-3 h-3 text-[#4FFFB0]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <span className="mt-0.5 w-5 h-5 rounded-full bg-[#a8e8f5]/15 flex items-center justify-center flex-shrink-0">
+                <svg className="w-3 h-3 text-[#a8e8f5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </span>
@@ -178,7 +178,7 @@ const sections = [
             "All fees paid are non-refundable except as expressly stated in your service agreement or as required by applicable law.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-sm">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#57C5CF] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#b8fce8] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
@@ -204,7 +204,7 @@ const sections = [
             "These obligations survive termination of the service agreement for a period of two (2) years.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-sm">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#57C5CF] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#b8fce8] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
@@ -250,7 +250,7 @@ const sections = [
             "Accuracy or completeness of any information provided on the Site.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-sm">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#F5A623] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#a8e8f5] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
@@ -279,7 +279,7 @@ const sections = [
             "Conduct or content of any third party on or via the Site.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-sm">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#F5A623] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#a8e8f5] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
@@ -396,7 +396,7 @@ const sections = [
           { label: "Force Majeure", text: "Neither party shall be liable for delays or failures in performance resulting from causes beyond their reasonable control, including natural disasters, pandemics, or government actions." },
         ].map((item) => (
           <li key={item.label} className="flex items-start gap-3 text-sm">
-            <span className="mt-0.5 text-[#57C5CF] font-semibold flex-shrink-0 w-28">{item.label}:</span>
+            <span className="mt-0.5 text-[#b8fce8] font-semibold flex-shrink-0 w-28">{item.label}:</span>
             <span>{item.text}</span>
           </li>
         ))}
@@ -411,7 +411,7 @@ const sections = [
         <p className="mb-4">
           For questions about these Terms of Service, please contact us:
         </p>
-        <div className="bg-[#252c3b] rounded-xl p-5 space-y-2 text-sm">
+        <div className="bg-white/[0.06] rounded-xl p-5 space-y-2 text-sm">
           <p className="text-white font-semibold text-base">Remote ACKtive</p>
           <p>
             <span className="text-white/50">Address: </span>
@@ -419,19 +419,19 @@ const sections = [
           </p>
           <p>
             <span className="text-white/50">Email: </span>
-            <a href="mailto:admin@remoteacktive.com" className="text-[#57C5CF] hover:underline">
+            <a href="mailto:admin@remoteacktive.com" className="text-[#b8fce8] hover:underline">
               admin@remoteacktive.com
             </a>
           </p>
           <p>
             <span className="text-white/50">Phone: </span>
-            <a href="tel:+14152511945" className="text-[#57C5CF] hover:underline">
+            <a href="tel:+14152511945" className="text-[#b8fce8] hover:underline">
               +1 (415) 251-1945
             </a>
           </p>
           <p>
             <span className="text-white/50">Website: </span>
-            <a href="https://remoteacktive.com" className="text-[#57C5CF] hover:underline">
+            <a href="https://remoteacktive.com" className="text-[#b8fce8] hover:underline">
               remoteacktive.com
             </a>
           </p>
@@ -446,12 +446,12 @@ export default function TermsPage() {
     <>
       <Header />
 
-      <div className="min-h-screen bg-[#0F1926]">
+      <div className="min-h-screen bg-[#04090f]">
         {/* Top accent bar */}
         <div
           className="h-1 w-full"
           style={{
-            background: "linear-gradient(90deg, #57C5CF 0%, #378B57 50%, #4FFFB0 100%)",
+            background: "linear-gradient(90deg, #b8fce8 0%, #b8fce8 50%, #a8e8f5 100%)",
           }}
         />
 
@@ -469,7 +469,7 @@ export default function TermsPage() {
 
             {/* Header */}
             <header className="mb-12">
-              <span className="inline-block bg-[#57C5CF]/10 border border-[#57C5CF]/30 text-[#57C5CF] text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
+              <span className="inline-block bg-[#b8fce8]/10 border border-[#b8fce8]/30 text-[#b8fce8] text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
                 Legal
               </span>
               <h1 className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-4">
@@ -481,14 +481,14 @@ export default function TermsPage() {
               <div
                 className="h-px w-full mt-6"
                 style={{
-                  background: "linear-gradient(90deg, rgba(87,197,207,0.3) 0%, transparent 100%)",
+                  background: "linear-gradient(90deg, rgba(168,232,245,0.3) 0%, transparent 100%)",
                 }}
               />
             </header>
 
             {/* Disclaimer */}
-            <div className="bg-[#F5A623]/8 border border-[#F5A623]/20 rounded-xl p-4 mb-10 flex gap-3">
-              <span className="text-[#F5A623] text-lg flex-shrink-0">⚠️</span>
+            <div className="bg-[#a8e8f5]/8 border border-[#a8e8f5]/20 rounded-xl p-4 mb-10 flex gap-3">
+              <span className="text-[#a8e8f5] text-lg flex-shrink-0">⚠️</span>
               <p className="text-white/60 text-sm leading-relaxed">
                 These Terms of Service are provided as a general framework. We recommend
                 consulting a qualified attorney to tailor these terms to your specific
@@ -497,14 +497,14 @@ export default function TermsPage() {
             </div>
 
             {/* Table of Contents */}
-            <nav className="bg-[#1E2430] border border-white/10 rounded-xl p-6 mb-10" aria-label="Table of contents">
+            <nav className="bg-white/[0.04] border border-white/10 rounded-xl p-6 mb-10" aria-label="Table of contents">
               <p className="text-white font-semibold text-sm uppercase tracking-widest mb-4">Contents</p>
               <ol className="space-y-2 columns-2 gap-x-6">
                 {sections.map((s) => (
                   <li key={s.id} className="break-inside-avoid">
                     <a
                       href={`#${s.id}`}
-                      className="text-sm text-white/50 hover:text-[#57C5CF] transition-colors"
+                      className="text-sm text-white/50 hover:text-[#b8fce8] transition-colors"
                     >
                       {s.title}
                     </a>
@@ -519,7 +519,7 @@ export default function TermsPage() {
                 <section
                   key={section.id}
                   id={section.id}
-                  className="scroll-mt-24 bg-[#1E2430] border border-white/10 rounded-xl p-6 md:p-8"
+                  className="scroll-mt-24 bg-white/[0.04] border border-white/10 rounded-xl p-6 md:p-8"
                 >
                   <h2 className="text-lg md:text-xl font-bold text-white mb-4 pb-3 border-b border-white/8">
                     {section.title}
@@ -532,17 +532,17 @@ export default function TermsPage() {
             </div>
 
             {/* Related links */}
-            <div className="mt-12 bg-[#1E2430] border border-white/10 rounded-xl p-6 flex flex-col sm:flex-row gap-4 items-center justify-between">
+            <div className="mt-12 bg-white/[0.04] border border-white/10 rounded-xl p-6 flex flex-col sm:flex-row gap-4 items-center justify-between">
               <p className="text-white/60 text-sm">
                 Also review our{" "}
-                <Link href="/privacy-policy" className="text-[#57C5CF] hover:underline">
+                <Link href="/privacy-policy" className="text-[#b8fce8] hover:underline">
                   Privacy Policy
                 </Link>
                 {" "}for information on how we handle your data.
               </p>
               <Link
                 href="/book-a-call"
-                className="flex-shrink-0 inline-flex items-center gap-2 btn-gradient text-[#0F1926] font-bold px-5 py-2.5 rounded-xl text-sm"
+                className="flex-shrink-0 inline-flex items-center gap-2 btn-gradient text-[#04090f] font-bold px-5 py-2.5 rounded-xl text-sm"
               >
                 Book a Free Call
               </Link>

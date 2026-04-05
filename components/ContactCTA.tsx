@@ -1,283 +1,278 @@
 "use client";
-import { useState } from "react";
-import { Calendar, Mail, Phone, Star, Lock, Clock, ShieldCheck } from "lucide-react";
+
+import { useState, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, Phone, MapPin, Clock, ShieldCheck, Globe, Lock, ArrowRight } from "lucide-react";
 import { useFormContext } from "./FormContext";
 import HireOnlyForm from "./HireOnlyForm";
 import HireManageForm from "./HireManageForm";
+import GeneralContactForm from "./GeneralContactForm";
+import Link from "next/link";
+
+// ─── Mouse-tracking conic glow border
+function GlowBorder({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [angle, setAngle] = useState(0);
+  const [active, setActive] = useState(false);
+
+  const onMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    setAngle((Math.atan2(y, x) * 180) / Math.PI + 90);
+    setActive(true);
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="relative rounded-2xl"
+      onMouseMove={onMove}
+      onMouseLeave={() => setActive(false)}
+    >
+      <motion.div
+        className="pointer-events-none absolute inset-0 rounded-2xl"
+        animate={{ opacity: active ? 1 : 0 }}
+        transition={{ duration: 0.4 }}
+        style={{
+          padding: 1,
+          background: `conic-gradient(from ${angle}deg at 50% 50%, #0a6b7a, #0a7a55, #0a6b7a, transparent 40%)`,
+          WebkitMask: "linear-gradient(black, black) content-box, linear-gradient(black, black)",
+          WebkitMaskComposite: "destination-out",
+          maskComposite: "exclude",
+        }}
+      />
+      {children}
+    </div>
+  );
+}
+
+// ─── Tab config — names match ThreeTierServices exactly
+type FormType = "hire-only" | "hire-manage" | "general";
+
+const TABS: {
+  id: FormType;
+  label: string;
+  headline: string;
+  sub: string;
+  formTitle: string;
+  formDesc: string;
+}[] = [
+  {
+    id: "hire-only",
+    label: "Remote Outsourcing",
+    headline: "Find talent without\nthe overhead.",
+    sub: "We recruit, vet, and handle payroll. Your only cost is their monthly salary — nothing else.",
+    formTitle: "Interested in Remote Outsourcing?",
+    formDesc: "We source, screen, and deliver a shortlist of pre-vetted professionals — you make the final call.",
+  },
+  {
+    id: "hire-manage",
+    label: "Full Service Staffing",
+    headline: "We run your team.\nYou grow.",
+    sub: "HR, compliance, performance management — fully handled. You focus on your business, we handle the rest.",
+    formTitle: "Ready for Full Service Staffing?",
+    formDesc: "Everything in Remote Outsourcing, plus HR, training, performance monitoring, and a dedicated account manager.",
+  },
+  {
+    id: "general",
+    label: "General Inquiry",
+    headline: "Not sure where\nto start?",
+    sub: "Tell us what you need and we'll figure out the right path together — no commitment, no pressure.",
+    formTitle: "Have a Question or Unique Need?",
+    formDesc: "Not sure which service fits, or just want to learn more? Tell us what's on your mind.",
+  },
+];
+
+// ─── Proof points
+const PROOF = [
+  { icon: Clock,       text: "First candidates in 3–10 days"          },
+  { icon: ShieldCheck, text: "Replacement guarantee — no fine print"   },
+  { icon: Globe,       text: "Talent across 20+ LATAM countries"       },
+  { icon: Lock,        text: "Private — no spam, no pressure, ever"    },
+];
+
+const CONTACT = [
+  { icon: Mail,   label: "admin@remoteacktive.com",       href: "mailto:admin@remoteacktive.com"                                    },
+  { icon: Phone,  label: "+1 (415) 251-1945",             href: "tel:+14152511945"                                                  },
+  { icon: MapPin, label: "Cheyenne, WY",                  href: "https://maps.google.com/?q=1621+Central+Ave,+Cheyenne,+WY+82001"   },
+];
 
 export default function ContactCTA() {
   const { formType, setFormType } = useFormContext();
-
-  const tabs = [
-    {
-      id: "hire-only" as const,
-      label: "Recruitment-Only",
-      title: "Interested in Recruitment-Only?",
-      description: "Expert recruitment, fast. We source, screen, and deliver a shortlist of pre-vetted professionals — you make the final call.",
-      isFeatured: false,
-    },
-    {
-      id: "hire-manage" as const,
-      label: "Full Service Staffing",
-      title: "Ready for Full Outsourcing Support?",
-      description: "Everything in Recruitment-Only, plus ongoing HR, training, performance monitoring, and dedicated account support.",
-      isFeatured: true,
-    },
-  ];
-
-  const currentTab = tabs.find((tab) => tab.id === formType) || tabs[1];
+  const activeTab = TABS.find((t) => t.id === formType) ?? TABS[1];
 
   return (
-    <section
-      id="contact"
-      className="relative pt-20 pb-32 overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #0F2027 0%, #203A43 50%, #2C5364 100%)" }}
-    >
-      {/* Subtle grid texture overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(87,197,207,1) 1px, transparent 1px), linear-gradient(90deg, rgba(87,197,207,1) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-        aria-hidden="true"
-      />
+    <section id="contact" className="relative overflow-hidden py-24 md:py-32" style={{ background: 'linear-gradient(to right, #FFFDE4, #005AA7)' }}>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-6 max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-8 lg:gap-16 items-start">
 
-        {/* Header */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 bg-[#57C5CF]/10 border border-[#57C5CF]/20 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-sm font-bold text-[#57C5CF] tracking-wide uppercase">
-              Get Started Today
-            </span>
-          </div>
-          <h2
-            className="text-white text-4xl md:text-5xl font-extrabold mb-4 tracking-tight"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            Ready to Build Your Dream Team?
-          </h2>
-          <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto">
-            Get in touch and let&apos;s discuss how we can help you scale with
-            top LATAM talent — at a fraction of US hiring costs.
-          </p>
-        </div>
+          {/* ══ LEFT — changes with active tab ══ */}
+          <div className="lg:sticky lg:top-28 flex flex-col gap-8">
 
-        {/* Trust bar */}
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-12">
-          <span className="flex items-center gap-2 text-white/60 text-sm font-medium">
-            <Lock className="w-4 h-4 text-[#4FFFB0]" aria-hidden="true" />
-            Your info is secure
-          </span>
-          <span className="hidden sm:block w-px h-4 bg-white/20" aria-hidden="true" />
-          <span className="flex items-center gap-2 text-white/60 text-sm font-medium">
-            <ShieldCheck className="w-4 h-4 text-[#4FFFB0]" aria-hidden="true" />
-            No commitment required
-          </span>
-          <span className="hidden sm:block w-px h-4 bg-white/20" aria-hidden="true" />
-          <span className="flex items-center gap-2 text-white/60 text-sm font-medium">
-            <Clock className="w-4 h-4 text-[#4FFFB0]" aria-hidden="true" />
-            Response within 24 hours
-          </span>
-        </div>
-
-        {/* Desktop: Side by side layout | Mobile: Stacked */}
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
-
-          {/* LEFT: Contact Cards */}
-          <div className="lg:w-1/3 space-y-5">
-            <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-2">
-              Prefer to reach out directly?
-            </p>
-
-            {/* Schedule a Meeting */}
-            <div
-              className="group rounded-2xl p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                backdropFilter: "blur(8px)",
-                WebkitBackdropFilter: "blur(8px)",
-                borderColor: "rgba(87,197,207,0.18)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(87,197,207,0.55)";
-                (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.07)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(87,197,207,0.18)";
-                (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.04)";
-              }}
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl border border-[#57C5CF]/30 bg-[#57C5CF]/10 flex items-center justify-center flex-shrink-0">
-                  <Calendar className="w-5 h-5 text-[#57C5CF]" aria-hidden="true" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-white text-base mb-1">
-                    Schedule a Meeting
-                  </h3>
-                  <p className="text-white/50 text-sm mb-3 leading-snug">
-                    Book a time that works for you
-                  </p>
-                  <a
-                    href="https://calendly.com/admin-remoteacktive/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#57C5CF] hover:text-[#4FFFB0] text-sm font-semibold transition-colors inline-flex items-center gap-1 group/link"
-                  >
-                    View Calendar
-                    <span className="transition-transform group-hover/link:translate-x-0.5">→</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Email */}
-            <div
-              className="group rounded-2xl p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                backdropFilter: "blur(8px)",
-                WebkitBackdropFilter: "blur(8px)",
-                borderColor: "rgba(87,197,207,0.18)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(87,197,207,0.55)";
-                (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.07)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(87,197,207,0.18)";
-                (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.04)";
-              }}
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl border border-[#57C5CF]/30 bg-[#57C5CF]/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 text-[#57C5CF]" aria-hidden="true" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-white text-base mb-1">
-                    Email Us
-                  </h3>
-                  <p className="text-white/50 text-sm mb-3 leading-snug">
-                    We&apos;ll respond within 24 hours
-                  </p>
-                  <a
-                    href="mailto:admin@remoteacktive.com"
-                    className="text-[#57C5CF] hover:text-[#4FFFB0] text-sm font-semibold transition-colors break-all"
-                  >
-                    admin@remoteacktive.com
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Call or Text */}
-            <div
-              className="group rounded-2xl p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                backdropFilter: "blur(8px)",
-                WebkitBackdropFilter: "blur(8px)",
-                borderColor: "rgba(87,197,207,0.18)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(87,197,207,0.55)";
-                (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.07)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(87,197,207,0.18)";
-                (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.04)";
-              }}
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl border border-[#57C5CF]/30 bg-[#57C5CF]/10 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-[#57C5CF]" aria-hidden="true" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-white text-base mb-1">
-                    Call or Text
-                  </h3>
-                  <p className="text-white/50 text-sm mb-3 leading-snug">
-                    Speak with our team directly
-                  </p>
-                  <a
-                    href="tel:+14152511945"
-                    className="text-[#57C5CF] hover:text-[#4FFFB0] text-sm font-semibold transition-colors"
-                  >
-                    +1 (415) 251-1945
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT: Form area */}
-          <div className="lg:w-2/3">
-
-            {/* Tab Navigation */}
-            <div className="flex items-stretch gap-3 mb-6 flex-wrap">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setFormType(tab.id)}
-                  className={`
-                    relative flex-1 min-w-[160px] px-6 py-4 rounded-2xl text-sm font-bold transition-all duration-200 btn-grad
-                    ${
-                      formType === tab.id
-                        ? "scale-[1.02] shadow-2xl ring-2 ring-white/25 ring-offset-2 ring-offset-transparent"
-                        : "opacity-50 hover:opacity-75"
-                    }
-                  `}
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    {tab.label}
-                    {tab.isFeatured && (
-                      <Star className="w-4 h-4 fill-yellow-300 text-yellow-300" aria-hidden="true" />
-                    )}
-                  </span>
-                  {tab.isFeatured && formType === tab.id && (
-                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-gradient-to-r from-yellow-400 to-orange-400 text-[#0F1926] text-[10px] font-extrabold rounded-full uppercase tracking-wider whitespace-nowrap shadow-lg">
-                      Most Popular
+            {/* Headline — swaps per tab */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`headline-${formType}`}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.28, ease: "easeOut" }}
+              >
+                <h2 className="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.0] mb-5 whitespace-pre-line" style={{ color: "#000000" }}>
+                  {activeTab.headline.split("\n").map((line, i, arr) => (
+                    <span key={i}>
+                      {i === arr.length - 1 ? (
+                        <span
+                          style={{
+                            backgroundImage: "linear-gradient(90deg, #0a6b7a, #0a7a55)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            backgroundClip: "text",
+                          }}
+                        >
+                          {line}
+                        </span>
+                      ) : (
+                        line
+                      )}
+                      {i < arr.length - 1 && <br />}
                     </span>
-                  )}
-                </button>
+                  ))}
+                </h2>
+                <p className="text-base md:text-lg leading-relaxed max-w-sm" style={{ color: "rgba(0,0,0,0.75)" }}>
+                  {activeTab.sub}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Proof points */}
+            <div className="flex flex-col gap-3.5">
+              {PROOF.map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-3">
+                  <div
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+                    style={{ background: "rgba(10,107,122,0.1)", border: "1px solid rgba(10,107,122,0.2)" }}
+                  >
+                    <Icon className="h-3.5 w-3.5 text-[#0a6b7a]" aria-hidden="true" />
+                  </div>
+                  <span className="text-sm font-semibold" style={{ color: "#000000" }}>{text}</span>
+                </div>
               ))}
             </div>
 
-            {/* Form Container */}
-            <div
-              className="rounded-2xl p-8 border shadow-2xl"
-              style={{
-                background: "linear-gradient(160deg, rgba(30,36,48,0.98) 0%, rgba(15,25,38,0.98) 100%)",
-                borderColor: "rgba(87,197,207,0.2)",
-                boxShadow: "0 0 0 1px rgba(87,197,207,0.08), 0 32px 64px rgba(0,0,0,0.5)",
-              }}
-            >
-              {/* Form heading + description */}
-              <div className="mb-7 pb-6 border-b border-white/8">
-                <p className="text-[#57C5CF] text-xs font-bold uppercase tracking-widest mb-2">
-                  Tell us what you need
-                </p>
-                <h3
-                  className="text-2xl font-bold text-white mb-2"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  {currentTab.title}
-                </h3>
-                <p className="text-white/55 text-sm leading-relaxed">
-                  {currentTab.description}
-                </p>
-              </div>
+            <div className="h-px bg-black/10" />
 
-              {/* Forms */}
-              <div className="transition-opacity duration-300">
-                {formType === "hire-only" && <HireOnlyForm />}
-                {formType === "hire-manage" && <HireManageForm />}
-              </div>
+            {/* Contact links */}
+            <div className="flex flex-col gap-2.5">
+              {CONTACT.map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="flex items-center gap-3 group w-fit"
+                >
+                  <Icon className="h-4 w-4 shrink-0 transition-colors group-hover:text-[#0a6b7a]" style={{ color: "rgba(0,0,0,0.30)" }} aria-hidden="true" />
+                  <span className="text-sm font-medium transition-colors group-hover:text-black" style={{ color: "rgba(0,0,0,0.72)" }}>{label}</span>
+                </a>
+              ))}
             </div>
+
+            <Link
+              href="/book-a-call"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-[#04090f] w-fit transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+              style={{ background: "linear-gradient(135deg, #ffffff 0%, #a8e8f5 50%, #b8fce8 100%)" }}
+            >
+              Book a Free Call
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
+
+          {/* ══ RIGHT — form ══ */}
+          <div className="flex flex-col gap-5">
+
+            {/* Tab pills */}
+            <div className="flex items-stretch gap-2 flex-wrap">
+              {TABS.map((tab) => {
+                const isActive = formType === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setFormType(tab.id)}
+                    className="relative overflow-hidden flex-1 min-w-[80px] sm:min-w-[110px] rounded-full border px-3 sm:px-4 py-2.5 text-xs sm:text-sm font-bold transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a6b7a]"
+                    style={{
+                      borderColor: isActive ? "#0a6b7a" : "rgba(13,31,45,0.2)",
+                      color:       isActive ? "#ffffff" : "#000000",
+                    }}
+                  >
+                    <span className="relative z-10">{tab.label}</span>
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.span
+                          key="pill-fill"
+                          className="absolute inset-0 z-0"
+                          style={{ background: "linear-gradient(90deg, #0a6b7a, #0a7a55)" }}
+                          initial={{ y: "100%" }}
+                          animate={{ y: "0%" }}
+                          exit={{ y: "100%" }}
+                          transition={{ duration: 0.32, ease: "backOut" }}
+                        />
+                      )}
+                    </AnimatePresence>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Form card */}
+            <GlowBorder>
+              <div
+                className="rounded-2xl p-8 md:p-10"
+                style={{
+                  background: "rgba(13,31,45,0.88)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`hdr-${formType}`}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.18 }}
+                    className="mb-7 pb-6 border-b border-white/[0.08]"
+                  >
+                    <p className="text-[10px] font-black tracking-[0.28em] uppercase mb-2" style={{ color: "#a8e8f5" }}>
+                      Tell us what you need
+                    </p>
+                    <h3 className="text-xl md:text-2xl font-black mb-1.5 leading-snug text-white">
+                      {activeTab.formTitle}
+                    </h3>
+                    <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>{activeTab.formDesc}</p>
+                  </motion.div>
+                </AnimatePresence>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`frm-${formType}`}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                  >
+                    {formType === "hire-only"   && <HireOnlyForm />}
+                    {formType === "hire-manage" && <HireManageForm />}
+                    {formType === "general"     && <GeneralContactForm formType="general" />}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </GlowBorder>
+          </div>
+
         </div>
       </div>
     </section>

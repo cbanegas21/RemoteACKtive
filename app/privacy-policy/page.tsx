@@ -47,7 +47,7 @@ const sections = [
             "Email communications: if you contact us directly by email, we retain those communications and any personal information contained therein.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#57C5CF] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#b8fce8] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
@@ -61,7 +61,7 @@ const sections = [
             "Cookies and similar technologies: we use cookies and local storage to enable core functionality and analytics. See Section 5 for details.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#57C5CF] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#b8fce8] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
@@ -85,7 +85,7 @@ const sections = [
             "Comply with applicable legal obligations.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#4FFFB0] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#a8e8f5] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
@@ -125,14 +125,14 @@ const sections = [
               subs: [],
             },
           ].map((item) => (
-            <div key={item.name} className="bg-[#252c3b] rounded-lg p-4">
+            <div key={item.name} className="bg-white/[0.06] rounded-lg p-4">
               <p className="text-white font-semibold mb-2">{item.name}</p>
               <p className="text-sm mb-2">{item.desc}</p>
               {item.subs.length > 0 && (
                 <ul className="space-y-1 list-none mt-2">
                   {item.subs.map((s, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="mt-1.5 w-1 h-1 rounded-full bg-[#57C5CF]/60 flex-shrink-0" />
+                      <span className="mt-1.5 w-1 h-1 rounded-full bg-[#b8fce8]/60 flex-shrink-0" />
                       <span className="text-white/60">{s}</span>
                     </li>
                   ))}
@@ -154,16 +154,16 @@ const sections = [
           {[
             {
               type: "Essential Cookies",
-              color: "bg-[#57C5CF]/10 border-[#57C5CF]/30 text-[#57C5CF]",
+              color: "bg-[#b8fce8]/10 border-[#b8fce8]/30 text-[#b8fce8]",
               desc: "Required for the Site to function correctly (e.g., cookie consent preferences stored in localStorage). These cannot be disabled.",
             },
             {
               type: "Analytics Cookies",
-              color: "bg-[#F5A623]/10 border-[#F5A623]/30 text-[#F5A623]",
+              color: "bg-[#a8e8f5]/10 border-[#a8e8f5]/30 text-[#a8e8f5]",
               desc: "Google Analytics 4 cookies that help us understand how visitors interact with our Site. These are only set after you provide consent via our cookie banner.",
             },
           ].map((c) => (
-            <div key={c.type} className="bg-[#252c3b] rounded-lg p-4 flex gap-4 items-start">
+            <div key={c.type} className="bg-white/[0.06] rounded-lg p-4 flex gap-4 items-start">
               <span className={`mt-0.5 text-xs font-bold px-2 py-1 rounded-full border flex-shrink-0 ${c.color}`}>
                 {c.type}
               </span>
@@ -192,14 +192,14 @@ const sections = [
             "Calendly scheduling data: managed per Calendly's own retention policy.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#57C5CF] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#b8fce8] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
         </ul>
         <p className="mt-3 text-sm">
           You may request deletion of your personal data at any time by contacting us at{" "}
-          <a href="mailto:admin@remoteacktive.com" className="text-[#57C5CF] hover:underline">
+          <a href="mailto:admin@remoteacktive.com" className="text-[#b8fce8] hover:underline">
             admin@remoteacktive.com
           </a>. We will process your request within 30 days.
         </p>
@@ -225,7 +225,7 @@ const sections = [
             "Right to Non-Discrimination: we will not discriminate against you for exercising your CCPA rights.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-sm">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#4FFFB0] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#a8e8f5] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
@@ -247,14 +247,14 @@ const sections = [
             "Right to Withdraw Consent: withdraw consent at any time without affecting the lawfulness of prior processing.",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-sm">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#4FFFB0] flex-shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#a8e8f5] flex-shrink-0" />
               <span>{item}</span>
             </li>
           ))}
         </ul>
         <p className="mt-4 text-sm">
           To exercise any of these rights, please contact us at{" "}
-          <a href="mailto:admin@remoteacktive.com" className="text-[#57C5CF] hover:underline">
+          <a href="mailto:admin@remoteacktive.com" className="text-[#b8fce8] hover:underline">
             admin@remoteacktive.com
           </a>. We will respond within 30 days.
         </p>
@@ -282,7 +282,7 @@ const sections = [
         Our Site and services are not directed to individuals under the age of 18. We do not
         knowingly collect personal information from children. If you believe we have
         inadvertently collected data from a minor, please contact us immediately at{" "}
-        <a href="mailto:admin@remoteacktive.com" className="text-[#57C5CF] hover:underline">
+        <a href="mailto:admin@remoteacktive.com" className="text-[#b8fce8] hover:underline">
           admin@remoteacktive.com
         </a>{" "}
         and we will promptly delete such information.
@@ -322,7 +322,7 @@ const sections = [
           If you have questions, concerns, or requests regarding this Privacy Policy or our
           data practices, please contact us:
         </p>
-        <div className="bg-[#252c3b] rounded-xl p-5 space-y-2 text-sm">
+        <div className="bg-white/[0.06] rounded-xl p-5 space-y-2 text-sm">
           <p className="text-white font-semibold text-base">Remote ACKtive</p>
           <p>
             <span className="text-white/50">Address: </span>
@@ -330,19 +330,19 @@ const sections = [
           </p>
           <p>
             <span className="text-white/50">Email: </span>
-            <a href="mailto:admin@remoteacktive.com" className="text-[#57C5CF] hover:underline">
+            <a href="mailto:admin@remoteacktive.com" className="text-[#b8fce8] hover:underline">
               admin@remoteacktive.com
             </a>
           </p>
           <p>
             <span className="text-white/50">Phone: </span>
-            <a href="tel:+14152511945" className="text-[#57C5CF] hover:underline">
+            <a href="tel:+14152511945" className="text-[#b8fce8] hover:underline">
               +1 (415) 251-1945
             </a>
           </p>
           <p>
             <span className="text-white/50">Website: </span>
-            <a href="https://remoteacktive.com" className="text-[#57C5CF] hover:underline">
+            <a href="https://remoteacktive.com" className="text-[#b8fce8] hover:underline">
               remoteacktive.com
             </a>
           </p>
@@ -357,12 +357,12 @@ export default function PrivacyPolicyPage() {
     <>
       <Header />
 
-      <div className="min-h-screen bg-[#0F1926]">
+      <div className="min-h-screen bg-[#04090f]">
         {/* Top accent bar */}
         <div
           className="h-1 w-full"
           style={{
-            background: "linear-gradient(90deg, #57C5CF 0%, #378B57 50%, #4FFFB0 100%)",
+            background: "linear-gradient(90deg, #b8fce8 0%, #b8fce8 50%, #a8e8f5 100%)",
           }}
         />
 
@@ -380,7 +380,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Header */}
             <header className="mb-12">
-              <span className="inline-block bg-[#57C5CF]/10 border border-[#57C5CF]/30 text-[#57C5CF] text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
+              <span className="inline-block bg-[#b8fce8]/10 border border-[#b8fce8]/30 text-[#b8fce8] text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
                 Legal
               </span>
               <h1 className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-4">
@@ -392,14 +392,14 @@ export default function PrivacyPolicyPage() {
               <div
                 className="h-px w-full mt-6"
                 style={{
-                  background: "linear-gradient(90deg, rgba(87,197,207,0.3) 0%, transparent 100%)",
+                  background: "linear-gradient(90deg, rgba(168,232,245,0.3) 0%, transparent 100%)",
                 }}
               />
             </header>
 
             {/* Disclaimer */}
-            <div className="bg-[#F5A623]/8 border border-[#F5A623]/20 rounded-xl p-4 mb-10 flex gap-3">
-              <span className="text-[#F5A623] text-lg flex-shrink-0">⚠️</span>
+            <div className="bg-[#a8e8f5]/8 border border-[#a8e8f5]/20 rounded-xl p-4 mb-10 flex gap-3">
+              <span className="text-[#a8e8f5] text-lg flex-shrink-0">⚠️</span>
               <p className="text-white/60 text-sm leading-relaxed">
                 This Privacy Policy is provided for informational purposes. We recommend consulting
                 a qualified attorney to ensure compliance with all applicable laws and regulations
@@ -408,14 +408,14 @@ export default function PrivacyPolicyPage() {
             </div>
 
             {/* Table of Contents */}
-            <nav className="bg-[#1E2430] border border-white/10 rounded-xl p-6 mb-10" aria-label="Table of contents">
+            <nav className="bg-white/[0.04] border border-white/10 rounded-xl p-6 mb-10" aria-label="Table of contents">
               <p className="text-white font-semibold text-sm uppercase tracking-widest mb-4">Contents</p>
               <ol className="space-y-2">
                 {sections.map((s) => (
                   <li key={s.id}>
                     <a
                       href={`#${s.id}`}
-                      className="text-sm text-white/50 hover:text-[#57C5CF] transition-colors"
+                      className="text-sm text-white/50 hover:text-[#b8fce8] transition-colors"
                     >
                       {s.title}
                     </a>
@@ -430,7 +430,7 @@ export default function PrivacyPolicyPage() {
                 <section
                   key={section.id}
                   id={section.id}
-                  className="scroll-mt-24 bg-[#1E2430] border border-white/10 rounded-xl p-6 md:p-8"
+                  className="scroll-mt-24 bg-white/[0.04] border border-white/10 rounded-xl p-6 md:p-8"
                 >
                   <h2 className="text-lg md:text-xl font-bold text-white mb-4 pb-3 border-b border-white/8">
                     {section.title}

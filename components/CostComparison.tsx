@@ -1,69 +1,36 @@
 'use client';
-import { useState } from 'react';
-import { ArrowRight, TrendingDown, DollarSign, Users } from 'lucide-react';
 
-/* ─── Role data ─────────────────────────────────────────────────────────── */
+import { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
+import { SpotlightCard } from '@/components/ui/SpotlightCard';
+
 const roles = [
-  {
-    label: 'Software Developer',
-    usMid: 112_500,
-    raMid: 36_500,
-    usRange: '$95k – $130k',
-    raRange: '$28k – $45k',
-  },
-  {
-    label: 'Digital Marketer',
-    usMid: 75_000,
-    raMid: 23_000,
-    usRange: '$65k – $85k',
-    raRange: '$18k – $28k',
-  },
-  {
-    label: 'Customer Service',
-    usMid: 45_000,
-    raMid: 13_000,
-    usRange: '$38k – $52k',
-    raRange: '$10k – $16k',
-  },
-  {
-    label: 'Exec Assistant',
-    usMid: 62_500,
-    raMid: 18_500,
-    usRange: '$55k – $70k',
-    raRange: '$15k – $22k',
-  },
-  {
-    label: 'Bookkeeper',
-    usMid: 56_500,
-    raMid: 17_500,
-    usRange: '$48k – $65k',
-    raRange: '$13k – $22k',
-  },
-  {
-    label: 'UI/UX Designer',
-    usMid: 94_000,
-    raMid: 29_000,
-    usRange: '$78k – $110k',
-    raRange: '$22k – $36k',
-  },
+  { label: 'Software Developer', usMid: 112_500, raMid: 36_500 },
+  { label: 'Digital Marketer',   usMid: 75_000,  raMid: 23_000 },
+  { label: 'Customer Service',   usMid: 45_000,  raMid: 13_000 },
+  { label: 'Exec Assistant',     usMid: 62_500,  raMid: 18_500 },
+  { label: 'Bookkeeper',         usMid: 56_500,  raMid: 17_500 },
+  { label: 'UI/UX Designer',     usMid: 94_000,  raMid: 29_000 },
 ];
 
-/* ─── Helpers ────────────────────────────────────────────────────────────── */
+const TEAL_TEXT = '#a8e8f5';
+const MINT_TEXT = '#b8fce8';
+
 function fmt(n: number) {
   return '$' + n.toLocaleString('en-US');
 }
 
-/* ─── Component ──────────────────────────────────────────────────────────── */
 export default function CostComparison() {
   const [selectedIdx, setSelectedIdx] = useState(0);
-  const [headcount, setHeadcount]     = useState(3);
+  const [headcount, setHeadcount] = useState(3);
 
-  const role         = roles[selectedIdx];
-  const usTotal      = role.usMid * headcount;
-  const raTotal      = role.raMid * headcount;
-  const saved        = usTotal - raTotal;
+  const role = roles[selectedIdx];
+  const usTotal = role.usMid * headcount;
+  const raTotal = role.raMid * headcount;
+  const saved = usTotal - raTotal;
   const savedMonthly = Math.round(saved / 12);
-  const pct          = Math.round((saved / usTotal) * 100);
+  const pct = Math.round((saved / usTotal) * 100);
+  const sliderPct = ((headcount - 1) / 19) * 100;
 
   const dec = () => setHeadcount((h) => Math.max(1, h - 1));
   const inc = () => setHeadcount((h) => Math.min(20, h + 1));
@@ -71,414 +38,181 @@ export default function CostComparison() {
   return (
     <section
       id="cost-comparison"
-      className="py-24"
-      style={{ background: 'linear-gradient(135deg, #135058 0%, #1a6b5e 40%, #c8c96b 85%, #F1F2B5 100%)' }}
+      className="py-16 relative overflow-hidden"
+      style={{ background: '#04090f' }}
     >
-      <div className="container mx-auto px-6 max-w-6xl">
+      {/* Gradient blobs background */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            filter: 'blur(60px)',
+            ['--color-1' as string]: '87,197,207',
+            ['--color-2' as string]: '79,255,176',
+            ['--color-3' as string]: '168,223,240',
+            ['--color-4' as string]: '57,139,87',
+            ['--color-5' as string]: '11,23,39',
+          } as React.CSSProperties}
+        >
+          <div className="absolute animate-first opacity-70" style={{ top: 'calc(50% - 300px)', left: 'calc(50% - 300px)', width: 600, height: 600, background: 'radial-gradient(circle at center, rgba(var(--color-1),0.5) 0, rgba(var(--color-1),0) 50%) no-repeat' }} />
+          <div className="absolute animate-second opacity-70" style={{ top: 'calc(50% - 300px)', left: 'calc(50% - 300px)', width: 600, height: 600, background: 'radial-gradient(circle at center, rgba(var(--color-2),0.5) 0, rgba(var(--color-2),0) 50%) no-repeat', transformOrigin: 'calc(50% - 300px) center' }} />
+          <div className="absolute animate-third opacity-70" style={{ top: 'calc(50% - 300px)', left: 'calc(50% - 300px)', width: 600, height: 600, background: 'radial-gradient(circle at center, rgba(var(--color-3),0.4) 0, rgba(var(--color-3),0) 50%) no-repeat', transformOrigin: 'calc(50% + 300px) center' }} />
+          <div className="absolute animate-fourth opacity-60" style={{ top: 'calc(50% - 300px)', left: 'calc(50% - 300px)', width: 600, height: 600, background: 'radial-gradient(circle at center, rgba(var(--color-4),0.4) 0, rgba(var(--color-4),0) 50%) no-repeat', transformOrigin: 'calc(50% - 150px) center' }} />
+          <div className="absolute animate-fifth opacity-50" style={{ top: 'calc(50% - 300px)', left: 'calc(50% - 300px)', width: 600, height: 600, background: 'radial-gradient(circle at center, rgba(var(--color-5),0.4) 0, rgba(var(--color-5),0) 50%) no-repeat', transformOrigin: 'calc(50% - 600px) calc(50% + 600px)' }} />
+        </div>
+      </div>
 
-        {/* ── Header ── */}
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 bg-black/10 border border-black/20 rounded-full px-4 py-1.5 mb-5">
-            <span
-              className="text-sm font-bold text-[#0F1926] tracking-wide uppercase"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Real Cost Comparison
+      <div className="container mx-auto px-6 max-w-5xl relative z-10">
+
+        {/* Header */}
+        <div className="mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ color: '#ffffff', fontFamily: 'var(--font-heading)' }}>
+            See exactly how much{' '}
+            <span className="text-transparent bg-clip-text" style={{ backgroundImage: `linear-gradient(135deg, ${TEAL_TEXT} 0%, ${MINT_TEXT} 100%)` }}>
+              you save.
             </span>
-          </div>
-          <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0F1926] mb-4 leading-tight"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            See Exactly How Much You Save
           </h2>
-          <p
-            className="text-lg text-[#0F1926]/70 max-w-2xl mx-auto"
-            style={{ fontFamily: 'var(--font-body)' }}
-          >
+          <p className="text-base max-w-md leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-body)' }}>
             Pick a role, set your headcount, and watch the savings add up in real time.
           </p>
         </div>
 
-        {/* ── Interactive calculator ── */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+        {/* Calculator card */}
+        <SpotlightCard
+          spotlightColor="rgba(168,232,245,0.12)"
+          spotlightBorderColor="rgba(168,232,245,0.45)"
+          background="rgba(255,255,255,0.04)"
+          className="p-4 sm:p-6 md:p-8"
+          radius={16}
+        >
+          <div className="grid lg:grid-cols-2 gap-8">
 
-          {/* Left — inputs */}
-          <div
-            className="rounded-2xl border border-white/10 p-8"
-            style={{ background: 'rgba(13,26,45,0.92)', backdropFilter: 'blur(12px)' }}
-          >
-            {/* Step 1: role selector */}
-            <div className="flex items-center gap-2 mb-5">
-              <div className="w-7 h-7 rounded-full bg-[#57C5CF]/15 flex items-center justify-center flex-shrink-0">
-                <Users className="w-3.5 h-3.5 text-[#57C5CF]" />
-              </div>
-              <p
-                className="text-xs font-bold text-[#57C5CF] uppercase tracking-widest"
-                style={{ fontFamily: 'var(--font-body)' }}
-              >
-                Step 1 — Pick a role
+            {/* Left: Inputs */}
+            <div>
+              <p className="text-[10px] font-black tracking-[0.3em] uppercase mb-4" style={{ color: TEAL_TEXT, fontFamily: 'var(--font-body)' }}>
+                Step 01 — Pick a role
               </p>
-            </div>
+              <div className="grid grid-cols-2 gap-2 mb-7">
+                {roles.map((r, i) => {
+                  const isSelected = selectedIdx === i;
+                  return (
+                    <button
+                      key={r.label}
+                      onClick={() => setSelectedIdx(i)}
+                      className="text-left px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
+                      style={{
+                        border: isSelected ? '1px solid rgba(168,232,245,0.5)' : '1px solid rgba(255,255,255,0.1)',
+                        background: isSelected ? 'rgba(168,232,245,0.18)' : 'rgba(255,255,255,0.04)',
+                        color: isSelected ? TEAL_TEXT : 'rgba(255,255,255,0.65)',
+                        fontFamily: 'var(--font-body)',
+                      }}
+                    >
+                      {r.label}
+                    </button>
+                  );
+                })}
+              </div>
 
-            <div className="grid grid-cols-2 gap-2 mb-9">
-              {roles.map((r, i) => (
+              <div className="h-px w-full mb-7" style={{ background: 'linear-gradient(90deg, rgba(168,232,245,0.4) 0%, transparent 100%)' }} />
+
+              <p className="text-[10px] font-black tracking-[0.3em] uppercase mb-4" style={{ color: TEAL_TEXT, fontFamily: 'var(--font-body)' }}>
+                Step 02 — How many hires?
+              </p>
+
+              <div className="flex items-center gap-4 mb-4">
                 <button
-                  key={r.label}
-                  onClick={() => setSelectedIdx(i)}
-                  className={`text-left px-4 py-3 rounded-xl border text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#57C5CF] ${
-                    selectedIdx === i
-                      ? 'border-[#57C5CF]/70 text-white shadow-[0_0_0_1px_rgba(87,197,207,0.3),0_4px_16px_rgba(87,197,207,0.15)]'
-                      : 'border-white/8 text-white/60 hover:border-[#57C5CF]/30 hover:text-white hover:bg-white/3'
-                  }`}
-                  style={{
-                    background: selectedIdx === i
-                      ? 'linear-gradient(135deg, rgba(87,197,207,0.12) 0%, rgba(87,197,207,0.06) 100%)'
-                      : 'rgba(255,255,255,0.03)',
-                    fontFamily: 'var(--font-body)',
-                  }}
-                >
-                  {r.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Divider */}
-            <div
-              className="h-px w-full mb-7"
-              style={{ background: 'linear-gradient(90deg, rgba(87,197,207,0.3) 0%, transparent 100%)' }}
-            />
-
-            {/* Step 2: headcount */}
-            <div className="flex items-center gap-2 mb-5">
-              <div className="w-7 h-7 rounded-full bg-[#57C5CF]/15 flex items-center justify-center flex-shrink-0">
-                <DollarSign className="w-3.5 h-3.5 text-[#57C5CF]" />
+                  onClick={dec}
+                  aria-label="Decrease headcount"
+                  className="w-11 h-11 rounded-full font-bold transition-all duration-200 flex items-center justify-center text-xl"
+                  style={{ border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.65)' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(168,232,245,0.5)'; (e.currentTarget as HTMLButtonElement).style.color = TEAL_TEXT; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.12)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.65)'; }}
+                >−</button>
+                <div className="flex-1 text-center">
+                  <span className="text-5xl font-black leading-none tabular-nums" style={{ color: '#ffffff', fontFamily: 'var(--font-heading)' }}>{headcount}</span>
+                  <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-body)' }}>{headcount === 1 ? 'person' : 'people'}</p>
+                </div>
+                <button
+                  onClick={inc}
+                  aria-label="Increase headcount"
+                  className="w-11 h-11 rounded-full font-bold transition-all duration-200 flex items-center justify-center text-xl"
+                  style={{ border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.65)' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(168,232,245,0.5)'; (e.currentTarget as HTMLButtonElement).style.color = TEAL_TEXT; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.12)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.65)'; }}
+                >+</button>
               </div>
-              <p
-                className="text-xs font-bold text-[#57C5CF] uppercase tracking-widest"
-                style={{ fontFamily: 'var(--font-body)' }}
-              >
-                Step 2 — How many hires?
-              </p>
-            </div>
 
-            {/* Custom stepper */}
-            <div className="flex items-center gap-4">
-              <button
-                onClick={dec}
-                aria-label="Decrease headcount"
-                className="w-12 h-12 rounded-full border-2 border-white/15 text-white/50 text-xl font-bold hover:border-[#57C5CF] hover:text-[#57C5CF] hover:bg-[#57C5CF]/8 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#57C5CF]"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                −
-              </button>
-              <div className="flex-1 text-center">
-                <span
-                  className="text-6xl font-extrabold text-white tabular-nums leading-none"
-                  style={{ fontFamily: 'var(--font-heading)' }}
-                >
-                  {headcount}
-                </span>
-                <p
-                  className="text-white/40 text-xs mt-1"
-                  style={{ fontFamily: 'var(--font-body)' }}
-                >
-                  {headcount === 1 ? 'person' : 'people'}
-                </p>
-              </div>
-              <button
-                onClick={inc}
-                aria-label="Increase headcount"
-                className="w-12 h-12 rounded-full border-2 border-white/15 text-white/50 text-xl font-bold hover:border-[#57C5CF] hover:text-[#57C5CF] hover:bg-[#57C5CF]/8 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#57C5CF]"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                +
-              </button>
-            </div>
-
-            {/* Slider */}
-            <div className="mt-5">
               <input
-                type="range"
-                min={1}
-                max={20}
-                value={headcount}
+                type="range" min={1} max={20} value={headcount}
                 onChange={(e) => setHeadcount(Number(e.target.value))}
                 aria-label="Headcount slider"
-                className="w-full h-2 appearance-none rounded-full outline-none focus:outline-none"
+                className="w-full h-1.5 appearance-none rounded-full outline-none cost-slider"
                 style={{
-                  background: `linear-gradient(to right, #57C5CF 0%, #57C5CF ${((headcount - 1) / 19) * 100}%, rgba(255,255,255,0.12) ${((headcount - 1) / 19) * 100}%, rgba(255,255,255,0.12) 100%)`,
+                  background: `linear-gradient(to right, #a8e8f5 0%, #a8e8f5 ${sliderPct}%, rgba(168,232,245,0.2) ${sliderPct}%, rgba(168,232,245,0.2) 100%)`,
                   cursor: 'pointer',
                 }}
               />
               <style>{`
-                input[type='range']::-webkit-slider-thumb {
-                  -webkit-appearance: none;
-                  appearance: none;
-                  width: 22px;
-                  height: 22px;
-                  border-radius: 50%;
-                  background: #57C5CF;
-                  border: 3px solid #0F1926;
-                  box-shadow: 0 0 0 2px rgba(87,197,207,0.4), 0 4px 12px rgba(87,197,207,0.3);
-                  cursor: pointer;
-                  transition: box-shadow 0.2s;
-                }
-                input[type='range']::-webkit-slider-thumb:hover {
-                  box-shadow: 0 0 0 4px rgba(87,197,207,0.3), 0 4px 16px rgba(87,197,207,0.4);
-                }
-                input[type='range']::-moz-range-thumb {
-                  width: 22px;
-                  height: 22px;
-                  border-radius: 50%;
-                  background: #57C5CF;
-                  border: 3px solid #0F1926;
-                  box-shadow: 0 0 0 2px rgba(87,197,207,0.4);
-                  cursor: pointer;
-                }
+                .cost-slider::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%; background:#a8e8f5; border:3px solid #04090f; box-shadow:0 0 0 2px rgba(168,232,245,0.4); cursor:pointer; }
+                .cost-slider::-moz-range-thumb { width:18px; height:18px; border-radius:50%; background:#a8e8f5; border:3px solid #04090f; cursor:pointer; }
               `}</style>
-              <div
-                className="flex justify-between mt-1.5"
-                style={{ fontFamily: 'var(--font-body)' }}
-              >
-                <span className="text-xs text-white/30">1</span>
-                <span className="text-xs text-white/30">20</span>
+              <div className="flex justify-between mt-1.5">
+                <span className="text-xs" style={{ color: 'rgba(255,255,255,0.45)' }}>1</span>
+                <span className="text-xs" style={{ color: 'rgba(255,255,255,0.45)' }}>20</span>
               </div>
             </div>
-          </div>
 
-          {/* Right — live results */}
-          <div
-            className="rounded-2xl border border-[#4FFFB0]/15 p-8 flex flex-col justify-between relative overflow-hidden"
-            style={{
-              background:
-                'linear-gradient(135deg, #0A1628 0%, #0B1E22 60%, #0A1f1A 100%)',
-            }}
-          >
-            {/* Background accent glow */}
-            <div
-              className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none"
-              style={{
-                background:
-                  'radial-gradient(circle, rgba(79,255,176,0.06) 0%, transparent 70%)',
-              }}
-            />
-
-            <div className="relative z-10">
-              <p
-                className="text-[#57C5CF] text-xs font-bold uppercase tracking-widest mb-6"
-                style={{ fontFamily: 'var(--font-body)' }}
-              >
-                {role.label}&nbsp;×&nbsp;{headcount}&nbsp;—&nbsp;Annual Estimate
+            {/* Right: Results */}
+            <div className="flex flex-col">
+              <p className="text-[10px] font-black tracking-[0.3em] uppercase mb-5" style={{ color: TEAL_TEXT, fontFamily: 'var(--font-body)' }}>
+                {role.label} × {headcount} — Annual Estimate
               </p>
 
-              {/* US vs Remote comparison */}
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center justify-between p-3.5 rounded-xl bg-white/4 border border-white/8">
+              <div className="space-y-2 mb-5">
+                <div className="flex items-center justify-between p-3.5 rounded-xl" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)' }}>
                   <div className="flex items-center gap-2.5">
-                    <span className="text-lg leading-none">🇺🇸</span>
-                    <span
-                      className="text-white/80 text-sm font-medium"
-                      style={{ fontFamily: 'var(--font-body)' }}
-                    >
-                      U.S. hire / year
-                    </span>
+                    <span>🇺🇸</span>
+                    <span className="text-sm" style={{ color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-body)' }}>U.S. hire / year</span>
                   </div>
-                  <span
-                    className="text-white/50 text-sm tabular-nums line-through decoration-red-400"
-                    style={{ fontFamily: 'var(--font-heading)' }}
-                  >
+                  <span className="text-sm tabular-nums" style={{ color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-heading)', textDecoration: 'line-through', textDecorationColor: 'rgba(239,68,68,0.5)' }}>
                     {fmt(usTotal)}
                   </span>
                 </div>
-                <div className="flex items-center justify-between p-3.5 rounded-xl border border-[#4FFFB0]/20 bg-[#4FFFB0]/5">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-6 h-6 rounded-full bg-[#4FFFB0]/20 flex items-center justify-center flex-shrink-0">
-                      <TrendingDown className="w-3.5 h-3.5 text-[#4FFFB0]" />
-                    </div>
-                    <span
-                      className="text-white/80 text-sm font-medium"
-                      style={{ fontFamily: 'var(--font-body)' }}
-                    >
-                      Remote ACKtive / year
-                    </span>
-                  </div>
-                  <span
-                    className="text-[#4FFFB0] text-sm font-bold tabular-nums"
-                    style={{ fontFamily: 'var(--font-heading)' }}
-                  >
-                    {fmt(raTotal)}
-                  </span>
+                <div className="flex items-center justify-between p-3.5 rounded-xl" style={{ background: 'rgba(168,232,245,0.12)', border: '1px solid rgba(168,232,245,0.25)' }}>
+                  <span className="text-sm" style={{ color: 'rgba(255,255,255,0.65)', fontFamily: 'var(--font-body)' }}>Remote ACKtive / year</span>
+                  <span className="text-sm font-bold tabular-nums" style={{ color: TEAL_TEXT, fontFamily: 'var(--font-heading)' }}>{fmt(raTotal)}</span>
                 </div>
               </div>
 
-              {/* Hero savings callout */}
+              {/* Savings callout */}
               <div
-                className="relative rounded-2xl p-6 mb-5 overflow-hidden"
-                style={{
-                  background:
-                    'linear-gradient(135deg, rgba(79,255,176,0.12) 0%, rgba(79,255,176,0.06) 100%)',
-                  border: '1px solid rgba(79,255,176,0.25)',
-                  boxShadow: '0 8px 32px rgba(79,255,176,0.08), inset 0 1px 0 rgba(79,255,176,0.15)',
-                }}
+                className="relative rounded-2xl p-5 mb-5 overflow-hidden flex-1"
+                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(168,232,245,0.15)' }}
               >
-                {/* Glow orb */}
-                <div
-                  className="absolute -top-8 -right-8 w-32 h-32 rounded-full pointer-events-none"
-                  style={{ background: 'radial-gradient(circle, rgba(79,255,176,0.2) 0%, transparent 70%)' }}
-                />
-
-                <p
-                  className="text-white/60 text-xs uppercase tracking-widest mb-2 font-bold"
-                  style={{ fontFamily: 'var(--font-body)' }}
-                >
-                  Your annual savings
-                </p>
-
-                <p
-                  className="text-5xl md:text-6xl font-extrabold text-[#4FFFB0] leading-none tabular-nums mb-3"
-                  style={{ fontFamily: 'var(--font-heading)' }}
-                >
-                  {fmt(saved)}
-                </p>
-
-                <div className="flex flex-wrap items-center gap-3">
-                  <div
-                    className="flex items-baseline gap-1"
-                    style={{ fontFamily: 'var(--font-body)' }}
-                  >
-                    <span className="text-white/80 text-lg font-bold tabular-nums">
-                      {fmt(savedMonthly)}
-                    </span>
-                    <span className="text-white/40 text-sm">/mo</span>
-                  </div>
-                  <span
-                    className="bg-[#4FFFB0]/15 border border-[#4FFFB0]/30 text-[#4FFFB0] text-sm font-extrabold px-4 py-1 rounded-full"
-                    style={{ fontFamily: 'var(--font-body)' }}
-                  >
+                <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none" style={{ background: 'radial-gradient(circle at top right, rgba(184,252,232,0.15) 0%, transparent 70%)' }} />
+                <p className="text-[10px] font-black tracking-[0.25em] uppercase mb-2" style={{ color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-body)' }}>Your annual savings</p>
+                <p className="text-4xl font-black leading-none tabular-nums mb-3" style={{ color: MINT_TEXT, fontFamily: 'var(--font-heading)' }}>{fmt(saved)}</p>
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="text-lg font-bold tabular-nums" style={{ color: 'rgba(255,255,255,0.65)', fontFamily: 'var(--font-body)' }}>
+                    {fmt(savedMonthly)}<span className="text-sm font-normal ml-1" style={{ color: 'rgba(255,255,255,0.45)' }}>/mo</span>
+                  </span>
+                  <span className="px-2.5 py-1 rounded-full text-xs font-black" style={{ background: 'rgba(184,252,232,0.15)', border: '1px solid rgba(184,252,232,0.25)', color: MINT_TEXT, fontFamily: 'var(--font-body)' }}>
                     {pct}% saved
                   </span>
                 </div>
               </div>
+
+              <a
+                href="/book-a-call"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                style={{ background: 'linear-gradient(135deg, #ffffff 0%, #a8e8f5 50%, #b8fce8 100%)', color: '#04090f' }}
+              >
+                Like the savings? Book a Free Call
+                <ArrowRight className="w-4 h-4 flex-shrink-0" />
+              </a>
             </div>
-
-            {/* CTA */}
-            <a
-              href="/book-a-call"
-              className="relative z-10 mt-2 inline-flex items-center justify-center gap-2 btn-grad text-white font-bold px-6 py-4 rounded-full text-sm w-full"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Like the savings? Book a Free Strategy Call
-              <ArrowRight className="w-4 h-4 flex-shrink-0" />
-            </a>
           </div>
-        </div>
-
-        {/* ── Reference table — desktop ── */}
-        <div className="hidden md:block rounded-2xl overflow-hidden border border-white/10">
-          {/* Table header */}
-          <div
-            className="grid grid-cols-4 text-xs font-bold uppercase tracking-widest"
-            style={{ background: 'rgba(10,22,40,0.95)', fontFamily: 'var(--font-body)' }}
-          >
-            <div className="px-6 py-4 text-white/50">Role</div>
-            <div className="px-6 py-4 text-white/50">🇺🇸 U.S. / Year</div>
-            <div className="px-6 py-4 text-white/50">Remote ACKtive / Year</div>
-            <div className="px-6 py-4 text-[#4FFFB0]">Annual Savings</div>
-          </div>
-
-          {roles.map((row, idx) => {
-            const rowPct = Math.round(((row.usMid - row.raMid) / row.usMid) * 100);
-            const isSelected = idx === selectedIdx;
-            return (
-              <div
-                key={row.label}
-                onClick={() => setSelectedIdx(idx)}
-                className={`grid grid-cols-4 border-t border-white/5 cursor-pointer transition-all duration-150 ${
-                  isSelected
-                    ? 'bg-[#57C5CF]/8'
-                    : idx % 2 === 0
-                    ? 'bg-[#0F1926]/70'
-                    : 'bg-[#0A1628]/70'
-                } hover:bg-[#57C5CF]/6`}
-              >
-                <div
-                  className="px-6 py-3.5 flex items-center gap-2"
-                  style={{ fontFamily: 'var(--font-body)' }}
-                >
-                  {isSelected && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#57C5CF] flex-shrink-0" />
-                  )}
-                  <span className={`text-sm font-semibold ${isSelected ? 'text-[#57C5CF]' : 'text-white/80'}`}>
-                    {row.label}
-                  </span>
-                </div>
-                <div
-                  className="px-6 py-3.5 text-white/40 text-sm line-through decoration-red-400/60 tabular-nums self-center"
-                  style={{ fontFamily: 'var(--font-body)' }}
-                >
-                  {row.usRange}
-                </div>
-                <div
-                  className="px-6 py-3.5 text-[#4FFFB0] font-semibold text-sm tabular-nums self-center"
-                  style={{ fontFamily: 'var(--font-body)' }}
-                >
-                  {row.raRange}
-                </div>
-                <div className="px-6 py-3.5 self-center">
-                  <span
-                    className="inline-flex items-center gap-1.5 bg-[#4FFFB0]/12 text-[#4FFFB0] text-xs font-bold px-3 py-1.5 rounded-full border border-[#4FFFB0]/30"
-                    style={{ fontFamily: 'var(--font-body)' }}
-                  >
-                    <TrendingDown className="w-3 h-3" />
-                    Up to {rowPct}% off
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* ── Reference cards — mobile ── */}
-        <div className="md:hidden space-y-3">
-          {roles.map((row, idx) => {
-            const rowPct = Math.round(((row.usMid - row.raMid) / row.usMid) * 100);
-            return (
-              <div
-                key={row.label}
-                className="rounded-xl border border-white/8 p-5"
-                style={{ background: 'rgba(13,26,45,0.92)', fontFamily: 'var(--font-body)' }}
-              >
-                <h3 className="font-bold text-white mb-4">{row.label}</h3>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs text-white/50 uppercase tracking-wide">🇺🇸 U.S. Cost</span>
-                  <span className="text-white/40 text-sm line-through decoration-red-400/60 tabular-nums">
-                    {row.usRange}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-xs text-white/50 uppercase tracking-wide">With Us</span>
-                  <span className="text-[#4FFFB0] font-semibold text-sm tabular-nums">{row.raRange}</span>
-                </div>
-                <div className="flex justify-between items-center pt-3 border-t border-white/8">
-                  <span className="text-xs text-white/40">Annual savings</span>
-                  <span className="inline-flex items-center gap-1.5 bg-[#4FFFB0]/12 text-[#4FFFB0] text-xs font-bold px-3 py-1.5 rounded-full border border-[#4FFFB0]/30">
-                    <TrendingDown className="w-3 h-3" />
-                    Save {rowPct}%
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <p
-          className="text-sm text-[#0F1926]/60 font-medium text-center mt-6"
-          style={{ fontFamily: 'var(--font-body)' }}
-        >
-          * Figures represent approximate annual all-in costs (salary + overhead + benefits).
-          Actual savings vary by role, region, and engagement type.
-        </p>
+        </SpotlightCard>
       </div>
     </section>
   );

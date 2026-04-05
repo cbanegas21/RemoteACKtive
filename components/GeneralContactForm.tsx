@@ -1,5 +1,7 @@
 "use client";
+
 import { useState } from "react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { FormSuccess, FormError } from "@/components/FormMessages";
 
 interface GeneralContactFormProps {
@@ -11,7 +13,6 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
     name: "",
     email: "",
     company: "",
-    roles: "",
     description: "",
     referral: "",
   });
@@ -19,7 +20,9 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -32,114 +35,105 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, formType: formType }),
+        body: JSON.stringify({ ...formData, formType }),
       });
 
       if (response.ok) {
         setSubmitStatus("success");
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          roles: "",
-          description: "",
-          referral: "",
-        });
+        setFormData({ name: "", email: "", company: "", description: "", referral: "" });
       } else {
         setSubmitStatus("error");
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-lg border transition focus:outline-none focus:ring-2 focus:ring-[#57C5CF] bg-[#2A3142] border-gray-600 text-white placeholder-gray-400";
-  const labelClass = "block text-sm font-medium mb-2 text-gray-300";
+  const inputClass =
+    "w-full px-4 py-3 rounded-xl border bg-[#04090f] border-white/10 text-white placeholder-white/30 transition-all duration-200 focus:outline-none focus:border-[#a8e8f5] focus:ring-1 focus:ring-[#a8e8f5]/30 focus:bg-[#04090f]";
+
+  const labelClass =
+    "block text-[11px] font-black mb-1.5 text-[#a8e8f5] uppercase tracking-[0.2em]";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+
+      {/* Row: Name + Email */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label htmlFor="gen-name" className={labelClass}>
+            Your Name <span className="text-white/60 normal-case tracking-normal font-normal">*</span>
+          </label>
+          <input
+            type="text"
+            id="gen-name"
+            name="name"
+            required
+            value={formData.name}
+            onChange={handleChange}
+            className={inputClass}
+            placeholder="Jane Smith"
+          />
+        </div>
+        <div>
+          <label htmlFor="gen-email" className={labelClass}>
+            Email <span className="text-white/60 normal-case tracking-normal font-normal">*</span>
+          </label>
+          <input
+            type="email"
+            id="gen-email"
+            name="email"
+            required
+            value={formData.email}
+            onChange={handleChange}
+            className={inputClass}
+            placeholder="jane@company.com"
+          />
+        </div>
+      </div>
+
+      {/* Company */}
       <div>
-        <label htmlFor="name" className={labelClass}>
-          Your Name *
+        <label htmlFor="gen-company" className={labelClass}>
+          Company <span className="text-white/60 normal-case tracking-normal font-normal">(optional)</span>
         </label>
         <input
           type="text"
-          id="name"
-          name="name"
-          required
-          value={formData.name}
-          onChange={handleChange}
-          className={inputClass}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="email" className={labelClass}>
-          Email *
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          value={formData.email}
-          onChange={handleChange}
-          className={inputClass}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="company" className={labelClass}>
-          Company
-        </label>
-        <input
-          type="text"
-          id="company"
+          id="gen-company"
           name="company"
           value={formData.company}
           onChange={handleChange}
           className={inputClass}
+          placeholder="Acme Inc."
         />
       </div>
 
+      {/* How can we help */}
       <div>
-        <label htmlFor="roles" className={labelClass}>
-          Role(s) to Fill *
-        </label>
-        <input
-          type="text"
-          id="roles"
-          name="roles"
-          required
-          value={formData.roles}
-          onChange={handleChange}
-          className={inputClass}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="description" className={labelClass}>
-          Brief Description *
+        <label htmlFor="gen-description" className={labelClass}>
+          How can we help you? <span className="text-white/60 normal-case tracking-normal font-normal">*</span>
         </label>
         <textarea
-          id="description"
+          id="gen-description"
           name="description"
           required
           value={formData.description}
           onChange={handleChange}
-          rows={4}
+          rows={5}
           className={`${inputClass} resize-none`}
+          placeholder="Tell us what you're looking for, any questions you have, or how we can support your business..."
         />
       </div>
 
+      {/* Referral */}
       <div>
-        <label htmlFor="referral" className={labelClass}>
+        <label htmlFor="gen-referral" className={labelClass}>
           How did you hear about us?
         </label>
         <select
-          id="referral"
+          id="gen-referral"
           name="referral"
           value={formData.referral}
           onChange={handleChange}
@@ -155,17 +149,27 @@ export default function GeneralContactForm({ formType = "general" }: GeneralCont
       </div>
 
       {submitStatus === "success" && (
-        <FormSuccess message="Thank you! We'll be in touch soon." />
+        <FormSuccess message="Thank you! We'll be in touch within 24 hours." />
       )}
-
       {submitStatus === "error" && <FormError />}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3.5 rounded-full btn-gradient text-black font-bold focus:outline-none focus:ring-2 focus:ring-[#4FFFB0] focus:ring-offset-2 focus:ring-offset-[#1E2430] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-[18px]"
+        className="w-full px-6 py-4 rounded-full font-bold text-base flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-[#04090f] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 text-[#04090f] shadow-[0_0_32px_rgba(168,232,245,0.18),0_8px_24px_rgba(184,252,232,0.2)] hover:shadow-[0_0_44px_rgba(168,232,245,0.28),0_12px_32px_rgba(184,252,232,0.35)] hover:-translate-y-0.5"
+        style={{ background: "linear-gradient(135deg, #ffffff 0%, #a8e8f5 50%, #b8fce8 100%)" }}
       >
-        {isSubmitting ? "Sending..." : "Learn More"}
+        {isSubmitting ? (
+          <>
+            <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />
+            <span>Sending...</span>
+          </>
+        ) : (
+          <>
+            <span>Send Message</span>
+            <ArrowRight className="w-5 h-5" aria-hidden="true" />
+          </>
+        )}
       </button>
     </form>
   );

@@ -1,132 +1,309 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { X, Check } from "lucide-react";
 
-const comparisons = [
-  {
-    them: "Months-long hiring cycles that stall your growth",
-    us: "Pre-vetted professionals ready in 3–10 days",
-  },
-  {
-    them: "Agency markups of 50–100% hidden in your invoice",
-    us: "Transparent, flat-fee pricing — no surprise costs",
-  },
-  {
-    them: "Generic talent pools with whoever's available",
-    us: "Top 5% only — rigorously hand-screened candidates",
-  },
-  {
-    them: "Disappear after placement, leaving you on your own",
-    us: "Lifetime partnership with ongoing support & coaching",
-  },
-  {
-    them: "One-size-fits-all packages that don't fit your needs",
-    us: "Custom-matched talent aligned to your exact business",
-  },
-  {
-    them: "Zero performance monitoring after the hire",
-    us: "Continuous tracking, check-ins, and course-correction",
-  },
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import { HandwritingUnderline } from "@/components/ui/HandwritingText";
+
+const TEAL     = "#a8e8f5";
+const MINT     = "#b8fce8";
+const TEAL_RGB = "168,232,245";
+const MINT_RGB = "184,252,232";
+
+const rows = [
+  { category: "Time to Hire",            them: "Weeks or months",                 us: "3–10 days" },
+  { category: "Cost Transparency",       them: "Hidden markups 50–100%",          us: "Flat-fee, no surprises" },
+  { category: "Talent Quality",          them: "Whoever's available",             us: "Top 5%, hand-screened" },
+  { category: "Post-Hire Support",       them: "Gone after placement",            us: "Lifetime partnership" },
+  { category: "Custom Fit",              them: "One-size-fits-all packages",      us: "Matched to your business" },
+  { category: "Performance Monitoring",  them: "Zero follow-through",             us: "Ongoing check-ins & tracking" },
 ];
 
-export default function WhatMakesUsDifferent() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [visibleCount, setVisibleCount] = useState(0);
-
+function useReveal(delay = 0) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
-    const el = sectionRef.current;
+    const el = ref.current;
     if (!el) return;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          comparisons.forEach((_, i) => {
-            timers.push(setTimeout(() => setVisibleCount(i + 1), 100 + i * 150));
-          });
-          observer.disconnect();
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setTimeout(() => setVisible(true), delay);
+          obs.disconnect();
         }
       },
       { threshold: 0.15 }
     );
-    observer.observe(el);
-    return () => {
-      observer.disconnect();
-      timers.forEach(clearTimeout);
-    };
-  }, []);
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [delay]);
+  return { ref, visible };
+}
+
+function ScoreRow({
+  row,
+  index,
+  revealed,
+}: {
+  row: (typeof rows)[0];
+  index: number;
+  revealed: boolean;
+}) {
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    if (revealed) {
+      setTimeout(() => setChecked(true), index * 110 + 300);
+    }
+  }, [revealed, index]);
+
+  return (
+    <div
+      className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 md:gap-8 transition-all duration-500"
+      style={{
+        borderTop:       "1px solid rgba(255,255,255,0.07)",
+        opacity:         revealed ? 1 : 0,
+        transform:       revealed ? "translateY(0)" : "translateY(10px)",
+        transitionDelay: `${index * 80}ms`,
+      }}
+    >
+      {/* Left — Them */}
+      <div className="py-3 flex items-center gap-3 md:gap-4">
+        {/* X mark */}
+        <div
+          className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
+          style={{
+            background: checked ? "rgba(239,68,68,0.12)" : "rgba(255,255,255,0.05)",
+            border:     checked ? "1px solid rgba(239,68,68,0.45)" : "1px solid rgba(255,255,255,0.12)",
+            boxShadow:  checked ? "0 0 12px rgba(239,68,68,0.15)" : "none",
+          }}
+        >
+          <span
+            className="font-black text-sm transition-all duration-300"
+            style={{ color: checked ? "rgb(220,38,38)" : "rgba(255,255,255,0.25)" }}
+          >
+            ✕
+          </span>
+        </div>
+        <p
+          className="text-xs md:text-sm leading-snug"
+          style={{
+            color:                   checked ? "rgb(252,165,165)" : "rgba(255,255,255,0.75)",
+            fontFamily:              "var(--font-body)",
+            textDecorationLine:      checked ? "line-through" : "none",
+            textDecorationColor:     "rgba(239,68,68,0.5)",
+            textDecorationThickness: "1px",
+            transition:              "color 0.3s ease",
+          }}
+        >
+          {row.them}
+        </p>
+      </div>
+
+      {/* Center — Category */}
+      <div className="flex flex-col items-center gap-1 flex-shrink-0 text-center px-2">
+        <span
+          className="text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase whitespace-nowrap"
+          style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-body)" }}
+        >
+          {row.category}
+        </span>
+        <div className="w-px h-4" style={{ background: "rgba(255,255,255,0.08)" }} />
+      </div>
+
+      {/* Right — Us */}
+      <div className="py-3 flex items-center justify-end gap-3 md:gap-4">
+        <p
+          className="text-xs md:text-sm leading-snug font-semibold text-right"
+          style={{ color: "#ffffff", fontFamily: "var(--font-body)" }}
+        >
+          {row.us}
+        </p>
+        {/* Check mark */}
+        <div
+          className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-500"
+          style={{
+            background: checked ? `rgba(${TEAL_RGB},0.12)` : "rgba(255,255,255,0.05)",
+            border:     checked ? `1px solid rgba(${TEAL_RGB},0.45)` : "1px solid rgba(255,255,255,0.12)",
+            boxShadow:  checked ? `0 0 16px rgba(${TEAL_RGB},0.18)` : "none",
+          }}
+        >
+          <span
+            className="font-black text-sm md:text-base transition-all duration-500"
+            style={{ color: checked ? TEAL : "rgba(255,255,255,0.25)" }}
+          >
+            ✓
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function WhatMakesUsDifferent() {
+  const { ref, visible } = useReveal(0.1);
+  const [scoreVisible, setScoreVisible] = useState(false);
+
+  useEffect(() => {
+    if (visible) setTimeout(() => setScoreVisible(true), rows.length * 110 + 600);
+  }, [visible]);
 
   return (
     <section
-      ref={sectionRef}
-      className="py-20"
-      style={{ background: 'linear-gradient(to right, #2C5364, #203A43, #0F2027)' }}
+      id="difference"
+      className="relative overflow-hidden py-10"
+      style={{ background: "linear-gradient(to right, #FFFDE4, #005AA7)" }}
     >
-      <div className="container mx-auto px-6 max-w-6xl">
+      {/* Subtle glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse 50% 60% at 70% 60%, rgba(${TEAL_RGB},0.06) 0%, transparent 65%)`,
+        }}
+      />
+
+      <div className="container mx-auto px-6 max-w-5xl relative z-10">
 
         {/* Header */}
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-sm font-bold text-[#57C5CF] tracking-wide uppercase">
-              The Difference
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
-            What Others Do.{" "}
-            <span className="text-[#4FFFB0]">What We Do.</span>
+        <div className="mb-10">
+          <h2
+            className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4"
+            style={{ fontFamily: "var(--font-heading)", color: "#000000" }}
+          >
+            Others vs.{" "}
+            <HandwritingUnderline color={MINT} duration={1.0} delay={0.4}>
+              <span className="inline rounded-md px-2 py-1" style={{ background: "rgba(13,31,45,0.88)" }}>
+                <span
+                  className="text-transparent bg-clip-text"
+                  style={{ backgroundImage: `linear-gradient(135deg, ${TEAL} 0%, ${MINT} 100%)` }}
+                >
+                  ACKtive.
+                </span>
+              </span>
+            </HandwritingUnderline>
           </h2>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
-            Not all outsourcing partners are equal. Here&apos;s exactly how Remote ACKtive
-            raises the bar — every time.
+
+          <p className="text-base max-w-lg leading-relaxed" style={{ color: "rgba(0,0,0,0.72)", fontFamily: "var(--font-body)" }}>
+            Six categories. One winner. You decide who you trust with your team.
           </p>
         </div>
 
-        {/* Column headers */}
-        <div className="grid grid-cols-2 gap-4 mb-4 max-w-4xl mx-auto">
-          <div className="rounded-xl bg-red-900/30 border border-red-500/30 px-5 py-3 text-center">
-            <span className="text-red-400 font-bold text-sm uppercase tracking-wider">
-              The Old Way
-            </span>
-          </div>
-          <div className="rounded-xl bg-[#4FFFB0]/10 border border-[#4FFFB0]/30 px-5 py-3 text-center">
-            <span className="text-[#4FFFB0] font-bold text-sm uppercase tracking-wider">
-              The Remote ACKtive Way
-            </span>
-          </div>
-        </div>
-
-        {/* Comparison rows */}
-        <div className="space-y-3 max-w-4xl mx-auto">
-          {comparisons.map((row, idx) => (
+        {/* Scoreboard card */}
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{
+            border:    "1px solid rgba(255,255,255,0.08)",
+            background: "rgba(13,31,45,0.88)",
+            boxShadow: "0 2px 16px rgba(0,0,0,0.25)",
+          }}
+        >
+          {/* Score header */}
+          <div className="grid grid-cols-[1fr_auto_1fr]" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+            {/* Left team */}
             <div
-              key={idx}
-              className={`grid grid-cols-2 gap-4 transition-all duration-500 ${
-                visibleCount > idx
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
+              className="py-4 px-6 md:px-8 flex flex-col items-start gap-1"
+              style={{ background: "rgba(239,68,68,0.08)" }}
             >
-              {/* Them */}
-              <div className="flex items-start gap-3 rounded-xl bg-red-900/20 border border-red-500/20 px-5 py-4">
-                <X className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-                <span className="text-white text-sm leading-relaxed font-bold">{row.them}</span>
+              <span
+                className="text-[10px] font-black tracking-[0.25em] uppercase"
+                style={{ color: "rgb(252,165,165)", fontFamily: "var(--font-body)" }}
+              >
+                Typical Agency
+              </span>
+              <span
+                className="font-black leading-none"
+                style={{
+                  fontSize:   "clamp(40px,6vw,64px)",
+                  color:      "rgba(252,165,165,0.5)",
+                  fontFamily: "var(--font-heading)",
+                }}
+              >
+                0
+              </span>
+            </div>
+
+            {/* VS divider */}
+            <div
+              className="flex items-center justify-center px-4 md:px-6"
+              style={{ borderLeft: "1px solid rgba(255,255,255,0.07)", borderRight: "1px solid rgba(255,255,255,0.07)" }}
+            >
+              <span
+                className="text-xs font-black tracking-[0.2em]"
+                style={{ color: "rgba(255,255,255,0.3)", fontFamily: "var(--font-body)" }}
+              >
+                VS
+              </span>
+            </div>
+
+            {/* Right team */}
+            <div
+              className="py-6 px-6 md:px-8 flex flex-col items-end gap-1"
+              style={{ background: `rgba(${TEAL_RGB},0.05)` }}
+            >
+              <span
+                className="text-[10px] font-black tracking-[0.25em] uppercase"
+                style={{ color: TEAL, fontFamily: "var(--font-body)" }}
+              >
+                Remote ACKtive
+              </span>
+              <span
+                className="font-black leading-none"
+                style={{
+                  fontSize:   "clamp(40px,6vw,64px)",
+                  color:      TEAL,
+                  fontFamily: "var(--font-heading)",
+                  textShadow: `0 0 30px rgba(${TEAL_RGB},0.25)`,
+                }}
+              >
+                6
+              </span>
+            </div>
+          </div>
+
+          {/* Rows */}
+          <div ref={ref} className="px-6 md:px-8">
+            {rows.map((row, i) => (
+              <ScoreRow key={i} row={row} index={i} revealed={visible} />
+            ))}
+          </div>
+
+          {/* Final verdict */}
+          <div
+            className="px-6 md:px-8 py-4 flex items-center justify-between flex-wrap gap-4 transition-all duration-700"
+            style={{
+              borderTop:  `1px solid rgba(${TEAL_RGB},0.15)`,
+              background: `rgba(${TEAL_RGB},0.05)`,
+              opacity:    scoreVisible ? 1 : 0,
+              transform:  scoreVisible ? "translateY(0)" : "translateY(8px)",
+            }}
+          >
+            <div className="flex items-center gap-3">
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ background: `rgba(${TEAL_RGB},0.12)`, border: `1px solid rgba(${TEAL_RGB},0.35)` }}
+              >
+                <span className="text-sm font-black" style={{ color: TEAL }}>✓</span>
               </div>
-              {/* Us */}
-              <div className="flex items-start gap-3 rounded-xl bg-[#4FFFB0]/8 border border-[#4FFFB0]/20 px-5 py-4">
-                <Check className="w-5 h-5 text-[#4FFFB0] flex-shrink-0 mt-0.5" />
-                <span className="text-white text-sm leading-relaxed font-bold">{row.us}</span>
+              <div>
+                <p className="font-bold text-sm" style={{ color: "#ffffff", fontFamily: "var(--font-body)" }}>
+                  Remote ACKtive wins 6 out of 6.
+                </p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "var(--font-body)" }}>
+                  Every category. Every time.
+                </p>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <a
-            href="/book-a-call"
-            className="inline-flex items-center gap-2 btn-grad text-white font-bold px-8 py-4 rounded-full text-base"
-          >
-            Book a Free Discovery Call →
-          </a>
+            <a
+              href="/book-a-call"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 hover:scale-[1.02]"
+              style={{
+                background: `linear-gradient(135deg, #ffffff 0%, #a8e8f5 100%)`,
+                color:      "#04090f",
+              }}
+            >
+              Book a Free Call
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
 
       </div>
