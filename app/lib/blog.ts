@@ -24,7 +24,6 @@ export interface BlogPost {
   faq: BlogFaq[];
   relatedSlugs: string[];
   tldr?: string;
-  coverImage?: string;
 }
 
 export const blogPosts: BlogPost[] = [
