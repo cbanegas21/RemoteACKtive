@@ -151,6 +151,7 @@ export default function GitHubHeroGlobe({ className = '' }: Props) {
     const scene = new Scene();
 
     const renderer = new WebGLRenderer({ alpha: true, antialias: window.innerWidth > 768 });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setClearColor(0x000000, 0);
     renderer.domElement.style.display = 'block';
     renderer.domElement.style.position = 'absolute';

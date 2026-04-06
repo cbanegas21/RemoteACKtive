@@ -86,7 +86,7 @@ function NavItem({
             : "opacity-0 invisible pointer-events-none translate-y-1"
         }`}
       >
-        <div className="bg-[#04090f]/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/40 overflow-hidden">
+        <div className="bg-[#04090f] rounded-2xl border border-white/10 shadow-2xl shadow-black/40 overflow-hidden">
           <div className="p-2 min-w-[180px]">
             {(dropdownItems[label as DropdownKey] as { label: string; href: string; desc?: string }[]).map((item) => (
               <Link

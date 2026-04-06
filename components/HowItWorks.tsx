@@ -173,7 +173,10 @@ export default function HowItWorks() {
     }));
 
     let rafId = 0;
+    let visible = false;
+
     const draw = () => {
+      if (!visible) { rafId = 0; return; }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (const b of beams) {
         b.y -= b.speed;
@@ -194,11 +197,23 @@ export default function HowItWorks() {
       }
       rafId = requestAnimationFrame(draw);
     };
+
+    // Pause animation when section is off-screen
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible && rafId === 0) draw();
+      },
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+    visible = true;
     draw();
 
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resize);
+      io.disconnect();
     };
   }, []);
 

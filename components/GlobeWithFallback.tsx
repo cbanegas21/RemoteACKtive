@@ -70,6 +70,10 @@ export default function GlobeWithFallback({ className }: { className?: string })
   const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
+    // Skip Three.js globe on mobile — too expensive for mobile GPUs.
+    // Show the static gradient placeholder instead.
+    if (window.innerWidth < 768) return;
+
     let loaded = false;
 
     const trigger = () => {
