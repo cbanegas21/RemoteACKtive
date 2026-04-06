@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, ShieldCheck, Globe, Lock, ArrowRight } from "lucide-react";
 import { useFormContext } from "./FormContext";
 import HireOnlyForm from "./HireOnlyForm";
@@ -31,10 +30,8 @@ function GlowBorder({ children }: { children: React.ReactNode }) {
       onMouseMove={onMove}
       onMouseLeave={() => setActive(false)}
     >
-      <motion.div
-        className="pointer-events-none absolute inset-0 rounded-2xl"
-        animate={{ opacity: active ? 1 : 0 }}
-        transition={{ duration: 0.4 }}
+      <div
+        className={`pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-[400ms] ${active ? "opacity-100" : "opacity-0"}`}
         style={{
           padding: 1,
           background: `conic-gradient(from ${angle}deg at 50% 50%, #0a6b7a, #0a7a55, #0a6b7a, transparent 40%)`,
@@ -112,41 +109,33 @@ export default function ContactCTA() {
           {/* ══ LEFT — changes with active tab ══ */}
           <div className="lg:sticky lg:top-28 flex flex-col gap-8">
 
-            {/* Headline — swaps per tab */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`headline-${formType}`}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.28, ease: "easeOut" }}
-              >
-                <h2 className="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.0] mb-5 whitespace-pre-line" style={{ color: "#000000" }}>
-                  {activeTab.headline.split("\n").map((line, i, arr) => (
-                    <span key={i}>
-                      {i === arr.length - 1 ? (
-                        <span
-                          style={{
-                            backgroundImage: "linear-gradient(90deg, #0a6b7a, #0a7a55)",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                            backgroundClip: "text",
-                          }}
-                        >
-                          {line}
-                        </span>
-                      ) : (
-                        line
-                      )}
-                      {i < arr.length - 1 && <br />}
-                    </span>
-                  ))}
-                </h2>
-                <p className="text-base md:text-lg leading-relaxed max-w-sm" style={{ color: "rgba(0,0,0,0.75)" }}>
-                  {activeTab.sub}
-                </p>
-              </motion.div>
-            </AnimatePresence>
+            {/* Headline — CSS fade swap per tab */}
+            <div key={`headline-${formType}`} className="animate-fade-up">
+              <h2 className="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.0] mb-5 whitespace-pre-line" style={{ color: "#000000" }}>
+                {activeTab.headline.split("\n").map((line, i, arr) => (
+                  <span key={i}>
+                    {i === arr.length - 1 ? (
+                      <span
+                        style={{
+                          backgroundImage: "linear-gradient(90deg, #0a6b7a, #0a7a55)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text",
+                        }}
+                      >
+                        {line}
+                      </span>
+                    ) : (
+                      line
+                    )}
+                    {i < arr.length - 1 && <br />}
+                  </span>
+                ))}
+              </h2>
+              <p className="text-base md:text-lg leading-relaxed max-w-sm" style={{ color: "rgba(0,0,0,0.75)" }}>
+                {activeTab.sub}
+              </p>
+            </div>
 
             {/* Proof points */}
             <div className="flex flex-col gap-3.5">
@@ -203,26 +192,14 @@ export default function ContactCTA() {
                     key={tab.id}
                     type="button"
                     onClick={() => setFormType(tab.id)}
-                    className="relative overflow-hidden flex-1 min-w-[80px] sm:min-w-[110px] rounded-full border px-3 sm:px-4 py-2.5 text-xs sm:text-sm font-bold transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a6b7a]"
+                    className="flex-1 min-w-[80px] sm:min-w-[110px] rounded-full border px-3 sm:px-4 py-2.5 text-xs sm:text-sm font-bold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a6b7a]"
                     style={{
                       borderColor: isActive ? "#0a6b7a" : "rgba(13,31,45,0.2)",
                       color:       isActive ? "#ffffff" : "#000000",
+                      background:  isActive ? "linear-gradient(90deg, #0a6b7a, #0a7a55)" : "transparent",
                     }}
                   >
-                    <span className="relative z-10">{tab.label}</span>
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.span
-                          key="pill-fill"
-                          className="absolute inset-0 z-0"
-                          style={{ background: "linear-gradient(90deg, #0a6b7a, #0a7a55)" }}
-                          initial={{ y: "100%" }}
-                          animate={{ y: "0%" }}
-                          exit={{ y: "100%" }}
-                          transition={{ duration: 0.32, ease: "backOut" }}
-                        />
-                      )}
-                    </AnimatePresence>
+                    {tab.label}
                   </button>
                 );
               })}
@@ -237,38 +214,21 @@ export default function ContactCTA() {
                   border: "1px solid rgba(255,255,255,0.08)",
                 }}
               >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`hdr-${formType}`}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.18 }}
-                    className="mb-7 pb-6 border-b border-white/[0.08]"
-                  >
-                    <p className="text-[10px] font-black tracking-[0.28em] uppercase mb-2" style={{ color: "#a8e8f5" }}>
-                      Tell us what you need
-                    </p>
-                    <h3 className="text-xl md:text-2xl font-black mb-1.5 leading-snug text-white">
-                      {activeTab.formTitle}
-                    </h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>{activeTab.formDesc}</p>
-                  </motion.div>
-                </AnimatePresence>
+                <div key={`hdr-${formType}`} className="mb-7 pb-6 border-b border-white/[0.08] animate-fade-up">
+                  <p className="text-[10px] font-black tracking-[0.28em] uppercase mb-2" style={{ color: "#a8e8f5" }}>
+                    Tell us what you need
+                  </p>
+                  <h3 className="text-xl md:text-2xl font-black mb-1.5 leading-snug text-white">
+                    {activeTab.formTitle}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>{activeTab.formDesc}</p>
+                </div>
 
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`frm-${formType}`}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.22, ease: "easeOut" }}
-                  >
-                    {formType === "hire-only"   && <HireOnlyForm />}
-                    {formType === "hire-manage" && <HireManageForm />}
-                    {formType === "general"     && <GeneralContactForm formType="general" />}
-                  </motion.div>
-                </AnimatePresence>
+                <div key={`frm-${formType}`} className="animate-fade-up">
+                  {formType === "hire-only"   && <HireOnlyForm />}
+                  {formType === "hire-manage" && <HireManageForm />}
+                  {formType === "general"     && <GeneralContactForm formType="general" />}
+                </div>
               </div>
             </GlowBorder>
           </div>

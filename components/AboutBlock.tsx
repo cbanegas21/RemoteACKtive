@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { HandwritingText } from "@/components/ui/HandwritingText";
 import Link from "next/link";
 
@@ -96,58 +95,19 @@ const STEPS = [
 ] as const;
 
 // ─── Direction-aware hover
-type Direction = "top" | "right" | "bottom" | "left";
-
-function getDirection(e: React.MouseEvent<HTMLDivElement>, el: HTMLDivElement): Direction {
-  const rect  = el.getBoundingClientRect();
-  const x     = e.clientX - rect.left - rect.width / 2;
-  const y     = e.clientY - rect.top - rect.height / 2;
-  const angle = (Math.atan2(y, x) * 180) / Math.PI;
-  if (angle > -45 && angle <= 45)  return "right";
-  if (angle > 45 && angle <= 135)  return "bottom";
-  if (angle > -135 && angle <= -45) return "top";
-  return "left";
-}
-
-function getSlideOrigin(direction: Direction): { x: number; y: number } {
-  switch (direction) {
-    case "top":    return { x: 0,    y: -100 };
-    case "bottom": return { x: 0,    y: 100  };
-    case "left":   return { x: -100, y: 0    };
-    case "right":  return { x: 100,  y: 0    };
-  }
-}
-
-// ─── Step card with direction-aware hover
+// ─── Step card — CSS fade hover overlay
 function StepCard({ step }: { step: (typeof STEPS)[number] }) {
-  const cardRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
-  const [dir, setDir] = useState<Direction>("top");
-
-  const onEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    setDir(getDirection(e, cardRef.current));
-    setHovered(true);
-  };
-
-  const onLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    setDir(getDirection(e, cardRef.current));
-    setHovered(false);
-  };
-
-  const origin = getSlideOrigin(dir);
 
   return (
     <div
-      ref={cardRef}
       className="relative overflow-hidden rounded-2xl min-h-[300px] cursor-default"
       style={{
         background: "rgba(255,255,255,0.025)",
         border: `1px solid ${step.accent}18`,
       }}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       {/* Always-visible base layer */}
       <div className="h-full min-h-[300px] p-8 md:p-10 flex flex-col justify-between select-none">
@@ -174,46 +134,38 @@ function StepCard({ step }: { step: (typeof STEPS)[number] }) {
         </div>
       </div>
 
-      {/* Direction-aware hover overlay */}
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            className="absolute inset-0 rounded-2xl p-8 md:p-10 flex flex-col justify-between"
-            style={{
-              background: "linear-gradient(135deg, rgba(4,9,15,0.96) 0%, rgba(9,15,13,0.94) 100%)",
-              backdropFilter: "blur(14px)",
-              WebkitBackdropFilter: "blur(14px)",
-              border: `1px solid ${step.accent}35`,
-            }}
-            initial={{ x: `${origin.x}%`, y: `${origin.y}%`, opacity: 0 }}
-            animate={{ x: "0%", y: "0%", opacity: 1 }}
-            exit={{ x: `${origin.x}%`, y: `${origin.y}%`, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          >
-            <span
-              className="text-[11px] font-black tracking-[0.28em] uppercase"
-              style={{ color: step.accent }}
-            >
-              Step {step.number}
-            </span>
+      {/* CSS fade hover overlay — no framer-motion, no backdrop-blur */}
+      <div
+        className={`absolute inset-0 rounded-2xl p-8 md:p-10 flex flex-col justify-between transition-opacity duration-200 ${
+          hovered ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        style={{
+          background: "linear-gradient(135deg, rgba(4,9,15,0.97) 0%, rgba(9,15,13,0.96) 100%)",
+          border: `1px solid ${step.accent}35`,
+        }}
+      >
+        <span
+          className="text-[11px] font-black tracking-[0.28em] uppercase"
+          style={{ color: step.accent }}
+        >
+          Step {step.number}
+        </span>
 
-            <div>
-              <h3 className="text-xl font-black text-white mb-3">{step.title}</h3>
-              <p className="text-sm text-white/80 leading-relaxed mb-5">{step.description}</p>
-              <div className="flex flex-col gap-2.5">
-                {step.bullets.map((b, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-sm text-white/70">
-                    <span className="mt-0.5 flex-shrink-0 text-base leading-none" style={{ color: step.accent }}>
-                      ✓
-                    </span>
-                    <span>{b}</span>
-                  </div>
-                ))}
+        <div>
+          <h3 className="text-xl font-black text-white mb-3">{step.title}</h3>
+          <p className="text-sm text-white/80 leading-relaxed mb-5">{step.description}</p>
+          <div className="flex flex-col gap-2.5">
+            {step.bullets.map((b, i) => (
+              <div key={i} className="flex items-start gap-2.5 text-sm text-white/70">
+                <span className="mt-0.5 flex-shrink-0 text-base leading-none" style={{ color: step.accent }}>
+                  ✓
+                </span>
+                <span>{b}</span>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

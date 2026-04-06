@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 
 // ─── Categories
@@ -119,7 +118,7 @@ function FAQItem({ item }: { item: { slug: string; question: string; answer: str
       ref={cardRef}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className="group relative overflow-hidden rounded-2xl border border-white/10 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5"
+      className="group relative overflow-hidden rounded-2xl border border-white/10 transition-all duration-300 hover:-translate-y-0.5"
       style={{ background: "rgba(255,255,255,0.03)" }}
     >
       {/* Mouse-follow glow */}
@@ -158,20 +157,19 @@ function FAQItem({ item }: { item: { slug: string; question: string; answer: str
         </span>
       </button>
 
-      {/* Accordion panel */}
-      <motion.div
+      {/* Accordion panel — CSS grid trick for height:auto transition */}
+      <div
         id={`faq-panel-${item.slug}`}
         role="region"
         aria-labelledby={`faq-btn-${item.slug}`}
-        initial={false}
-        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
-        transition={{ duration: 0.32, ease: "easeInOut" }}
-        className="overflow-hidden"
+        className={`grid transition-all duration-300 ease-in-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
       >
-        <p className="px-4 sm:px-7 pb-5 sm:pb-6 text-sm text-white leading-relaxed sm:pl-[4.75rem]">
-          {item.answer}
-        </p>
-      </motion.div>
+        <div className="min-h-0 overflow-hidden">
+          <p className="px-4 sm:px-7 pb-5 sm:pb-6 text-sm text-white leading-relaxed sm:pl-[4.75rem]">
+            {item.answer}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -236,47 +234,24 @@ export default function FAQ() {
             <button
               key={key}
               onClick={() => setActiveCategory(key)}
-              className="relative overflow-hidden rounded-full border px-5 py-2 text-sm font-bold transition-colors duration-300"
+              className="rounded-full border px-5 py-2 text-sm font-bold transition-all duration-200"
               style={{
-                borderColor: activeCategory === key ? "#a8e8f5" : "rgba(255,255,255,0.15)",
+                borderColor: activeCategory === key ? "transparent" : "rgba(255,255,255,0.15)",
                 color: activeCategory === key ? "#04090f" : "rgba(255,255,255,0.7)",
+                background: activeCategory === key ? "linear-gradient(90deg, #a8e8f5, #b8fce8)" : "transparent",
               }}
             >
-              <span className="relative z-10">{CATEGORIES[key]}</span>
-              <AnimatePresence>
-                {activeCategory === key && (
-                  <motion.span
-                    key="fill"
-                    className="absolute inset-0 z-0"
-                    style={{
-                      background: "linear-gradient(90deg, #a8e8f5, #b8fce8)",
-                    }}
-                    initial={{ y: "100%" }}
-                    animate={{ y: "0%" }}
-                    exit={{ y: "100%" }}
-                    transition={{ duration: 0.35, ease: "backOut" }}
-                  />
-                )}
-              </AnimatePresence>
+              {CATEGORIES[key]}
             </button>
           ))}
         </div>
 
-        {/* FAQ list — animated swap on tab change */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="space-y-3"
-          >
-            {FAQS[activeCategory].map((item) => (
-              <FAQItem key={item.slug} item={item} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        {/* FAQ list — CSS fade on tab change */}
+        <div key={activeCategory} className="space-y-3 animate-fade-up">
+          {FAQS[activeCategory].map((item) => (
+            <FAQItem key={item.slug} item={item} />
+          ))}
+        </div>
 
         {/* CTA */}
         <div className="mt-12 flex flex-wrap items-center gap-4">

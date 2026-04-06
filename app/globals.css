@@ -160,3 +160,12 @@ section {
 #contact {
   scroll-margin-top: 100px;
 }
+
+/* ── Lightweight fade-up — replaces framer-motion enter transitions ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.animate-fade-up {
+  animation: fadeUp 0.22s ease both;
+}

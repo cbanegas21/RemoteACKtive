@@ -1,20 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MagneticButton } from "./ui/MagneticButton";
-
-const springTransition = {
-  type: "spring" as const,
-  mass: 0.5,
-  damping: 11.5,
-  stiffness: 100,
-  restDelta: 0.001,
-  restSpeed: 0.001,
-};
 
 const dropdownItems = {
   Services: [
@@ -89,40 +78,34 @@ function NavItem({
         />
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 8 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.92, y: 8 }}
-            transition={springTransition}
-            className="absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 pt-2 z-50"
-          >
-            <motion.div
-              layoutId="dropdown-panel"
-              className="bg-[#04090f]/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/40 overflow-hidden"
-            >
-              <div className="p-2 min-w-[180px]">
-                {(dropdownItems[label as DropdownKey] as { label: string; href: string; desc?: string }[]).map((item) => (
-                  <Link
-                    key={item.href + item.label}
-                    href={item.href}
-                    onClick={() => setActive(null)}
-                    className="flex flex-col px-4 py-2.5 rounded-xl hover:bg-white/8 transition-colors group/item"
-                  >
-                    <span className="text-[13px] font-semibold text-white/85 group-hover/item:text-white transition-colors">
-                      {item.label}
-                    </span>
-                    {item.desc && (
-                      <span className="text-[11px] text-white/60 mt-0.5">{item.desc}</span>
-                    )}
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* CSS-only dropdown — no framer-motion */}
+      <div
+        className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 pt-2 z-50 transition-all duration-150 ${
+          isOpen
+            ? "opacity-100 visible pointer-events-auto translate-y-0"
+            : "opacity-0 invisible pointer-events-none translate-y-1"
+        }`}
+      >
+        <div className="bg-[#04090f]/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/40 overflow-hidden">
+          <div className="p-2 min-w-[180px]">
+            {(dropdownItems[label as DropdownKey] as { label: string; href: string; desc?: string }[]).map((item) => (
+              <Link
+                key={item.href + item.label}
+                href={item.href}
+                onClick={() => setActive(null)}
+                className="flex flex-col px-4 py-2.5 rounded-xl hover:bg-white/8 transition-colors group/item"
+              >
+                <span className="text-[13px] font-semibold text-white/85 group-hover/item:text-white transition-colors">
+                  {item.label}
+                </span>
+                {item.desc && (
+                  <span className="text-[11px] text-white/60 mt-0.5">{item.desc}</span>
+                )}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -148,7 +131,6 @@ export default function Header() {
     return () => { document.body.style.overflow = ""; };
   }, [isMobileMenuOpen]);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -208,14 +190,13 @@ export default function Header() {
 
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center flex-shrink-0">
-              <MagneticButton
+              <Link
                 href="/book-a-call"
-                strength={0.25}
-                className="rounded-full px-7 py-3 font-bold text-[15px] whitespace-nowrap text-[#04090f] shadow-[0_0_20px_rgba(255,255,255,0.15),0_4px_14px_rgba(184,252,232,0.2)] hover:shadow-[0_0_32px_rgba(255,255,255,0.25),0_8px_20px_rgba(184,252,232,0.35)] transition-shadow duration-200"
-                style={{ background: 'linear-gradient(135deg, #ffffff 0%, #a8e8f5 60%, #b8fce8 100%)' }}
+                className="rounded-full px-7 py-3 font-bold text-[15px] whitespace-nowrap text-[#04090f] transition-all duration-200 hover:scale-105 hover:shadow-[0_0_28px_rgba(184,252,232,0.35)]"
+                style={{ background: "linear-gradient(135deg, #ffffff 0%, #a8e8f5 60%, #b8fce8 100%)" }}
               >
                 Book a Call
-              </MagneticButton>
+              </Link>
             </div>
 
             {/* Mobile hamburger */}
@@ -256,30 +237,25 @@ export default function Header() {
                   className="w-full flex items-center justify-between font-semibold text-xl py-4 px-4 rounded-xl text-white/80 hover:text-white hover:bg-white/6 transition-all"
                 >
                   {section}
-                  <ChevronDown className={`w-5 h-5 transition-transform ${mobileExpanded === section ? "rotate-180 text-[#a8e8f5]" : ""}`} />
+                  <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${mobileExpanded === section ? "rotate-180 text-[#a8e8f5]" : ""}`} />
                 </button>
-                <AnimatePresence>
-                  {mobileExpanded === section && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden pl-4"
-                    >
-                      {(dropdownItems[section] as { label: string; href: string }[]).map((item) => (
-                        <Link
-                          key={item.label}
-                          href={item.href}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                          className="block py-3 px-4 text-base text-white/60 hover:text-[#a8e8f5] transition-colors"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* CSS grid accordion — no framer-motion */}
+                <div className={`grid transition-all duration-200 ease-in-out pl-4 ${
+                  mobileExpanded === section ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                }`}>
+                  <div className="min-h-0 overflow-hidden">
+                    {(dropdownItems[section] as { label: string; href: string }[]).map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-3 px-4 text-base text-white/60 hover:text-[#a8e8f5] transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
           </nav>
@@ -288,8 +264,8 @@ export default function Header() {
             <Link
               href="/book-a-call"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="rounded-2xl px-8 py-4 font-bold text-lg text-center shadow-[0_0_32px_rgba(184,252,232,0.25)] block w-full text-[#04090f]"
-              style={{ background: 'linear-gradient(135deg, #ffffff 0%, #a8e8f5 60%, #b8fce8 100%)' }}
+              className="rounded-2xl px-8 py-4 font-bold text-lg text-center block w-full text-[#04090f]"
+              style={{ background: "linear-gradient(135deg, #ffffff 0%, #a8e8f5 60%, #b8fce8 100%)" }}
             >
               Book a Call
             </Link>
