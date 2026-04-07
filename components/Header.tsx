@@ -148,7 +148,7 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "backdrop-blur-xl bg-[#04090f]/80 border-b border-white/8 shadow-lg shadow-black/20"
+            ? "bg-[#04090f]/95 lg:backdrop-blur-xl border-b border-white/8 shadow-lg shadow-black/20"
             : "bg-transparent"
         }`}
       >
@@ -221,7 +221,7 @@ export default function Header() {
         }`}
         aria-hidden={!isMobileMenuOpen}
       >
-        <div className="absolute inset-0 bg-[#04090f]/97 backdrop-blur-xl" onClick={() => setIsMobileMenuOpen(false)} />
+        <div className="absolute inset-0 bg-[#04090f]/98" onClick={() => setIsMobileMenuOpen(false)} />
 
         <div className={`relative z-10 flex flex-col min-h-full px-6 pt-24 pb-12 transition-all duration-300 ${isMobileMenuOpen ? "translate-y-0" : "-translate-y-4"}`}>
           <nav className="flex flex-col gap-1 mb-8">

@@ -18,6 +18,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Eliminate 300ms tap delay and gray flash on iOS Safari */
+  a, button, [role="button"], input, select, textarea, label {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
   }
